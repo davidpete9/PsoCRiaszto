@@ -1,0 +1,6 @@
+C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\Riaszto.cyprj|9f837959-d146-4ede-862c-16b31ea7fe22
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|eaa01af6-832a-4667-b550-82e03feb89c9
+C:\Users\David\Documents\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|2e27195f-352a-42ac-840d-34a3c7ca104d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|1678c3dd-2a57-464e-ab77-3f90e6c6c8d4
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|43eb13f9-8a76-40fd-939f-81adcf9a7db6
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|770fc82d-bfd5-4809-a8d8-10aafc5d53d1

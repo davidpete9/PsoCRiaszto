@@ -1,0 +1,34 @@
+--------------- Build Started: 05/10/2021 18:04:13 Project: Riaszto, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+The code generation step is up to date.
+arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
+main.c: In function 'ADC_SAR_RADAR_ISR':
+main.c:207:13: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+             sprintf(alart_reason, "RADAR");
+             ^
+main.c:207:13: warning: incompatible implicit declaration of built-in function 'sprintf'
+main.c:207:13: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+main.c: In function 'ADC_SAR_PR_ISR':
+main.c:243:9: warning: incompatible implicit declaration of built-in function 'sprintf'
+         sprintf(str,"%d. : PR val: %d\r\n",maxLight, minLight); 
+         ^
+main.c:243:9: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+main.c: In function 'main':
+main.c:400:25: warning: incompatible implicit declaration of built-in function 'sprintf'
+                         sprintf(alart_reason, "Reed rele");
+                         ^
+main.c:400:25: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+main.c:417:29: warning: incompatible implicit declaration of built-in function 'sprintf'
+                             sprintf(first_row, "%s - RIASZTAS", timestr);
+                             ^
+main.c:417:29: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+arm-none-eabi-ar.exe -rs .\CortexM3\ARM_GCC_541\Debug\Riaszto.a .\CortexM3\ARM_GCC_541\Debug\LCD.o .\CortexM3\ARM_GCC_541\Debug\LCD_PM.o .\CortexM3\ARM_GCC_541\Debug\LCD_LCDPort.o .\CortexM3\ARM_GCC_541\Debug\CyDmac.o .\CortexM3\ARM_GCC_541\Debug\CyFlash.o .\CortexM3\ARM_GCC_541\Debug\CyLib.o .\CortexM3\ARM_GCC_541\Debug\cyPm.o .\CortexM3\ARM_GCC_541\Debug\CySpc.o .\CortexM3\ARM_GCC_541\Debug\cyutils.o .\CortexM3\ARM_GCC_541\Debug\cy_em_eeprom.o .\CortexM3\ARM_GCC_541\Debug\ROW1.o .\CortexM3\ARM_GCC_541\Debug\ROW2.o .\CortexM3\ARM_GCC_541\Debug\ROW3.o .\CortexM3\ARM_GCC_541\Debug\ROW4.o .\CortexM3\ARM_GCC_541\Debug\COL1.o .\CortexM3\ARM_GCC_541\Debug\COL2.o .\CortexM3\ARM_GCC_541\Debug\COL3.o .\CortexM3\ARM_GCC_541\Debug\COL4.o .\CortexM3\ARM_GCC_541\Debug\SDAT_1.o .\CortexM3\ARM_GCC_541\Debug\SCLK_1.o .\CortexM3\ARM_GCC_541\Debug\SPIM.o .\CortexM3\ARM_GCC_541\Debug\SPIM_PM.o .\CortexM3\ARM_GCC_541\Debug\SPIM_INT.o .\CortexM3\ARM_GCC_541\Debug\SS.o .\CortexM3\ARM_GCC_541\Debug\SPIM_IntClock.o .\CortexM3\ARM_GCC_541\Debug\UART.o .\CortexM3\ARM_GCC_541\Debug\UART_PM.o .\CortexM3\ARM_GCC_541\Debug\UART_INT.o .\CortexM3\ARM_GCC_541\Debug\UART_BOOT.o .\CortexM3\ARM_GCC_541\Debug\UART_IntClock.o .\CortexM3\ARM_GCC_541\Debug\RADAR.o .\CortexM3\ARM_GCC_541\Debug\timer_clock.o .\CortexM3\ARM_GCC_541\Debug\Timer.o .\CortexM3\ARM_GCC_541\Debug\Timer_PM.o .\CortexM3\ARM_GCC_541\Debug\isr_Timer.o .\CortexM3\ARM_GCC_541\Debug\REED_RELAY.o .\CortexM3\ARM_GCC_541\Debug\BACKLIGHT.o .\CortexM3\ARM_GCC_541\Debug\PWM_BACKLIGHT.o .\CortexM3\ARM_GCC_541\Debug\PWM_BACKLIGHT_PM.o .\CortexM3\ARM_GCC_541\Debug\pwn1_clk.o .\CortexM3\ARM_GCC_541\Debug\PWM_BEEPER.o .\CortexM3\ARM_GCC_541\Debug\PWM_BEEPER_PM.o .\CortexM3\ARM_GCC_541\Debug\beeper_clk.o .\CortexM3\ARM_GCC_541\Debug\BEEPER.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_PR.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_PR_INT.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_PR_PM.o .\CortexM3\ARM_GCC_541\Debug\PHRES.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_PR_IRQ.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_PR_theACLK.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_RADAR.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_RADAR_INT.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_RADAR_PM.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_RADAR_IRQ.o .\CortexM3\ARM_GCC_541\Debug\ADC_SAR_RADAR_theACLK.o .\CortexM3\ARM_GCC_541\Debug\CyBootAsmGnu.o
+arm-none-eabi-ar.exe: creating .\CortexM3\ARM_GCC_541\Debug\Riaszto.a
+arm-none-eabi-gcc.exe -Wl,--start-group -o "C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\CortexM3\ARM_GCC_541\Debug\Riaszto.elf" .\CortexM3\ARM_GCC_541\Debug\main.o .\CortexM3\ARM_GCC_541\Debug\d1302.o .\CortexM3\ARM_GCC_541\Debug\TaskFIFO.o .\CortexM3\ARM_GCC_541\Debug\PeriodicTask.o .\CortexM3\ARM_GCC_541\Debug\cyfitter_cfg.o .\CortexM3\ARM_GCC_541\Debug\cymetadata.o .\CortexM3\ARM_GCC_541\Debug\Cm3Start.o .\CortexM3\ARM_GCC_541\Debug\Riaszto.a "C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM3\ARM_GCC_541\Debug\CyComponentLibrary.a" -mcpu=cortex-m3 -mthumb -L Generated_Source\PSoC5 -Wl,-Map,.\CortexM3\ARM_GCC_541\Debug/Riaszto.map -T Generated_Source\PSoC5\cm3gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Og -ffat-lto-objects -Wl,--end-group
+cyelftool.exe -C "C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\CortexM3\ARM_GCC_541\Debug\Riaszto.elf" --flash_row_size 256 --flash_size 262144 --flash_offset 0x00000000
+No ELF section .cychecksum found, creating one
+Application checksum calculated and stored in ELF section .cychecksum
+Checksum calculated and stored in ELF section .cymeta
+cyelftool.exe -S "C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\CortexM3\ARM_GCC_541\Debug\Riaszto.elf"
+Flash used: 9230 of 262144 bytes (3.5%).
+SRAM used: 2633 of 65536 bytes (4.0%). Stack: 2048 bytes. Heap: 128 bytes.
+--------------- Build Succeeded: 05/10/2021 18:04:15 ---------------

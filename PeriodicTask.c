@@ -32,9 +32,10 @@ typedef struct periodic_task_list {
 periodic_task * create_new_ptask_parametered( void (*paramtask)(uint8*), uint8 * flag, uint16 period, uint8 pid) {
     periodic_task * new_task;
     new_task = (periodic_task*)malloc(sizeof(periodic_task));
-    new_task->counter = period;
+    new_task->counter = 0;
     new_task->period = period;
     new_task->paramtask = paramtask;
+    new_task->noparamtask = NULL;
     new_task->flag = flag;
     new_task->pid = pid;
     new_task->enabled = 1u;
@@ -45,9 +46,10 @@ periodic_task * create_new_ptask_parametered( void (*paramtask)(uint8*), uint8 *
 periodic_task * create_new_ptask_noparam( void (*noparamfunc)(), uint16 period, uint8 pid) {
     periodic_task * new_task;
     new_task = (periodic_task*)malloc(sizeof(periodic_task));
-    new_task->counter = period;
+    new_task->counter = 0;
     new_task->period = period;
     new_task->noparamtask = noparamfunc;
+    new_task->paramtask = NULL;
     new_task->pid = pid;
     new_task->next = NULL;
     new_task->enabled = 1u;

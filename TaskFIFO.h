@@ -17,8 +17,10 @@
 #include "project.h"
 
 typedef struct OneTimeTask {
-    void (*func)(uint16*);
+    void (*func)(uint16);
+    void (*funcnoparam)();
     uint16 delay;
+    uint16 data;  //A fuggveny parametere
     struct OneTimeTask *next;
 } OneTimeTask;
 
@@ -27,19 +29,18 @@ typedef struct TaskFIFO {
 } TaskFIFO;
 
 
-OneTimeTask * create_new_onetimetask( void (*func)(uint16*), uint16 delay, uint16 * data);
-
-void free_taskfifo(TaskFIFO * list);
+OneTimeTask * create_new_onetimetask( void (*func)(uint16), uint16 delay, uint16 data);
+OneTimeTask * create_new_noparam_onetimetask( void (*func)(), uint16 delay);
 
 //A vegere beteszek egy taskot.
-void push(TaskFIFO* fifo, OneTimeTask* task);
+void pushTask(TaskFIFO* fifo, OneTimeTask* task);
+//kiveszi az elso elemet. A hivo felelossege felszabaditani a memoriat.
+OneTimeTask * get_and_remove_first(TaskFIFO* fifo);
 
-//kiveszi az elso elemet
-void get_and_remove_first(TaskFIFO* fifo);
+//felszabaditja a teljes listat
+void free_taskfifo(TaskFIFO * list);
+
 
 //megnezi, hogy futtathato e mar a taszk, ha nem, akkor csokkenti a szamlalot
 uint8 check_if_runnable_and_decrement_counter(TaskFIFO * fifo);
-
-
-
 /* [] END OF FILE */

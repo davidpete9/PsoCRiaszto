@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 1
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 1
   28:PeriodicTask.c **** } periodic_task_list;
   29:PeriodicTask.c **** 
   30:PeriodicTask.c **** 
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 2
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 2
 
 
   31:PeriodicTask.c **** 
@@ -76,10 +76,10 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 1
   38              		.cfi_offset 6, -12
   39              		.cfi_offset 7, -8
   40              		.cfi_offset 14, -4
-  41 0002 0746     		mov	r7, r0
-  42 0004 0E46     		mov	r6, r1
-  43 0006 1446     		mov	r4, r2
-  44 0008 1D46     		mov	r5, r3
+  41 0002 0646     		mov	r6, r0
+  42 0004 0D46     		mov	r5, r1
+  43 0006 1746     		mov	r7, r2
+  44 0008 1C46     		mov	r4, r3
   33:PeriodicTask.c ****     periodic_task * new_task;
   34:PeriodicTask.c ****     new_task = (periodic_task*)malloc(sizeof(periodic_task));
   45              		.loc 1 34 0
@@ -87,1987 +87,1993 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 1
   47              	.LVL1:
   48 000c FFF7FEFF 		bl	malloc
   49              	.LVL2:
-  35:PeriodicTask.c ****     new_task->counter = period;
+  35:PeriodicTask.c ****     new_task->counter = 0;
   50              		.loc 1 35 0
-  51 0010 4481     		strh	r4, [r0, #10]	@ movhi
+  51 0010 0022     		movs	r2, #0
+  52 0012 4281     		strh	r2, [r0, #10]	@ movhi
   36:PeriodicTask.c ****     new_task->period = period;
-  52              		.loc 1 36 0
-  53 0012 0481     		strh	r4, [r0, #8]	@ movhi
+  53              		.loc 1 36 0
+  54 0014 0781     		strh	r7, [r0, #8]	@ movhi
   37:PeriodicTask.c ****     new_task->paramtask = paramtask;
-  54              		.loc 1 37 0
-  55 0014 0760     		str	r7, [r0]
-  38:PeriodicTask.c ****     new_task->flag = flag;
-  56              		.loc 1 38 0
-  57 0016 0661     		str	r6, [r0, #16]
-  39:PeriodicTask.c ****     new_task->pid = pid;
-  58              		.loc 1 39 0
-  59 0018 4573     		strb	r5, [r0, #13]
-  40:PeriodicTask.c ****     new_task->enabled = 1u;
-  60              		.loc 1 40 0
-  61 001a 0122     		movs	r2, #1
-  62 001c 0273     		strb	r2, [r0, #12]
-  41:PeriodicTask.c ****     new_task->next = NULL;
+  55              		.loc 1 37 0
+  56 0016 0660     		str	r6, [r0]
+  38:PeriodicTask.c ****     new_task->noparamtask = NULL;
+  57              		.loc 1 38 0
+  58 0018 4260     		str	r2, [r0, #4]
+  39:PeriodicTask.c ****     new_task->flag = flag;
+  59              		.loc 1 39 0
+  60 001a 0561     		str	r5, [r0, #16]
+  40:PeriodicTask.c ****     new_task->pid = pid;
+  61              		.loc 1 40 0
+  62 001c 4473     		strb	r4, [r0, #13]
+  41:PeriodicTask.c ****     new_task->enabled = 1u;
   63              		.loc 1 41 0
-  64 001e 0022     		movs	r2, #0
-  65 0020 4261     		str	r2, [r0, #20]
-  42:PeriodicTask.c ****     return new_task;
-  43:PeriodicTask.c **** }
-  66              		.loc 1 43 0
-  67 0022 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
-  68              		.cfi_endproc
-  69              	.LFE63:
-  70              		.size	create_new_ptask_parametered, .-create_new_ptask_parametered
-  71              		.section	.text.create_new_ptask_noparam,"ax",%progbits
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 3
+  64 001e 0121     		movs	r1, #1
+  65 0020 0173     		strb	r1, [r0, #12]
+  42:PeriodicTask.c ****     new_task->next = NULL;
+  66              		.loc 1 42 0
+  67 0022 4261     		str	r2, [r0, #20]
+  43:PeriodicTask.c ****     return new_task;
+  44:PeriodicTask.c **** }
+  68              		.loc 1 44 0
+  69 0024 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+  70              		.cfi_endproc
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 3
 
 
-  72              		.align	2
-  73              		.global	create_new_ptask_noparam
-  74              		.thumb
-  75              		.thumb_func
-  76              		.type	create_new_ptask_noparam, %function
-  77              	create_new_ptask_noparam:
-  78              	.LFB64:
-  44:PeriodicTask.c **** 
-  45:PeriodicTask.c **** periodic_task * create_new_ptask_noparam( void (*noparamfunc)(), uint16 period, uint8 pid) {
-  79              		.loc 1 45 0
-  80              		.cfi_startproc
-  81              		@ args = 0, pretend = 0, frame = 0
-  82              		@ frame_needed = 0, uses_anonymous_args = 0
-  83              	.LVL3:
-  84 0000 70B5     		push	{r4, r5, r6, lr}
-  85              		.cfi_def_cfa_offset 16
-  86              		.cfi_offset 4, -16
-  87              		.cfi_offset 5, -12
-  88              		.cfi_offset 6, -8
-  89              		.cfi_offset 14, -4
-  90 0002 0646     		mov	r6, r0
-  91 0004 0C46     		mov	r4, r1
-  92 0006 1546     		mov	r5, r2
-  46:PeriodicTask.c ****     periodic_task * new_task;
-  47:PeriodicTask.c ****     new_task = (periodic_task*)malloc(sizeof(periodic_task));
-  93              		.loc 1 47 0
-  94 0008 1820     		movs	r0, #24
-  95              	.LVL4:
-  96 000a FFF7FEFF 		bl	malloc
-  97              	.LVL5:
-  48:PeriodicTask.c ****     new_task->counter = period;
-  98              		.loc 1 48 0
-  99 000e 4481     		strh	r4, [r0, #10]	@ movhi
-  49:PeriodicTask.c ****     new_task->period = period;
+  71              	.LFE63:
+  72              		.size	create_new_ptask_parametered, .-create_new_ptask_parametered
+  73 0026 00BF     		.section	.text.create_new_ptask_noparam,"ax",%progbits
+  74              		.align	2
+  75              		.global	create_new_ptask_noparam
+  76              		.thumb
+  77              		.thumb_func
+  78              		.type	create_new_ptask_noparam, %function
+  79              	create_new_ptask_noparam:
+  80              	.LFB64:
+  45:PeriodicTask.c **** 
+  46:PeriodicTask.c **** periodic_task * create_new_ptask_noparam( void (*noparamfunc)(), uint16 period, uint8 pid) {
+  81              		.loc 1 46 0
+  82              		.cfi_startproc
+  83              		@ args = 0, pretend = 0, frame = 0
+  84              		@ frame_needed = 0, uses_anonymous_args = 0
+  85              	.LVL3:
+  86 0000 70B5     		push	{r4, r5, r6, lr}
+  87              		.cfi_def_cfa_offset 16
+  88              		.cfi_offset 4, -16
+  89              		.cfi_offset 5, -12
+  90              		.cfi_offset 6, -8
+  91              		.cfi_offset 14, -4
+  92 0002 0546     		mov	r5, r0
+  93 0004 0E46     		mov	r6, r1
+  94 0006 1446     		mov	r4, r2
+  47:PeriodicTask.c ****     periodic_task * new_task;
+  48:PeriodicTask.c ****     new_task = (periodic_task*)malloc(sizeof(periodic_task));
+  95              		.loc 1 48 0
+  96 0008 1820     		movs	r0, #24
+  97              	.LVL4:
+  98 000a FFF7FEFF 		bl	malloc
+  99              	.LVL5:
+  49:PeriodicTask.c ****     new_task->counter = 0;
  100              		.loc 1 49 0
- 101 0010 0481     		strh	r4, [r0, #8]	@ movhi
-  50:PeriodicTask.c ****     new_task->noparamtask = noparamfunc;
- 102              		.loc 1 50 0
- 103 0012 4660     		str	r6, [r0, #4]
-  51:PeriodicTask.c ****     new_task->pid = pid;
- 104              		.loc 1 51 0
- 105 0014 4573     		strb	r5, [r0, #13]
-  52:PeriodicTask.c ****     new_task->next = NULL;
- 106              		.loc 1 52 0
- 107 0016 0022     		movs	r2, #0
- 108 0018 4261     		str	r2, [r0, #20]
-  53:PeriodicTask.c ****     new_task->enabled = 1u;
+ 101 000e 0022     		movs	r2, #0
+ 102 0010 4281     		strh	r2, [r0, #10]	@ movhi
+  50:PeriodicTask.c ****     new_task->period = period;
+ 103              		.loc 1 50 0
+ 104 0012 0681     		strh	r6, [r0, #8]	@ movhi
+  51:PeriodicTask.c ****     new_task->noparamtask = noparamfunc;
+ 105              		.loc 1 51 0
+ 106 0014 4560     		str	r5, [r0, #4]
+  52:PeriodicTask.c ****     new_task->paramtask = NULL;
+ 107              		.loc 1 52 0
+ 108 0016 0260     		str	r2, [r0]
+  53:PeriodicTask.c ****     new_task->pid = pid;
  109              		.loc 1 53 0
- 110 001a 0122     		movs	r2, #1
- 111 001c 0273     		strb	r2, [r0, #12]
-  54:PeriodicTask.c ****     return new_task;
-  55:PeriodicTask.c **** }
- 112              		.loc 1 55 0
- 113 001e 70BD     		pop	{r4, r5, r6, pc}
- 114              		.cfi_endproc
- 115              	.LFE64:
- 116              		.size	create_new_ptask_noparam, .-create_new_ptask_noparam
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 4
+ 110 0018 4473     		strb	r4, [r0, #13]
+  54:PeriodicTask.c ****     new_task->next = NULL;
+ 111              		.loc 1 54 0
+ 112 001a 4261     		str	r2, [r0, #20]
+  55:PeriodicTask.c ****     new_task->enabled = 1u;
+ 113              		.loc 1 55 0
+ 114 001c 0122     		movs	r2, #1
+ 115 001e 0273     		strb	r2, [r0, #12]
+  56:PeriodicTask.c ****     return new_task;
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 4
 
 
- 117              		.section	.text.add_to_ptask_list,"ax",%progbits
- 118              		.align	2
- 119              		.global	add_to_ptask_list
- 120              		.thumb
- 121              		.thumb_func
- 122              		.type	add_to_ptask_list, %function
- 123              	add_to_ptask_list:
- 124              	.LFB65:
-  56:PeriodicTask.c **** 
-  57:PeriodicTask.c **** void add_to_ptask_list(periodic_task_list *list, periodic_task * task) {
- 125              		.loc 1 57 0
- 126              		.cfi_startproc
- 127              		@ args = 0, pretend = 0, frame = 0
- 128              		@ frame_needed = 0, uses_anonymous_args = 0
- 129              		@ link register save eliminated.
- 130              	.LVL6:
-  58:PeriodicTask.c ****     if (list->start == NULL) {
- 131              		.loc 1 58 0
- 132 0000 0368     		ldr	r3, [r0]
- 133 0002 13B9     		cbnz	r3, .L6
-  59:PeriodicTask.c ****         list->start = task;
- 134              		.loc 1 59 0
- 135 0004 0160     		str	r1, [r0]
-  60:PeriodicTask.c ****         list->end = task;
- 136              		.loc 1 60 0
- 137 0006 4160     		str	r1, [r0, #4]
-  61:PeriodicTask.c ****         return;
+  57:PeriodicTask.c **** }
+ 116              		.loc 1 57 0
+ 117 0020 70BD     		pop	{r4, r5, r6, pc}
+ 118              		.cfi_endproc
+ 119              	.LFE64:
+ 120              		.size	create_new_ptask_noparam, .-create_new_ptask_noparam
+ 121 0022 00BF     		.section	.text.add_to_ptask_list,"ax",%progbits
+ 122              		.align	2
+ 123              		.global	add_to_ptask_list
+ 124              		.thumb
+ 125              		.thumb_func
+ 126              		.type	add_to_ptask_list, %function
+ 127              	add_to_ptask_list:
+ 128              	.LFB65:
+  58:PeriodicTask.c **** 
+  59:PeriodicTask.c **** void add_to_ptask_list(periodic_task_list *list, periodic_task * task) {
+ 129              		.loc 1 59 0
+ 130              		.cfi_startproc
+ 131              		@ args = 0, pretend = 0, frame = 0
+ 132              		@ frame_needed = 0, uses_anonymous_args = 0
+ 133              		@ link register save eliminated.
+ 134              	.LVL6:
+  60:PeriodicTask.c ****     if (list->start == NULL) {
+ 135              		.loc 1 60 0
+ 136 0000 0368     		ldr	r3, [r0]
+ 137 0002 13B9     		cbnz	r3, .L6
+  61:PeriodicTask.c ****         list->start = task;
  138              		.loc 1 61 0
- 139 0008 7047     		bx	lr
- 140              	.L6:
-  62:PeriodicTask.c ****     }
-  63:PeriodicTask.c ****     
-  64:PeriodicTask.c ****     list->end->next = task;
- 141              		.loc 1 64 0
- 142 000a 4368     		ldr	r3, [r0, #4]
- 143 000c 5961     		str	r1, [r3, #20]
-  65:PeriodicTask.c ****     list->end = task;
- 144              		.loc 1 65 0
- 145 000e 4160     		str	r1, [r0, #4]
- 146 0010 7047     		bx	lr
- 147              		.cfi_endproc
- 148              	.LFE65:
- 149              		.size	add_to_ptask_list, .-add_to_ptask_list
- 150 0012 00BF     		.section	.text.find_task,"ax",%progbits
- 151              		.align	2
- 152              		.global	find_task
- 153              		.thumb
- 154              		.thumb_func
- 155              		.type	find_task, %function
- 156              	find_task:
- 157              	.LFB66:
-  66:PeriodicTask.c **** }
-  67:PeriodicTask.c **** 
-  68:PeriodicTask.c **** periodic_task * find_task(periodic_task_list * tasks, uint8 pid) {
- 158              		.loc 1 68 0
- 159              		.cfi_startproc
- 160              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 5
+ 139 0004 0160     		str	r1, [r0]
+  62:PeriodicTask.c ****         list->end = task;
+ 140              		.loc 1 62 0
+ 141 0006 4160     		str	r1, [r0, #4]
+  63:PeriodicTask.c ****         return;
+ 142              		.loc 1 63 0
+ 143 0008 7047     		bx	lr
+ 144              	.L6:
+  64:PeriodicTask.c ****     }
+  65:PeriodicTask.c ****     
+  66:PeriodicTask.c ****     list->end->next = task;
+ 145              		.loc 1 66 0
+ 146 000a 4368     		ldr	r3, [r0, #4]
+ 147 000c 5961     		str	r1, [r3, #20]
+  67:PeriodicTask.c ****     list->end = task;
+ 148              		.loc 1 67 0
+ 149 000e 4160     		str	r1, [r0, #4]
+ 150 0010 7047     		bx	lr
+ 151              		.cfi_endproc
+ 152              	.LFE65:
+ 153              		.size	add_to_ptask_list, .-add_to_ptask_list
+ 154 0012 00BF     		.section	.text.find_task,"ax",%progbits
+ 155              		.align	2
+ 156              		.global	find_task
+ 157              		.thumb
+ 158              		.thumb_func
+ 159              		.type	find_task, %function
+ 160              	find_task:
+ 161              	.LFB66:
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 5
 
 
- 161              		@ frame_needed = 0, uses_anonymous_args = 0
- 162              		@ link register save eliminated.
- 163              	.LVL7:
-  69:PeriodicTask.c ****     periodic_task *iter;
-  70:PeriodicTask.c ****  
-  71:PeriodicTask.c ****     for (iter = tasks->start; iter != NULL; iter = iter->next) {
- 164              		.loc 1 71 0
- 165 0000 0068     		ldr	r0, [r0]
- 166              	.LVL8:
- 167 0002 03E0     		b	.L9
- 168              	.L11:
-  72:PeriodicTask.c ****         if (iter->pid == pid)
- 169              		.loc 1 72 0
- 170 0004 437B     		ldrb	r3, [r0, #13]	@ zero_extendqisi2
- 171 0006 8B42     		cmp	r3, r1
- 172 0008 02D0     		beq	.L10
-  71:PeriodicTask.c ****         if (iter->pid == pid)
- 173              		.loc 1 71 0 discriminator 2
- 174 000a 4069     		ldr	r0, [r0, #20]
- 175              	.LVL9:
- 176              	.L9:
-  71:PeriodicTask.c ****         if (iter->pid == pid)
- 177              		.loc 1 71 0 is_stmt 0 discriminator 1
- 178 000c 0028     		cmp	r0, #0
- 179 000e F9D1     		bne	.L11
- 180              	.L10:
-  73:PeriodicTask.c ****             return iter;
-  74:PeriodicTask.c ****     }
-  75:PeriodicTask.c ****     return NULL;
-  76:PeriodicTask.c **** }
- 181              		.loc 1 76 0 is_stmt 1
- 182 0010 7047     		bx	lr
- 183              		.cfi_endproc
- 184              	.LFE66:
- 185              		.size	find_task, .-find_task
- 186 0012 00BF     		.section	.text.enable_task,"ax",%progbits
- 187              		.align	2
- 188              		.global	enable_task
- 189              		.thumb
- 190              		.thumb_func
- 191              		.type	enable_task, %function
- 192              	enable_task:
- 193              	.LFB67:
-  77:PeriodicTask.c **** 
-  78:PeriodicTask.c **** void enable_task(periodic_task_list * tasks, uint8 pid) {
- 194              		.loc 1 78 0
- 195              		.cfi_startproc
- 196              		@ args = 0, pretend = 0, frame = 0
- 197              		@ frame_needed = 0, uses_anonymous_args = 0
- 198              	.LVL10:
- 199 0000 08B5     		push	{r3, lr}
- 200              		.cfi_def_cfa_offset 8
- 201              		.cfi_offset 3, -8
- 202              		.cfi_offset 14, -4
-  79:PeriodicTask.c ****    periodic_task * task = find_task(tasks, pid);
- 203              		.loc 1 79 0
- 204 0002 FFF7FEFF 		bl	find_task
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 6
+  68:PeriodicTask.c **** }
+  69:PeriodicTask.c **** 
+  70:PeriodicTask.c **** periodic_task * find_task(periodic_task_list * tasks, uint8 pid) {
+ 162              		.loc 1 70 0
+ 163              		.cfi_startproc
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 166              		@ link register save eliminated.
+ 167              	.LVL7:
+  71:PeriodicTask.c ****     periodic_task *iter;
+  72:PeriodicTask.c ****  
+  73:PeriodicTask.c ****     for (iter = tasks->start; iter != NULL; iter = iter->next) {
+ 168              		.loc 1 73 0
+ 169 0000 0068     		ldr	r0, [r0]
+ 170              	.LVL8:
+ 171 0002 03E0     		b	.L9
+ 172              	.L11:
+  74:PeriodicTask.c ****         if (iter->pid == pid)
+ 173              		.loc 1 74 0
+ 174 0004 437B     		ldrb	r3, [r0, #13]	@ zero_extendqisi2
+ 175 0006 8B42     		cmp	r3, r1
+ 176 0008 02D0     		beq	.L10
+  73:PeriodicTask.c ****         if (iter->pid == pid)
+ 177              		.loc 1 73 0 discriminator 2
+ 178 000a 4069     		ldr	r0, [r0, #20]
+ 179              	.LVL9:
+ 180              	.L9:
+  73:PeriodicTask.c ****         if (iter->pid == pid)
+ 181              		.loc 1 73 0 is_stmt 0 discriminator 1
+ 182 000c 0028     		cmp	r0, #0
+ 183 000e F9D1     		bne	.L11
+ 184              	.L10:
+  75:PeriodicTask.c ****             return iter;
+  76:PeriodicTask.c ****     }
+  77:PeriodicTask.c ****     return NULL;
+  78:PeriodicTask.c **** }
+ 185              		.loc 1 78 0 is_stmt 1
+ 186 0010 7047     		bx	lr
+ 187              		.cfi_endproc
+ 188              	.LFE66:
+ 189              		.size	find_task, .-find_task
+ 190 0012 00BF     		.section	.text.enable_task,"ax",%progbits
+ 191              		.align	2
+ 192              		.global	enable_task
+ 193              		.thumb
+ 194              		.thumb_func
+ 195              		.type	enable_task, %function
+ 196              	enable_task:
+ 197              	.LFB67:
+  79:PeriodicTask.c **** 
+  80:PeriodicTask.c **** void enable_task(periodic_task_list * tasks, uint8 pid) {
+ 198              		.loc 1 80 0
+ 199              		.cfi_startproc
+ 200              		@ args = 0, pretend = 0, frame = 0
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 202              	.LVL10:
+ 203 0000 08B5     		push	{r3, lr}
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 6
 
 
- 205              	.LVL11:
-  80:PeriodicTask.c ****     if (task != NULL)
- 206              		.loc 1 80 0
- 207 0006 08B1     		cbz	r0, .L13
-  81:PeriodicTask.c ****         task->enabled = 1u;
- 208              		.loc 1 81 0
- 209 0008 0122     		movs	r2, #1
- 210 000a 0273     		strb	r2, [r0, #12]
- 211              	.L13:
- 212 000c 08BD     		pop	{r3, pc}
- 213              		.cfi_endproc
- 214              	.LFE67:
- 215              		.size	enable_task, .-enable_task
- 216 000e 00BF     		.section	.text.disable_task,"ax",%progbits
- 217              		.align	2
- 218              		.global	disable_task
- 219              		.thumb
- 220              		.thumb_func
- 221              		.type	disable_task, %function
- 222              	disable_task:
- 223              	.LFB68:
-  82:PeriodicTask.c **** }
-  83:PeriodicTask.c **** 
-  84:PeriodicTask.c **** void disable_task(periodic_task_list * tasks, uint8 pid) {
- 224              		.loc 1 84 0
- 225              		.cfi_startproc
- 226              		@ args = 0, pretend = 0, frame = 0
- 227              		@ frame_needed = 0, uses_anonymous_args = 0
- 228              	.LVL12:
- 229 0000 08B5     		push	{r3, lr}
- 230              		.cfi_def_cfa_offset 8
- 231              		.cfi_offset 3, -8
- 232              		.cfi_offset 14, -4
-  85:PeriodicTask.c ****    periodic_task * task = find_task(tasks, pid);
- 233              		.loc 1 85 0
- 234 0002 FFF7FEFF 		bl	find_task
- 235              	.LVL13:
-  86:PeriodicTask.c ****     if (task != NULL) {
- 236              		.loc 1 86 0
- 237 0006 18B1     		cbz	r0, .L16
-  87:PeriodicTask.c ****         task->enabled = 0u;
- 238              		.loc 1 87 0
- 239 0008 0022     		movs	r2, #0
- 240 000a 0273     		strb	r2, [r0, #12]
-  88:PeriodicTask.c ****         task->counter = task->period;
- 241              		.loc 1 88 0
- 242 000c 0289     		ldrh	r2, [r0, #8]
- 243 000e 4281     		strh	r2, [r0, #10]	@ movhi
- 244              	.L16:
- 245 0010 08BD     		pop	{r3, pc}
- 246              		.cfi_endproc
- 247              	.LFE68:
- 248              		.size	disable_task, .-disable_task
- 249 0012 00BF     		.section	.text.free_list,"ax",%progbits
- 250              		.align	2
- 251              		.global	free_list
- 252              		.thumb
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 7
+ 204              		.cfi_def_cfa_offset 8
+ 205              		.cfi_offset 3, -8
+ 206              		.cfi_offset 14, -4
+  81:PeriodicTask.c ****    periodic_task * task = find_task(tasks, pid);
+ 207              		.loc 1 81 0
+ 208 0002 FFF7FEFF 		bl	find_task
+ 209              	.LVL11:
+  82:PeriodicTask.c ****     if (task != NULL)
+ 210              		.loc 1 82 0
+ 211 0006 08B1     		cbz	r0, .L13
+  83:PeriodicTask.c ****         task->enabled = 1u;
+ 212              		.loc 1 83 0
+ 213 0008 0122     		movs	r2, #1
+ 214 000a 0273     		strb	r2, [r0, #12]
+ 215              	.L13:
+ 216 000c 08BD     		pop	{r3, pc}
+ 217              		.cfi_endproc
+ 218              	.LFE67:
+ 219              		.size	enable_task, .-enable_task
+ 220 000e 00BF     		.section	.text.disable_task,"ax",%progbits
+ 221              		.align	2
+ 222              		.global	disable_task
+ 223              		.thumb
+ 224              		.thumb_func
+ 225              		.type	disable_task, %function
+ 226              	disable_task:
+ 227              	.LFB68:
+  84:PeriodicTask.c **** }
+  85:PeriodicTask.c **** 
+  86:PeriodicTask.c **** void disable_task(periodic_task_list * tasks, uint8 pid) {
+ 228              		.loc 1 86 0
+ 229              		.cfi_startproc
+ 230              		@ args = 0, pretend = 0, frame = 0
+ 231              		@ frame_needed = 0, uses_anonymous_args = 0
+ 232              	.LVL12:
+ 233 0000 08B5     		push	{r3, lr}
+ 234              		.cfi_def_cfa_offset 8
+ 235              		.cfi_offset 3, -8
+ 236              		.cfi_offset 14, -4
+  87:PeriodicTask.c ****    periodic_task * task = find_task(tasks, pid);
+ 237              		.loc 1 87 0
+ 238 0002 FFF7FEFF 		bl	find_task
+ 239              	.LVL13:
+  88:PeriodicTask.c ****     if (task != NULL) {
+ 240              		.loc 1 88 0
+ 241 0006 18B1     		cbz	r0, .L16
+  89:PeriodicTask.c ****         task->enabled = 0u;
+ 242              		.loc 1 89 0
+ 243 0008 0022     		movs	r2, #0
+ 244 000a 0273     		strb	r2, [r0, #12]
+  90:PeriodicTask.c ****         task->counter = task->period;
+ 245              		.loc 1 90 0
+ 246 000c 0289     		ldrh	r2, [r0, #8]
+ 247 000e 4281     		strh	r2, [r0, #10]	@ movhi
+ 248              	.L16:
+ 249 0010 08BD     		pop	{r3, pc}
+ 250              		.cfi_endproc
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 7
 
 
- 253              		.thumb_func
- 254              		.type	free_list, %function
- 255              	free_list:
- 256              	.LFB69:
-  89:PeriodicTask.c ****     }
-  90:PeriodicTask.c ****         
-  91:PeriodicTask.c **** }
-  92:PeriodicTask.c **** 
-  93:PeriodicTask.c **** void free_list(periodic_task_list * list) {
- 257              		.loc 1 93 0
- 258              		.cfi_startproc
- 259              		@ args = 0, pretend = 0, frame = 0
- 260              		@ frame_needed = 0, uses_anonymous_args = 0
- 261              	.LVL14:
- 262 0000 10B5     		push	{r4, lr}
- 263              		.cfi_def_cfa_offset 8
- 264              		.cfi_offset 4, -8
- 265              		.cfi_offset 14, -4
-  94:PeriodicTask.c ****     periodic_task * iter = list->start;
- 266              		.loc 1 94 0
- 267 0002 0068     		ldr	r0, [r0]
- 268              	.LVL15:
-  95:PeriodicTask.c ****     while (iter != NULL) {
- 269              		.loc 1 95 0
- 270 0004 03E0     		b	.L20
- 271              	.L21:
- 272              	.LBB2:
-  96:PeriodicTask.c ****         periodic_task *nex = iter->next;
- 273              		.loc 1 96 0
- 274 0006 4469     		ldr	r4, [r0, #20]
- 275              	.LVL16:
-  97:PeriodicTask.c ****         free(iter);
- 276              		.loc 1 97 0
- 277 0008 FFF7FEFF 		bl	free
- 278              	.LVL17:
-  98:PeriodicTask.c ****         iter = nex;
- 279              		.loc 1 98 0
- 280 000c 2046     		mov	r0, r4
- 281              	.LVL18:
- 282              	.L20:
- 283              	.LBE2:
-  95:PeriodicTask.c ****         periodic_task *nex = iter->next;
- 284              		.loc 1 95 0
- 285 000e 0028     		cmp	r0, #0
- 286 0010 F9D1     		bne	.L21
-  99:PeriodicTask.c ****     }
- 100:PeriodicTask.c **** }
- 287              		.loc 1 100 0
- 288 0012 10BD     		pop	{r4, pc}
- 289              		.cfi_endproc
- 290              	.LFE69:
- 291              		.size	free_list, .-free_list
- 292              		.section	.text.run_permitted_tasks_and_decrement_counters,"ax",%progbits
- 293              		.align	2
- 294              		.global	run_permitted_tasks_and_decrement_counters
- 295              		.thumb
- 296              		.thumb_func
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 8
+ 251              	.LFE68:
+ 252              		.size	disable_task, .-disable_task
+ 253 0012 00BF     		.section	.text.free_list,"ax",%progbits
+ 254              		.align	2
+ 255              		.global	free_list
+ 256              		.thumb
+ 257              		.thumb_func
+ 258              		.type	free_list, %function
+ 259              	free_list:
+ 260              	.LFB69:
+  91:PeriodicTask.c ****     }
+  92:PeriodicTask.c ****         
+  93:PeriodicTask.c **** }
+  94:PeriodicTask.c **** 
+  95:PeriodicTask.c **** void free_list(periodic_task_list * list) {
+ 261              		.loc 1 95 0
+ 262              		.cfi_startproc
+ 263              		@ args = 0, pretend = 0, frame = 0
+ 264              		@ frame_needed = 0, uses_anonymous_args = 0
+ 265              	.LVL14:
+ 266 0000 10B5     		push	{r4, lr}
+ 267              		.cfi_def_cfa_offset 8
+ 268              		.cfi_offset 4, -8
+ 269              		.cfi_offset 14, -4
+  96:PeriodicTask.c ****     periodic_task * iter = list->start;
+ 270              		.loc 1 96 0
+ 271 0002 0068     		ldr	r0, [r0]
+ 272              	.LVL15:
+  97:PeriodicTask.c ****     while (iter != NULL) {
+ 273              		.loc 1 97 0
+ 274 0004 03E0     		b	.L20
+ 275              	.L21:
+ 276              	.LBB2:
+  98:PeriodicTask.c ****         periodic_task *nex = iter->next;
+ 277              		.loc 1 98 0
+ 278 0006 4469     		ldr	r4, [r0, #20]
+ 279              	.LVL16:
+  99:PeriodicTask.c ****         free(iter);
+ 280              		.loc 1 99 0
+ 281 0008 FFF7FEFF 		bl	free
+ 282              	.LVL17:
+ 100:PeriodicTask.c ****         iter = nex;
+ 283              		.loc 1 100 0
+ 284 000c 2046     		mov	r0, r4
+ 285              	.LVL18:
+ 286              	.L20:
+ 287              	.LBE2:
+  97:PeriodicTask.c ****         periodic_task *nex = iter->next;
+ 288              		.loc 1 97 0
+ 289 000e 0028     		cmp	r0, #0
+ 290 0010 F9D1     		bne	.L21
+ 101:PeriodicTask.c ****     }
+ 102:PeriodicTask.c **** }
+ 291              		.loc 1 102 0
+ 292 0012 10BD     		pop	{r4, pc}
+ 293              		.cfi_endproc
+ 294              	.LFE69:
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 8
 
 
- 297              		.type	run_permitted_tasks_and_decrement_counters, %function
- 298              	run_permitted_tasks_and_decrement_counters:
- 299              	.LFB70:
- 101:PeriodicTask.c **** 
- 102:PeriodicTask.c **** void run_permitted_tasks_and_decrement_counters(periodic_task_list *list) {
- 300              		.loc 1 102 0
- 301              		.cfi_startproc
- 302              		@ args = 0, pretend = 0, frame = 0
- 303              		@ frame_needed = 0, uses_anonymous_args = 0
- 304              	.LVL19:
- 305 0000 10B5     		push	{r4, lr}
- 306              		.cfi_def_cfa_offset 8
- 307              		.cfi_offset 4, -8
- 308              		.cfi_offset 14, -4
+ 295              		.size	free_list, .-free_list
+ 296              		.section	.text.run_permitted_tasks_and_decrement_counters,"ax",%progbits
+ 297              		.align	2
+ 298              		.global	run_permitted_tasks_and_decrement_counters
+ 299              		.thumb
+ 300              		.thumb_func
+ 301              		.type	run_permitted_tasks_and_decrement_counters, %function
+ 302              	run_permitted_tasks_and_decrement_counters:
+ 303              	.LFB70:
  103:PeriodicTask.c **** 
- 104:PeriodicTask.c ****     periodic_task *iter;
- 105:PeriodicTask.c ****     for (iter = list->start; iter != NULL; iter = iter->next) {
- 309              		.loc 1 105 0
- 310 0002 0468     		ldr	r4, [r0]
- 311              	.LVL20:
- 312 0004 11E0     		b	.L24
- 313              	.LVL21:
- 314              	.L28:
- 106:PeriodicTask.c ****         if (iter->enabled == 1u) {
- 315              		.loc 1 106 0
- 316 0006 237B     		ldrb	r3, [r4, #12]	@ zero_extendqisi2
- 317 0008 012B     		cmp	r3, #1
- 318 000a 0DD1     		bne	.L25
- 107:PeriodicTask.c ****             if (iter->counter == 0) {
- 319              		.loc 1 107 0
- 320 000c 6389     		ldrh	r3, [r4, #10]
- 321 000e 4BB9     		cbnz	r3, .L26
- 108:PeriodicTask.c ****                 iter->counter = iter->period;
- 322              		.loc 1 108 0
- 323 0010 2389     		ldrh	r3, [r4, #8]
- 324 0012 6381     		strh	r3, [r4, #10]	@ movhi
- 109:PeriodicTask.c ****                 if (iter->noparamtask != NULL) {
- 325              		.loc 1 109 0
- 326 0014 6368     		ldr	r3, [r4, #4]
- 327 0016 03B1     		cbz	r3, .L27
- 110:PeriodicTask.c ****                     iter->noparamtask();
- 328              		.loc 1 110 0
- 329 0018 9847     		blx	r3
- 330              	.LVL22:
- 331              	.L27:
- 111:PeriodicTask.c ****                 }
- 112:PeriodicTask.c ****                 if (iter->paramtask != NULL) {
+ 104:PeriodicTask.c **** void run_permitted_tasks_and_decrement_counters(periodic_task_list *list) {
+ 304              		.loc 1 104 0
+ 305              		.cfi_startproc
+ 306              		@ args = 0, pretend = 0, frame = 0
+ 307              		@ frame_needed = 0, uses_anonymous_args = 0
+ 308              	.LVL19:
+ 309 0000 10B5     		push	{r4, lr}
+ 310              		.cfi_def_cfa_offset 8
+ 311              		.cfi_offset 4, -8
+ 312              		.cfi_offset 14, -4
+ 105:PeriodicTask.c **** 
+ 106:PeriodicTask.c ****     periodic_task *iter;
+ 107:PeriodicTask.c ****     for (iter = list->start; iter != NULL; iter = iter->next) {
+ 313              		.loc 1 107 0
+ 314 0002 0468     		ldr	r4, [r0]
+ 315              	.LVL20:
+ 316 0004 11E0     		b	.L24
+ 317              	.LVL21:
+ 318              	.L28:
+ 108:PeriodicTask.c ****         if (iter->enabled == 1u) {
+ 319              		.loc 1 108 0
+ 320 0006 237B     		ldrb	r3, [r4, #12]	@ zero_extendqisi2
+ 321 0008 012B     		cmp	r3, #1
+ 322 000a 0DD1     		bne	.L25
+ 109:PeriodicTask.c ****             if (iter->counter == 0) {
+ 323              		.loc 1 109 0
+ 324 000c 6389     		ldrh	r3, [r4, #10]
+ 325 000e 4BB9     		cbnz	r3, .L26
+ 110:PeriodicTask.c ****                 iter->counter = iter->period;
+ 326              		.loc 1 110 0
+ 327 0010 2389     		ldrh	r3, [r4, #8]
+ 328 0012 6381     		strh	r3, [r4, #10]	@ movhi
+ 111:PeriodicTask.c ****                 if (iter->noparamtask != NULL) {
+ 329              		.loc 1 111 0
+ 330 0014 6368     		ldr	r3, [r4, #4]
+ 331 0016 03B1     		cbz	r3, .L27
+ 112:PeriodicTask.c ****                     iter->noparamtask();
  332              		.loc 1 112 0
- 333 001a 2368     		ldr	r3, [r4]
- 334 001c 23B1     		cbz	r3, .L25
- 113:PeriodicTask.c ****                     iter->paramtask(iter->flag);
- 335              		.loc 1 113 0
- 336 001e 2069     		ldr	r0, [r4, #16]
- 337 0020 9847     		blx	r3
- 338              	.LVL23:
- 339 0022 01E0     		b	.L25
- 340              	.L26:
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 9
+ 333 0018 9847     		blx	r3
+ 334              	.LVL22:
+ 335              	.L27:
+ 113:PeriodicTask.c ****                 }
+ 114:PeriodicTask.c ****                 if (iter->paramtask != NULL) {
+ 336              		.loc 1 114 0
+ 337 001a 2368     		ldr	r3, [r4]
+ 338 001c 23B1     		cbz	r3, .L25
+ 115:PeriodicTask.c ****                     iter->paramtask(iter->flag);
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 9
 
 
- 114:PeriodicTask.c ****                 }
- 115:PeriodicTask.c ****             }
- 116:PeriodicTask.c ****             else {
- 117:PeriodicTask.c ****                 iter->counter--;
- 341              		.loc 1 117 0
- 342 0024 013B     		subs	r3, r3, #1
- 343 0026 6381     		strh	r3, [r4, #10]	@ movhi
- 344              	.L25:
- 105:PeriodicTask.c ****         if (iter->enabled == 1u) {
- 345              		.loc 1 105 0 discriminator 2
- 346 0028 6469     		ldr	r4, [r4, #20]
- 347              	.LVL24:
- 348              	.L24:
- 105:PeriodicTask.c ****         if (iter->enabled == 1u) {
- 349              		.loc 1 105 0 is_stmt 0 discriminator 1
- 350 002a 002C     		cmp	r4, #0
- 351 002c EBD1     		bne	.L28
- 118:PeriodicTask.c ****             }
- 119:PeriodicTask.c ****         }
- 120:PeriodicTask.c ****     }   
- 121:PeriodicTask.c **** }
- 352              		.loc 1 121 0 is_stmt 1
- 353 002e 10BD     		pop	{r4, pc}
- 354              		.cfi_endproc
- 355              	.LFE70:
- 356              		.size	run_permitted_tasks_and_decrement_counters, .-run_permitted_tasks_and_decrement_counters
- 357              		.text
- 358              	.Letext0:
- 359              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 360              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 361              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
- 362              		.file 5 "<built-in>"
- 363              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
- 364              		.section	.debug_info,"",%progbits
- 365              	.Ldebug_info0:
- 366 0000 6F040000 		.4byte	0x46f
- 367 0004 0400     		.2byte	0x4
- 368 0006 00000000 		.4byte	.Ldebug_abbrev0
- 369 000a 04       		.byte	0x4
- 370 000b 01       		.uleb128 0x1
- 371 000c EE000000 		.4byte	.LASF44
- 372 0010 0C       		.byte	0xc
- 373 0011 FA010000 		.4byte	.LASF45
- 374 0015 13000000 		.4byte	.LASF46
- 375 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 376 001d 00000000 		.4byte	0
- 377 0021 00000000 		.4byte	.Ldebug_line0
- 378 0025 02       		.uleb128 0x2
- 379 0026 01       		.byte	0x1
- 380 0027 06       		.byte	0x6
- 381 0028 3A020000 		.4byte	.LASF0
- 382 002c 02       		.uleb128 0x2
- 383 002d 01       		.byte	0x1
- 384 002e 08       		.byte	0x8
- 385 002f B5010000 		.4byte	.LASF1
- 386 0033 02       		.uleb128 0x2
- 387 0034 02       		.byte	0x2
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 10
+ 339              		.loc 1 115 0
+ 340 001e 2069     		ldr	r0, [r4, #16]
+ 341 0020 9847     		blx	r3
+ 342              	.LVL23:
+ 343 0022 01E0     		b	.L25
+ 344              	.L26:
+ 116:PeriodicTask.c ****                 }
+ 117:PeriodicTask.c ****             }
+ 118:PeriodicTask.c ****             else {
+ 119:PeriodicTask.c ****                 iter->counter--;
+ 345              		.loc 1 119 0
+ 346 0024 013B     		subs	r3, r3, #1
+ 347 0026 6381     		strh	r3, [r4, #10]	@ movhi
+ 348              	.L25:
+ 107:PeriodicTask.c ****         if (iter->enabled == 1u) {
+ 349              		.loc 1 107 0 discriminator 2
+ 350 0028 6469     		ldr	r4, [r4, #20]
+ 351              	.LVL24:
+ 352              	.L24:
+ 107:PeriodicTask.c ****         if (iter->enabled == 1u) {
+ 353              		.loc 1 107 0 is_stmt 0 discriminator 1
+ 354 002a 002C     		cmp	r4, #0
+ 355 002c EBD1     		bne	.L28
+ 120:PeriodicTask.c ****             }
+ 121:PeriodicTask.c ****         }
+ 122:PeriodicTask.c ****     }   
+ 123:PeriodicTask.c **** }
+ 356              		.loc 1 123 0 is_stmt 1
+ 357 002e 10BD     		pop	{r4, pc}
+ 358              		.cfi_endproc
+ 359              	.LFE70:
+ 360              		.size	run_permitted_tasks_and_decrement_counters, .-run_permitted_tasks_and_decrement_counters
+ 361              		.text
+ 362              	.Letext0:
+ 363              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 364              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 365              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 366              		.file 5 "<built-in>"
+ 367              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 368              		.section	.debug_info,"",%progbits
+ 369              	.Ldebug_info0:
+ 370 0000 6F040000 		.4byte	0x46f
+ 371 0004 0400     		.2byte	0x4
+ 372 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 373 000a 04       		.byte	0x4
+ 374 000b 01       		.uleb128 0x1
+ 375 000c EE000000 		.4byte	.LASF44
+ 376 0010 0C       		.byte	0xc
+ 377 0011 FA010000 		.4byte	.LASF45
+ 378 0015 13000000 		.4byte	.LASF46
+ 379 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 380 001d 00000000 		.4byte	0
+ 381 0021 00000000 		.4byte	.Ldebug_line0
+ 382 0025 02       		.uleb128 0x2
+ 383 0026 01       		.byte	0x1
+ 384 0027 06       		.byte	0x6
+ 385 0028 3A020000 		.4byte	.LASF0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 10
 
 
- 388 0035 05       		.byte	0x5
- 389 0036 7D020000 		.4byte	.LASF2
- 390 003a 02       		.uleb128 0x2
- 391 003b 02       		.byte	0x2
- 392 003c 07       		.byte	0x7
- 393 003d 73000000 		.4byte	.LASF3
- 394 0041 03       		.uleb128 0x3
- 395 0042 57000000 		.4byte	.LASF9
- 396 0046 02       		.byte	0x2
- 397 0047 3F       		.byte	0x3f
- 398 0048 4C000000 		.4byte	0x4c
- 399 004c 02       		.uleb128 0x2
- 400 004d 04       		.byte	0x4
- 401 004e 05       		.byte	0x5
- 402 004f 9F010000 		.4byte	.LASF4
- 403 0053 02       		.uleb128 0x2
- 404 0054 04       		.byte	0x4
- 405 0055 07       		.byte	0x7
- 406 0056 88010000 		.4byte	.LASF5
- 407 005a 02       		.uleb128 0x2
- 408 005b 08       		.byte	0x8
- 409 005c 05       		.byte	0x5
- 410 005d 00000000 		.4byte	.LASF6
- 411 0061 02       		.uleb128 0x2
- 412 0062 08       		.byte	0x8
- 413 0063 07       		.byte	0x7
- 414 0064 23020000 		.4byte	.LASF7
- 415 0068 04       		.uleb128 0x4
- 416 0069 04       		.byte	0x4
- 417 006a 05       		.byte	0x5
- 418 006b 696E7400 		.ascii	"int\000"
- 419 006f 02       		.uleb128 0x2
- 420 0070 04       		.byte	0x4
- 421 0071 07       		.byte	0x7
- 422 0072 09020000 		.4byte	.LASF8
- 423 0076 03       		.uleb128 0x3
- 424 0077 50020000 		.4byte	.LASF10
- 425 007b 03       		.byte	0x3
- 426 007c 2C       		.byte	0x2c
- 427 007d 41000000 		.4byte	0x41
- 428 0081 05       		.uleb128 0x5
- 429 0082 91020000 		.4byte	.LASF11
- 430 0086 04       		.byte	0x4
- 431 0087 E801     		.2byte	0x1e8
- 432 0089 2C000000 		.4byte	0x2c
- 433 008d 05       		.uleb128 0x5
- 434 008e EE010000 		.4byte	.LASF12
- 435 0092 04       		.byte	0x4
- 436 0093 E901     		.2byte	0x1e9
- 437 0095 3A000000 		.4byte	0x3a
- 438 0099 02       		.uleb128 0x2
- 439 009a 04       		.byte	0x4
- 440 009b 04       		.byte	0x4
- 441 009c B7000000 		.4byte	.LASF13
- 442 00a0 02       		.uleb128 0x2
- 443 00a1 08       		.byte	0x8
- 444 00a2 04       		.byte	0x4
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 11
+ 386 002c 02       		.uleb128 0x2
+ 387 002d 01       		.byte	0x1
+ 388 002e 08       		.byte	0x8
+ 389 002f B5010000 		.4byte	.LASF1
+ 390 0033 02       		.uleb128 0x2
+ 391 0034 02       		.byte	0x2
+ 392 0035 05       		.byte	0x5
+ 393 0036 7D020000 		.4byte	.LASF2
+ 394 003a 02       		.uleb128 0x2
+ 395 003b 02       		.byte	0x2
+ 396 003c 07       		.byte	0x7
+ 397 003d 73000000 		.4byte	.LASF3
+ 398 0041 03       		.uleb128 0x3
+ 399 0042 57000000 		.4byte	.LASF9
+ 400 0046 02       		.byte	0x2
+ 401 0047 3F       		.byte	0x3f
+ 402 0048 4C000000 		.4byte	0x4c
+ 403 004c 02       		.uleb128 0x2
+ 404 004d 04       		.byte	0x4
+ 405 004e 05       		.byte	0x5
+ 406 004f 9F010000 		.4byte	.LASF4
+ 407 0053 02       		.uleb128 0x2
+ 408 0054 04       		.byte	0x4
+ 409 0055 07       		.byte	0x7
+ 410 0056 88010000 		.4byte	.LASF5
+ 411 005a 02       		.uleb128 0x2
+ 412 005b 08       		.byte	0x8
+ 413 005c 05       		.byte	0x5
+ 414 005d 00000000 		.4byte	.LASF6
+ 415 0061 02       		.uleb128 0x2
+ 416 0062 08       		.byte	0x8
+ 417 0063 07       		.byte	0x7
+ 418 0064 23020000 		.4byte	.LASF7
+ 419 0068 04       		.uleb128 0x4
+ 420 0069 04       		.byte	0x4
+ 421 006a 05       		.byte	0x5
+ 422 006b 696E7400 		.ascii	"int\000"
+ 423 006f 02       		.uleb128 0x2
+ 424 0070 04       		.byte	0x4
+ 425 0071 07       		.byte	0x7
+ 426 0072 09020000 		.4byte	.LASF8
+ 427 0076 03       		.uleb128 0x3
+ 428 0077 50020000 		.4byte	.LASF10
+ 429 007b 03       		.byte	0x3
+ 430 007c 2C       		.byte	0x2c
+ 431 007d 41000000 		.4byte	0x41
+ 432 0081 05       		.uleb128 0x5
+ 433 0082 91020000 		.4byte	.LASF11
+ 434 0086 04       		.byte	0x4
+ 435 0087 E801     		.2byte	0x1e8
+ 436 0089 2C000000 		.4byte	0x2c
+ 437 008d 05       		.uleb128 0x5
+ 438 008e EE010000 		.4byte	.LASF12
+ 439 0092 04       		.byte	0x4
+ 440 0093 E901     		.2byte	0x1e9
+ 441 0095 3A000000 		.4byte	0x3a
+ 442 0099 02       		.uleb128 0x2
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 11
 
 
- 445 00a3 94000000 		.4byte	.LASF14
- 446 00a7 02       		.uleb128 0x2
- 447 00a8 01       		.byte	0x1
- 448 00a9 08       		.byte	0x8
- 449 00aa 70020000 		.4byte	.LASF15
- 450 00ae 02       		.uleb128 0x2
- 451 00af 08       		.byte	0x8
- 452 00b0 04       		.byte	0x4
- 453 00b1 BB020000 		.4byte	.LASF16
- 454 00b5 02       		.uleb128 0x2
- 455 00b6 04       		.byte	0x4
- 456 00b7 07       		.byte	0x7
- 457 00b8 58020000 		.4byte	.LASF17
- 458 00bc 06       		.uleb128 0x6
- 459 00bd 04       		.byte	0x4
- 460 00be 07       		.uleb128 0x7
- 461 00bf 86000000 		.4byte	.LASF25
- 462 00c3 18       		.byte	0x18
- 463 00c4 01       		.byte	0x1
- 464 00c5 0D       		.byte	0xd
- 465 00c6 2B010000 		.4byte	0x12b
- 466 00ca 08       		.uleb128 0x8
- 467 00cb 87020000 		.4byte	.LASF18
- 468 00cf 01       		.byte	0x1
- 469 00d0 0E       		.byte	0xe
- 470 00d1 3C010000 		.4byte	0x13c
- 471 00d5 00       		.byte	0
- 472 00d6 08       		.uleb128 0x8
- 473 00d7 97020000 		.4byte	.LASF19
- 474 00db 01       		.byte	0x1
- 475 00dc 0F       		.byte	0xf
- 476 00dd 49010000 		.4byte	0x149
- 477 00e1 04       		.byte	0x4
- 478 00e2 08       		.uleb128 0x8
- 479 00e3 61000000 		.4byte	.LASF20
- 480 00e7 01       		.byte	0x1
- 481 00e8 10       		.byte	0x10
- 482 00e9 8D000000 		.4byte	0x8d
- 483 00ed 08       		.byte	0x8
- 484 00ee 08       		.uleb128 0x8
- 485 00ef BD000000 		.4byte	.LASF21
- 486 00f3 01       		.byte	0x1
- 487 00f4 11       		.byte	0x11
- 488 00f5 8D000000 		.4byte	0x8d
- 489 00f9 0A       		.byte	0xa
- 490 00fa 08       		.uleb128 0x8
- 491 00fb 75020000 		.4byte	.LASF22
- 492 00ff 01       		.byte	0x1
- 493 0100 12       		.byte	0x12
- 494 0101 81000000 		.4byte	0x81
- 495 0105 0C       		.byte	0xc
- 496 0106 09       		.uleb128 0x9
- 497 0107 70696400 		.ascii	"pid\000"
- 498 010b 01       		.byte	0x1
- 499 010c 13       		.byte	0x13
- 500 010d 81000000 		.4byte	0x81
- 501 0111 0D       		.byte	0xd
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 12
+ 443 009a 04       		.byte	0x4
+ 444 009b 04       		.byte	0x4
+ 445 009c B7000000 		.4byte	.LASF13
+ 446 00a0 02       		.uleb128 0x2
+ 447 00a1 08       		.byte	0x8
+ 448 00a2 04       		.byte	0x4
+ 449 00a3 94000000 		.4byte	.LASF14
+ 450 00a7 02       		.uleb128 0x2
+ 451 00a8 01       		.byte	0x1
+ 452 00a9 08       		.byte	0x8
+ 453 00aa 70020000 		.4byte	.LASF15
+ 454 00ae 02       		.uleb128 0x2
+ 455 00af 08       		.byte	0x8
+ 456 00b0 04       		.byte	0x4
+ 457 00b1 BB020000 		.4byte	.LASF16
+ 458 00b5 02       		.uleb128 0x2
+ 459 00b6 04       		.byte	0x4
+ 460 00b7 07       		.byte	0x7
+ 461 00b8 58020000 		.4byte	.LASF17
+ 462 00bc 06       		.uleb128 0x6
+ 463 00bd 04       		.byte	0x4
+ 464 00be 07       		.uleb128 0x7
+ 465 00bf 86000000 		.4byte	.LASF25
+ 466 00c3 18       		.byte	0x18
+ 467 00c4 01       		.byte	0x1
+ 468 00c5 0D       		.byte	0xd
+ 469 00c6 2B010000 		.4byte	0x12b
+ 470 00ca 08       		.uleb128 0x8
+ 471 00cb 87020000 		.4byte	.LASF18
+ 472 00cf 01       		.byte	0x1
+ 473 00d0 0E       		.byte	0xe
+ 474 00d1 3C010000 		.4byte	0x13c
+ 475 00d5 00       		.byte	0
+ 476 00d6 08       		.uleb128 0x8
+ 477 00d7 97020000 		.4byte	.LASF19
+ 478 00db 01       		.byte	0x1
+ 479 00dc 0F       		.byte	0xf
+ 480 00dd 49010000 		.4byte	0x149
+ 481 00e1 04       		.byte	0x4
+ 482 00e2 08       		.uleb128 0x8
+ 483 00e3 61000000 		.4byte	.LASF20
+ 484 00e7 01       		.byte	0x1
+ 485 00e8 10       		.byte	0x10
+ 486 00e9 8D000000 		.4byte	0x8d
+ 487 00ed 08       		.byte	0x8
+ 488 00ee 08       		.uleb128 0x8
+ 489 00ef BD000000 		.4byte	.LASF21
+ 490 00f3 01       		.byte	0x1
+ 491 00f4 11       		.byte	0x11
+ 492 00f5 8D000000 		.4byte	0x8d
+ 493 00f9 0A       		.byte	0xa
+ 494 00fa 08       		.uleb128 0x8
+ 495 00fb 75020000 		.4byte	.LASF22
+ 496 00ff 01       		.byte	0x1
+ 497 0100 12       		.byte	0x12
+ 498 0101 81000000 		.4byte	0x81
+ 499 0105 0C       		.byte	0xc
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 12
 
 
- 502 0112 08       		.uleb128 0x8
- 503 0113 F5010000 		.4byte	.LASF23
- 504 0117 01       		.byte	0x1
- 505 0118 14       		.byte	0x14
- 506 0119 36010000 		.4byte	0x136
- 507 011d 10       		.byte	0x10
- 508 011e 08       		.uleb128 0x8
- 509 011f 0E000000 		.4byte	.LASF24
- 510 0123 01       		.byte	0x1
- 511 0124 15       		.byte	0x15
- 512 0125 4F010000 		.4byte	0x14f
- 513 0129 14       		.byte	0x14
- 514 012a 00       		.byte	0
- 515 012b 0A       		.uleb128 0xa
- 516 012c 36010000 		.4byte	0x136
- 517 0130 0B       		.uleb128 0xb
- 518 0131 36010000 		.4byte	0x136
- 519 0135 00       		.byte	0
- 520 0136 0C       		.uleb128 0xc
- 521 0137 04       		.byte	0x4
- 522 0138 81000000 		.4byte	0x81
- 523 013c 0C       		.uleb128 0xc
- 524 013d 04       		.byte	0x4
- 525 013e 2B010000 		.4byte	0x12b
- 526 0142 0D       		.uleb128 0xd
- 527 0143 49010000 		.4byte	0x149
- 528 0147 0E       		.uleb128 0xe
- 529 0148 00       		.byte	0
- 530 0149 0C       		.uleb128 0xc
- 531 014a 04       		.byte	0x4
- 532 014b 42010000 		.4byte	0x142
- 533 014f 0C       		.uleb128 0xc
- 534 0150 04       		.byte	0x4
- 535 0151 BE000000 		.4byte	0xbe
- 536 0155 03       		.uleb128 0x3
- 537 0156 86000000 		.4byte	.LASF25
- 538 015a 01       		.byte	0x1
- 539 015b 16       		.byte	0x16
- 540 015c BE000000 		.4byte	0xbe
- 541 0160 07       		.uleb128 0x7
- 542 0161 9B000000 		.4byte	.LASF26
- 543 0165 08       		.byte	0x8
- 544 0166 01       		.byte	0x1
- 545 0167 19       		.byte	0x19
- 546 0168 85010000 		.4byte	0x185
- 547 016c 08       		.uleb128 0x8
- 548 016d 68000000 		.4byte	.LASF27
- 549 0171 01       		.byte	0x1
- 550 0172 1A       		.byte	0x1a
- 551 0173 85010000 		.4byte	0x185
- 552 0177 00       		.byte	0
- 553 0178 09       		.uleb128 0x9
- 554 0179 656E6400 		.ascii	"end\000"
- 555 017d 01       		.byte	0x1
- 556 017e 1B       		.byte	0x1b
- 557 017f 85010000 		.4byte	0x185
- 558 0183 04       		.byte	0x4
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 13
+ 500 0106 09       		.uleb128 0x9
+ 501 0107 70696400 		.ascii	"pid\000"
+ 502 010b 01       		.byte	0x1
+ 503 010c 13       		.byte	0x13
+ 504 010d 81000000 		.4byte	0x81
+ 505 0111 0D       		.byte	0xd
+ 506 0112 08       		.uleb128 0x8
+ 507 0113 F5010000 		.4byte	.LASF23
+ 508 0117 01       		.byte	0x1
+ 509 0118 14       		.byte	0x14
+ 510 0119 36010000 		.4byte	0x136
+ 511 011d 10       		.byte	0x10
+ 512 011e 08       		.uleb128 0x8
+ 513 011f 0E000000 		.4byte	.LASF24
+ 514 0123 01       		.byte	0x1
+ 515 0124 15       		.byte	0x15
+ 516 0125 4F010000 		.4byte	0x14f
+ 517 0129 14       		.byte	0x14
+ 518 012a 00       		.byte	0
+ 519 012b 0A       		.uleb128 0xa
+ 520 012c 36010000 		.4byte	0x136
+ 521 0130 0B       		.uleb128 0xb
+ 522 0131 36010000 		.4byte	0x136
+ 523 0135 00       		.byte	0
+ 524 0136 0C       		.uleb128 0xc
+ 525 0137 04       		.byte	0x4
+ 526 0138 81000000 		.4byte	0x81
+ 527 013c 0C       		.uleb128 0xc
+ 528 013d 04       		.byte	0x4
+ 529 013e 2B010000 		.4byte	0x12b
+ 530 0142 0D       		.uleb128 0xd
+ 531 0143 49010000 		.4byte	0x149
+ 532 0147 0E       		.uleb128 0xe
+ 533 0148 00       		.byte	0
+ 534 0149 0C       		.uleb128 0xc
+ 535 014a 04       		.byte	0x4
+ 536 014b 42010000 		.4byte	0x142
+ 537 014f 0C       		.uleb128 0xc
+ 538 0150 04       		.byte	0x4
+ 539 0151 BE000000 		.4byte	0xbe
+ 540 0155 03       		.uleb128 0x3
+ 541 0156 86000000 		.4byte	.LASF25
+ 542 015a 01       		.byte	0x1
+ 543 015b 16       		.byte	0x16
+ 544 015c BE000000 		.4byte	0xbe
+ 545 0160 07       		.uleb128 0x7
+ 546 0161 9B000000 		.4byte	.LASF26
+ 547 0165 08       		.byte	0x8
+ 548 0166 01       		.byte	0x1
+ 549 0167 19       		.byte	0x19
+ 550 0168 85010000 		.4byte	0x185
+ 551 016c 08       		.uleb128 0x8
+ 552 016d 68000000 		.4byte	.LASF27
+ 553 0171 01       		.byte	0x1
+ 554 0172 1A       		.byte	0x1a
+ 555 0173 85010000 		.4byte	0x185
+ 556 0177 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 13
 
 
- 559 0184 00       		.byte	0
- 560 0185 0C       		.uleb128 0xc
- 561 0186 04       		.byte	0x4
- 562 0187 55010000 		.4byte	0x155
- 563 018b 03       		.uleb128 0x3
- 564 018c 9B000000 		.4byte	.LASF26
- 565 0190 01       		.byte	0x1
- 566 0191 1C       		.byte	0x1c
- 567 0192 60010000 		.4byte	0x160
- 568 0196 0F       		.uleb128 0xf
- 569 0197 D1000000 		.4byte	.LASF28
- 570 019b 01       		.byte	0x1
- 571 019c 20       		.byte	0x20
- 572 019d 85010000 		.4byte	0x185
- 573 01a1 00000000 		.4byte	.LFB63
- 574 01a5 24000000 		.4byte	.LFE63-.LFB63
- 575 01a9 01       		.uleb128 0x1
- 576 01aa 9C       		.byte	0x9c
- 577 01ab 1D020000 		.4byte	0x21d
- 578 01af 10       		.uleb128 0x10
- 579 01b0 87020000 		.4byte	.LASF18
- 580 01b4 01       		.byte	0x1
- 581 01b5 20       		.byte	0x20
- 582 01b6 3C010000 		.4byte	0x13c
- 583 01ba 00000000 		.4byte	.LLST0
- 584 01be 10       		.uleb128 0x10
- 585 01bf F5010000 		.4byte	.LASF23
- 586 01c3 01       		.byte	0x1
- 587 01c4 20       		.byte	0x20
- 588 01c5 36010000 		.4byte	0x136
- 589 01c9 1E000000 		.4byte	.LLST1
- 590 01cd 10       		.uleb128 0x10
- 591 01ce 61000000 		.4byte	.LASF20
- 592 01d2 01       		.byte	0x1
- 593 01d3 20       		.byte	0x20
- 594 01d4 8D000000 		.4byte	0x8d
- 595 01d8 3C000000 		.4byte	.LLST2
- 596 01dc 11       		.uleb128 0x11
- 597 01dd 70696400 		.ascii	"pid\000"
- 598 01e1 01       		.byte	0x1
- 599 01e2 20       		.byte	0x20
- 600 01e3 81000000 		.4byte	0x81
- 601 01e7 5D000000 		.4byte	.LLST3
- 602 01eb 12       		.uleb128 0x12
- 603 01ec AE000000 		.4byte	.LASF31
- 604 01f0 01       		.byte	0x1
- 605 01f1 21       		.byte	0x21
- 606 01f2 85010000 		.4byte	0x185
- 607 01f6 01       		.uleb128 0x1
- 608 01f7 50       		.byte	0x50
- 609 01f8 13       		.uleb128 0x13
- 610 01f9 E0020000 		.4byte	.LASF32
- 611 01fd 05       		.byte	0x5
- 612 01fe 00       		.byte	0
- 613 01ff BC000000 		.4byte	0xbc
- 614 0203 0D020000 		.4byte	0x20d
- 615 0207 0B       		.uleb128 0xb
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 14
+ 557 0178 09       		.uleb128 0x9
+ 558 0179 656E6400 		.ascii	"end\000"
+ 559 017d 01       		.byte	0x1
+ 560 017e 1B       		.byte	0x1b
+ 561 017f 85010000 		.4byte	0x185
+ 562 0183 04       		.byte	0x4
+ 563 0184 00       		.byte	0
+ 564 0185 0C       		.uleb128 0xc
+ 565 0186 04       		.byte	0x4
+ 566 0187 55010000 		.4byte	0x155
+ 567 018b 03       		.uleb128 0x3
+ 568 018c 9B000000 		.4byte	.LASF26
+ 569 0190 01       		.byte	0x1
+ 570 0191 1C       		.byte	0x1c
+ 571 0192 60010000 		.4byte	0x160
+ 572 0196 0F       		.uleb128 0xf
+ 573 0197 D1000000 		.4byte	.LASF28
+ 574 019b 01       		.byte	0x1
+ 575 019c 20       		.byte	0x20
+ 576 019d 85010000 		.4byte	0x185
+ 577 01a1 00000000 		.4byte	.LFB63
+ 578 01a5 26000000 		.4byte	.LFE63-.LFB63
+ 579 01a9 01       		.uleb128 0x1
+ 580 01aa 9C       		.byte	0x9c
+ 581 01ab 1D020000 		.4byte	0x21d
+ 582 01af 10       		.uleb128 0x10
+ 583 01b0 87020000 		.4byte	.LASF18
+ 584 01b4 01       		.byte	0x1
+ 585 01b5 20       		.byte	0x20
+ 586 01b6 3C010000 		.4byte	0x13c
+ 587 01ba 00000000 		.4byte	.LLST0
+ 588 01be 10       		.uleb128 0x10
+ 589 01bf F5010000 		.4byte	.LASF23
+ 590 01c3 01       		.byte	0x1
+ 591 01c4 20       		.byte	0x20
+ 592 01c5 36010000 		.4byte	0x136
+ 593 01c9 1E000000 		.4byte	.LLST1
+ 594 01cd 10       		.uleb128 0x10
+ 595 01ce 61000000 		.4byte	.LASF20
+ 596 01d2 01       		.byte	0x1
+ 597 01d3 20       		.byte	0x20
+ 598 01d4 8D000000 		.4byte	0x8d
+ 599 01d8 3C000000 		.4byte	.LLST2
+ 600 01dc 11       		.uleb128 0x11
+ 601 01dd 70696400 		.ascii	"pid\000"
+ 602 01e1 01       		.byte	0x1
+ 603 01e2 20       		.byte	0x20
+ 604 01e3 81000000 		.4byte	0x81
+ 605 01e7 5D000000 		.4byte	.LLST3
+ 606 01eb 12       		.uleb128 0x12
+ 607 01ec AE000000 		.4byte	.LASF31
+ 608 01f0 01       		.byte	0x1
+ 609 01f1 21       		.byte	0x21
+ 610 01f2 85010000 		.4byte	0x185
+ 611 01f6 01       		.uleb128 0x1
+ 612 01f7 50       		.byte	0x50
+ 613 01f8 13       		.uleb128 0x13
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 14
 
 
- 616 0208 6F000000 		.4byte	0x6f
- 617 020c 00       		.byte	0
- 618 020d 14       		.uleb128 0x14
- 619 020e 10000000 		.4byte	.LVL2
- 620 0212 5C040000 		.4byte	0x45c
- 621 0216 15       		.uleb128 0x15
- 622 0217 01       		.uleb128 0x1
- 623 0218 50       		.byte	0x50
- 624 0219 01       		.uleb128 0x1
- 625 021a 48       		.byte	0x48
- 626 021b 00       		.byte	0
- 627 021c 00       		.byte	0
- 628 021d 0F       		.uleb128 0xf
- 629 021e C7020000 		.4byte	.LASF29
- 630 0222 01       		.byte	0x1
- 631 0223 2D       		.byte	0x2d
- 632 0224 85010000 		.4byte	0x185
- 633 0228 00000000 		.4byte	.LFB64
- 634 022c 20000000 		.4byte	.LFE64-.LFB64
- 635 0230 01       		.uleb128 0x1
- 636 0231 9C       		.byte	0x9c
- 637 0232 95020000 		.4byte	0x295
- 638 0236 10       		.uleb128 0x10
- 639 0237 C5000000 		.4byte	.LASF30
- 640 023b 01       		.byte	0x1
- 641 023c 2D       		.byte	0x2d
- 642 023d 49010000 		.4byte	0x149
- 643 0241 7E000000 		.4byte	.LLST4
- 644 0245 10       		.uleb128 0x10
- 645 0246 61000000 		.4byte	.LASF20
- 646 024a 01       		.byte	0x1
- 647 024b 2D       		.byte	0x2d
- 648 024c 8D000000 		.4byte	0x8d
- 649 0250 9C000000 		.4byte	.LLST5
- 650 0254 11       		.uleb128 0x11
- 651 0255 70696400 		.ascii	"pid\000"
- 652 0259 01       		.byte	0x1
- 653 025a 2D       		.byte	0x2d
- 654 025b 81000000 		.4byte	0x81
- 655 025f BD000000 		.4byte	.LLST6
- 656 0263 12       		.uleb128 0x12
- 657 0264 AE000000 		.4byte	.LASF31
- 658 0268 01       		.byte	0x1
- 659 0269 2E       		.byte	0x2e
- 660 026a 85010000 		.4byte	0x185
- 661 026e 01       		.uleb128 0x1
- 662 026f 50       		.byte	0x50
- 663 0270 13       		.uleb128 0x13
- 664 0271 E0020000 		.4byte	.LASF32
- 665 0275 05       		.byte	0x5
- 666 0276 00       		.byte	0
- 667 0277 BC000000 		.4byte	0xbc
- 668 027b 85020000 		.4byte	0x285
- 669 027f 0B       		.uleb128 0xb
- 670 0280 6F000000 		.4byte	0x6f
- 671 0284 00       		.byte	0
- 672 0285 14       		.uleb128 0x14
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 15
+ 614 01f9 E0020000 		.4byte	.LASF32
+ 615 01fd 05       		.byte	0x5
+ 616 01fe 00       		.byte	0
+ 617 01ff BC000000 		.4byte	0xbc
+ 618 0203 0D020000 		.4byte	0x20d
+ 619 0207 0B       		.uleb128 0xb
+ 620 0208 6F000000 		.4byte	0x6f
+ 621 020c 00       		.byte	0
+ 622 020d 14       		.uleb128 0x14
+ 623 020e 10000000 		.4byte	.LVL2
+ 624 0212 5C040000 		.4byte	0x45c
+ 625 0216 15       		.uleb128 0x15
+ 626 0217 01       		.uleb128 0x1
+ 627 0218 50       		.byte	0x50
+ 628 0219 01       		.uleb128 0x1
+ 629 021a 48       		.byte	0x48
+ 630 021b 00       		.byte	0
+ 631 021c 00       		.byte	0
+ 632 021d 0F       		.uleb128 0xf
+ 633 021e C7020000 		.4byte	.LASF29
+ 634 0222 01       		.byte	0x1
+ 635 0223 2E       		.byte	0x2e
+ 636 0224 85010000 		.4byte	0x185
+ 637 0228 00000000 		.4byte	.LFB64
+ 638 022c 22000000 		.4byte	.LFE64-.LFB64
+ 639 0230 01       		.uleb128 0x1
+ 640 0231 9C       		.byte	0x9c
+ 641 0232 95020000 		.4byte	0x295
+ 642 0236 10       		.uleb128 0x10
+ 643 0237 C5000000 		.4byte	.LASF30
+ 644 023b 01       		.byte	0x1
+ 645 023c 2E       		.byte	0x2e
+ 646 023d 49010000 		.4byte	0x149
+ 647 0241 7E000000 		.4byte	.LLST4
+ 648 0245 10       		.uleb128 0x10
+ 649 0246 61000000 		.4byte	.LASF20
+ 650 024a 01       		.byte	0x1
+ 651 024b 2E       		.byte	0x2e
+ 652 024c 8D000000 		.4byte	0x8d
+ 653 0250 9C000000 		.4byte	.LLST5
+ 654 0254 11       		.uleb128 0x11
+ 655 0255 70696400 		.ascii	"pid\000"
+ 656 0259 01       		.byte	0x1
+ 657 025a 2E       		.byte	0x2e
+ 658 025b 81000000 		.4byte	0x81
+ 659 025f BD000000 		.4byte	.LLST6
+ 660 0263 12       		.uleb128 0x12
+ 661 0264 AE000000 		.4byte	.LASF31
+ 662 0268 01       		.byte	0x1
+ 663 0269 2F       		.byte	0x2f
+ 664 026a 85010000 		.4byte	0x185
+ 665 026e 01       		.uleb128 0x1
+ 666 026f 50       		.byte	0x50
+ 667 0270 13       		.uleb128 0x13
+ 668 0271 E0020000 		.4byte	.LASF32
+ 669 0275 05       		.byte	0x5
+ 670 0276 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 15
 
 
- 673 0286 0E000000 		.4byte	.LVL5
- 674 028a 5C040000 		.4byte	0x45c
- 675 028e 15       		.uleb128 0x15
- 676 028f 01       		.uleb128 0x1
- 677 0290 50       		.byte	0x50
- 678 0291 01       		.uleb128 0x1
- 679 0292 48       		.byte	0x48
- 680 0293 00       		.byte	0
- 681 0294 00       		.byte	0
- 682 0295 16       		.uleb128 0x16
- 683 0296 A3020000 		.4byte	.LASF38
- 684 029a 01       		.byte	0x1
- 685 029b 39       		.byte	0x39
- 686 029c 00000000 		.4byte	.LFB65
- 687 02a0 12000000 		.4byte	.LFE65-.LFB65
- 688 02a4 01       		.uleb128 0x1
- 689 02a5 9C       		.byte	0x9c
- 690 02a6 C5020000 		.4byte	0x2c5
- 691 02aa 17       		.uleb128 0x17
- 692 02ab 9A010000 		.4byte	.LASF33
- 693 02af 01       		.byte	0x1
- 694 02b0 39       		.byte	0x39
- 695 02b1 C5020000 		.4byte	0x2c5
- 696 02b5 01       		.uleb128 0x1
- 697 02b6 50       		.byte	0x50
- 698 02b7 17       		.uleb128 0x17
- 699 02b8 52000000 		.4byte	.LASF34
- 700 02bc 01       		.byte	0x1
- 701 02bd 39       		.byte	0x39
- 702 02be 85010000 		.4byte	0x185
- 703 02c2 01       		.uleb128 0x1
- 704 02c3 51       		.byte	0x51
- 705 02c4 00       		.byte	0
- 706 02c5 0C       		.uleb128 0xc
- 707 02c6 04       		.byte	0x4
- 708 02c7 8B010000 		.4byte	0x18b
- 709 02cb 0F       		.uleb128 0xf
- 710 02cc 66020000 		.4byte	.LASF35
- 711 02d0 01       		.byte	0x1
- 712 02d1 44       		.byte	0x44
- 713 02d2 85010000 		.4byte	0x185
- 714 02d6 00000000 		.4byte	.LFB66
- 715 02da 12000000 		.4byte	.LFE66-.LFB66
- 716 02de 01       		.uleb128 0x1
- 717 02df 9C       		.byte	0x9c
- 718 02e0 0E030000 		.4byte	0x30e
- 719 02e4 10       		.uleb128 0x10
- 720 02e5 B5020000 		.4byte	.LASF36
- 721 02e9 01       		.byte	0x1
- 722 02ea 44       		.byte	0x44
- 723 02eb C5020000 		.4byte	0x2c5
- 724 02ef DE000000 		.4byte	.LLST7
- 725 02f3 18       		.uleb128 0x18
- 726 02f4 70696400 		.ascii	"pid\000"
- 727 02f8 01       		.byte	0x1
- 728 02f9 44       		.byte	0x44
- 729 02fa 81000000 		.4byte	0x81
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 16
+ 671 0277 BC000000 		.4byte	0xbc
+ 672 027b 85020000 		.4byte	0x285
+ 673 027f 0B       		.uleb128 0xb
+ 674 0280 6F000000 		.4byte	0x6f
+ 675 0284 00       		.byte	0
+ 676 0285 14       		.uleb128 0x14
+ 677 0286 0E000000 		.4byte	.LVL5
+ 678 028a 5C040000 		.4byte	0x45c
+ 679 028e 15       		.uleb128 0x15
+ 680 028f 01       		.uleb128 0x1
+ 681 0290 50       		.byte	0x50
+ 682 0291 01       		.uleb128 0x1
+ 683 0292 48       		.byte	0x48
+ 684 0293 00       		.byte	0
+ 685 0294 00       		.byte	0
+ 686 0295 16       		.uleb128 0x16
+ 687 0296 A3020000 		.4byte	.LASF38
+ 688 029a 01       		.byte	0x1
+ 689 029b 3B       		.byte	0x3b
+ 690 029c 00000000 		.4byte	.LFB65
+ 691 02a0 12000000 		.4byte	.LFE65-.LFB65
+ 692 02a4 01       		.uleb128 0x1
+ 693 02a5 9C       		.byte	0x9c
+ 694 02a6 C5020000 		.4byte	0x2c5
+ 695 02aa 17       		.uleb128 0x17
+ 696 02ab 9A010000 		.4byte	.LASF33
+ 697 02af 01       		.byte	0x1
+ 698 02b0 3B       		.byte	0x3b
+ 699 02b1 C5020000 		.4byte	0x2c5
+ 700 02b5 01       		.uleb128 0x1
+ 701 02b6 50       		.byte	0x50
+ 702 02b7 17       		.uleb128 0x17
+ 703 02b8 52000000 		.4byte	.LASF34
+ 704 02bc 01       		.byte	0x1
+ 705 02bd 3B       		.byte	0x3b
+ 706 02be 85010000 		.4byte	0x185
+ 707 02c2 01       		.uleb128 0x1
+ 708 02c3 51       		.byte	0x51
+ 709 02c4 00       		.byte	0
+ 710 02c5 0C       		.uleb128 0xc
+ 711 02c6 04       		.byte	0x4
+ 712 02c7 8B010000 		.4byte	0x18b
+ 713 02cb 0F       		.uleb128 0xf
+ 714 02cc 66020000 		.4byte	.LASF35
+ 715 02d0 01       		.byte	0x1
+ 716 02d1 46       		.byte	0x46
+ 717 02d2 85010000 		.4byte	0x185
+ 718 02d6 00000000 		.4byte	.LFB66
+ 719 02da 12000000 		.4byte	.LFE66-.LFB66
+ 720 02de 01       		.uleb128 0x1
+ 721 02df 9C       		.byte	0x9c
+ 722 02e0 0E030000 		.4byte	0x30e
+ 723 02e4 10       		.uleb128 0x10
+ 724 02e5 B5020000 		.4byte	.LASF36
+ 725 02e9 01       		.byte	0x1
+ 726 02ea 46       		.byte	0x46
+ 727 02eb C5020000 		.4byte	0x2c5
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 16
 
 
- 730 02fe 01       		.uleb128 0x1
- 731 02ff 51       		.byte	0x51
- 732 0300 12       		.uleb128 0x12
- 733 0301 6E000000 		.4byte	.LASF37
- 734 0305 01       		.byte	0x1
- 735 0306 45       		.byte	0x45
- 736 0307 85010000 		.4byte	0x185
- 737 030b 01       		.uleb128 0x1
- 738 030c 50       		.byte	0x50
- 739 030d 00       		.byte	0
- 740 030e 16       		.uleb128 0x16
- 741 030f 7C010000 		.4byte	.LASF39
- 742 0313 01       		.byte	0x1
- 743 0314 4E       		.byte	0x4e
- 744 0315 00000000 		.4byte	.LFB67
- 745 0319 0E000000 		.4byte	.LFE67-.LFB67
- 746 031d 01       		.uleb128 0x1
- 747 031e 9C       		.byte	0x9c
- 748 031f 60030000 		.4byte	0x360
- 749 0323 10       		.uleb128 0x10
- 750 0324 B5020000 		.4byte	.LASF36
- 751 0328 01       		.byte	0x1
- 752 0329 4E       		.byte	0x4e
- 753 032a C5020000 		.4byte	0x2c5
- 754 032e FF000000 		.4byte	.LLST8
- 755 0332 11       		.uleb128 0x11
- 756 0333 70696400 		.ascii	"pid\000"
- 757 0337 01       		.byte	0x1
- 758 0338 4E       		.byte	0x4e
- 759 0339 81000000 		.4byte	0x81
- 760 033d 20010000 		.4byte	.LLST9
- 761 0341 12       		.uleb128 0x12
- 762 0342 52000000 		.4byte	.LASF34
- 763 0346 01       		.byte	0x1
- 764 0347 4F       		.byte	0x4f
- 765 0348 85010000 		.4byte	0x185
- 766 034c 01       		.uleb128 0x1
- 767 034d 50       		.byte	0x50
- 768 034e 14       		.uleb128 0x14
- 769 034f 06000000 		.4byte	.LVL11
- 770 0353 CB020000 		.4byte	0x2cb
- 771 0357 15       		.uleb128 0x15
- 772 0358 01       		.uleb128 0x1
- 773 0359 50       		.byte	0x50
- 774 035a 03       		.uleb128 0x3
- 775 035b F3       		.byte	0xf3
- 776 035c 01       		.uleb128 0x1
- 777 035d 50       		.byte	0x50
- 778 035e 00       		.byte	0
- 779 035f 00       		.byte	0
- 780 0360 16       		.uleb128 0x16
- 781 0361 16020000 		.4byte	.LASF40
- 782 0365 01       		.byte	0x1
- 783 0366 54       		.byte	0x54
- 784 0367 00000000 		.4byte	.LFB68
- 785 036b 12000000 		.4byte	.LFE68-.LFB68
- 786 036f 01       		.uleb128 0x1
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 17
+ 728 02ef DE000000 		.4byte	.LLST7
+ 729 02f3 18       		.uleb128 0x18
+ 730 02f4 70696400 		.ascii	"pid\000"
+ 731 02f8 01       		.byte	0x1
+ 732 02f9 46       		.byte	0x46
+ 733 02fa 81000000 		.4byte	0x81
+ 734 02fe 01       		.uleb128 0x1
+ 735 02ff 51       		.byte	0x51
+ 736 0300 12       		.uleb128 0x12
+ 737 0301 6E000000 		.4byte	.LASF37
+ 738 0305 01       		.byte	0x1
+ 739 0306 47       		.byte	0x47
+ 740 0307 85010000 		.4byte	0x185
+ 741 030b 01       		.uleb128 0x1
+ 742 030c 50       		.byte	0x50
+ 743 030d 00       		.byte	0
+ 744 030e 16       		.uleb128 0x16
+ 745 030f 7C010000 		.4byte	.LASF39
+ 746 0313 01       		.byte	0x1
+ 747 0314 50       		.byte	0x50
+ 748 0315 00000000 		.4byte	.LFB67
+ 749 0319 0E000000 		.4byte	.LFE67-.LFB67
+ 750 031d 01       		.uleb128 0x1
+ 751 031e 9C       		.byte	0x9c
+ 752 031f 60030000 		.4byte	0x360
+ 753 0323 10       		.uleb128 0x10
+ 754 0324 B5020000 		.4byte	.LASF36
+ 755 0328 01       		.byte	0x1
+ 756 0329 50       		.byte	0x50
+ 757 032a C5020000 		.4byte	0x2c5
+ 758 032e FF000000 		.4byte	.LLST8
+ 759 0332 11       		.uleb128 0x11
+ 760 0333 70696400 		.ascii	"pid\000"
+ 761 0337 01       		.byte	0x1
+ 762 0338 50       		.byte	0x50
+ 763 0339 81000000 		.4byte	0x81
+ 764 033d 20010000 		.4byte	.LLST9
+ 765 0341 12       		.uleb128 0x12
+ 766 0342 52000000 		.4byte	.LASF34
+ 767 0346 01       		.byte	0x1
+ 768 0347 51       		.byte	0x51
+ 769 0348 85010000 		.4byte	0x185
+ 770 034c 01       		.uleb128 0x1
+ 771 034d 50       		.byte	0x50
+ 772 034e 14       		.uleb128 0x14
+ 773 034f 06000000 		.4byte	.LVL11
+ 774 0353 CB020000 		.4byte	0x2cb
+ 775 0357 15       		.uleb128 0x15
+ 776 0358 01       		.uleb128 0x1
+ 777 0359 50       		.byte	0x50
+ 778 035a 03       		.uleb128 0x3
+ 779 035b F3       		.byte	0xf3
+ 780 035c 01       		.uleb128 0x1
+ 781 035d 50       		.byte	0x50
+ 782 035e 00       		.byte	0
+ 783 035f 00       		.byte	0
+ 784 0360 16       		.uleb128 0x16
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 17
 
 
- 787 0370 9C       		.byte	0x9c
- 788 0371 B2030000 		.4byte	0x3b2
- 789 0375 10       		.uleb128 0x10
- 790 0376 B5020000 		.4byte	.LASF36
- 791 037a 01       		.byte	0x1
- 792 037b 54       		.byte	0x54
- 793 037c C5020000 		.4byte	0x2c5
- 794 0380 41010000 		.4byte	.LLST10
- 795 0384 11       		.uleb128 0x11
- 796 0385 70696400 		.ascii	"pid\000"
- 797 0389 01       		.byte	0x1
- 798 038a 54       		.byte	0x54
- 799 038b 81000000 		.4byte	0x81
- 800 038f 62010000 		.4byte	.LLST11
- 801 0393 12       		.uleb128 0x12
- 802 0394 52000000 		.4byte	.LASF34
- 803 0398 01       		.byte	0x1
- 804 0399 55       		.byte	0x55
- 805 039a 85010000 		.4byte	0x185
- 806 039e 01       		.uleb128 0x1
- 807 039f 50       		.byte	0x50
- 808 03a0 14       		.uleb128 0x14
- 809 03a1 06000000 		.4byte	.LVL13
- 810 03a5 CB020000 		.4byte	0x2cb
- 811 03a9 15       		.uleb128 0x15
- 812 03aa 01       		.uleb128 0x1
- 813 03ab 50       		.byte	0x50
- 814 03ac 03       		.uleb128 0x3
- 815 03ad F3       		.byte	0xf3
- 816 03ae 01       		.uleb128 0x1
- 817 03af 50       		.byte	0x50
- 818 03b0 00       		.byte	0
- 819 03b1 00       		.byte	0
- 820 03b2 16       		.uleb128 0x16
- 821 03b3 46020000 		.4byte	.LASF41
- 822 03b7 01       		.byte	0x1
- 823 03b8 5D       		.byte	0x5d
- 824 03b9 00000000 		.4byte	.LFB69
- 825 03bd 14000000 		.4byte	.LFE69-.LFB69
- 826 03c1 01       		.uleb128 0x1
- 827 03c2 9C       		.byte	0x9c
- 828 03c3 19040000 		.4byte	0x419
- 829 03c7 10       		.uleb128 0x10
- 830 03c8 9A010000 		.4byte	.LASF33
- 831 03cc 01       		.byte	0x1
- 832 03cd 5D       		.byte	0x5d
- 833 03ce C5020000 		.4byte	0x2c5
- 834 03d2 83010000 		.4byte	.LLST12
- 835 03d6 19       		.uleb128 0x19
- 836 03d7 6E000000 		.4byte	.LASF37
- 837 03db 01       		.byte	0x1
- 838 03dc 5E       		.byte	0x5e
- 839 03dd 85010000 		.4byte	0x185
- 840 03e1 A4010000 		.4byte	.LLST13
- 841 03e5 1A       		.uleb128 0x1a
- 842 03e6 06000000 		.4byte	.LBB2
- 843 03ea 08000000 		.4byte	.LBE2-.LBB2
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 18
+ 785 0361 16020000 		.4byte	.LASF40
+ 786 0365 01       		.byte	0x1
+ 787 0366 56       		.byte	0x56
+ 788 0367 00000000 		.4byte	.LFB68
+ 789 036b 12000000 		.4byte	.LFE68-.LFB68
+ 790 036f 01       		.uleb128 0x1
+ 791 0370 9C       		.byte	0x9c
+ 792 0371 B2030000 		.4byte	0x3b2
+ 793 0375 10       		.uleb128 0x10
+ 794 0376 B5020000 		.4byte	.LASF36
+ 795 037a 01       		.byte	0x1
+ 796 037b 56       		.byte	0x56
+ 797 037c C5020000 		.4byte	0x2c5
+ 798 0380 41010000 		.4byte	.LLST10
+ 799 0384 11       		.uleb128 0x11
+ 800 0385 70696400 		.ascii	"pid\000"
+ 801 0389 01       		.byte	0x1
+ 802 038a 56       		.byte	0x56
+ 803 038b 81000000 		.4byte	0x81
+ 804 038f 62010000 		.4byte	.LLST11
+ 805 0393 12       		.uleb128 0x12
+ 806 0394 52000000 		.4byte	.LASF34
+ 807 0398 01       		.byte	0x1
+ 808 0399 57       		.byte	0x57
+ 809 039a 85010000 		.4byte	0x185
+ 810 039e 01       		.uleb128 0x1
+ 811 039f 50       		.byte	0x50
+ 812 03a0 14       		.uleb128 0x14
+ 813 03a1 06000000 		.4byte	.LVL13
+ 814 03a5 CB020000 		.4byte	0x2cb
+ 815 03a9 15       		.uleb128 0x15
+ 816 03aa 01       		.uleb128 0x1
+ 817 03ab 50       		.byte	0x50
+ 818 03ac 03       		.uleb128 0x3
+ 819 03ad F3       		.byte	0xf3
+ 820 03ae 01       		.uleb128 0x1
+ 821 03af 50       		.byte	0x50
+ 822 03b0 00       		.byte	0
+ 823 03b1 00       		.byte	0
+ 824 03b2 16       		.uleb128 0x16
+ 825 03b3 46020000 		.4byte	.LASF41
+ 826 03b7 01       		.byte	0x1
+ 827 03b8 5F       		.byte	0x5f
+ 828 03b9 00000000 		.4byte	.LFB69
+ 829 03bd 14000000 		.4byte	.LFE69-.LFB69
+ 830 03c1 01       		.uleb128 0x1
+ 831 03c2 9C       		.byte	0x9c
+ 832 03c3 19040000 		.4byte	0x419
+ 833 03c7 10       		.uleb128 0x10
+ 834 03c8 9A010000 		.4byte	.LASF33
+ 835 03cc 01       		.byte	0x1
+ 836 03cd 5F       		.byte	0x5f
+ 837 03ce C5020000 		.4byte	0x2c5
+ 838 03d2 83010000 		.4byte	.LLST12
+ 839 03d6 19       		.uleb128 0x19
+ 840 03d7 6E000000 		.4byte	.LASF37
+ 841 03db 01       		.byte	0x1
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 18
 
 
- 844 03ee 1B       		.uleb128 0x1b
- 845 03ef 6E657800 		.ascii	"nex\000"
- 846 03f3 01       		.byte	0x1
- 847 03f4 60       		.byte	0x60
- 848 03f5 85010000 		.4byte	0x185
- 849 03f9 CD010000 		.4byte	.LLST14
- 850 03fd 1C       		.uleb128 0x1c
- 851 03fe 61020000 		.4byte	.LASF43
- 852 0402 05       		.byte	0x5
- 853 0403 00       		.byte	0
- 854 0404 0E040000 		.4byte	0x40e
- 855 0408 0B       		.uleb128 0xb
- 856 0409 BC000000 		.4byte	0xbc
- 857 040d 00       		.byte	0
- 858 040e 1D       		.uleb128 0x1d
- 859 040f 0C000000 		.4byte	.LVL17
- 860 0413 67040000 		.4byte	0x467
- 861 0417 00       		.byte	0
- 862 0418 00       		.byte	0
- 863 0419 1E       		.uleb128 0x1e
- 864 041a C3010000 		.4byte	.LASF42
- 865 041e 01       		.byte	0x1
- 866 041f 66       		.byte	0x66
- 867 0420 00000000 		.4byte	.LFB70
- 868 0424 30000000 		.4byte	.LFE70-.LFB70
- 869 0428 01       		.uleb128 0x1
- 870 0429 9C       		.byte	0x9c
- 871 042a 4B040000 		.4byte	0x44b
- 872 042e 10       		.uleb128 0x10
- 873 042f 9A010000 		.4byte	.LASF33
- 874 0433 01       		.byte	0x1
- 875 0434 66       		.byte	0x66
- 876 0435 C5020000 		.4byte	0x2c5
- 877 0439 E0010000 		.4byte	.LLST15
- 878 043d 12       		.uleb128 0x12
- 879 043e 6E000000 		.4byte	.LASF37
- 880 0442 01       		.byte	0x1
- 881 0443 68       		.byte	0x68
- 882 0444 85010000 		.4byte	0x185
- 883 0448 01       		.uleb128 0x1
- 884 0449 54       		.byte	0x54
- 885 044a 00       		.byte	0
- 886 044b 1F       		.uleb128 0x1f
- 887 044c A8010000 		.4byte	.LASF47
- 888 0450 06       		.byte	0x6
- 889 0451 1207     		.2byte	0x712
- 890 0453 57040000 		.4byte	0x457
- 891 0457 20       		.uleb128 0x20
- 892 0458 76000000 		.4byte	0x76
- 893 045c 21       		.uleb128 0x21
- 894 045d E0020000 		.4byte	.LASF32
- 895 0461 E0020000 		.4byte	.LASF32
- 896 0465 05       		.byte	0x5
- 897 0466 00       		.byte	0
- 898 0467 21       		.uleb128 0x21
- 899 0468 61020000 		.4byte	.LASF43
- 900 046c 61020000 		.4byte	.LASF43
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 19
+ 842 03dc 60       		.byte	0x60
+ 843 03dd 85010000 		.4byte	0x185
+ 844 03e1 A4010000 		.4byte	.LLST13
+ 845 03e5 1A       		.uleb128 0x1a
+ 846 03e6 06000000 		.4byte	.LBB2
+ 847 03ea 08000000 		.4byte	.LBE2-.LBB2
+ 848 03ee 1B       		.uleb128 0x1b
+ 849 03ef 6E657800 		.ascii	"nex\000"
+ 850 03f3 01       		.byte	0x1
+ 851 03f4 62       		.byte	0x62
+ 852 03f5 85010000 		.4byte	0x185
+ 853 03f9 CD010000 		.4byte	.LLST14
+ 854 03fd 1C       		.uleb128 0x1c
+ 855 03fe 61020000 		.4byte	.LASF43
+ 856 0402 05       		.byte	0x5
+ 857 0403 00       		.byte	0
+ 858 0404 0E040000 		.4byte	0x40e
+ 859 0408 0B       		.uleb128 0xb
+ 860 0409 BC000000 		.4byte	0xbc
+ 861 040d 00       		.byte	0
+ 862 040e 1D       		.uleb128 0x1d
+ 863 040f 0C000000 		.4byte	.LVL17
+ 864 0413 67040000 		.4byte	0x467
+ 865 0417 00       		.byte	0
+ 866 0418 00       		.byte	0
+ 867 0419 1E       		.uleb128 0x1e
+ 868 041a C3010000 		.4byte	.LASF42
+ 869 041e 01       		.byte	0x1
+ 870 041f 68       		.byte	0x68
+ 871 0420 00000000 		.4byte	.LFB70
+ 872 0424 30000000 		.4byte	.LFE70-.LFB70
+ 873 0428 01       		.uleb128 0x1
+ 874 0429 9C       		.byte	0x9c
+ 875 042a 4B040000 		.4byte	0x44b
+ 876 042e 10       		.uleb128 0x10
+ 877 042f 9A010000 		.4byte	.LASF33
+ 878 0433 01       		.byte	0x1
+ 879 0434 68       		.byte	0x68
+ 880 0435 C5020000 		.4byte	0x2c5
+ 881 0439 E0010000 		.4byte	.LLST15
+ 882 043d 12       		.uleb128 0x12
+ 883 043e 6E000000 		.4byte	.LASF37
+ 884 0442 01       		.byte	0x1
+ 885 0443 6A       		.byte	0x6a
+ 886 0444 85010000 		.4byte	0x185
+ 887 0448 01       		.uleb128 0x1
+ 888 0449 54       		.byte	0x54
+ 889 044a 00       		.byte	0
+ 890 044b 1F       		.uleb128 0x1f
+ 891 044c A8010000 		.4byte	.LASF47
+ 892 0450 06       		.byte	0x6
+ 893 0451 1207     		.2byte	0x712
+ 894 0453 57040000 		.4byte	0x457
+ 895 0457 20       		.uleb128 0x20
+ 896 0458 76000000 		.4byte	0x76
+ 897 045c 21       		.uleb128 0x21
+ 898 045d E0020000 		.4byte	.LASF32
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 19
 
 
- 901 0470 05       		.byte	0x5
- 902 0471 00       		.byte	0
- 903 0472 00       		.byte	0
- 904              		.section	.debug_abbrev,"",%progbits
- 905              	.Ldebug_abbrev0:
- 906 0000 01       		.uleb128 0x1
- 907 0001 11       		.uleb128 0x11
- 908 0002 01       		.byte	0x1
- 909 0003 25       		.uleb128 0x25
- 910 0004 0E       		.uleb128 0xe
- 911 0005 13       		.uleb128 0x13
- 912 0006 0B       		.uleb128 0xb
- 913 0007 03       		.uleb128 0x3
- 914 0008 0E       		.uleb128 0xe
- 915 0009 1B       		.uleb128 0x1b
- 916 000a 0E       		.uleb128 0xe
- 917 000b 55       		.uleb128 0x55
- 918 000c 17       		.uleb128 0x17
- 919 000d 11       		.uleb128 0x11
- 920 000e 01       		.uleb128 0x1
- 921 000f 10       		.uleb128 0x10
- 922 0010 17       		.uleb128 0x17
- 923 0011 00       		.byte	0
- 924 0012 00       		.byte	0
- 925 0013 02       		.uleb128 0x2
- 926 0014 24       		.uleb128 0x24
- 927 0015 00       		.byte	0
- 928 0016 0B       		.uleb128 0xb
- 929 0017 0B       		.uleb128 0xb
- 930 0018 3E       		.uleb128 0x3e
- 931 0019 0B       		.uleb128 0xb
- 932 001a 03       		.uleb128 0x3
- 933 001b 0E       		.uleb128 0xe
- 934 001c 00       		.byte	0
- 935 001d 00       		.byte	0
- 936 001e 03       		.uleb128 0x3
- 937 001f 16       		.uleb128 0x16
- 938 0020 00       		.byte	0
- 939 0021 03       		.uleb128 0x3
- 940 0022 0E       		.uleb128 0xe
- 941 0023 3A       		.uleb128 0x3a
- 942 0024 0B       		.uleb128 0xb
- 943 0025 3B       		.uleb128 0x3b
- 944 0026 0B       		.uleb128 0xb
- 945 0027 49       		.uleb128 0x49
- 946 0028 13       		.uleb128 0x13
- 947 0029 00       		.byte	0
- 948 002a 00       		.byte	0
- 949 002b 04       		.uleb128 0x4
- 950 002c 24       		.uleb128 0x24
- 951 002d 00       		.byte	0
- 952 002e 0B       		.uleb128 0xb
- 953 002f 0B       		.uleb128 0xb
- 954 0030 3E       		.uleb128 0x3e
- 955 0031 0B       		.uleb128 0xb
- 956 0032 03       		.uleb128 0x3
- 957 0033 08       		.uleb128 0x8
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 20
+ 899 0461 E0020000 		.4byte	.LASF32
+ 900 0465 05       		.byte	0x5
+ 901 0466 00       		.byte	0
+ 902 0467 21       		.uleb128 0x21
+ 903 0468 61020000 		.4byte	.LASF43
+ 904 046c 61020000 		.4byte	.LASF43
+ 905 0470 05       		.byte	0x5
+ 906 0471 00       		.byte	0
+ 907 0472 00       		.byte	0
+ 908              		.section	.debug_abbrev,"",%progbits
+ 909              	.Ldebug_abbrev0:
+ 910 0000 01       		.uleb128 0x1
+ 911 0001 11       		.uleb128 0x11
+ 912 0002 01       		.byte	0x1
+ 913 0003 25       		.uleb128 0x25
+ 914 0004 0E       		.uleb128 0xe
+ 915 0005 13       		.uleb128 0x13
+ 916 0006 0B       		.uleb128 0xb
+ 917 0007 03       		.uleb128 0x3
+ 918 0008 0E       		.uleb128 0xe
+ 919 0009 1B       		.uleb128 0x1b
+ 920 000a 0E       		.uleb128 0xe
+ 921 000b 55       		.uleb128 0x55
+ 922 000c 17       		.uleb128 0x17
+ 923 000d 11       		.uleb128 0x11
+ 924 000e 01       		.uleb128 0x1
+ 925 000f 10       		.uleb128 0x10
+ 926 0010 17       		.uleb128 0x17
+ 927 0011 00       		.byte	0
+ 928 0012 00       		.byte	0
+ 929 0013 02       		.uleb128 0x2
+ 930 0014 24       		.uleb128 0x24
+ 931 0015 00       		.byte	0
+ 932 0016 0B       		.uleb128 0xb
+ 933 0017 0B       		.uleb128 0xb
+ 934 0018 3E       		.uleb128 0x3e
+ 935 0019 0B       		.uleb128 0xb
+ 936 001a 03       		.uleb128 0x3
+ 937 001b 0E       		.uleb128 0xe
+ 938 001c 00       		.byte	0
+ 939 001d 00       		.byte	0
+ 940 001e 03       		.uleb128 0x3
+ 941 001f 16       		.uleb128 0x16
+ 942 0020 00       		.byte	0
+ 943 0021 03       		.uleb128 0x3
+ 944 0022 0E       		.uleb128 0xe
+ 945 0023 3A       		.uleb128 0x3a
+ 946 0024 0B       		.uleb128 0xb
+ 947 0025 3B       		.uleb128 0x3b
+ 948 0026 0B       		.uleb128 0xb
+ 949 0027 49       		.uleb128 0x49
+ 950 0028 13       		.uleb128 0x13
+ 951 0029 00       		.byte	0
+ 952 002a 00       		.byte	0
+ 953 002b 04       		.uleb128 0x4
+ 954 002c 24       		.uleb128 0x24
+ 955 002d 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 20
 
 
- 958 0034 00       		.byte	0
- 959 0035 00       		.byte	0
- 960 0036 05       		.uleb128 0x5
- 961 0037 16       		.uleb128 0x16
- 962 0038 00       		.byte	0
- 963 0039 03       		.uleb128 0x3
- 964 003a 0E       		.uleb128 0xe
- 965 003b 3A       		.uleb128 0x3a
- 966 003c 0B       		.uleb128 0xb
- 967 003d 3B       		.uleb128 0x3b
- 968 003e 05       		.uleb128 0x5
- 969 003f 49       		.uleb128 0x49
- 970 0040 13       		.uleb128 0x13
- 971 0041 00       		.byte	0
- 972 0042 00       		.byte	0
- 973 0043 06       		.uleb128 0x6
- 974 0044 0F       		.uleb128 0xf
- 975 0045 00       		.byte	0
- 976 0046 0B       		.uleb128 0xb
- 977 0047 0B       		.uleb128 0xb
- 978 0048 00       		.byte	0
- 979 0049 00       		.byte	0
- 980 004a 07       		.uleb128 0x7
- 981 004b 13       		.uleb128 0x13
- 982 004c 01       		.byte	0x1
- 983 004d 03       		.uleb128 0x3
- 984 004e 0E       		.uleb128 0xe
- 985 004f 0B       		.uleb128 0xb
- 986 0050 0B       		.uleb128 0xb
- 987 0051 3A       		.uleb128 0x3a
- 988 0052 0B       		.uleb128 0xb
- 989 0053 3B       		.uleb128 0x3b
- 990 0054 0B       		.uleb128 0xb
- 991 0055 01       		.uleb128 0x1
- 992 0056 13       		.uleb128 0x13
- 993 0057 00       		.byte	0
- 994 0058 00       		.byte	0
- 995 0059 08       		.uleb128 0x8
- 996 005a 0D       		.uleb128 0xd
- 997 005b 00       		.byte	0
- 998 005c 03       		.uleb128 0x3
- 999 005d 0E       		.uleb128 0xe
- 1000 005e 3A       		.uleb128 0x3a
- 1001 005f 0B       		.uleb128 0xb
- 1002 0060 3B       		.uleb128 0x3b
- 1003 0061 0B       		.uleb128 0xb
- 1004 0062 49       		.uleb128 0x49
- 1005 0063 13       		.uleb128 0x13
- 1006 0064 38       		.uleb128 0x38
- 1007 0065 0B       		.uleb128 0xb
- 1008 0066 00       		.byte	0
- 1009 0067 00       		.byte	0
- 1010 0068 09       		.uleb128 0x9
- 1011 0069 0D       		.uleb128 0xd
- 1012 006a 00       		.byte	0
- 1013 006b 03       		.uleb128 0x3
- 1014 006c 08       		.uleb128 0x8
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 21
+ 956 002e 0B       		.uleb128 0xb
+ 957 002f 0B       		.uleb128 0xb
+ 958 0030 3E       		.uleb128 0x3e
+ 959 0031 0B       		.uleb128 0xb
+ 960 0032 03       		.uleb128 0x3
+ 961 0033 08       		.uleb128 0x8
+ 962 0034 00       		.byte	0
+ 963 0035 00       		.byte	0
+ 964 0036 05       		.uleb128 0x5
+ 965 0037 16       		.uleb128 0x16
+ 966 0038 00       		.byte	0
+ 967 0039 03       		.uleb128 0x3
+ 968 003a 0E       		.uleb128 0xe
+ 969 003b 3A       		.uleb128 0x3a
+ 970 003c 0B       		.uleb128 0xb
+ 971 003d 3B       		.uleb128 0x3b
+ 972 003e 05       		.uleb128 0x5
+ 973 003f 49       		.uleb128 0x49
+ 974 0040 13       		.uleb128 0x13
+ 975 0041 00       		.byte	0
+ 976 0042 00       		.byte	0
+ 977 0043 06       		.uleb128 0x6
+ 978 0044 0F       		.uleb128 0xf
+ 979 0045 00       		.byte	0
+ 980 0046 0B       		.uleb128 0xb
+ 981 0047 0B       		.uleb128 0xb
+ 982 0048 00       		.byte	0
+ 983 0049 00       		.byte	0
+ 984 004a 07       		.uleb128 0x7
+ 985 004b 13       		.uleb128 0x13
+ 986 004c 01       		.byte	0x1
+ 987 004d 03       		.uleb128 0x3
+ 988 004e 0E       		.uleb128 0xe
+ 989 004f 0B       		.uleb128 0xb
+ 990 0050 0B       		.uleb128 0xb
+ 991 0051 3A       		.uleb128 0x3a
+ 992 0052 0B       		.uleb128 0xb
+ 993 0053 3B       		.uleb128 0x3b
+ 994 0054 0B       		.uleb128 0xb
+ 995 0055 01       		.uleb128 0x1
+ 996 0056 13       		.uleb128 0x13
+ 997 0057 00       		.byte	0
+ 998 0058 00       		.byte	0
+ 999 0059 08       		.uleb128 0x8
+ 1000 005a 0D       		.uleb128 0xd
+ 1001 005b 00       		.byte	0
+ 1002 005c 03       		.uleb128 0x3
+ 1003 005d 0E       		.uleb128 0xe
+ 1004 005e 3A       		.uleb128 0x3a
+ 1005 005f 0B       		.uleb128 0xb
+ 1006 0060 3B       		.uleb128 0x3b
+ 1007 0061 0B       		.uleb128 0xb
+ 1008 0062 49       		.uleb128 0x49
+ 1009 0063 13       		.uleb128 0x13
+ 1010 0064 38       		.uleb128 0x38
+ 1011 0065 0B       		.uleb128 0xb
+ 1012 0066 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 21
 
 
- 1015 006d 3A       		.uleb128 0x3a
- 1016 006e 0B       		.uleb128 0xb
- 1017 006f 3B       		.uleb128 0x3b
- 1018 0070 0B       		.uleb128 0xb
- 1019 0071 49       		.uleb128 0x49
- 1020 0072 13       		.uleb128 0x13
- 1021 0073 38       		.uleb128 0x38
- 1022 0074 0B       		.uleb128 0xb
- 1023 0075 00       		.byte	0
- 1024 0076 00       		.byte	0
- 1025 0077 0A       		.uleb128 0xa
- 1026 0078 15       		.uleb128 0x15
- 1027 0079 01       		.byte	0x1
- 1028 007a 27       		.uleb128 0x27
- 1029 007b 19       		.uleb128 0x19
- 1030 007c 01       		.uleb128 0x1
- 1031 007d 13       		.uleb128 0x13
- 1032 007e 00       		.byte	0
- 1033 007f 00       		.byte	0
- 1034 0080 0B       		.uleb128 0xb
- 1035 0081 05       		.uleb128 0x5
- 1036 0082 00       		.byte	0
- 1037 0083 49       		.uleb128 0x49
- 1038 0084 13       		.uleb128 0x13
- 1039 0085 00       		.byte	0
- 1040 0086 00       		.byte	0
- 1041 0087 0C       		.uleb128 0xc
- 1042 0088 0F       		.uleb128 0xf
- 1043 0089 00       		.byte	0
- 1044 008a 0B       		.uleb128 0xb
- 1045 008b 0B       		.uleb128 0xb
- 1046 008c 49       		.uleb128 0x49
- 1047 008d 13       		.uleb128 0x13
- 1048 008e 00       		.byte	0
- 1049 008f 00       		.byte	0
- 1050 0090 0D       		.uleb128 0xd
- 1051 0091 15       		.uleb128 0x15
- 1052 0092 01       		.byte	0x1
- 1053 0093 01       		.uleb128 0x1
- 1054 0094 13       		.uleb128 0x13
- 1055 0095 00       		.byte	0
- 1056 0096 00       		.byte	0
- 1057 0097 0E       		.uleb128 0xe
- 1058 0098 18       		.uleb128 0x18
- 1059 0099 00       		.byte	0
- 1060 009a 00       		.byte	0
- 1061 009b 00       		.byte	0
- 1062 009c 0F       		.uleb128 0xf
- 1063 009d 2E       		.uleb128 0x2e
- 1064 009e 01       		.byte	0x1
- 1065 009f 3F       		.uleb128 0x3f
- 1066 00a0 19       		.uleb128 0x19
- 1067 00a1 03       		.uleb128 0x3
- 1068 00a2 0E       		.uleb128 0xe
- 1069 00a3 3A       		.uleb128 0x3a
- 1070 00a4 0B       		.uleb128 0xb
- 1071 00a5 3B       		.uleb128 0x3b
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 22
+ 1013 0067 00       		.byte	0
+ 1014 0068 09       		.uleb128 0x9
+ 1015 0069 0D       		.uleb128 0xd
+ 1016 006a 00       		.byte	0
+ 1017 006b 03       		.uleb128 0x3
+ 1018 006c 08       		.uleb128 0x8
+ 1019 006d 3A       		.uleb128 0x3a
+ 1020 006e 0B       		.uleb128 0xb
+ 1021 006f 3B       		.uleb128 0x3b
+ 1022 0070 0B       		.uleb128 0xb
+ 1023 0071 49       		.uleb128 0x49
+ 1024 0072 13       		.uleb128 0x13
+ 1025 0073 38       		.uleb128 0x38
+ 1026 0074 0B       		.uleb128 0xb
+ 1027 0075 00       		.byte	0
+ 1028 0076 00       		.byte	0
+ 1029 0077 0A       		.uleb128 0xa
+ 1030 0078 15       		.uleb128 0x15
+ 1031 0079 01       		.byte	0x1
+ 1032 007a 27       		.uleb128 0x27
+ 1033 007b 19       		.uleb128 0x19
+ 1034 007c 01       		.uleb128 0x1
+ 1035 007d 13       		.uleb128 0x13
+ 1036 007e 00       		.byte	0
+ 1037 007f 00       		.byte	0
+ 1038 0080 0B       		.uleb128 0xb
+ 1039 0081 05       		.uleb128 0x5
+ 1040 0082 00       		.byte	0
+ 1041 0083 49       		.uleb128 0x49
+ 1042 0084 13       		.uleb128 0x13
+ 1043 0085 00       		.byte	0
+ 1044 0086 00       		.byte	0
+ 1045 0087 0C       		.uleb128 0xc
+ 1046 0088 0F       		.uleb128 0xf
+ 1047 0089 00       		.byte	0
+ 1048 008a 0B       		.uleb128 0xb
+ 1049 008b 0B       		.uleb128 0xb
+ 1050 008c 49       		.uleb128 0x49
+ 1051 008d 13       		.uleb128 0x13
+ 1052 008e 00       		.byte	0
+ 1053 008f 00       		.byte	0
+ 1054 0090 0D       		.uleb128 0xd
+ 1055 0091 15       		.uleb128 0x15
+ 1056 0092 01       		.byte	0x1
+ 1057 0093 01       		.uleb128 0x1
+ 1058 0094 13       		.uleb128 0x13
+ 1059 0095 00       		.byte	0
+ 1060 0096 00       		.byte	0
+ 1061 0097 0E       		.uleb128 0xe
+ 1062 0098 18       		.uleb128 0x18
+ 1063 0099 00       		.byte	0
+ 1064 009a 00       		.byte	0
+ 1065 009b 00       		.byte	0
+ 1066 009c 0F       		.uleb128 0xf
+ 1067 009d 2E       		.uleb128 0x2e
+ 1068 009e 01       		.byte	0x1
+ 1069 009f 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 22
 
 
- 1072 00a6 0B       		.uleb128 0xb
- 1073 00a7 27       		.uleb128 0x27
- 1074 00a8 19       		.uleb128 0x19
- 1075 00a9 49       		.uleb128 0x49
- 1076 00aa 13       		.uleb128 0x13
- 1077 00ab 11       		.uleb128 0x11
- 1078 00ac 01       		.uleb128 0x1
- 1079 00ad 12       		.uleb128 0x12
- 1080 00ae 06       		.uleb128 0x6
- 1081 00af 40       		.uleb128 0x40
- 1082 00b0 18       		.uleb128 0x18
- 1083 00b1 9742     		.uleb128 0x2117
- 1084 00b3 19       		.uleb128 0x19
- 1085 00b4 01       		.uleb128 0x1
- 1086 00b5 13       		.uleb128 0x13
- 1087 00b6 00       		.byte	0
- 1088 00b7 00       		.byte	0
- 1089 00b8 10       		.uleb128 0x10
- 1090 00b9 05       		.uleb128 0x5
- 1091 00ba 00       		.byte	0
- 1092 00bb 03       		.uleb128 0x3
- 1093 00bc 0E       		.uleb128 0xe
- 1094 00bd 3A       		.uleb128 0x3a
- 1095 00be 0B       		.uleb128 0xb
- 1096 00bf 3B       		.uleb128 0x3b
- 1097 00c0 0B       		.uleb128 0xb
- 1098 00c1 49       		.uleb128 0x49
- 1099 00c2 13       		.uleb128 0x13
- 1100 00c3 02       		.uleb128 0x2
- 1101 00c4 17       		.uleb128 0x17
- 1102 00c5 00       		.byte	0
- 1103 00c6 00       		.byte	0
- 1104 00c7 11       		.uleb128 0x11
- 1105 00c8 05       		.uleb128 0x5
- 1106 00c9 00       		.byte	0
- 1107 00ca 03       		.uleb128 0x3
- 1108 00cb 08       		.uleb128 0x8
- 1109 00cc 3A       		.uleb128 0x3a
- 1110 00cd 0B       		.uleb128 0xb
- 1111 00ce 3B       		.uleb128 0x3b
- 1112 00cf 0B       		.uleb128 0xb
- 1113 00d0 49       		.uleb128 0x49
- 1114 00d1 13       		.uleb128 0x13
- 1115 00d2 02       		.uleb128 0x2
- 1116 00d3 17       		.uleb128 0x17
- 1117 00d4 00       		.byte	0
- 1118 00d5 00       		.byte	0
- 1119 00d6 12       		.uleb128 0x12
- 1120 00d7 34       		.uleb128 0x34
- 1121 00d8 00       		.byte	0
- 1122 00d9 03       		.uleb128 0x3
- 1123 00da 0E       		.uleb128 0xe
- 1124 00db 3A       		.uleb128 0x3a
- 1125 00dc 0B       		.uleb128 0xb
- 1126 00dd 3B       		.uleb128 0x3b
- 1127 00de 0B       		.uleb128 0xb
- 1128 00df 49       		.uleb128 0x49
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 23
+ 1070 00a0 19       		.uleb128 0x19
+ 1071 00a1 03       		.uleb128 0x3
+ 1072 00a2 0E       		.uleb128 0xe
+ 1073 00a3 3A       		.uleb128 0x3a
+ 1074 00a4 0B       		.uleb128 0xb
+ 1075 00a5 3B       		.uleb128 0x3b
+ 1076 00a6 0B       		.uleb128 0xb
+ 1077 00a7 27       		.uleb128 0x27
+ 1078 00a8 19       		.uleb128 0x19
+ 1079 00a9 49       		.uleb128 0x49
+ 1080 00aa 13       		.uleb128 0x13
+ 1081 00ab 11       		.uleb128 0x11
+ 1082 00ac 01       		.uleb128 0x1
+ 1083 00ad 12       		.uleb128 0x12
+ 1084 00ae 06       		.uleb128 0x6
+ 1085 00af 40       		.uleb128 0x40
+ 1086 00b0 18       		.uleb128 0x18
+ 1087 00b1 9742     		.uleb128 0x2117
+ 1088 00b3 19       		.uleb128 0x19
+ 1089 00b4 01       		.uleb128 0x1
+ 1090 00b5 13       		.uleb128 0x13
+ 1091 00b6 00       		.byte	0
+ 1092 00b7 00       		.byte	0
+ 1093 00b8 10       		.uleb128 0x10
+ 1094 00b9 05       		.uleb128 0x5
+ 1095 00ba 00       		.byte	0
+ 1096 00bb 03       		.uleb128 0x3
+ 1097 00bc 0E       		.uleb128 0xe
+ 1098 00bd 3A       		.uleb128 0x3a
+ 1099 00be 0B       		.uleb128 0xb
+ 1100 00bf 3B       		.uleb128 0x3b
+ 1101 00c0 0B       		.uleb128 0xb
+ 1102 00c1 49       		.uleb128 0x49
+ 1103 00c2 13       		.uleb128 0x13
+ 1104 00c3 02       		.uleb128 0x2
+ 1105 00c4 17       		.uleb128 0x17
+ 1106 00c5 00       		.byte	0
+ 1107 00c6 00       		.byte	0
+ 1108 00c7 11       		.uleb128 0x11
+ 1109 00c8 05       		.uleb128 0x5
+ 1110 00c9 00       		.byte	0
+ 1111 00ca 03       		.uleb128 0x3
+ 1112 00cb 08       		.uleb128 0x8
+ 1113 00cc 3A       		.uleb128 0x3a
+ 1114 00cd 0B       		.uleb128 0xb
+ 1115 00ce 3B       		.uleb128 0x3b
+ 1116 00cf 0B       		.uleb128 0xb
+ 1117 00d0 49       		.uleb128 0x49
+ 1118 00d1 13       		.uleb128 0x13
+ 1119 00d2 02       		.uleb128 0x2
+ 1120 00d3 17       		.uleb128 0x17
+ 1121 00d4 00       		.byte	0
+ 1122 00d5 00       		.byte	0
+ 1123 00d6 12       		.uleb128 0x12
+ 1124 00d7 34       		.uleb128 0x34
+ 1125 00d8 00       		.byte	0
+ 1126 00d9 03       		.uleb128 0x3
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 23
 
 
- 1129 00e0 13       		.uleb128 0x13
- 1130 00e1 02       		.uleb128 0x2
- 1131 00e2 18       		.uleb128 0x18
- 1132 00e3 00       		.byte	0
- 1133 00e4 00       		.byte	0
- 1134 00e5 13       		.uleb128 0x13
- 1135 00e6 2E       		.uleb128 0x2e
- 1136 00e7 01       		.byte	0x1
- 1137 00e8 3F       		.uleb128 0x3f
- 1138 00e9 19       		.uleb128 0x19
- 1139 00ea 03       		.uleb128 0x3
- 1140 00eb 0E       		.uleb128 0xe
- 1141 00ec 3A       		.uleb128 0x3a
- 1142 00ed 0B       		.uleb128 0xb
- 1143 00ee 3B       		.uleb128 0x3b
- 1144 00ef 0B       		.uleb128 0xb
- 1145 00f0 27       		.uleb128 0x27
- 1146 00f1 19       		.uleb128 0x19
- 1147 00f2 49       		.uleb128 0x49
- 1148 00f3 13       		.uleb128 0x13
- 1149 00f4 3C       		.uleb128 0x3c
- 1150 00f5 19       		.uleb128 0x19
- 1151 00f6 01       		.uleb128 0x1
- 1152 00f7 13       		.uleb128 0x13
- 1153 00f8 00       		.byte	0
- 1154 00f9 00       		.byte	0
- 1155 00fa 14       		.uleb128 0x14
- 1156 00fb 898201   		.uleb128 0x4109
- 1157 00fe 01       		.byte	0x1
- 1158 00ff 11       		.uleb128 0x11
- 1159 0100 01       		.uleb128 0x1
- 1160 0101 31       		.uleb128 0x31
- 1161 0102 13       		.uleb128 0x13
- 1162 0103 00       		.byte	0
- 1163 0104 00       		.byte	0
- 1164 0105 15       		.uleb128 0x15
- 1165 0106 8A8201   		.uleb128 0x410a
- 1166 0109 00       		.byte	0
- 1167 010a 02       		.uleb128 0x2
- 1168 010b 18       		.uleb128 0x18
- 1169 010c 9142     		.uleb128 0x2111
- 1170 010e 18       		.uleb128 0x18
- 1171 010f 00       		.byte	0
- 1172 0110 00       		.byte	0
- 1173 0111 16       		.uleb128 0x16
- 1174 0112 2E       		.uleb128 0x2e
- 1175 0113 01       		.byte	0x1
- 1176 0114 3F       		.uleb128 0x3f
- 1177 0115 19       		.uleb128 0x19
- 1178 0116 03       		.uleb128 0x3
- 1179 0117 0E       		.uleb128 0xe
- 1180 0118 3A       		.uleb128 0x3a
- 1181 0119 0B       		.uleb128 0xb
- 1182 011a 3B       		.uleb128 0x3b
- 1183 011b 0B       		.uleb128 0xb
- 1184 011c 27       		.uleb128 0x27
- 1185 011d 19       		.uleb128 0x19
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 24
+ 1127 00da 0E       		.uleb128 0xe
+ 1128 00db 3A       		.uleb128 0x3a
+ 1129 00dc 0B       		.uleb128 0xb
+ 1130 00dd 3B       		.uleb128 0x3b
+ 1131 00de 0B       		.uleb128 0xb
+ 1132 00df 49       		.uleb128 0x49
+ 1133 00e0 13       		.uleb128 0x13
+ 1134 00e1 02       		.uleb128 0x2
+ 1135 00e2 18       		.uleb128 0x18
+ 1136 00e3 00       		.byte	0
+ 1137 00e4 00       		.byte	0
+ 1138 00e5 13       		.uleb128 0x13
+ 1139 00e6 2E       		.uleb128 0x2e
+ 1140 00e7 01       		.byte	0x1
+ 1141 00e8 3F       		.uleb128 0x3f
+ 1142 00e9 19       		.uleb128 0x19
+ 1143 00ea 03       		.uleb128 0x3
+ 1144 00eb 0E       		.uleb128 0xe
+ 1145 00ec 3A       		.uleb128 0x3a
+ 1146 00ed 0B       		.uleb128 0xb
+ 1147 00ee 3B       		.uleb128 0x3b
+ 1148 00ef 0B       		.uleb128 0xb
+ 1149 00f0 27       		.uleb128 0x27
+ 1150 00f1 19       		.uleb128 0x19
+ 1151 00f2 49       		.uleb128 0x49
+ 1152 00f3 13       		.uleb128 0x13
+ 1153 00f4 3C       		.uleb128 0x3c
+ 1154 00f5 19       		.uleb128 0x19
+ 1155 00f6 01       		.uleb128 0x1
+ 1156 00f7 13       		.uleb128 0x13
+ 1157 00f8 00       		.byte	0
+ 1158 00f9 00       		.byte	0
+ 1159 00fa 14       		.uleb128 0x14
+ 1160 00fb 898201   		.uleb128 0x4109
+ 1161 00fe 01       		.byte	0x1
+ 1162 00ff 11       		.uleb128 0x11
+ 1163 0100 01       		.uleb128 0x1
+ 1164 0101 31       		.uleb128 0x31
+ 1165 0102 13       		.uleb128 0x13
+ 1166 0103 00       		.byte	0
+ 1167 0104 00       		.byte	0
+ 1168 0105 15       		.uleb128 0x15
+ 1169 0106 8A8201   		.uleb128 0x410a
+ 1170 0109 00       		.byte	0
+ 1171 010a 02       		.uleb128 0x2
+ 1172 010b 18       		.uleb128 0x18
+ 1173 010c 9142     		.uleb128 0x2111
+ 1174 010e 18       		.uleb128 0x18
+ 1175 010f 00       		.byte	0
+ 1176 0110 00       		.byte	0
+ 1177 0111 16       		.uleb128 0x16
+ 1178 0112 2E       		.uleb128 0x2e
+ 1179 0113 01       		.byte	0x1
+ 1180 0114 3F       		.uleb128 0x3f
+ 1181 0115 19       		.uleb128 0x19
+ 1182 0116 03       		.uleb128 0x3
+ 1183 0117 0E       		.uleb128 0xe
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 24
 
 
- 1186 011e 11       		.uleb128 0x11
- 1187 011f 01       		.uleb128 0x1
- 1188 0120 12       		.uleb128 0x12
- 1189 0121 06       		.uleb128 0x6
- 1190 0122 40       		.uleb128 0x40
- 1191 0123 18       		.uleb128 0x18
- 1192 0124 9742     		.uleb128 0x2117
- 1193 0126 19       		.uleb128 0x19
- 1194 0127 01       		.uleb128 0x1
- 1195 0128 13       		.uleb128 0x13
- 1196 0129 00       		.byte	0
- 1197 012a 00       		.byte	0
- 1198 012b 17       		.uleb128 0x17
- 1199 012c 05       		.uleb128 0x5
- 1200 012d 00       		.byte	0
- 1201 012e 03       		.uleb128 0x3
- 1202 012f 0E       		.uleb128 0xe
- 1203 0130 3A       		.uleb128 0x3a
- 1204 0131 0B       		.uleb128 0xb
- 1205 0132 3B       		.uleb128 0x3b
- 1206 0133 0B       		.uleb128 0xb
- 1207 0134 49       		.uleb128 0x49
- 1208 0135 13       		.uleb128 0x13
- 1209 0136 02       		.uleb128 0x2
- 1210 0137 18       		.uleb128 0x18
- 1211 0138 00       		.byte	0
- 1212 0139 00       		.byte	0
- 1213 013a 18       		.uleb128 0x18
- 1214 013b 05       		.uleb128 0x5
- 1215 013c 00       		.byte	0
- 1216 013d 03       		.uleb128 0x3
- 1217 013e 08       		.uleb128 0x8
- 1218 013f 3A       		.uleb128 0x3a
- 1219 0140 0B       		.uleb128 0xb
- 1220 0141 3B       		.uleb128 0x3b
- 1221 0142 0B       		.uleb128 0xb
- 1222 0143 49       		.uleb128 0x49
- 1223 0144 13       		.uleb128 0x13
- 1224 0145 02       		.uleb128 0x2
- 1225 0146 18       		.uleb128 0x18
- 1226 0147 00       		.byte	0
- 1227 0148 00       		.byte	0
- 1228 0149 19       		.uleb128 0x19
- 1229 014a 34       		.uleb128 0x34
- 1230 014b 00       		.byte	0
- 1231 014c 03       		.uleb128 0x3
- 1232 014d 0E       		.uleb128 0xe
- 1233 014e 3A       		.uleb128 0x3a
- 1234 014f 0B       		.uleb128 0xb
- 1235 0150 3B       		.uleb128 0x3b
- 1236 0151 0B       		.uleb128 0xb
- 1237 0152 49       		.uleb128 0x49
- 1238 0153 13       		.uleb128 0x13
- 1239 0154 02       		.uleb128 0x2
- 1240 0155 17       		.uleb128 0x17
- 1241 0156 00       		.byte	0
- 1242 0157 00       		.byte	0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 25
+ 1184 0118 3A       		.uleb128 0x3a
+ 1185 0119 0B       		.uleb128 0xb
+ 1186 011a 3B       		.uleb128 0x3b
+ 1187 011b 0B       		.uleb128 0xb
+ 1188 011c 27       		.uleb128 0x27
+ 1189 011d 19       		.uleb128 0x19
+ 1190 011e 11       		.uleb128 0x11
+ 1191 011f 01       		.uleb128 0x1
+ 1192 0120 12       		.uleb128 0x12
+ 1193 0121 06       		.uleb128 0x6
+ 1194 0122 40       		.uleb128 0x40
+ 1195 0123 18       		.uleb128 0x18
+ 1196 0124 9742     		.uleb128 0x2117
+ 1197 0126 19       		.uleb128 0x19
+ 1198 0127 01       		.uleb128 0x1
+ 1199 0128 13       		.uleb128 0x13
+ 1200 0129 00       		.byte	0
+ 1201 012a 00       		.byte	0
+ 1202 012b 17       		.uleb128 0x17
+ 1203 012c 05       		.uleb128 0x5
+ 1204 012d 00       		.byte	0
+ 1205 012e 03       		.uleb128 0x3
+ 1206 012f 0E       		.uleb128 0xe
+ 1207 0130 3A       		.uleb128 0x3a
+ 1208 0131 0B       		.uleb128 0xb
+ 1209 0132 3B       		.uleb128 0x3b
+ 1210 0133 0B       		.uleb128 0xb
+ 1211 0134 49       		.uleb128 0x49
+ 1212 0135 13       		.uleb128 0x13
+ 1213 0136 02       		.uleb128 0x2
+ 1214 0137 18       		.uleb128 0x18
+ 1215 0138 00       		.byte	0
+ 1216 0139 00       		.byte	0
+ 1217 013a 18       		.uleb128 0x18
+ 1218 013b 05       		.uleb128 0x5
+ 1219 013c 00       		.byte	0
+ 1220 013d 03       		.uleb128 0x3
+ 1221 013e 08       		.uleb128 0x8
+ 1222 013f 3A       		.uleb128 0x3a
+ 1223 0140 0B       		.uleb128 0xb
+ 1224 0141 3B       		.uleb128 0x3b
+ 1225 0142 0B       		.uleb128 0xb
+ 1226 0143 49       		.uleb128 0x49
+ 1227 0144 13       		.uleb128 0x13
+ 1228 0145 02       		.uleb128 0x2
+ 1229 0146 18       		.uleb128 0x18
+ 1230 0147 00       		.byte	0
+ 1231 0148 00       		.byte	0
+ 1232 0149 19       		.uleb128 0x19
+ 1233 014a 34       		.uleb128 0x34
+ 1234 014b 00       		.byte	0
+ 1235 014c 03       		.uleb128 0x3
+ 1236 014d 0E       		.uleb128 0xe
+ 1237 014e 3A       		.uleb128 0x3a
+ 1238 014f 0B       		.uleb128 0xb
+ 1239 0150 3B       		.uleb128 0x3b
+ 1240 0151 0B       		.uleb128 0xb
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 25
 
 
- 1243 0158 1A       		.uleb128 0x1a
- 1244 0159 0B       		.uleb128 0xb
- 1245 015a 01       		.byte	0x1
- 1246 015b 11       		.uleb128 0x11
- 1247 015c 01       		.uleb128 0x1
- 1248 015d 12       		.uleb128 0x12
- 1249 015e 06       		.uleb128 0x6
- 1250 015f 00       		.byte	0
- 1251 0160 00       		.byte	0
- 1252 0161 1B       		.uleb128 0x1b
- 1253 0162 34       		.uleb128 0x34
- 1254 0163 00       		.byte	0
- 1255 0164 03       		.uleb128 0x3
- 1256 0165 08       		.uleb128 0x8
- 1257 0166 3A       		.uleb128 0x3a
- 1258 0167 0B       		.uleb128 0xb
- 1259 0168 3B       		.uleb128 0x3b
- 1260 0169 0B       		.uleb128 0xb
- 1261 016a 49       		.uleb128 0x49
- 1262 016b 13       		.uleb128 0x13
- 1263 016c 02       		.uleb128 0x2
- 1264 016d 17       		.uleb128 0x17
- 1265 016e 00       		.byte	0
- 1266 016f 00       		.byte	0
- 1267 0170 1C       		.uleb128 0x1c
- 1268 0171 2E       		.uleb128 0x2e
- 1269 0172 01       		.byte	0x1
- 1270 0173 3F       		.uleb128 0x3f
- 1271 0174 19       		.uleb128 0x19
- 1272 0175 03       		.uleb128 0x3
- 1273 0176 0E       		.uleb128 0xe
- 1274 0177 3A       		.uleb128 0x3a
- 1275 0178 0B       		.uleb128 0xb
- 1276 0179 3B       		.uleb128 0x3b
- 1277 017a 0B       		.uleb128 0xb
- 1278 017b 27       		.uleb128 0x27
- 1279 017c 19       		.uleb128 0x19
- 1280 017d 3C       		.uleb128 0x3c
- 1281 017e 19       		.uleb128 0x19
- 1282 017f 01       		.uleb128 0x1
- 1283 0180 13       		.uleb128 0x13
- 1284 0181 00       		.byte	0
- 1285 0182 00       		.byte	0
- 1286 0183 1D       		.uleb128 0x1d
- 1287 0184 898201   		.uleb128 0x4109
- 1288 0187 00       		.byte	0
- 1289 0188 11       		.uleb128 0x11
- 1290 0189 01       		.uleb128 0x1
- 1291 018a 31       		.uleb128 0x31
- 1292 018b 13       		.uleb128 0x13
- 1293 018c 00       		.byte	0
- 1294 018d 00       		.byte	0
- 1295 018e 1E       		.uleb128 0x1e
- 1296 018f 2E       		.uleb128 0x2e
- 1297 0190 01       		.byte	0x1
- 1298 0191 3F       		.uleb128 0x3f
- 1299 0192 19       		.uleb128 0x19
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 26
+ 1241 0152 49       		.uleb128 0x49
+ 1242 0153 13       		.uleb128 0x13
+ 1243 0154 02       		.uleb128 0x2
+ 1244 0155 17       		.uleb128 0x17
+ 1245 0156 00       		.byte	0
+ 1246 0157 00       		.byte	0
+ 1247 0158 1A       		.uleb128 0x1a
+ 1248 0159 0B       		.uleb128 0xb
+ 1249 015a 01       		.byte	0x1
+ 1250 015b 11       		.uleb128 0x11
+ 1251 015c 01       		.uleb128 0x1
+ 1252 015d 12       		.uleb128 0x12
+ 1253 015e 06       		.uleb128 0x6
+ 1254 015f 00       		.byte	0
+ 1255 0160 00       		.byte	0
+ 1256 0161 1B       		.uleb128 0x1b
+ 1257 0162 34       		.uleb128 0x34
+ 1258 0163 00       		.byte	0
+ 1259 0164 03       		.uleb128 0x3
+ 1260 0165 08       		.uleb128 0x8
+ 1261 0166 3A       		.uleb128 0x3a
+ 1262 0167 0B       		.uleb128 0xb
+ 1263 0168 3B       		.uleb128 0x3b
+ 1264 0169 0B       		.uleb128 0xb
+ 1265 016a 49       		.uleb128 0x49
+ 1266 016b 13       		.uleb128 0x13
+ 1267 016c 02       		.uleb128 0x2
+ 1268 016d 17       		.uleb128 0x17
+ 1269 016e 00       		.byte	0
+ 1270 016f 00       		.byte	0
+ 1271 0170 1C       		.uleb128 0x1c
+ 1272 0171 2E       		.uleb128 0x2e
+ 1273 0172 01       		.byte	0x1
+ 1274 0173 3F       		.uleb128 0x3f
+ 1275 0174 19       		.uleb128 0x19
+ 1276 0175 03       		.uleb128 0x3
+ 1277 0176 0E       		.uleb128 0xe
+ 1278 0177 3A       		.uleb128 0x3a
+ 1279 0178 0B       		.uleb128 0xb
+ 1280 0179 3B       		.uleb128 0x3b
+ 1281 017a 0B       		.uleb128 0xb
+ 1282 017b 27       		.uleb128 0x27
+ 1283 017c 19       		.uleb128 0x19
+ 1284 017d 3C       		.uleb128 0x3c
+ 1285 017e 19       		.uleb128 0x19
+ 1286 017f 01       		.uleb128 0x1
+ 1287 0180 13       		.uleb128 0x13
+ 1288 0181 00       		.byte	0
+ 1289 0182 00       		.byte	0
+ 1290 0183 1D       		.uleb128 0x1d
+ 1291 0184 898201   		.uleb128 0x4109
+ 1292 0187 00       		.byte	0
+ 1293 0188 11       		.uleb128 0x11
+ 1294 0189 01       		.uleb128 0x1
+ 1295 018a 31       		.uleb128 0x31
+ 1296 018b 13       		.uleb128 0x13
+ 1297 018c 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 26
 
 
- 1300 0193 03       		.uleb128 0x3
- 1301 0194 0E       		.uleb128 0xe
- 1302 0195 3A       		.uleb128 0x3a
- 1303 0196 0B       		.uleb128 0xb
- 1304 0197 3B       		.uleb128 0x3b
- 1305 0198 0B       		.uleb128 0xb
- 1306 0199 27       		.uleb128 0x27
- 1307 019a 19       		.uleb128 0x19
- 1308 019b 11       		.uleb128 0x11
- 1309 019c 01       		.uleb128 0x1
- 1310 019d 12       		.uleb128 0x12
- 1311 019e 06       		.uleb128 0x6
- 1312 019f 40       		.uleb128 0x40
- 1313 01a0 18       		.uleb128 0x18
- 1314 01a1 9642     		.uleb128 0x2116
- 1315 01a3 19       		.uleb128 0x19
- 1316 01a4 01       		.uleb128 0x1
- 1317 01a5 13       		.uleb128 0x13
- 1318 01a6 00       		.byte	0
- 1319 01a7 00       		.byte	0
- 1320 01a8 1F       		.uleb128 0x1f
- 1321 01a9 34       		.uleb128 0x34
- 1322 01aa 00       		.byte	0
- 1323 01ab 03       		.uleb128 0x3
- 1324 01ac 0E       		.uleb128 0xe
- 1325 01ad 3A       		.uleb128 0x3a
- 1326 01ae 0B       		.uleb128 0xb
- 1327 01af 3B       		.uleb128 0x3b
- 1328 01b0 05       		.uleb128 0x5
- 1329 01b1 49       		.uleb128 0x49
- 1330 01b2 13       		.uleb128 0x13
- 1331 01b3 3F       		.uleb128 0x3f
- 1332 01b4 19       		.uleb128 0x19
- 1333 01b5 3C       		.uleb128 0x3c
- 1334 01b6 19       		.uleb128 0x19
- 1335 01b7 00       		.byte	0
- 1336 01b8 00       		.byte	0
- 1337 01b9 20       		.uleb128 0x20
- 1338 01ba 35       		.uleb128 0x35
- 1339 01bb 00       		.byte	0
- 1340 01bc 49       		.uleb128 0x49
- 1341 01bd 13       		.uleb128 0x13
- 1342 01be 00       		.byte	0
- 1343 01bf 00       		.byte	0
- 1344 01c0 21       		.uleb128 0x21
- 1345 01c1 2E       		.uleb128 0x2e
- 1346 01c2 00       		.byte	0
- 1347 01c3 3F       		.uleb128 0x3f
- 1348 01c4 19       		.uleb128 0x19
- 1349 01c5 3C       		.uleb128 0x3c
- 1350 01c6 19       		.uleb128 0x19
- 1351 01c7 6E       		.uleb128 0x6e
- 1352 01c8 0E       		.uleb128 0xe
- 1353 01c9 03       		.uleb128 0x3
- 1354 01ca 0E       		.uleb128 0xe
- 1355 01cb 3A       		.uleb128 0x3a
- 1356 01cc 0B       		.uleb128 0xb
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 27
+ 1298 018d 00       		.byte	0
+ 1299 018e 1E       		.uleb128 0x1e
+ 1300 018f 2E       		.uleb128 0x2e
+ 1301 0190 01       		.byte	0x1
+ 1302 0191 3F       		.uleb128 0x3f
+ 1303 0192 19       		.uleb128 0x19
+ 1304 0193 03       		.uleb128 0x3
+ 1305 0194 0E       		.uleb128 0xe
+ 1306 0195 3A       		.uleb128 0x3a
+ 1307 0196 0B       		.uleb128 0xb
+ 1308 0197 3B       		.uleb128 0x3b
+ 1309 0198 0B       		.uleb128 0xb
+ 1310 0199 27       		.uleb128 0x27
+ 1311 019a 19       		.uleb128 0x19
+ 1312 019b 11       		.uleb128 0x11
+ 1313 019c 01       		.uleb128 0x1
+ 1314 019d 12       		.uleb128 0x12
+ 1315 019e 06       		.uleb128 0x6
+ 1316 019f 40       		.uleb128 0x40
+ 1317 01a0 18       		.uleb128 0x18
+ 1318 01a1 9642     		.uleb128 0x2116
+ 1319 01a3 19       		.uleb128 0x19
+ 1320 01a4 01       		.uleb128 0x1
+ 1321 01a5 13       		.uleb128 0x13
+ 1322 01a6 00       		.byte	0
+ 1323 01a7 00       		.byte	0
+ 1324 01a8 1F       		.uleb128 0x1f
+ 1325 01a9 34       		.uleb128 0x34
+ 1326 01aa 00       		.byte	0
+ 1327 01ab 03       		.uleb128 0x3
+ 1328 01ac 0E       		.uleb128 0xe
+ 1329 01ad 3A       		.uleb128 0x3a
+ 1330 01ae 0B       		.uleb128 0xb
+ 1331 01af 3B       		.uleb128 0x3b
+ 1332 01b0 05       		.uleb128 0x5
+ 1333 01b1 49       		.uleb128 0x49
+ 1334 01b2 13       		.uleb128 0x13
+ 1335 01b3 3F       		.uleb128 0x3f
+ 1336 01b4 19       		.uleb128 0x19
+ 1337 01b5 3C       		.uleb128 0x3c
+ 1338 01b6 19       		.uleb128 0x19
+ 1339 01b7 00       		.byte	0
+ 1340 01b8 00       		.byte	0
+ 1341 01b9 20       		.uleb128 0x20
+ 1342 01ba 35       		.uleb128 0x35
+ 1343 01bb 00       		.byte	0
+ 1344 01bc 49       		.uleb128 0x49
+ 1345 01bd 13       		.uleb128 0x13
+ 1346 01be 00       		.byte	0
+ 1347 01bf 00       		.byte	0
+ 1348 01c0 21       		.uleb128 0x21
+ 1349 01c1 2E       		.uleb128 0x2e
+ 1350 01c2 00       		.byte	0
+ 1351 01c3 3F       		.uleb128 0x3f
+ 1352 01c4 19       		.uleb128 0x19
+ 1353 01c5 3C       		.uleb128 0x3c
+ 1354 01c6 19       		.uleb128 0x19
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 27
 
 
- 1357 01cd 3B       		.uleb128 0x3b
- 1358 01ce 0B       		.uleb128 0xb
- 1359 01cf 00       		.byte	0
- 1360 01d0 00       		.byte	0
- 1361 01d1 00       		.byte	0
- 1362              		.section	.debug_loc,"",%progbits
- 1363              	.Ldebug_loc0:
- 1364              	.LLST0:
- 1365 0000 00000000 		.4byte	.LVL0
- 1366 0004 0C000000 		.4byte	.LVL1
- 1367 0008 0100     		.2byte	0x1
- 1368 000a 50       		.byte	0x50
- 1369 000b 0C000000 		.4byte	.LVL1
- 1370 000f 24000000 		.4byte	.LFE63
- 1371 0013 0100     		.2byte	0x1
- 1372 0015 57       		.byte	0x57
- 1373 0016 00000000 		.4byte	0
- 1374 001a 00000000 		.4byte	0
- 1375              	.LLST1:
- 1376 001e 00000000 		.4byte	.LVL0
- 1377 0022 0F000000 		.4byte	.LVL2-1
- 1378 0026 0100     		.2byte	0x1
- 1379 0028 51       		.byte	0x51
- 1380 0029 0F000000 		.4byte	.LVL2-1
- 1381 002d 24000000 		.4byte	.LFE63
- 1382 0031 0100     		.2byte	0x1
- 1383 0033 56       		.byte	0x56
- 1384 0034 00000000 		.4byte	0
- 1385 0038 00000000 		.4byte	0
- 1386              	.LLST2:
- 1387 003c 00000000 		.4byte	.LVL0
- 1388 0040 0F000000 		.4byte	.LVL2-1
- 1389 0044 0100     		.2byte	0x1
- 1390 0046 52       		.byte	0x52
- 1391 0047 0F000000 		.4byte	.LVL2-1
- 1392 004b 24000000 		.4byte	.LFE63
- 1393 004f 0400     		.2byte	0x4
- 1394 0051 F3       		.byte	0xf3
- 1395 0052 01       		.uleb128 0x1
- 1396 0053 52       		.byte	0x52
- 1397 0054 9F       		.byte	0x9f
- 1398 0055 00000000 		.4byte	0
- 1399 0059 00000000 		.4byte	0
- 1400              	.LLST3:
- 1401 005d 00000000 		.4byte	.LVL0
- 1402 0061 0F000000 		.4byte	.LVL2-1
- 1403 0065 0100     		.2byte	0x1
- 1404 0067 53       		.byte	0x53
- 1405 0068 0F000000 		.4byte	.LVL2-1
- 1406 006c 24000000 		.4byte	.LFE63
- 1407 0070 0400     		.2byte	0x4
- 1408 0072 F3       		.byte	0xf3
- 1409 0073 01       		.uleb128 0x1
- 1410 0074 53       		.byte	0x53
- 1411 0075 9F       		.byte	0x9f
- 1412 0076 00000000 		.4byte	0
- 1413 007a 00000000 		.4byte	0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 28
+ 1355 01c7 6E       		.uleb128 0x6e
+ 1356 01c8 0E       		.uleb128 0xe
+ 1357 01c9 03       		.uleb128 0x3
+ 1358 01ca 0E       		.uleb128 0xe
+ 1359 01cb 3A       		.uleb128 0x3a
+ 1360 01cc 0B       		.uleb128 0xb
+ 1361 01cd 3B       		.uleb128 0x3b
+ 1362 01ce 0B       		.uleb128 0xb
+ 1363 01cf 00       		.byte	0
+ 1364 01d0 00       		.byte	0
+ 1365 01d1 00       		.byte	0
+ 1366              		.section	.debug_loc,"",%progbits
+ 1367              	.Ldebug_loc0:
+ 1368              	.LLST0:
+ 1369 0000 00000000 		.4byte	.LVL0
+ 1370 0004 0C000000 		.4byte	.LVL1
+ 1371 0008 0100     		.2byte	0x1
+ 1372 000a 50       		.byte	0x50
+ 1373 000b 0C000000 		.4byte	.LVL1
+ 1374 000f 26000000 		.4byte	.LFE63
+ 1375 0013 0100     		.2byte	0x1
+ 1376 0015 56       		.byte	0x56
+ 1377 0016 00000000 		.4byte	0
+ 1378 001a 00000000 		.4byte	0
+ 1379              	.LLST1:
+ 1380 001e 00000000 		.4byte	.LVL0
+ 1381 0022 0F000000 		.4byte	.LVL2-1
+ 1382 0026 0100     		.2byte	0x1
+ 1383 0028 51       		.byte	0x51
+ 1384 0029 0F000000 		.4byte	.LVL2-1
+ 1385 002d 26000000 		.4byte	.LFE63
+ 1386 0031 0100     		.2byte	0x1
+ 1387 0033 55       		.byte	0x55
+ 1388 0034 00000000 		.4byte	0
+ 1389 0038 00000000 		.4byte	0
+ 1390              	.LLST2:
+ 1391 003c 00000000 		.4byte	.LVL0
+ 1392 0040 0F000000 		.4byte	.LVL2-1
+ 1393 0044 0100     		.2byte	0x1
+ 1394 0046 52       		.byte	0x52
+ 1395 0047 0F000000 		.4byte	.LVL2-1
+ 1396 004b 26000000 		.4byte	.LFE63
+ 1397 004f 0400     		.2byte	0x4
+ 1398 0051 F3       		.byte	0xf3
+ 1399 0052 01       		.uleb128 0x1
+ 1400 0053 52       		.byte	0x52
+ 1401 0054 9F       		.byte	0x9f
+ 1402 0055 00000000 		.4byte	0
+ 1403 0059 00000000 		.4byte	0
+ 1404              	.LLST3:
+ 1405 005d 00000000 		.4byte	.LVL0
+ 1406 0061 0F000000 		.4byte	.LVL2-1
+ 1407 0065 0100     		.2byte	0x1
+ 1408 0067 53       		.byte	0x53
+ 1409 0068 0F000000 		.4byte	.LVL2-1
+ 1410 006c 26000000 		.4byte	.LFE63
+ 1411 0070 0400     		.2byte	0x4
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 28
 
 
- 1414              	.LLST4:
- 1415 007e 00000000 		.4byte	.LVL3
- 1416 0082 0A000000 		.4byte	.LVL4
- 1417 0086 0100     		.2byte	0x1
- 1418 0088 50       		.byte	0x50
- 1419 0089 0A000000 		.4byte	.LVL4
- 1420 008d 20000000 		.4byte	.LFE64
- 1421 0091 0100     		.2byte	0x1
- 1422 0093 56       		.byte	0x56
- 1423 0094 00000000 		.4byte	0
- 1424 0098 00000000 		.4byte	0
- 1425              	.LLST5:
- 1426 009c 00000000 		.4byte	.LVL3
- 1427 00a0 0D000000 		.4byte	.LVL5-1
- 1428 00a4 0100     		.2byte	0x1
- 1429 00a6 51       		.byte	0x51
- 1430 00a7 0D000000 		.4byte	.LVL5-1
- 1431 00ab 20000000 		.4byte	.LFE64
- 1432 00af 0400     		.2byte	0x4
- 1433 00b1 F3       		.byte	0xf3
- 1434 00b2 01       		.uleb128 0x1
- 1435 00b3 51       		.byte	0x51
- 1436 00b4 9F       		.byte	0x9f
- 1437 00b5 00000000 		.4byte	0
- 1438 00b9 00000000 		.4byte	0
- 1439              	.LLST6:
- 1440 00bd 00000000 		.4byte	.LVL3
- 1441 00c1 0D000000 		.4byte	.LVL5-1
- 1442 00c5 0100     		.2byte	0x1
- 1443 00c7 52       		.byte	0x52
- 1444 00c8 0D000000 		.4byte	.LVL5-1
- 1445 00cc 20000000 		.4byte	.LFE64
- 1446 00d0 0400     		.2byte	0x4
- 1447 00d2 F3       		.byte	0xf3
- 1448 00d3 01       		.uleb128 0x1
- 1449 00d4 52       		.byte	0x52
- 1450 00d5 9F       		.byte	0x9f
- 1451 00d6 00000000 		.4byte	0
- 1452 00da 00000000 		.4byte	0
- 1453              	.LLST7:
- 1454 00de 00000000 		.4byte	.LVL7
- 1455 00e2 02000000 		.4byte	.LVL8
- 1456 00e6 0100     		.2byte	0x1
- 1457 00e8 50       		.byte	0x50
- 1458 00e9 02000000 		.4byte	.LVL8
- 1459 00ed 12000000 		.4byte	.LFE66
- 1460 00f1 0400     		.2byte	0x4
- 1461 00f3 F3       		.byte	0xf3
- 1462 00f4 01       		.uleb128 0x1
- 1463 00f5 50       		.byte	0x50
- 1464 00f6 9F       		.byte	0x9f
- 1465 00f7 00000000 		.4byte	0
- 1466 00fb 00000000 		.4byte	0
- 1467              	.LLST8:
- 1468 00ff 00000000 		.4byte	.LVL10
- 1469 0103 05000000 		.4byte	.LVL11-1
- 1470 0107 0100     		.2byte	0x1
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 29
+ 1412 0072 F3       		.byte	0xf3
+ 1413 0073 01       		.uleb128 0x1
+ 1414 0074 53       		.byte	0x53
+ 1415 0075 9F       		.byte	0x9f
+ 1416 0076 00000000 		.4byte	0
+ 1417 007a 00000000 		.4byte	0
+ 1418              	.LLST4:
+ 1419 007e 00000000 		.4byte	.LVL3
+ 1420 0082 0A000000 		.4byte	.LVL4
+ 1421 0086 0100     		.2byte	0x1
+ 1422 0088 50       		.byte	0x50
+ 1423 0089 0A000000 		.4byte	.LVL4
+ 1424 008d 22000000 		.4byte	.LFE64
+ 1425 0091 0100     		.2byte	0x1
+ 1426 0093 55       		.byte	0x55
+ 1427 0094 00000000 		.4byte	0
+ 1428 0098 00000000 		.4byte	0
+ 1429              	.LLST5:
+ 1430 009c 00000000 		.4byte	.LVL3
+ 1431 00a0 0D000000 		.4byte	.LVL5-1
+ 1432 00a4 0100     		.2byte	0x1
+ 1433 00a6 51       		.byte	0x51
+ 1434 00a7 0D000000 		.4byte	.LVL5-1
+ 1435 00ab 22000000 		.4byte	.LFE64
+ 1436 00af 0400     		.2byte	0x4
+ 1437 00b1 F3       		.byte	0xf3
+ 1438 00b2 01       		.uleb128 0x1
+ 1439 00b3 51       		.byte	0x51
+ 1440 00b4 9F       		.byte	0x9f
+ 1441 00b5 00000000 		.4byte	0
+ 1442 00b9 00000000 		.4byte	0
+ 1443              	.LLST6:
+ 1444 00bd 00000000 		.4byte	.LVL3
+ 1445 00c1 0D000000 		.4byte	.LVL5-1
+ 1446 00c5 0100     		.2byte	0x1
+ 1447 00c7 52       		.byte	0x52
+ 1448 00c8 0D000000 		.4byte	.LVL5-1
+ 1449 00cc 22000000 		.4byte	.LFE64
+ 1450 00d0 0400     		.2byte	0x4
+ 1451 00d2 F3       		.byte	0xf3
+ 1452 00d3 01       		.uleb128 0x1
+ 1453 00d4 52       		.byte	0x52
+ 1454 00d5 9F       		.byte	0x9f
+ 1455 00d6 00000000 		.4byte	0
+ 1456 00da 00000000 		.4byte	0
+ 1457              	.LLST7:
+ 1458 00de 00000000 		.4byte	.LVL7
+ 1459 00e2 02000000 		.4byte	.LVL8
+ 1460 00e6 0100     		.2byte	0x1
+ 1461 00e8 50       		.byte	0x50
+ 1462 00e9 02000000 		.4byte	.LVL8
+ 1463 00ed 12000000 		.4byte	.LFE66
+ 1464 00f1 0400     		.2byte	0x4
+ 1465 00f3 F3       		.byte	0xf3
+ 1466 00f4 01       		.uleb128 0x1
+ 1467 00f5 50       		.byte	0x50
+ 1468 00f6 9F       		.byte	0x9f
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 29
 
 
- 1471 0109 50       		.byte	0x50
- 1472 010a 05000000 		.4byte	.LVL11-1
- 1473 010e 0E000000 		.4byte	.LFE67
- 1474 0112 0400     		.2byte	0x4
- 1475 0114 F3       		.byte	0xf3
- 1476 0115 01       		.uleb128 0x1
- 1477 0116 50       		.byte	0x50
- 1478 0117 9F       		.byte	0x9f
- 1479 0118 00000000 		.4byte	0
- 1480 011c 00000000 		.4byte	0
- 1481              	.LLST9:
- 1482 0120 00000000 		.4byte	.LVL10
- 1483 0124 05000000 		.4byte	.LVL11-1
- 1484 0128 0100     		.2byte	0x1
- 1485 012a 51       		.byte	0x51
- 1486 012b 05000000 		.4byte	.LVL11-1
- 1487 012f 0E000000 		.4byte	.LFE67
- 1488 0133 0400     		.2byte	0x4
- 1489 0135 F3       		.byte	0xf3
- 1490 0136 01       		.uleb128 0x1
- 1491 0137 51       		.byte	0x51
- 1492 0138 9F       		.byte	0x9f
- 1493 0139 00000000 		.4byte	0
- 1494 013d 00000000 		.4byte	0
- 1495              	.LLST10:
- 1496 0141 00000000 		.4byte	.LVL12
- 1497 0145 05000000 		.4byte	.LVL13-1
- 1498 0149 0100     		.2byte	0x1
- 1499 014b 50       		.byte	0x50
- 1500 014c 05000000 		.4byte	.LVL13-1
- 1501 0150 12000000 		.4byte	.LFE68
- 1502 0154 0400     		.2byte	0x4
- 1503 0156 F3       		.byte	0xf3
- 1504 0157 01       		.uleb128 0x1
- 1505 0158 50       		.byte	0x50
- 1506 0159 9F       		.byte	0x9f
- 1507 015a 00000000 		.4byte	0
- 1508 015e 00000000 		.4byte	0
- 1509              	.LLST11:
- 1510 0162 00000000 		.4byte	.LVL12
- 1511 0166 05000000 		.4byte	.LVL13-1
- 1512 016a 0100     		.2byte	0x1
- 1513 016c 51       		.byte	0x51
- 1514 016d 05000000 		.4byte	.LVL13-1
- 1515 0171 12000000 		.4byte	.LFE68
- 1516 0175 0400     		.2byte	0x4
- 1517 0177 F3       		.byte	0xf3
- 1518 0178 01       		.uleb128 0x1
- 1519 0179 51       		.byte	0x51
- 1520 017a 9F       		.byte	0x9f
- 1521 017b 00000000 		.4byte	0
- 1522 017f 00000000 		.4byte	0
- 1523              	.LLST12:
- 1524 0183 00000000 		.4byte	.LVL14
- 1525 0187 04000000 		.4byte	.LVL15
- 1526 018b 0100     		.2byte	0x1
- 1527 018d 50       		.byte	0x50
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 30
+ 1469 00f7 00000000 		.4byte	0
+ 1470 00fb 00000000 		.4byte	0
+ 1471              	.LLST8:
+ 1472 00ff 00000000 		.4byte	.LVL10
+ 1473 0103 05000000 		.4byte	.LVL11-1
+ 1474 0107 0100     		.2byte	0x1
+ 1475 0109 50       		.byte	0x50
+ 1476 010a 05000000 		.4byte	.LVL11-1
+ 1477 010e 0E000000 		.4byte	.LFE67
+ 1478 0112 0400     		.2byte	0x4
+ 1479 0114 F3       		.byte	0xf3
+ 1480 0115 01       		.uleb128 0x1
+ 1481 0116 50       		.byte	0x50
+ 1482 0117 9F       		.byte	0x9f
+ 1483 0118 00000000 		.4byte	0
+ 1484 011c 00000000 		.4byte	0
+ 1485              	.LLST9:
+ 1486 0120 00000000 		.4byte	.LVL10
+ 1487 0124 05000000 		.4byte	.LVL11-1
+ 1488 0128 0100     		.2byte	0x1
+ 1489 012a 51       		.byte	0x51
+ 1490 012b 05000000 		.4byte	.LVL11-1
+ 1491 012f 0E000000 		.4byte	.LFE67
+ 1492 0133 0400     		.2byte	0x4
+ 1493 0135 F3       		.byte	0xf3
+ 1494 0136 01       		.uleb128 0x1
+ 1495 0137 51       		.byte	0x51
+ 1496 0138 9F       		.byte	0x9f
+ 1497 0139 00000000 		.4byte	0
+ 1498 013d 00000000 		.4byte	0
+ 1499              	.LLST10:
+ 1500 0141 00000000 		.4byte	.LVL12
+ 1501 0145 05000000 		.4byte	.LVL13-1
+ 1502 0149 0100     		.2byte	0x1
+ 1503 014b 50       		.byte	0x50
+ 1504 014c 05000000 		.4byte	.LVL13-1
+ 1505 0150 12000000 		.4byte	.LFE68
+ 1506 0154 0400     		.2byte	0x4
+ 1507 0156 F3       		.byte	0xf3
+ 1508 0157 01       		.uleb128 0x1
+ 1509 0158 50       		.byte	0x50
+ 1510 0159 9F       		.byte	0x9f
+ 1511 015a 00000000 		.4byte	0
+ 1512 015e 00000000 		.4byte	0
+ 1513              	.LLST11:
+ 1514 0162 00000000 		.4byte	.LVL12
+ 1515 0166 05000000 		.4byte	.LVL13-1
+ 1516 016a 0100     		.2byte	0x1
+ 1517 016c 51       		.byte	0x51
+ 1518 016d 05000000 		.4byte	.LVL13-1
+ 1519 0171 12000000 		.4byte	.LFE68
+ 1520 0175 0400     		.2byte	0x4
+ 1521 0177 F3       		.byte	0xf3
+ 1522 0178 01       		.uleb128 0x1
+ 1523 0179 51       		.byte	0x51
+ 1524 017a 9F       		.byte	0x9f
+ 1525 017b 00000000 		.4byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 30
 
 
- 1528 018e 04000000 		.4byte	.LVL15
- 1529 0192 14000000 		.4byte	.LFE69
- 1530 0196 0400     		.2byte	0x4
- 1531 0198 F3       		.byte	0xf3
- 1532 0199 01       		.uleb128 0x1
- 1533 019a 50       		.byte	0x50
- 1534 019b 9F       		.byte	0x9f
- 1535 019c 00000000 		.4byte	0
- 1536 01a0 00000000 		.4byte	0
- 1537              	.LLST13:
- 1538 01a4 04000000 		.4byte	.LVL15
- 1539 01a8 0B000000 		.4byte	.LVL17-1
- 1540 01ac 0100     		.2byte	0x1
- 1541 01ae 50       		.byte	0x50
- 1542 01af 0C000000 		.4byte	.LVL17
- 1543 01b3 0E000000 		.4byte	.LVL18
- 1544 01b7 0100     		.2byte	0x1
- 1545 01b9 54       		.byte	0x54
- 1546 01ba 0E000000 		.4byte	.LVL18
- 1547 01be 14000000 		.4byte	.LFE69
- 1548 01c2 0100     		.2byte	0x1
- 1549 01c4 50       		.byte	0x50
- 1550 01c5 00000000 		.4byte	0
- 1551 01c9 00000000 		.4byte	0
- 1552              	.LLST14:
- 1553 01cd 08000000 		.4byte	.LVL16
- 1554 01d1 0E000000 		.4byte	.LVL18
- 1555 01d5 0100     		.2byte	0x1
- 1556 01d7 54       		.byte	0x54
- 1557 01d8 00000000 		.4byte	0
- 1558 01dc 00000000 		.4byte	0
- 1559              	.LLST15:
- 1560 01e0 00000000 		.4byte	.LVL19
- 1561 01e4 06000000 		.4byte	.LVL21
- 1562 01e8 0100     		.2byte	0x1
- 1563 01ea 50       		.byte	0x50
- 1564 01eb 06000000 		.4byte	.LVL21
- 1565 01ef 30000000 		.4byte	.LFE70
- 1566 01f3 0400     		.2byte	0x4
- 1567 01f5 F3       		.byte	0xf3
- 1568 01f6 01       		.uleb128 0x1
- 1569 01f7 50       		.byte	0x50
- 1570 01f8 9F       		.byte	0x9f
- 1571 01f9 00000000 		.4byte	0
- 1572 01fd 00000000 		.4byte	0
- 1573              		.section	.debug_aranges,"",%progbits
- 1574 0000 54000000 		.4byte	0x54
- 1575 0004 0200     		.2byte	0x2
- 1576 0006 00000000 		.4byte	.Ldebug_info0
- 1577 000a 04       		.byte	0x4
- 1578 000b 00       		.byte	0
- 1579 000c 0000     		.2byte	0
- 1580 000e 0000     		.2byte	0
- 1581 0010 00000000 		.4byte	.LFB63
- 1582 0014 24000000 		.4byte	.LFE63-.LFB63
- 1583 0018 00000000 		.4byte	.LFB64
- 1584 001c 20000000 		.4byte	.LFE64-.LFB64
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 31
+ 1526 017f 00000000 		.4byte	0
+ 1527              	.LLST12:
+ 1528 0183 00000000 		.4byte	.LVL14
+ 1529 0187 04000000 		.4byte	.LVL15
+ 1530 018b 0100     		.2byte	0x1
+ 1531 018d 50       		.byte	0x50
+ 1532 018e 04000000 		.4byte	.LVL15
+ 1533 0192 14000000 		.4byte	.LFE69
+ 1534 0196 0400     		.2byte	0x4
+ 1535 0198 F3       		.byte	0xf3
+ 1536 0199 01       		.uleb128 0x1
+ 1537 019a 50       		.byte	0x50
+ 1538 019b 9F       		.byte	0x9f
+ 1539 019c 00000000 		.4byte	0
+ 1540 01a0 00000000 		.4byte	0
+ 1541              	.LLST13:
+ 1542 01a4 04000000 		.4byte	.LVL15
+ 1543 01a8 0B000000 		.4byte	.LVL17-1
+ 1544 01ac 0100     		.2byte	0x1
+ 1545 01ae 50       		.byte	0x50
+ 1546 01af 0C000000 		.4byte	.LVL17
+ 1547 01b3 0E000000 		.4byte	.LVL18
+ 1548 01b7 0100     		.2byte	0x1
+ 1549 01b9 54       		.byte	0x54
+ 1550 01ba 0E000000 		.4byte	.LVL18
+ 1551 01be 14000000 		.4byte	.LFE69
+ 1552 01c2 0100     		.2byte	0x1
+ 1553 01c4 50       		.byte	0x50
+ 1554 01c5 00000000 		.4byte	0
+ 1555 01c9 00000000 		.4byte	0
+ 1556              	.LLST14:
+ 1557 01cd 08000000 		.4byte	.LVL16
+ 1558 01d1 0E000000 		.4byte	.LVL18
+ 1559 01d5 0100     		.2byte	0x1
+ 1560 01d7 54       		.byte	0x54
+ 1561 01d8 00000000 		.4byte	0
+ 1562 01dc 00000000 		.4byte	0
+ 1563              	.LLST15:
+ 1564 01e0 00000000 		.4byte	.LVL19
+ 1565 01e4 06000000 		.4byte	.LVL21
+ 1566 01e8 0100     		.2byte	0x1
+ 1567 01ea 50       		.byte	0x50
+ 1568 01eb 06000000 		.4byte	.LVL21
+ 1569 01ef 30000000 		.4byte	.LFE70
+ 1570 01f3 0400     		.2byte	0x4
+ 1571 01f5 F3       		.byte	0xf3
+ 1572 01f6 01       		.uleb128 0x1
+ 1573 01f7 50       		.byte	0x50
+ 1574 01f8 9F       		.byte	0x9f
+ 1575 01f9 00000000 		.4byte	0
+ 1576 01fd 00000000 		.4byte	0
+ 1577              		.section	.debug_aranges,"",%progbits
+ 1578 0000 54000000 		.4byte	0x54
+ 1579 0004 0200     		.2byte	0x2
+ 1580 0006 00000000 		.4byte	.Ldebug_info0
+ 1581 000a 04       		.byte	0x4
+ 1582 000b 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 31
 
 
- 1585 0020 00000000 		.4byte	.LFB65
- 1586 0024 12000000 		.4byte	.LFE65-.LFB65
- 1587 0028 00000000 		.4byte	.LFB66
- 1588 002c 12000000 		.4byte	.LFE66-.LFB66
- 1589 0030 00000000 		.4byte	.LFB67
- 1590 0034 0E000000 		.4byte	.LFE67-.LFB67
- 1591 0038 00000000 		.4byte	.LFB68
- 1592 003c 12000000 		.4byte	.LFE68-.LFB68
- 1593 0040 00000000 		.4byte	.LFB69
- 1594 0044 14000000 		.4byte	.LFE69-.LFB69
- 1595 0048 00000000 		.4byte	.LFB70
- 1596 004c 30000000 		.4byte	.LFE70-.LFB70
- 1597 0050 00000000 		.4byte	0
- 1598 0054 00000000 		.4byte	0
- 1599              		.section	.debug_ranges,"",%progbits
- 1600              	.Ldebug_ranges0:
- 1601 0000 00000000 		.4byte	.LFB63
- 1602 0004 24000000 		.4byte	.LFE63
- 1603 0008 00000000 		.4byte	.LFB64
- 1604 000c 20000000 		.4byte	.LFE64
- 1605 0010 00000000 		.4byte	.LFB65
- 1606 0014 12000000 		.4byte	.LFE65
- 1607 0018 00000000 		.4byte	.LFB66
- 1608 001c 12000000 		.4byte	.LFE66
- 1609 0020 00000000 		.4byte	.LFB67
- 1610 0024 0E000000 		.4byte	.LFE67
- 1611 0028 00000000 		.4byte	.LFB68
- 1612 002c 12000000 		.4byte	.LFE68
- 1613 0030 00000000 		.4byte	.LFB69
- 1614 0034 14000000 		.4byte	.LFE69
- 1615 0038 00000000 		.4byte	.LFB70
- 1616 003c 30000000 		.4byte	.LFE70
- 1617 0040 00000000 		.4byte	0
- 1618 0044 00000000 		.4byte	0
- 1619              		.section	.debug_line,"",%progbits
- 1620              	.Ldebug_line0:
- 1621 0000 33020000 		.section	.debug_str,"MS",%progbits,1
- 1621      02006201 
- 1621      00000201 
- 1621      FB0E0D00 
- 1621      01010101 
- 1622              	.LASF6:
- 1623 0000 6C6F6E67 		.ascii	"long long int\000"
- 1623      206C6F6E 
- 1623      6720696E 
- 1623      7400
- 1624              	.LASF24:
- 1625 000e 6E657874 		.ascii	"next\000"
- 1625      00
- 1626              	.LASF46:
- 1627 0013 433A5C55 		.ascii	"C:\\Users\\David\\Documents\\PSoC Creator\\Keypadte"
- 1627      73657273 
- 1627      5C446176 
- 1627      69645C44 
- 1627      6F63756D 
- 1628 0041 73745C52 		.ascii	"st\\Riaszto.cydsn\000"
- 1628      6961737A 
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 32
+ 1583 000c 0000     		.2byte	0
+ 1584 000e 0000     		.2byte	0
+ 1585 0010 00000000 		.4byte	.LFB63
+ 1586 0014 26000000 		.4byte	.LFE63-.LFB63
+ 1587 0018 00000000 		.4byte	.LFB64
+ 1588 001c 22000000 		.4byte	.LFE64-.LFB64
+ 1589 0020 00000000 		.4byte	.LFB65
+ 1590 0024 12000000 		.4byte	.LFE65-.LFB65
+ 1591 0028 00000000 		.4byte	.LFB66
+ 1592 002c 12000000 		.4byte	.LFE66-.LFB66
+ 1593 0030 00000000 		.4byte	.LFB67
+ 1594 0034 0E000000 		.4byte	.LFE67-.LFB67
+ 1595 0038 00000000 		.4byte	.LFB68
+ 1596 003c 12000000 		.4byte	.LFE68-.LFB68
+ 1597 0040 00000000 		.4byte	.LFB69
+ 1598 0044 14000000 		.4byte	.LFE69-.LFB69
+ 1599 0048 00000000 		.4byte	.LFB70
+ 1600 004c 30000000 		.4byte	.LFE70-.LFB70
+ 1601 0050 00000000 		.4byte	0
+ 1602 0054 00000000 		.4byte	0
+ 1603              		.section	.debug_ranges,"",%progbits
+ 1604              	.Ldebug_ranges0:
+ 1605 0000 00000000 		.4byte	.LFB63
+ 1606 0004 26000000 		.4byte	.LFE63
+ 1607 0008 00000000 		.4byte	.LFB64
+ 1608 000c 22000000 		.4byte	.LFE64
+ 1609 0010 00000000 		.4byte	.LFB65
+ 1610 0014 12000000 		.4byte	.LFE65
+ 1611 0018 00000000 		.4byte	.LFB66
+ 1612 001c 12000000 		.4byte	.LFE66
+ 1613 0020 00000000 		.4byte	.LFB67
+ 1614 0024 0E000000 		.4byte	.LFE67
+ 1615 0028 00000000 		.4byte	.LFB68
+ 1616 002c 12000000 		.4byte	.LFE68
+ 1617 0030 00000000 		.4byte	.LFB69
+ 1618 0034 14000000 		.4byte	.LFE69
+ 1619 0038 00000000 		.4byte	.LFB70
+ 1620 003c 30000000 		.4byte	.LFE70
+ 1621 0040 00000000 		.4byte	0
+ 1622 0044 00000000 		.4byte	0
+ 1623              		.section	.debug_line,"",%progbits
+ 1624              	.Ldebug_line0:
+ 1625 0000 35020000 		.section	.debug_str,"MS",%progbits,1
+ 1625      02006201 
+ 1625      00000201 
+ 1625      FB0E0D00 
+ 1625      01010101 
+ 1626              	.LASF6:
+ 1627 0000 6C6F6E67 		.ascii	"long long int\000"
+ 1627      206C6F6E 
+ 1627      6720696E 
+ 1627      7400
+ 1628              	.LASF24:
+ 1629 000e 6E657874 		.ascii	"next\000"
+ 1629      00
+ 1630              	.LASF46:
+ 1631 0013 433A5C55 		.ascii	"C:\\Users\\David\\Documents\\PSoC Creator\\Keypadte"
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 32
 
 
- 1628      746F2E63 
- 1628      7964736E 
- 1628      00
- 1629              	.LASF34:
- 1630 0052 7461736B 		.ascii	"task\000"
- 1630      00
- 1631              	.LASF9:
- 1632 0057 5F5F696E 		.ascii	"__int32_t\000"
- 1632      7433325F 
- 1632      7400
- 1633              	.LASF20:
- 1634 0061 70657269 		.ascii	"period\000"
- 1634      6F6400
- 1635              	.LASF27:
- 1636 0068 73746172 		.ascii	"start\000"
+ 1631      73657273 
+ 1631      5C446176 
+ 1631      69645C44 
+ 1631      6F63756D 
+ 1632 0041 73745C52 		.ascii	"st\\Riaszto.cydsn\000"
+ 1632      6961737A 
+ 1632      746F2E63 
+ 1632      7964736E 
+ 1632      00
+ 1633              	.LASF34:
+ 1634 0052 7461736B 		.ascii	"task\000"
+ 1634      00
+ 1635              	.LASF9:
+ 1636 0057 5F5F696E 		.ascii	"__int32_t\000"
+ 1636      7433325F 
  1636      7400
- 1637              	.LASF37:
- 1638 006e 69746572 		.ascii	"iter\000"
- 1638      00
- 1639              	.LASF3:
- 1640 0073 73686F72 		.ascii	"short unsigned int\000"
- 1640      7420756E 
- 1640      7369676E 
- 1640      65642069 
- 1640      6E7400
- 1641              	.LASF25:
- 1642 0086 70657269 		.ascii	"periodic_task\000"
- 1642      6F646963 
- 1642      5F746173 
- 1642      6B00
- 1643              	.LASF14:
- 1644 0094 646F7562 		.ascii	"double\000"
- 1644      6C6500
- 1645              	.LASF26:
- 1646 009b 70657269 		.ascii	"periodic_task_list\000"
+ 1637              	.LASF20:
+ 1638 0061 70657269 		.ascii	"period\000"
+ 1638      6F6400
+ 1639              	.LASF27:
+ 1640 0068 73746172 		.ascii	"start\000"
+ 1640      7400
+ 1641              	.LASF37:
+ 1642 006e 69746572 		.ascii	"iter\000"
+ 1642      00
+ 1643              	.LASF3:
+ 1644 0073 73686F72 		.ascii	"short unsigned int\000"
+ 1644      7420756E 
+ 1644      7369676E 
+ 1644      65642069 
+ 1644      6E7400
+ 1645              	.LASF25:
+ 1646 0086 70657269 		.ascii	"periodic_task\000"
  1646      6F646963 
  1646      5F746173 
- 1646      6B5F6C69 
- 1646      737400
- 1647              	.LASF31:
- 1648 00ae 6E65775F 		.ascii	"new_task\000"
- 1648      7461736B 
- 1648      00
- 1649              	.LASF13:
- 1650 00b7 666C6F61 		.ascii	"float\000"
- 1650      7400
- 1651              	.LASF21:
- 1652 00bd 636F756E 		.ascii	"counter\000"
- 1652      74657200 
- 1653              	.LASF30:
- 1654 00c5 6E6F7061 		.ascii	"noparamfunc\000"
- 1654      72616D66 
- 1654      756E6300 
- 1655              	.LASF28:
- 1656 00d1 63726561 		.ascii	"create_new_ptask_parametered\000"
- 1656      74655F6E 
- 1656      65775F70 
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 33
+ 1646      6B00
+ 1647              	.LASF14:
+ 1648 0094 646F7562 		.ascii	"double\000"
+ 1648      6C6500
+ 1649              	.LASF26:
+ 1650 009b 70657269 		.ascii	"periodic_task_list\000"
+ 1650      6F646963 
+ 1650      5F746173 
+ 1650      6B5F6C69 
+ 1650      737400
+ 1651              	.LASF31:
+ 1652 00ae 6E65775F 		.ascii	"new_task\000"
+ 1652      7461736B 
+ 1652      00
+ 1653              	.LASF13:
+ 1654 00b7 666C6F61 		.ascii	"float\000"
+ 1654      7400
+ 1655              	.LASF21:
+ 1656 00bd 636F756E 		.ascii	"counter\000"
+ 1656      74657200 
+ 1657              	.LASF30:
+ 1658 00c5 6E6F7061 		.ascii	"noparamfunc\000"
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 33
 
 
- 1656      7461736B 
- 1656      5F706172 
- 1657              	.LASF44:
- 1658 00ee 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1658      43313120 
- 1658      352E342E 
- 1658      31203230 
- 1658      31363036 
- 1659 0121 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1659      20726576 
- 1659      6973696F 
- 1659      6E203233 
- 1659      37373135 
- 1660 0154 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1660      66756E63 
- 1660      74696F6E 
- 1660      2D736563 
- 1660      74696F6E 
- 1661              	.LASF39:
- 1662 017c 656E6162 		.ascii	"enable_task\000"
- 1662      6C655F74 
- 1662      61736B00 
- 1663              	.LASF5:
- 1664 0188 6C6F6E67 		.ascii	"long unsigned int\000"
- 1664      20756E73 
- 1664      69676E65 
- 1664      6420696E 
- 1664      7400
- 1665              	.LASF33:
- 1666 019a 6C697374 		.ascii	"list\000"
- 1666      00
- 1667              	.LASF4:
- 1668 019f 6C6F6E67 		.ascii	"long int\000"
- 1668      20696E74 
- 1668      00
- 1669              	.LASF47:
- 1670 01a8 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1670      52784275 
- 1670      66666572 
+ 1658      72616D66 
+ 1658      756E6300 
+ 1659              	.LASF28:
+ 1660 00d1 63726561 		.ascii	"create_new_ptask_parametered\000"
+ 1660      74655F6E 
+ 1660      65775F70 
+ 1660      7461736B 
+ 1660      5F706172 
+ 1661              	.LASF44:
+ 1662 00ee 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1662      43313120 
+ 1662      352E342E 
+ 1662      31203230 
+ 1662      31363036 
+ 1663 0121 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1663      20726576 
+ 1663      6973696F 
+ 1663      6E203233 
+ 1663      37373135 
+ 1664 0154 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1664      66756E63 
+ 1664      74696F6E 
+ 1664      2D736563 
+ 1664      74696F6E 
+ 1665              	.LASF39:
+ 1666 017c 656E6162 		.ascii	"enable_task\000"
+ 1666      6C655F74 
+ 1666      61736B00 
+ 1667              	.LASF5:
+ 1668 0188 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1668      20756E73 
+ 1668      69676E65 
+ 1668      6420696E 
+ 1668      7400
+ 1669              	.LASF33:
+ 1670 019a 6C697374 		.ascii	"list\000"
  1670      00
- 1671              	.LASF1:
- 1672 01b5 756E7369 		.ascii	"unsigned char\000"
- 1672      676E6564 
- 1672      20636861 
- 1672      7200
- 1673              	.LASF42:
- 1674 01c3 72756E5F 		.ascii	"run_permitted_tasks_and_decrement_counters\000"
- 1674      7065726D 
- 1674      69747465 
- 1674      645F7461 
- 1674      736B735F 
- 1675              	.LASF12:
- 1676 01ee 75696E74 		.ascii	"uint16\000"
- 1676      313600
- 1677              	.LASF23:
- 1678 01f5 666C6167 		.ascii	"flag\000"
- 1678      00
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 34
+ 1671              	.LASF4:
+ 1672 019f 6C6F6E67 		.ascii	"long int\000"
+ 1672      20696E74 
+ 1672      00
+ 1673              	.LASF47:
+ 1674 01a8 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1674      52784275 
+ 1674      66666572 
+ 1674      00
+ 1675              	.LASF1:
+ 1676 01b5 756E7369 		.ascii	"unsigned char\000"
+ 1676      676E6564 
+ 1676      20636861 
+ 1676      7200
+ 1677              	.LASF42:
+ 1678 01c3 72756E5F 		.ascii	"run_permitted_tasks_and_decrement_counters\000"
+ 1678      7065726D 
+ 1678      69747465 
+ 1678      645F7461 
+ 1678      736B735F 
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 34
 
 
- 1679              	.LASF45:
- 1680 01fa 50657269 		.ascii	"PeriodicTask.c\000"
- 1680      6F646963 
- 1680      5461736B 
- 1680      2E6300
- 1681              	.LASF8:
- 1682 0209 756E7369 		.ascii	"unsigned int\000"
- 1682      676E6564 
- 1682      20696E74 
+ 1679              	.LASF12:
+ 1680 01ee 75696E74 		.ascii	"uint16\000"
+ 1680      313600
+ 1681              	.LASF23:
+ 1682 01f5 666C6167 		.ascii	"flag\000"
  1682      00
- 1683              	.LASF40:
- 1684 0216 64697361 		.ascii	"disable_task\000"
- 1684      626C655F 
- 1684      7461736B 
- 1684      00
- 1685              	.LASF7:
- 1686 0223 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1686      206C6F6E 
- 1686      6720756E 
- 1686      7369676E 
- 1686      65642069 
- 1687              	.LASF0:
- 1688 023a 7369676E 		.ascii	"signed char\000"
- 1688      65642063 
- 1688      68617200 
- 1689              	.LASF41:
- 1690 0246 66726565 		.ascii	"free_list\000"
- 1690      5F6C6973 
- 1690      7400
- 1691              	.LASF10:
- 1692 0250 696E7433 		.ascii	"int32_t\000"
- 1692      325F7400 
- 1693              	.LASF17:
- 1694 0258 73697A65 		.ascii	"sizetype\000"
- 1694      74797065 
- 1694      00
- 1695              	.LASF43:
- 1696 0261 66726565 		.ascii	"free\000"
- 1696      00
- 1697              	.LASF35:
- 1698 0266 66696E64 		.ascii	"find_task\000"
- 1698      5F746173 
- 1698      6B00
- 1699              	.LASF15:
- 1700 0270 63686172 		.ascii	"char\000"
+ 1683              	.LASF45:
+ 1684 01fa 50657269 		.ascii	"PeriodicTask.c\000"
+ 1684      6F646963 
+ 1684      5461736B 
+ 1684      2E6300
+ 1685              	.LASF8:
+ 1686 0209 756E7369 		.ascii	"unsigned int\000"
+ 1686      676E6564 
+ 1686      20696E74 
+ 1686      00
+ 1687              	.LASF40:
+ 1688 0216 64697361 		.ascii	"disable_task\000"
+ 1688      626C655F 
+ 1688      7461736B 
+ 1688      00
+ 1689              	.LASF7:
+ 1690 0223 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1690      206C6F6E 
+ 1690      6720756E 
+ 1690      7369676E 
+ 1690      65642069 
+ 1691              	.LASF0:
+ 1692 023a 7369676E 		.ascii	"signed char\000"
+ 1692      65642063 
+ 1692      68617200 
+ 1693              	.LASF41:
+ 1694 0246 66726565 		.ascii	"free_list\000"
+ 1694      5F6C6973 
+ 1694      7400
+ 1695              	.LASF10:
+ 1696 0250 696E7433 		.ascii	"int32_t\000"
+ 1696      325F7400 
+ 1697              	.LASF17:
+ 1698 0258 73697A65 		.ascii	"sizetype\000"
+ 1698      74797065 
+ 1698      00
+ 1699              	.LASF43:
+ 1700 0261 66726565 		.ascii	"free\000"
  1700      00
- 1701              	.LASF22:
- 1702 0275 656E6162 		.ascii	"enabled\000"
- 1702      6C656400 
- 1703              	.LASF2:
- 1704 027d 73686F72 		.ascii	"short int\000"
- 1704      7420696E 
- 1704      7400
- 1705              	.LASF18:
- 1706 0287 70617261 		.ascii	"paramtask\000"
- 1706      6D746173 
- 1706      6B00
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccN24BBL.s 			page 35
+ 1701              	.LASF35:
+ 1702 0266 66696E64 		.ascii	"find_task\000"
+ 1702      5F746173 
+ 1702      6B00
+ 1703              	.LASF15:
+ 1704 0270 63686172 		.ascii	"char\000"
+ 1704      00
+ 1705              	.LASF22:
+ 1706 0275 656E6162 		.ascii	"enabled\000"
+ 1706      6C656400 
+ 1707              	.LASF2:
+ 1708 027d 73686F72 		.ascii	"short int\000"
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccBpYD0O.s 			page 35
 
 
- 1707              	.LASF11:
- 1708 0291 75696E74 		.ascii	"uint8\000"
- 1708      3800
- 1709              	.LASF19:
- 1710 0297 6E6F7061 		.ascii	"noparamtask\000"
- 1710      72616D74 
- 1710      61736B00 
- 1711              	.LASF38:
- 1712 02a3 6164645F 		.ascii	"add_to_ptask_list\000"
- 1712      746F5F70 
- 1712      7461736B 
- 1712      5F6C6973 
- 1712      7400
- 1713              	.LASF36:
- 1714 02b5 7461736B 		.ascii	"tasks\000"
- 1714      7300
- 1715              	.LASF16:
- 1716 02bb 6C6F6E67 		.ascii	"long double\000"
- 1716      20646F75 
- 1716      626C6500 
- 1717              	.LASF29:
- 1718 02c7 63726561 		.ascii	"create_new_ptask_noparam\000"
- 1718      74655F6E 
- 1718      65775F70 
- 1718      7461736B 
- 1718      5F6E6F70 
- 1719              	.LASF32:
- 1720 02e0 6D616C6C 		.ascii	"malloc\000"
- 1720      6F6300
- 1721              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1708      7420696E 
+ 1708      7400
+ 1709              	.LASF18:
+ 1710 0287 70617261 		.ascii	"paramtask\000"
+ 1710      6D746173 
+ 1710      6B00
+ 1711              	.LASF11:
+ 1712 0291 75696E74 		.ascii	"uint8\000"
+ 1712      3800
+ 1713              	.LASF19:
+ 1714 0297 6E6F7061 		.ascii	"noparamtask\000"
+ 1714      72616D74 
+ 1714      61736B00 
+ 1715              	.LASF38:
+ 1716 02a3 6164645F 		.ascii	"add_to_ptask_list\000"
+ 1716      746F5F70 
+ 1716      7461736B 
+ 1716      5F6C6973 
+ 1716      7400
+ 1717              	.LASF36:
+ 1718 02b5 7461736B 		.ascii	"tasks\000"
+ 1718      7300
+ 1719              	.LASF16:
+ 1720 02bb 6C6F6E67 		.ascii	"long double\000"
+ 1720      20646F75 
+ 1720      626C6500 
+ 1721              	.LASF29:
+ 1722 02c7 63726561 		.ascii	"create_new_ptask_noparam\000"
+ 1722      74655F6E 
+ 1722      65775F70 
+ 1722      7461736B 
+ 1722      5F6E6F70 
+ 1723              	.LASF32:
+ 1724 02e0 6D616C6C 		.ascii	"malloc\000"
+ 1724      6F6300
+ 1725              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -17,9 +17,10 @@
 #include "project.h"
 
 typedef struct OneTimeTask {
-    void (*func)(uint16*);
+    void (*func)(uint16);
+    void (*funcnoparam)();
     uint16 delay;
-    uint16 * data;  //A fuggveny parametere
+    uint16 data;  //A fuggveny parametere
     struct OneTimeTask *next;
 } OneTimeTask;
 
@@ -28,18 +29,28 @@ typedef struct TaskFIFO {
 } TaskFIFO;
 
 
-OneTimeTask * create_new_onetimetask( void (*func)(uint16*), uint16 delay, uint16 * data) {
+OneTimeTask * create_new_onetimetask( void (*func)(uint16), uint16 delay, uint16 data) {
     OneTimeTask * new_task;
     new_task = (OneTimeTask*)malloc(sizeof(OneTimeTask));
     new_task->delay = delay;
     new_task->func = func;
+    new_task->funcnoparam = NULL;
     new_task->data = data;
     return new_task;
 }
 
+OneTimeTask * create_new_noparam_onetimetask( void (*func)(), uint16 delay) {
+    OneTimeTask * new_task;
+    new_task = (OneTimeTask*)malloc(sizeof(OneTimeTask));
+    new_task->delay = delay;
+    new_task->funcnoparam = func;
+    new_task->func = NULL;
+    new_task->data = 100;
+    return new_task;
+}
 
 //A vegere beteszek egy taskot.
-void push(TaskFIFO* fifo, OneTimeTask* task) {
+void pushTask(TaskFIFO* fifo, OneTimeTask* task) {
     if (fifo->end == NULL) {
         fifo->end = task;
         fifo->start = task;
@@ -51,7 +62,7 @@ void push(TaskFIFO* fifo, OneTimeTask* task) {
 }
 
 //kiveszi az elso elemet. A hivo felelossege felszabaditani a memoriat.
-void get_and_remove_first(TaskFIFO* fifo) {
+OneTimeTask * get_and_remove_first(TaskFIFO* fifo) {
     OneTimeTask* first = fifo->start;
     if (fifo->start == fifo->end) {
         fifo->start = NULL;
@@ -59,7 +70,7 @@ void get_and_remove_first(TaskFIFO* fifo) {
     } else {
         fifo->start = fifo->start->next;
     }
-    return;
+    return first;
 }
 
 //felszabaditja a teljes listat
@@ -74,6 +85,8 @@ void free_taskfifo(TaskFIFO * list) {
 
 //megnezi, hogy futtathato e mar a taszk, ha nem, akkor csokkenti a szamlalot
 uint8 check_if_runnable_and_decrement_counter(TaskFIFO * fifo) {
+    if (fifo->start == NULL) 
+        return 0u;
     if (fifo->start->delay == 0u)
         return 1u;
     

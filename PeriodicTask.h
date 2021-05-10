@@ -13,7 +13,7 @@
 typedef struct periodic_task {
    void (*paramtask)(uint8*); //Lehet olyan, aminek egy flag parametere van
    void (*noparamtask)(); //Lehet olyan, aminek nincs parametere.
-   const uint16 period; //Ennyi idonkent fut le
+   uint16 period; //Ennyi idonkent fut le
    uint16 counter; //Ezt csokkenti minden iteracioban
    uint8 enabled; 
    uint8 pid; //azonosito
@@ -26,6 +26,7 @@ typedef struct periodic_task_list {
     periodic_task * start;
     periodic_task * end;
 } periodic_task_list;
+
 
 
 periodic_task * create_new_ptask_parametered( void (*paramtask)(uint8*), uint8 * flag, uint16 period, uint8 pid);
@@ -43,7 +44,6 @@ void disable_task(periodic_task_list * tasks, uint8 pid);
 void free_list(periodic_task_list * list);
 
 void run_permitted_tasks_and_decrement_counters(periodic_task_list *list);
-
 
 
 

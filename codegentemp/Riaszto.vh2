@@ -2,7 +2,7 @@
 --	Conversion of Riaszto.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon May 10 17:52:38 2021
+--	Tue May 11 01:15:54 2021
 --
 
 USE cypress.cypress.all;

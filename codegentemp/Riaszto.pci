@@ -1,5 +1,5 @@
 # Riaszto
-# 2021-05-11 09:35:01Z
+# 2021-05-11 16:58:51Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -32,5 +32,7 @@ set_io "REED_RELAY(0)" iocell 15 0
 set_io "BACKLIGHT(0)" iocell 2 7
 set_io "BEEPER(0)" iocell 3 6
 set_io "PHRES(0)" iocell 3 1
+set_io "Tx_2(0)" iocell 0 2
+set_io "Rx_2(0)" iocell 0 3
 set_location "\ADC_SAR_RADAR:ADC_SAR\" sarcell -1 -1 1
 set_location "\ADC_SAR_PR:ADC_SAR\" sarcell -1 -1 0

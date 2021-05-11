@@ -43,4 +43,10 @@ void free_taskfifo(TaskFIFO * list);
 
 //megnezi, hogy futtathato e mar a taszk, ha nem, akkor csokkenti a szamlalot
 uint8 check_if_runnable_and_decrement_counter(TaskFIFO * fifo);
+
+//Ezt fogom futtatni a timer interruptban. Ha sorban az elso taszknak a delay erteke 0
+//akkor lefuttatom a fuggvenyt, es kiveszem a fifobol.
+void run_next_task_when_available(TaskFIFO * fifo_tasks);
+
+
 /* [] END OF FILE */

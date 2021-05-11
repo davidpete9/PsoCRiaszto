@@ -32,6 +32,12 @@ typedef struct TaskFIFO {
 OneTimeTask * create_new_onetimetask( void (*func)(uint16), uint16 delay, uint16 data) {
     OneTimeTask * new_task;
     new_task = (OneTimeTask*)malloc(sizeof(OneTimeTask));
+    if (new_task == NULL) {
+        LCD_ClearDisplay();
+        LCD_Position(0u, 0u);
+        LCD_PrintString("Malloc ");
+        return NULL;
+    }
     new_task->delay = delay;
     new_task->func = func;
     new_task->funcnoparam = NULL;
@@ -42,6 +48,12 @@ OneTimeTask * create_new_onetimetask( void (*func)(uint16), uint16 delay, uint16
 OneTimeTask * create_new_noparam_onetimetask( void (*func)(), uint16 delay) {
     OneTimeTask * new_task;
     new_task = (OneTimeTask*)malloc(sizeof(OneTimeTask));
+    if (new_task == NULL) {
+        LCD_ClearDisplay();
+        LCD_Position(0u, 0u);
+        LCD_PrintString("Malloc error");
+        return NULL;
+    }
     new_task->delay = delay;
     new_task->funcnoparam = func;
     new_task->func = NULL;
@@ -51,6 +63,8 @@ OneTimeTask * create_new_noparam_onetimetask( void (*func)(), uint16 delay) {
 
 //A vegere beteszek egy taskot.
 void pushTask(TaskFIFO* fifo, OneTimeTask* task) {
+    if (task == NULL)
+        return;
     if (fifo->end == NULL) {
         fifo->end = task;
         fifo->start = task;
@@ -95,5 +109,22 @@ uint8 check_if_runnable_and_decrement_counter(TaskFIFO * fifo) {
 }
 
 
+//Ezt fogom futtatni a timer interruptban. Ha sorban az elso taszknak a delay erteke 0
+//akkor lefuttatom a fuggvenyt, es kiveszem a fifobol.
+void run_next_task_when_available(TaskFIFO * fifo_tasks) {
+    if (check_if_runnable_and_decrement_counter(fifo_tasks) == 1u) {
+        OneTimeTask * to_run = get_and_remove_first(fifo_tasks);
+        if (to_run !=  NULL) {
+            if (to_run->func != NULL) {
+                to_run->func(to_run->data);
+                free(to_run);
+            }
+            if (to_run->funcnoparam != NULL) {
+                to_run->funcnoparam();
+                free(to_run);
+            }
+        }
+    }
+}
 
 /* [] END OF FILE */

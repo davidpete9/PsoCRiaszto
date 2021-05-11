@@ -104,6 +104,13 @@
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\PHRES_aliases.h" value="HEADER;;;;;PHRES" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\PHRES.c" value="SOURCE_C;CortexM3;;;;PHRES" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\PHRES.h" value="HEADER;;;;;PHRES" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\EEPROM.c" value="SOURCE_C;CortexM3;;;;EEPROM" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\EEPROM.h" value="HEADER;;;;;EEPROM" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\UART_GSM.c" value="SOURCE_C;CortexM3;;;;UART_GSM" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\UART_GSM.h" value="HEADER;;;;;UART_GSM" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\UART_GSM_PM.c" value="SOURCE_C;CortexM3;;;;UART_GSM" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\UART_GSM_INT.c" value="SOURCE_C;CortexM3;;;;UART_GSM" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\UART_GSM_BOOT.c" value="SOURCE_C;CortexM3;;;;UART_GSM" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\LCD_LCDPort_aliases.h" value="HEADER;;;;;LCD_LCDPort" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\LCD_LCDPort.c" value="SOURCE_C;CortexM3;;;;LCD_LCDPort" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\LCD_LCDPort.h" value="HEADER;;;;;LCD_LCDPort" />
@@ -119,6 +126,8 @@
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\ADC_SAR_PR_IRQ.h" value="HEADER;;;;;ADC_SAR_PR_IRQ" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\ADC_SAR_PR_theACLK.c" value="SOURCE_C;CortexM3;;;;ADC_SAR_PR_theACLK" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\ADC_SAR_PR_theACLK.h" value="HEADER;;;;;ADC_SAR_PR_theACLK" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\UART_GSM_IntClock.c" value="SOURCE_C;CortexM3;;;;UART_GSM_IntClock" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\UART_GSM_IntClock.h" value="HEADER;;;;;UART_GSM_IntClock" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\cm3gcc.ld" value="LINKER_SCRIPT;;;b98f980c-3bd1-4fc7-a887-c56a20a46fdd;;cy_boot" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\Cm3RealView.scat" value="LINKER_SCRIPT;;;fdb8e1ae-f83a-46cf-9446-1d703716f38a;;cy_boot" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\Cm3Start.c" value="SOURCE_C;CortexM3;;;;cy_boot" />

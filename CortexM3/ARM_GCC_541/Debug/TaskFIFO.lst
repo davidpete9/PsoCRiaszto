@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 1
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 1
   28:TaskFIFO.c    ****  OneTimeTask * start, *end;
   29:TaskFIFO.c    **** } TaskFIFO;
   30:TaskFIFO.c    **** 
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 2
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 2
 
 
   31:TaskFIFO.c    **** 
@@ -84,1569 +84,2072 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 1
   44              	.LVL1:
   45 000a FFF7FEFF 		bl	malloc
   46              	.LVL2:
-  35:TaskFIFO.c    ****     new_task->delay = delay;
+  35:TaskFIFO.c    ****     if (new_task == NULL) {
   47              		.loc 1 35 0
-  48 000e 0681     		strh	r6, [r0, #8]	@ movhi
-  36:TaskFIFO.c    ****     new_task->func = func;
+  48 000e 58B9     		cbnz	r0, .L2
+  36:TaskFIFO.c    ****         LCD_ClearDisplay();
   49              		.loc 1 36 0
-  50 0010 0560     		str	r5, [r0]
-  37:TaskFIFO.c    ****     new_task->funcnoparam = NULL;
-  51              		.loc 1 37 0
-  52 0012 0022     		movs	r2, #0
-  53 0014 4260     		str	r2, [r0, #4]
-  38:TaskFIFO.c    ****     new_task->data = data;
-  54              		.loc 1 38 0
-  55 0016 4481     		strh	r4, [r0, #10]	@ movhi
-  39:TaskFIFO.c    ****     return new_task;
-  40:TaskFIFO.c    **** }
-  56              		.loc 1 40 0
-  57 0018 70BD     		pop	{r4, r5, r6, pc}
-  58              		.cfi_endproc
-  59              	.LFE63:
-  60              		.size	create_new_onetimetask, .-create_new_onetimetask
-  61 001a 00BF     		.section	.text.create_new_noparam_onetimetask,"ax",%progbits
-  62              		.align	2
-  63              		.global	create_new_noparam_onetimetask
-  64              		.thumb
-  65              		.thumb_func
-  66              		.type	create_new_noparam_onetimetask, %function
-  67              	create_new_noparam_onetimetask:
-  68              	.LFB64:
-  41:TaskFIFO.c    **** 
-  42:TaskFIFO.c    **** OneTimeTask * create_new_noparam_onetimetask( void (*func)(), uint16 delay) {
-  69              		.loc 1 42 0
-  70              		.cfi_startproc
-  71              		@ args = 0, pretend = 0, frame = 0
-  72              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 3
+  50 0010 0120     		movs	r0, #1
+  51              	.LVL3:
+  52 0012 FFF7FEFF 		bl	LCD_WriteControl
+  53              	.LVL4:
+  37:TaskFIFO.c    ****         LCD_Position(0u, 0u);
+  54              		.loc 1 37 0
+  55 0016 0021     		movs	r1, #0
+  56 0018 0846     		mov	r0, r1
+  57 001a FFF7FEFF 		bl	LCD_Position
+  58              	.LVL5:
+  38:TaskFIFO.c    ****         LCD_PrintString("Malloc ");
+  59              		.loc 1 38 0
+  60 001e 0548     		ldr	r0, .L5
+  61 0020 FFF7FEFF 		bl	LCD_PrintString
+  62              	.LVL6:
+  39:TaskFIFO.c    ****         return NULL;
+  63              		.loc 1 39 0
+  64 0024 0020     		movs	r0, #0
+  65 0026 70BD     		pop	{r4, r5, r6, pc}
+  66              	.LVL7:
+  67              	.L2:
+  40:TaskFIFO.c    ****     }
+  41:TaskFIFO.c    ****     new_task->delay = delay;
+  68              		.loc 1 41 0
+  69 0028 0681     		strh	r6, [r0, #8]	@ movhi
+  42:TaskFIFO.c    ****     new_task->func = func;
+  70              		.loc 1 42 0
+  71 002a 0560     		str	r5, [r0]
+  43:TaskFIFO.c    ****     new_task->funcnoparam = NULL;
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 3
 
 
-  73              	.LVL3:
-  74 0000 38B5     		push	{r3, r4, r5, lr}
-  75              		.cfi_def_cfa_offset 16
-  76              		.cfi_offset 3, -16
-  77              		.cfi_offset 4, -12
-  78              		.cfi_offset 5, -8
-  79              		.cfi_offset 14, -4
-  80 0002 0446     		mov	r4, r0
-  81 0004 0D46     		mov	r5, r1
-  43:TaskFIFO.c    ****     OneTimeTask * new_task;
-  44:TaskFIFO.c    ****     new_task = (OneTimeTask*)malloc(sizeof(OneTimeTask));
-  82              		.loc 1 44 0
-  83 0006 1020     		movs	r0, #16
-  84              	.LVL4:
-  85 0008 FFF7FEFF 		bl	malloc
-  86              	.LVL5:
-  45:TaskFIFO.c    ****     new_task->delay = delay;
-  87              		.loc 1 45 0
-  88 000c 0581     		strh	r5, [r0, #8]	@ movhi
-  46:TaskFIFO.c    ****     new_task->funcnoparam = func;
-  89              		.loc 1 46 0
-  90 000e 4460     		str	r4, [r0, #4]
-  47:TaskFIFO.c    ****     new_task->func = NULL;
-  91              		.loc 1 47 0
-  92 0010 0022     		movs	r2, #0
-  93 0012 0260     		str	r2, [r0]
-  48:TaskFIFO.c    ****     new_task->data = 100;
-  94              		.loc 1 48 0
-  95 0014 6422     		movs	r2, #100
-  96 0016 4281     		strh	r2, [r0, #10]	@ movhi
-  49:TaskFIFO.c    ****     return new_task;
-  50:TaskFIFO.c    **** }
-  97              		.loc 1 50 0
-  98 0018 38BD     		pop	{r3, r4, r5, pc}
-  99              		.cfi_endproc
- 100              	.LFE64:
- 101              		.size	create_new_noparam_onetimetask, .-create_new_noparam_onetimetask
- 102 001a 00BF     		.section	.text.pushTask,"ax",%progbits
- 103              		.align	2
- 104              		.global	pushTask
- 105              		.thumb
- 106              		.thumb_func
- 107              		.type	pushTask, %function
- 108              	pushTask:
- 109              	.LFB65:
-  51:TaskFIFO.c    **** 
-  52:TaskFIFO.c    **** //A vegere beteszek egy taskot.
-  53:TaskFIFO.c    **** void pushTask(TaskFIFO* fifo, OneTimeTask* task) {
- 110              		.loc 1 53 0
- 111              		.cfi_startproc
- 112              		@ args = 0, pretend = 0, frame = 0
- 113              		@ frame_needed = 0, uses_anonymous_args = 0
- 114              		@ link register save eliminated.
- 115              	.LVL6:
-  54:TaskFIFO.c    ****     if (fifo->end == NULL) {
- 116              		.loc 1 54 0
- 117 0000 4368     		ldr	r3, [r0, #4]
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 4
+  72              		.loc 1 43 0
+  73 002c 0022     		movs	r2, #0
+  74 002e 4260     		str	r2, [r0, #4]
+  44:TaskFIFO.c    ****     new_task->data = data;
+  75              		.loc 1 44 0
+  76 0030 4481     		strh	r4, [r0, #10]	@ movhi
+  45:TaskFIFO.c    ****     return new_task;
+  46:TaskFIFO.c    **** }
+  77              		.loc 1 46 0
+  78 0032 70BD     		pop	{r4, r5, r6, pc}
+  79              	.LVL8:
+  80              	.L6:
+  81              		.align	2
+  82              	.L5:
+  83 0034 00000000 		.word	.LC0
+  84              		.cfi_endproc
+  85              	.LFE63:
+  86              		.size	create_new_onetimetask, .-create_new_onetimetask
+  87              		.section	.text.create_new_noparam_onetimetask,"ax",%progbits
+  88              		.align	2
+  89              		.global	create_new_noparam_onetimetask
+  90              		.thumb
+  91              		.thumb_func
+  92              		.type	create_new_noparam_onetimetask, %function
+  93              	create_new_noparam_onetimetask:
+  94              	.LFB64:
+  47:TaskFIFO.c    **** 
+  48:TaskFIFO.c    **** OneTimeTask * create_new_noparam_onetimetask( void (*func)(), uint16 delay) {
+  95              		.loc 1 48 0
+  96              		.cfi_startproc
+  97              		@ args = 0, pretend = 0, frame = 0
+  98              		@ frame_needed = 0, uses_anonymous_args = 0
+  99              	.LVL9:
+ 100 0000 38B5     		push	{r3, r4, r5, lr}
+ 101              		.cfi_def_cfa_offset 16
+ 102              		.cfi_offset 3, -16
+ 103              		.cfi_offset 4, -12
+ 104              		.cfi_offset 5, -8
+ 105              		.cfi_offset 14, -4
+ 106 0002 0446     		mov	r4, r0
+ 107 0004 0D46     		mov	r5, r1
+  49:TaskFIFO.c    ****     OneTimeTask * new_task;
+  50:TaskFIFO.c    ****     new_task = (OneTimeTask*)malloc(sizeof(OneTimeTask));
+ 108              		.loc 1 50 0
+ 109 0006 1020     		movs	r0, #16
+ 110              	.LVL10:
+ 111 0008 FFF7FEFF 		bl	malloc
+ 112              	.LVL11:
+  51:TaskFIFO.c    ****     if (new_task == NULL) {
+ 113              		.loc 1 51 0
+ 114 000c 58B9     		cbnz	r0, .L8
+  52:TaskFIFO.c    ****         LCD_ClearDisplay();
+ 115              		.loc 1 52 0
+ 116 000e 0120     		movs	r0, #1
+ 117              	.LVL12:
+ 118 0010 FFF7FEFF 		bl	LCD_WriteControl
+ 119              	.LVL13:
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 4
 
 
- 118 0002 13B9     		cbnz	r3, .L6
-  55:TaskFIFO.c    ****         fifo->end = task;
- 119              		.loc 1 55 0
- 120 0004 4160     		str	r1, [r0, #4]
-  56:TaskFIFO.c    ****         fifo->start = task;
- 121              		.loc 1 56 0
- 122 0006 0160     		str	r1, [r0]
- 123 0008 7047     		bx	lr
- 124              	.L6:
-  57:TaskFIFO.c    ****     }
-  58:TaskFIFO.c    ****     else {
-  59:TaskFIFO.c    ****         fifo->end->next = task;
- 125              		.loc 1 59 0
- 126 000a D960     		str	r1, [r3, #12]
-  60:TaskFIFO.c    ****         fifo->end = task;
- 127              		.loc 1 60 0
- 128 000c 4160     		str	r1, [r0, #4]
- 129 000e 7047     		bx	lr
- 130              		.cfi_endproc
- 131              	.LFE65:
- 132              		.size	pushTask, .-pushTask
- 133              		.section	.text.get_and_remove_first,"ax",%progbits
- 134              		.align	2
- 135              		.global	get_and_remove_first
- 136              		.thumb
- 137              		.thumb_func
- 138              		.type	get_and_remove_first, %function
- 139              	get_and_remove_first:
- 140              	.LFB66:
-  61:TaskFIFO.c    ****     }
+  53:TaskFIFO.c    ****         LCD_Position(0u, 0u);
+ 120              		.loc 1 53 0
+ 121 0014 0021     		movs	r1, #0
+ 122 0016 0846     		mov	r0, r1
+ 123 0018 FFF7FEFF 		bl	LCD_Position
+ 124              	.LVL14:
+  54:TaskFIFO.c    ****         LCD_PrintString("Malloc error");
+ 125              		.loc 1 54 0
+ 126 001c 0548     		ldr	r0, .L11
+ 127 001e FFF7FEFF 		bl	LCD_PrintString
+ 128              	.LVL15:
+  55:TaskFIFO.c    ****         return NULL;
+ 129              		.loc 1 55 0
+ 130 0022 0020     		movs	r0, #0
+ 131 0024 38BD     		pop	{r3, r4, r5, pc}
+ 132              	.LVL16:
+ 133              	.L8:
+  56:TaskFIFO.c    ****     }
+  57:TaskFIFO.c    ****     new_task->delay = delay;
+ 134              		.loc 1 57 0
+ 135 0026 0581     		strh	r5, [r0, #8]	@ movhi
+  58:TaskFIFO.c    ****     new_task->funcnoparam = func;
+ 136              		.loc 1 58 0
+ 137 0028 4460     		str	r4, [r0, #4]
+  59:TaskFIFO.c    ****     new_task->func = NULL;
+ 138              		.loc 1 59 0
+ 139 002a 0022     		movs	r2, #0
+ 140 002c 0260     		str	r2, [r0]
+  60:TaskFIFO.c    ****     new_task->data = 100;
+ 141              		.loc 1 60 0
+ 142 002e 6422     		movs	r2, #100
+ 143 0030 4281     		strh	r2, [r0, #10]	@ movhi
+  61:TaskFIFO.c    ****     return new_task;
   62:TaskFIFO.c    **** }
+ 144              		.loc 1 62 0
+ 145 0032 38BD     		pop	{r3, r4, r5, pc}
+ 146              	.LVL17:
+ 147              	.L12:
+ 148              		.align	2
+ 149              	.L11:
+ 150 0034 08000000 		.word	.LC1
+ 151              		.cfi_endproc
+ 152              	.LFE64:
+ 153              		.size	create_new_noparam_onetimetask, .-create_new_noparam_onetimetask
+ 154              		.section	.text.pushTask,"ax",%progbits
+ 155              		.align	2
+ 156              		.global	pushTask
+ 157              		.thumb
+ 158              		.thumb_func
+ 159              		.type	pushTask, %function
+ 160              	pushTask:
+ 161              	.LFB65:
   63:TaskFIFO.c    **** 
-  64:TaskFIFO.c    **** //kiveszi az elso elemet. A hivo felelossege felszabaditani a memoriat.
-  65:TaskFIFO.c    **** OneTimeTask * get_and_remove_first(TaskFIFO* fifo) {
- 141              		.loc 1 65 0
- 142              		.cfi_startproc
- 143              		@ args = 0, pretend = 0, frame = 0
- 144              		@ frame_needed = 0, uses_anonymous_args = 0
- 145              		@ link register save eliminated.
- 146              	.LVL7:
- 147 0000 0346     		mov	r3, r0
-  66:TaskFIFO.c    ****     OneTimeTask* first = fifo->start;
- 148              		.loc 1 66 0
- 149 0002 0068     		ldr	r0, [r0]
- 150              	.LVL8:
-  67:TaskFIFO.c    ****     if (fifo->start == fifo->end) {
- 151              		.loc 1 67 0
- 152 0004 5A68     		ldr	r2, [r3, #4]
- 153 0006 9042     		cmp	r0, r2
- 154 0008 03D1     		bne	.L9
-  68:TaskFIFO.c    ****         fifo->start = NULL;
- 155              		.loc 1 68 0
- 156 000a 0022     		movs	r2, #0
- 157 000c 1A60     		str	r2, [r3]
-  69:TaskFIFO.c    ****         fifo->end = NULL;
- 158              		.loc 1 69 0
- 159 000e 5A60     		str	r2, [r3, #4]
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 5
+  64:TaskFIFO.c    **** //A vegere beteszek egy taskot.
+  65:TaskFIFO.c    **** void pushTask(TaskFIFO* fifo, OneTimeTask* task) {
+ 162              		.loc 1 65 0
+ 163              		.cfi_startproc
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 5
 
 
- 160 0010 7047     		bx	lr
- 161              	.L9:
-  70:TaskFIFO.c    ****     } else {
-  71:TaskFIFO.c    ****         fifo->start = fifo->start->next;
- 162              		.loc 1 71 0
- 163 0012 C268     		ldr	r2, [r0, #12]
- 164 0014 1A60     		str	r2, [r3]
-  72:TaskFIFO.c    ****     }
-  73:TaskFIFO.c    ****     return first;
-  74:TaskFIFO.c    **** }
- 165              		.loc 1 74 0
- 166 0016 7047     		bx	lr
- 167              		.cfi_endproc
- 168              	.LFE66:
- 169              		.size	get_and_remove_first, .-get_and_remove_first
- 170              		.section	.text.free_taskfifo,"ax",%progbits
- 171              		.align	2
- 172              		.global	free_taskfifo
- 173              		.thumb
- 174              		.thumb_func
- 175              		.type	free_taskfifo, %function
- 176              	free_taskfifo:
- 177              	.LFB67:
-  75:TaskFIFO.c    **** 
-  76:TaskFIFO.c    **** //felszabaditja a teljes listat
-  77:TaskFIFO.c    **** void free_taskfifo(TaskFIFO * list) {
- 178              		.loc 1 77 0
- 179              		.cfi_startproc
- 180              		@ args = 0, pretend = 0, frame = 0
- 181              		@ frame_needed = 0, uses_anonymous_args = 0
- 182              	.LVL9:
- 183 0000 10B5     		push	{r4, lr}
- 184              		.cfi_def_cfa_offset 8
- 185              		.cfi_offset 4, -8
- 186              		.cfi_offset 14, -4
-  78:TaskFIFO.c    ****     OneTimeTask * iter = list->start;
- 187              		.loc 1 78 0
- 188 0002 0068     		ldr	r0, [r0]
- 189              	.LVL10:
-  79:TaskFIFO.c    ****     while (iter != NULL) {
- 190              		.loc 1 79 0
- 191 0004 03E0     		b	.L12
- 192              	.L13:
- 193              	.LBB2:
-  80:TaskFIFO.c    ****         OneTimeTask *nex = iter->next;
- 194              		.loc 1 80 0
- 195 0006 C468     		ldr	r4, [r0, #12]
- 196              	.LVL11:
-  81:TaskFIFO.c    ****         free(iter);
- 197              		.loc 1 81 0
- 198 0008 FFF7FEFF 		bl	free
- 199              	.LVL12:
-  82:TaskFIFO.c    ****         iter = nex;
- 200              		.loc 1 82 0
- 201 000c 2046     		mov	r0, r4
- 202              	.LVL13:
- 203              	.L12:
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 6
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 166              		@ link register save eliminated.
+ 167              	.LVL18:
+  66:TaskFIFO.c    ****     if (task == NULL)
+ 168              		.loc 1 66 0
+ 169 0000 31B1     		cbz	r1, .L13
+  67:TaskFIFO.c    ****         return;
+  68:TaskFIFO.c    ****     if (fifo->end == NULL) {
+ 170              		.loc 1 68 0
+ 171 0002 4268     		ldr	r2, [r0, #4]
+ 172 0004 12B9     		cbnz	r2, .L15
+  69:TaskFIFO.c    ****         fifo->end = task;
+ 173              		.loc 1 69 0
+ 174 0006 4160     		str	r1, [r0, #4]
+  70:TaskFIFO.c    ****         fifo->start = task;
+ 175              		.loc 1 70 0
+ 176 0008 0160     		str	r1, [r0]
+ 177 000a 7047     		bx	lr
+ 178              	.L15:
+  71:TaskFIFO.c    ****     }
+  72:TaskFIFO.c    ****     else {
+  73:TaskFIFO.c    ****         fifo->end->next = task;
+ 179              		.loc 1 73 0
+ 180 000c D160     		str	r1, [r2, #12]
+  74:TaskFIFO.c    ****         fifo->end = task;
+ 181              		.loc 1 74 0
+ 182 000e 4160     		str	r1, [r0, #4]
+ 183              	.L13:
+ 184 0010 7047     		bx	lr
+ 185              		.cfi_endproc
+ 186              	.LFE65:
+ 187              		.size	pushTask, .-pushTask
+ 188 0012 00BF     		.section	.text.get_and_remove_first,"ax",%progbits
+ 189              		.align	2
+ 190              		.global	get_and_remove_first
+ 191              		.thumb
+ 192              		.thumb_func
+ 193              		.type	get_and_remove_first, %function
+ 194              	get_and_remove_first:
+ 195              	.LFB66:
+  75:TaskFIFO.c    ****     }
+  76:TaskFIFO.c    **** }
+  77:TaskFIFO.c    **** 
+  78:TaskFIFO.c    **** //kiveszi az elso elemet. A hivo felelossege felszabaditani a memoriat.
+  79:TaskFIFO.c    **** OneTimeTask * get_and_remove_first(TaskFIFO* fifo) {
+ 196              		.loc 1 79 0
+ 197              		.cfi_startproc
+ 198              		@ args = 0, pretend = 0, frame = 0
+ 199              		@ frame_needed = 0, uses_anonymous_args = 0
+ 200              		@ link register save eliminated.
+ 201              	.LVL19:
+ 202 0000 0346     		mov	r3, r0
+  80:TaskFIFO.c    ****     OneTimeTask* first = fifo->start;
+ 203              		.loc 1 80 0
+ 204 0002 0068     		ldr	r0, [r0]
+ 205              	.LVL20:
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 6
 
 
- 204              	.LBE2:
-  79:TaskFIFO.c    ****         OneTimeTask *nex = iter->next;
- 205              		.loc 1 79 0
- 206 000e 0028     		cmp	r0, #0
- 207 0010 F9D1     		bne	.L13
-  83:TaskFIFO.c    ****     }
-  84:TaskFIFO.c    **** }
- 208              		.loc 1 84 0
- 209 0012 10BD     		pop	{r4, pc}
- 210              		.cfi_endproc
- 211              	.LFE67:
- 212              		.size	free_taskfifo, .-free_taskfifo
- 213              		.section	.text.check_if_runnable_and_decrement_counter,"ax",%progbits
- 214              		.align	2
- 215              		.global	check_if_runnable_and_decrement_counter
- 216              		.thumb
- 217              		.thumb_func
- 218              		.type	check_if_runnable_and_decrement_counter, %function
- 219              	check_if_runnable_and_decrement_counter:
- 220              	.LFB68:
-  85:TaskFIFO.c    **** 
-  86:TaskFIFO.c    **** //megnezi, hogy futtathato e mar a taszk, ha nem, akkor csokkenti a szamlalot
-  87:TaskFIFO.c    **** uint8 check_if_runnable_and_decrement_counter(TaskFIFO * fifo) {
- 221              		.loc 1 87 0
- 222              		.cfi_startproc
- 223              		@ args = 0, pretend = 0, frame = 0
- 224              		@ frame_needed = 0, uses_anonymous_args = 0
- 225              		@ link register save eliminated.
- 226              	.LVL14:
-  88:TaskFIFO.c    ****     if (fifo->start == NULL) 
- 227              		.loc 1 88 0
- 228 0000 0368     		ldr	r3, [r0]
- 229 0002 2BB1     		cbz	r3, .L17
-  89:TaskFIFO.c    ****         return 0u;
-  90:TaskFIFO.c    ****     if (fifo->start->delay == 0u)
- 230              		.loc 1 90 0
- 231 0004 1A89     		ldrh	r2, [r3, #8]
- 232 0006 2AB1     		cbz	r2, .L18
-  91:TaskFIFO.c    ****         return 1u;
-  92:TaskFIFO.c    ****     
-  93:TaskFIFO.c    ****     fifo->start->delay--;
- 233              		.loc 1 93 0
- 234 0008 013A     		subs	r2, r2, #1
- 235 000a 1A81     		strh	r2, [r3, #8]	@ movhi
-  94:TaskFIFO.c    ****     return 0u;
- 236              		.loc 1 94 0
- 237 000c 0020     		movs	r0, #0
- 238              	.LVL15:
- 239 000e 7047     		bx	lr
- 240              	.LVL16:
- 241              	.L17:
-  89:TaskFIFO.c    ****         return 0u;
- 242              		.loc 1 89 0
- 243 0010 0020     		movs	r0, #0
- 244              	.LVL17:
- 245 0012 7047     		bx	lr
- 246              	.LVL18:
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 7
+  81:TaskFIFO.c    ****     if (fifo->start == fifo->end) {
+ 206              		.loc 1 81 0
+ 207 0004 5A68     		ldr	r2, [r3, #4]
+ 208 0006 9042     		cmp	r0, r2
+ 209 0008 03D1     		bne	.L17
+  82:TaskFIFO.c    ****         fifo->start = NULL;
+ 210              		.loc 1 82 0
+ 211 000a 0022     		movs	r2, #0
+ 212 000c 1A60     		str	r2, [r3]
+  83:TaskFIFO.c    ****         fifo->end = NULL;
+ 213              		.loc 1 83 0
+ 214 000e 5A60     		str	r2, [r3, #4]
+ 215 0010 7047     		bx	lr
+ 216              	.L17:
+  84:TaskFIFO.c    ****     } else {
+  85:TaskFIFO.c    ****         fifo->start = fifo->start->next;
+ 217              		.loc 1 85 0
+ 218 0012 C268     		ldr	r2, [r0, #12]
+ 219 0014 1A60     		str	r2, [r3]
+  86:TaskFIFO.c    ****     }
+  87:TaskFIFO.c    ****     return first;
+  88:TaskFIFO.c    **** }
+ 220              		.loc 1 88 0
+ 221 0016 7047     		bx	lr
+ 222              		.cfi_endproc
+ 223              	.LFE66:
+ 224              		.size	get_and_remove_first, .-get_and_remove_first
+ 225              		.section	.text.free_taskfifo,"ax",%progbits
+ 226              		.align	2
+ 227              		.global	free_taskfifo
+ 228              		.thumb
+ 229              		.thumb_func
+ 230              		.type	free_taskfifo, %function
+ 231              	free_taskfifo:
+ 232              	.LFB67:
+  89:TaskFIFO.c    **** 
+  90:TaskFIFO.c    **** //felszabaditja a teljes listat
+  91:TaskFIFO.c    **** void free_taskfifo(TaskFIFO * list) {
+ 233              		.loc 1 91 0
+ 234              		.cfi_startproc
+ 235              		@ args = 0, pretend = 0, frame = 0
+ 236              		@ frame_needed = 0, uses_anonymous_args = 0
+ 237              	.LVL21:
+ 238 0000 10B5     		push	{r4, lr}
+ 239              		.cfi_def_cfa_offset 8
+ 240              		.cfi_offset 4, -8
+ 241              		.cfi_offset 14, -4
+  92:TaskFIFO.c    ****     OneTimeTask * iter = list->start;
+ 242              		.loc 1 92 0
+ 243 0002 0068     		ldr	r0, [r0]
+ 244              	.LVL22:
+  93:TaskFIFO.c    ****     while (iter != NULL) {
+ 245              		.loc 1 93 0
+ 246 0004 03E0     		b	.L20
+ 247              	.L21:
+ 248              	.LBB2:
+  94:TaskFIFO.c    ****         OneTimeTask *nex = iter->next;
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 7
 
 
- 247              	.L18:
-  91:TaskFIFO.c    ****         return 1u;
- 248              		.loc 1 91 0
- 249 0014 0120     		movs	r0, #1
- 250              	.LVL19:
-  95:TaskFIFO.c    **** }
- 251              		.loc 1 95 0
- 252 0016 7047     		bx	lr
- 253              		.cfi_endproc
- 254              	.LFE68:
- 255              		.size	check_if_runnable_and_decrement_counter, .-check_if_runnable_and_decrement_counter
- 256              		.text
- 257              	.Letext0:
- 258              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 259              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 260              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
- 261              		.file 5 "<built-in>"
- 262              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
- 263              		.section	.debug_info,"",%progbits
- 264              	.Ldebug_info0:
- 265 0000 6D030000 		.4byte	0x36d
- 266 0004 0400     		.2byte	0x4
- 267 0006 00000000 		.4byte	.Ldebug_abbrev0
- 268 000a 04       		.byte	0x4
- 269 000b 01       		.uleb128 0x1
- 270 000c B2000000 		.4byte	.LASF40
- 271 0010 0C       		.byte	0xc
- 272 0011 60010000 		.4byte	.LASF41
- 273 0015 05000000 		.4byte	.LASF42
- 274 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 275 001d 00000000 		.4byte	0
- 276 0021 00000000 		.4byte	.Ldebug_line0
- 277 0025 02       		.uleb128 0x2
- 278 0026 01       		.byte	0x1
- 279 0027 06       		.byte	0x6
- 280 0028 69020000 		.4byte	.LASF0
- 281 002c 02       		.uleb128 0x2
- 282 002d 01       		.byte	0x1
- 283 002e 08       		.byte	0x8
- 284 002f 82010000 		.4byte	.LASF1
- 285 0033 02       		.uleb128 0x2
- 286 0034 02       		.byte	0x2
- 287 0035 05       		.byte	0x5
- 288 0036 44020000 		.4byte	.LASF2
- 289 003a 02       		.uleb128 0x2
- 290 003b 02       		.byte	0x2
- 291 003c 07       		.byte	0x7
- 292 003d 5E000000 		.4byte	.LASF3
- 293 0041 03       		.uleb128 0x3
- 294 0042 49000000 		.4byte	.LASF9
- 295 0046 02       		.byte	0x2
- 296 0047 3F       		.byte	0x3f
- 297 0048 4C000000 		.4byte	0x4c
- 298 004c 02       		.uleb128 0x2
- 299 004d 04       		.byte	0x4
- 300 004e 05       		.byte	0x5
- 301 004f 54020000 		.4byte	.LASF4
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 8
+ 249              		.loc 1 94 0
+ 250 0006 C468     		ldr	r4, [r0, #12]
+ 251              	.LVL23:
+  95:TaskFIFO.c    ****         free(iter);
+ 252              		.loc 1 95 0
+ 253 0008 FFF7FEFF 		bl	free
+ 254              	.LVL24:
+  96:TaskFIFO.c    ****         iter = nex;
+ 255              		.loc 1 96 0
+ 256 000c 2046     		mov	r0, r4
+ 257              	.LVL25:
+ 258              	.L20:
+ 259              	.LBE2:
+  93:TaskFIFO.c    ****         OneTimeTask *nex = iter->next;
+ 260              		.loc 1 93 0
+ 261 000e 0028     		cmp	r0, #0
+ 262 0010 F9D1     		bne	.L21
+  97:TaskFIFO.c    ****     }
+  98:TaskFIFO.c    **** }
+ 263              		.loc 1 98 0
+ 264 0012 10BD     		pop	{r4, pc}
+ 265              		.cfi_endproc
+ 266              	.LFE67:
+ 267              		.size	free_taskfifo, .-free_taskfifo
+ 268              		.section	.text.check_if_runnable_and_decrement_counter,"ax",%progbits
+ 269              		.align	2
+ 270              		.global	check_if_runnable_and_decrement_counter
+ 271              		.thumb
+ 272              		.thumb_func
+ 273              		.type	check_if_runnable_and_decrement_counter, %function
+ 274              	check_if_runnable_and_decrement_counter:
+ 275              	.LFB68:
+  99:TaskFIFO.c    **** 
+ 100:TaskFIFO.c    **** //megnezi, hogy futtathato e mar a taszk, ha nem, akkor csokkenti a szamlalot
+ 101:TaskFIFO.c    **** uint8 check_if_runnable_and_decrement_counter(TaskFIFO * fifo) {
+ 276              		.loc 1 101 0
+ 277              		.cfi_startproc
+ 278              		@ args = 0, pretend = 0, frame = 0
+ 279              		@ frame_needed = 0, uses_anonymous_args = 0
+ 280              		@ link register save eliminated.
+ 281              	.LVL26:
+ 102:TaskFIFO.c    ****     if (fifo->start == NULL) 
+ 282              		.loc 1 102 0
+ 283 0000 0368     		ldr	r3, [r0]
+ 284 0002 2BB1     		cbz	r3, .L25
+ 103:TaskFIFO.c    ****         return 0u;
+ 104:TaskFIFO.c    ****     if (fifo->start->delay == 0u)
+ 285              		.loc 1 104 0
+ 286 0004 1A89     		ldrh	r2, [r3, #8]
+ 287 0006 2AB1     		cbz	r2, .L26
+ 105:TaskFIFO.c    ****         return 1u;
+ 106:TaskFIFO.c    ****     
+ 107:TaskFIFO.c    ****     fifo->start->delay--;
+ 288              		.loc 1 107 0
+ 289 0008 013A     		subs	r2, r2, #1
+ 290 000a 1A81     		strh	r2, [r3, #8]	@ movhi
+ 108:TaskFIFO.c    ****     return 0u;
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 8
 
 
- 302 0053 02       		.uleb128 0x2
- 303 0054 04       		.byte	0x4
- 304 0055 07       		.byte	0x7
- 305 0056 40010000 		.4byte	.LASF5
- 306 005a 02       		.uleb128 0x2
- 307 005b 08       		.byte	0x8
- 308 005c 05       		.byte	0x5
- 309 005d 25020000 		.4byte	.LASF6
- 310 0061 02       		.uleb128 0x2
- 311 0062 08       		.byte	0x8
- 312 0063 07       		.byte	0x7
- 313 0064 EA010000 		.4byte	.LASF7
- 314 0068 04       		.uleb128 0x4
- 315 0069 04       		.byte	0x4
- 316 006a 05       		.byte	0x5
- 317 006b 696E7400 		.ascii	"int\000"
- 318 006f 02       		.uleb128 0x2
- 319 0070 04       		.byte	0x4
- 320 0071 07       		.byte	0x7
- 321 0072 DD010000 		.4byte	.LASF8
- 322 0076 03       		.uleb128 0x3
- 323 0077 0F020000 		.4byte	.LASF10
- 324 007b 03       		.byte	0x3
- 325 007c 2C       		.byte	0x2c
- 326 007d 41000000 		.4byte	0x41
- 327 0081 05       		.uleb128 0x5
- 328 0082 4E020000 		.4byte	.LASF11
- 329 0086 04       		.byte	0x4
- 330 0087 E801     		.2byte	0x1e8
- 331 0089 2C000000 		.4byte	0x2c
- 332 008d 05       		.uleb128 0x5
- 333 008e C9010000 		.4byte	.LASF12
- 334 0092 04       		.byte	0x4
- 335 0093 E901     		.2byte	0x1e9
- 336 0095 3A000000 		.4byte	0x3a
- 337 0099 02       		.uleb128 0x2
- 338 009a 04       		.byte	0x4
- 339 009b 04       		.byte	0x4
- 340 009c 98000000 		.4byte	.LASF13
- 341 00a0 02       		.uleb128 0x2
- 342 00a1 08       		.byte	0x8
- 343 00a2 04       		.byte	0x4
- 344 00a3 83000000 		.4byte	.LASF14
- 345 00a7 02       		.uleb128 0x2
- 346 00a8 01       		.byte	0x1
- 347 00a9 08       		.byte	0x8
- 348 00aa 3F020000 		.4byte	.LASF15
- 349 00ae 02       		.uleb128 0x2
- 350 00af 08       		.byte	0x8
- 351 00b0 04       		.byte	0x4
- 352 00b1 5D020000 		.4byte	.LASF16
- 353 00b5 02       		.uleb128 0x2
- 354 00b6 04       		.byte	0x4
- 355 00b7 07       		.byte	0x7
- 356 00b8 17020000 		.4byte	.LASF17
- 357 00bc 06       		.uleb128 0x6
- 358 00bd 04       		.byte	0x4
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 9
+ 291              		.loc 1 108 0
+ 292 000c 0020     		movs	r0, #0
+ 293              	.LVL27:
+ 294 000e 7047     		bx	lr
+ 295              	.LVL28:
+ 296              	.L25:
+ 103:TaskFIFO.c    ****         return 0u;
+ 297              		.loc 1 103 0
+ 298 0010 0020     		movs	r0, #0
+ 299              	.LVL29:
+ 300 0012 7047     		bx	lr
+ 301              	.LVL30:
+ 302              	.L26:
+ 105:TaskFIFO.c    ****         return 1u;
+ 303              		.loc 1 105 0
+ 304 0014 0120     		movs	r0, #1
+ 305              	.LVL31:
+ 109:TaskFIFO.c    **** }
+ 306              		.loc 1 109 0
+ 307 0016 7047     		bx	lr
+ 308              		.cfi_endproc
+ 309              	.LFE68:
+ 310              		.size	check_if_runnable_and_decrement_counter, .-check_if_runnable_and_decrement_counter
+ 311              		.section	.text.run_next_task_when_available,"ax",%progbits
+ 312              		.align	2
+ 313              		.global	run_next_task_when_available
+ 314              		.thumb
+ 315              		.thumb_func
+ 316              		.type	run_next_task_when_available, %function
+ 317              	run_next_task_when_available:
+ 318              	.LFB69:
+ 110:TaskFIFO.c    **** 
+ 111:TaskFIFO.c    **** 
+ 112:TaskFIFO.c    **** //Ezt fogom futtatni a timer interruptban. Ha sorban az elso taszknak a delay erteke 0
+ 113:TaskFIFO.c    **** //akkor lefuttatom a fuggvenyt, es kiveszem a fifobol.
+ 114:TaskFIFO.c    **** void run_next_task_when_available(TaskFIFO * fifo_tasks) {
+ 319              		.loc 1 114 0
+ 320              		.cfi_startproc
+ 321              		@ args = 0, pretend = 0, frame = 0
+ 322              		@ frame_needed = 0, uses_anonymous_args = 0
+ 323              	.LVL32:
+ 324 0000 10B5     		push	{r4, lr}
+ 325              		.cfi_def_cfa_offset 8
+ 326              		.cfi_offset 4, -8
+ 327              		.cfi_offset 14, -4
+ 328 0002 0446     		mov	r4, r0
+ 115:TaskFIFO.c    ****     if (check_if_runnable_and_decrement_counter(fifo_tasks) == 1u) {
+ 329              		.loc 1 115 0
+ 330 0004 FFF7FEFF 		bl	check_if_runnable_and_decrement_counter
+ 331              	.LVL33:
+ 332 0008 0128     		cmp	r0, #1
+ 333 000a 11D1     		bne	.L27
+ 334              	.LBB3:
+ 116:TaskFIFO.c    ****         OneTimeTask * to_run = get_and_remove_first(fifo_tasks);
+ 335              		.loc 1 116 0
+ 336 000c 2046     		mov	r0, r4
+ 337 000e FFF7FEFF 		bl	get_and_remove_first
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 9
 
 
- 359 00be 07       		.uleb128 0x7
- 360 00bf 71000000 		.4byte	.LASF23
- 361 00c3 10       		.byte	0x10
- 362 00c4 01       		.byte	0x1
- 363 00c5 13       		.byte	0x13
- 364 00c6 07010000 		.4byte	0x107
- 365 00ca 08       		.uleb128 0x8
- 366 00cb C4010000 		.4byte	.LASF18
- 367 00cf 01       		.byte	0x1
- 368 00d0 14       		.byte	0x14
- 369 00d1 12010000 		.4byte	0x112
- 370 00d5 00       		.byte	0
- 371 00d6 08       		.uleb128 0x8
- 372 00d7 33020000 		.4byte	.LASF19
- 373 00db 01       		.byte	0x1
- 374 00dc 15       		.byte	0x15
- 375 00dd 1F010000 		.4byte	0x11f
- 376 00e1 04       		.byte	0x4
- 377 00e2 08       		.uleb128 0x8
- 378 00e3 A3000000 		.4byte	.LASF20
- 379 00e7 01       		.byte	0x1
- 380 00e8 16       		.byte	0x16
- 381 00e9 8D000000 		.4byte	0x8d
- 382 00ed 08       		.byte	0x8
- 383 00ee 08       		.uleb128 0x8
- 384 00ef 9E000000 		.4byte	.LASF21
- 385 00f3 01       		.byte	0x1
- 386 00f4 17       		.byte	0x17
- 387 00f5 8D000000 		.4byte	0x8d
- 388 00f9 0A       		.byte	0xa
- 389 00fa 08       		.uleb128 0x8
- 390 00fb 00000000 		.4byte	.LASF22
- 391 00ff 01       		.byte	0x1
- 392 0100 18       		.byte	0x18
- 393 0101 25010000 		.4byte	0x125
- 394 0105 0C       		.byte	0xc
- 395 0106 00       		.byte	0
- 396 0107 09       		.uleb128 0x9
- 397 0108 12010000 		.4byte	0x112
- 398 010c 0A       		.uleb128 0xa
- 399 010d 8D000000 		.4byte	0x8d
- 400 0111 00       		.byte	0
- 401 0112 0B       		.uleb128 0xb
- 402 0113 04       		.byte	0x4
- 403 0114 07010000 		.4byte	0x107
- 404 0118 0C       		.uleb128 0xc
- 405 0119 1F010000 		.4byte	0x11f
- 406 011d 0D       		.uleb128 0xd
- 407 011e 00       		.byte	0
- 408 011f 0B       		.uleb128 0xb
- 409 0120 04       		.byte	0x4
- 410 0121 18010000 		.4byte	0x118
- 411 0125 0B       		.uleb128 0xb
- 412 0126 04       		.byte	0x4
- 413 0127 BE000000 		.4byte	0xbe
- 414 012b 03       		.uleb128 0x3
- 415 012c 71000000 		.4byte	.LASF23
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 10
+ 338              	.LVL34:
+ 117:TaskFIFO.c    ****         if (to_run !=  NULL) {
+ 339              		.loc 1 117 0
+ 340 0012 0446     		mov	r4, r0
+ 341              	.LVL35:
+ 342 0014 60B1     		cbz	r0, .L27
+ 118:TaskFIFO.c    ****             if (to_run->func != NULL) {
+ 343              		.loc 1 118 0
+ 344 0016 0368     		ldr	r3, [r0]
+ 345 0018 23B1     		cbz	r3, .L29
+ 346              	.LBB4:
+ 119:TaskFIFO.c    ****                 to_run->func(to_run->data);
+ 347              		.loc 1 119 0
+ 348 001a 4089     		ldrh	r0, [r0, #10]
+ 349              	.LVL36:
+ 350 001c 9847     		blx	r3
+ 351              	.LVL37:
+ 120:TaskFIFO.c    ****                 free(to_run);
+ 352              		.loc 1 120 0
+ 353 001e 2046     		mov	r0, r4
+ 354 0020 FFF7FEFF 		bl	free
+ 355              	.LVL38:
+ 356              	.L29:
+ 357              	.LBE4:
+ 121:TaskFIFO.c    ****             }
+ 122:TaskFIFO.c    ****             if (to_run->funcnoparam != NULL) {
+ 358              		.loc 1 122 0
+ 359 0024 6368     		ldr	r3, [r4, #4]
+ 360 0026 1BB1     		cbz	r3, .L27
+ 361              	.LBB5:
+ 123:TaskFIFO.c    ****                 to_run->funcnoparam();
+ 362              		.loc 1 123 0
+ 363 0028 9847     		blx	r3
+ 364              	.LVL39:
+ 124:TaskFIFO.c    ****                 free(to_run);
+ 365              		.loc 1 124 0
+ 366 002a 2046     		mov	r0, r4
+ 367 002c FFF7FEFF 		bl	free
+ 368              	.LVL40:
+ 369              	.L27:
+ 370 0030 10BD     		pop	{r4, pc}
+ 371              	.LBE5:
+ 372              	.LBE3:
+ 373              		.cfi_endproc
+ 374              	.LFE69:
+ 375              		.size	run_next_task_when_available, .-run_next_task_when_available
+ 376 0032 00BF     		.section	.rodata.str1.4,"aMS",%progbits,1
+ 377              		.align	2
+ 378              	.LC0:
+ 379 0000 4D616C6C 		.ascii	"Malloc \000"
+ 379      6F632000 
+ 380              	.LC1:
+ 381 0008 4D616C6C 		.ascii	"Malloc error\000"
+ 381      6F632065 
+ 381      72726F72 
+ 381      00
+ 382              		.text
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 10
 
 
- 416 0130 01       		.byte	0x1
- 417 0131 19       		.byte	0x19
- 418 0132 BE000000 		.4byte	0xbe
- 419 0136 07       		.uleb128 0x7
- 420 0137 A9000000 		.4byte	.LASF24
- 421 013b 08       		.byte	0x8
- 422 013c 01       		.byte	0x1
- 423 013d 1B       		.byte	0x1b
- 424 013e 5B010000 		.4byte	0x15b
- 425 0142 08       		.uleb128 0x8
- 426 0143 53000000 		.4byte	.LASF25
- 427 0147 01       		.byte	0x1
- 428 0148 1C       		.byte	0x1c
- 429 0149 5B010000 		.4byte	0x15b
- 430 014d 00       		.byte	0
- 431 014e 0E       		.uleb128 0xe
- 432 014f 656E6400 		.ascii	"end\000"
- 433 0153 01       		.byte	0x1
- 434 0154 1C       		.byte	0x1c
- 435 0155 5B010000 		.4byte	0x15b
- 436 0159 04       		.byte	0x4
- 437 015a 00       		.byte	0
- 438 015b 0B       		.uleb128 0xb
- 439 015c 04       		.byte	0x4
- 440 015d 2B010000 		.4byte	0x12b
- 441 0161 03       		.uleb128 0x3
- 442 0162 A9000000 		.4byte	.LASF24
- 443 0166 01       		.byte	0x1
- 444 0167 1D       		.byte	0x1d
- 445 0168 36010000 		.4byte	0x136
- 446 016c 0F       		.uleb128 0xf
- 447 016d 6B010000 		.4byte	.LASF26
- 448 0171 01       		.byte	0x1
- 449 0172 20       		.byte	0x20
- 450 0173 5B010000 		.4byte	0x15b
- 451 0177 00000000 		.4byte	.LFB63
- 452 017b 1A000000 		.4byte	.LFE63-.LFB63
- 453 017f 01       		.uleb128 0x1
- 454 0180 9C       		.byte	0x9c
- 455 0181 E4010000 		.4byte	0x1e4
- 456 0185 10       		.uleb128 0x10
- 457 0186 C4010000 		.4byte	.LASF18
- 458 018a 01       		.byte	0x1
- 459 018b 20       		.byte	0x20
- 460 018c 12010000 		.4byte	0x112
- 461 0190 00000000 		.4byte	.LLST0
- 462 0194 10       		.uleb128 0x10
- 463 0195 A3000000 		.4byte	.LASF20
- 464 0199 01       		.byte	0x1
- 465 019a 20       		.byte	0x20
- 466 019b 8D000000 		.4byte	0x8d
- 467 019f 1E000000 		.4byte	.LLST1
- 468 01a3 10       		.uleb128 0x10
- 469 01a4 9E000000 		.4byte	.LASF21
- 470 01a8 01       		.byte	0x1
- 471 01a9 20       		.byte	0x20
- 472 01aa 8D000000 		.4byte	0x8d
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 11
+ 383              	.Letext0:
+ 384              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 385              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 386              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 387              		.file 5 "<built-in>"
+ 388              		.file 6 "Generated_Source\\PSoC5/LCD.h"
+ 389              		.file 7 "Generated_Source\\PSoC5/core_cm3.h"
+ 390              		.section	.debug_info,"",%progbits
+ 391              	.Ldebug_info0:
+ 392 0000 D6040000 		.4byte	0x4d6
+ 393 0004 0400     		.2byte	0x4
+ 394 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 395 000a 04       		.byte	0x4
+ 396 000b 01       		.uleb128 0x1
+ 397 000c E7000000 		.4byte	.LASF46
+ 398 0010 0C       		.byte	0xc
+ 399 0011 95010000 		.4byte	.LASF47
+ 400 0015 1C000000 		.4byte	.LASF48
+ 401 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 402 001d 00000000 		.4byte	0
+ 403 0021 00000000 		.4byte	.Ldebug_line0
+ 404 0025 02       		.uleb128 0x2
+ 405 0026 01       		.byte	0x1
+ 406 0027 06       		.byte	0x6
+ 407 0028 C6020000 		.4byte	.LASF0
+ 408 002c 02       		.uleb128 0x2
+ 409 002d 01       		.byte	0x1
+ 410 002e 08       		.byte	0x8
+ 411 002f B7010000 		.4byte	.LASF1
+ 412 0033 02       		.uleb128 0x2
+ 413 0034 02       		.byte	0x2
+ 414 0035 05       		.byte	0x5
+ 415 0036 A1020000 		.4byte	.LASF2
+ 416 003a 02       		.uleb128 0x2
+ 417 003b 02       		.byte	0x2
+ 418 003c 07       		.byte	0x7
+ 419 003d 75000000 		.4byte	.LASF3
+ 420 0041 03       		.uleb128 0x3
+ 421 0042 60000000 		.4byte	.LASF9
+ 422 0046 02       		.byte	0x2
+ 423 0047 3F       		.byte	0x3f
+ 424 0048 4C000000 		.4byte	0x4c
+ 425 004c 02       		.uleb128 0x2
+ 426 004d 04       		.byte	0x4
+ 427 004e 05       		.byte	0x5
+ 428 004f B1020000 		.4byte	.LASF4
+ 429 0053 02       		.uleb128 0x2
+ 430 0054 04       		.byte	0x4
+ 431 0055 07       		.byte	0x7
+ 432 0056 75010000 		.4byte	.LASF5
+ 433 005a 02       		.uleb128 0x2
+ 434 005b 08       		.byte	0x8
+ 435 005c 05       		.byte	0x5
+ 436 005d 82020000 		.4byte	.LASF6
+ 437 0061 02       		.uleb128 0x2
+ 438 0062 08       		.byte	0x8
+ 439 0063 07       		.byte	0x7
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 11
 
 
- 473 01ae 3F000000 		.4byte	.LLST2
- 474 01b2 11       		.uleb128 0x11
- 475 01b3 8F000000 		.4byte	.LASF28
- 476 01b7 01       		.byte	0x1
- 477 01b8 21       		.byte	0x21
- 478 01b9 5B010000 		.4byte	0x15b
- 479 01bd 01       		.uleb128 0x1
- 480 01be 50       		.byte	0x50
- 481 01bf 12       		.uleb128 0x12
- 482 01c0 9D020000 		.4byte	.LASF29
- 483 01c4 05       		.byte	0x5
- 484 01c5 00       		.byte	0
- 485 01c6 BC000000 		.4byte	0xbc
- 486 01ca D4010000 		.4byte	0x1d4
- 487 01ce 0A       		.uleb128 0xa
- 488 01cf 6F000000 		.4byte	0x6f
- 489 01d3 00       		.byte	0
- 490 01d4 13       		.uleb128 0x13
- 491 01d5 0E000000 		.4byte	.LVL2
- 492 01d9 5A030000 		.4byte	0x35a
- 493 01dd 14       		.uleb128 0x14
- 494 01de 01       		.uleb128 0x1
- 495 01df 50       		.byte	0x50
- 496 01e0 01       		.uleb128 0x1
- 497 01e1 40       		.byte	0x40
- 498 01e2 00       		.byte	0
- 499 01e3 00       		.byte	0
- 500 01e4 0F       		.uleb128 0xf
- 501 01e5 A5010000 		.4byte	.LASF27
- 502 01e9 01       		.byte	0x1
- 503 01ea 2A       		.byte	0x2a
- 504 01eb 5B010000 		.4byte	0x15b
- 505 01ef 00000000 		.4byte	.LFB64
- 506 01f3 1A000000 		.4byte	.LFE64-.LFB64
- 507 01f7 01       		.uleb128 0x1
- 508 01f8 9C       		.byte	0x9c
- 509 01f9 4D020000 		.4byte	0x24d
- 510 01fd 10       		.uleb128 0x10
- 511 01fe C4010000 		.4byte	.LASF18
- 512 0202 01       		.byte	0x1
- 513 0203 2A       		.byte	0x2a
- 514 0204 1F010000 		.4byte	0x11f
- 515 0208 60000000 		.4byte	.LLST3
- 516 020c 10       		.uleb128 0x10
- 517 020d A3000000 		.4byte	.LASF20
- 518 0211 01       		.byte	0x1
- 519 0212 2A       		.byte	0x2a
- 520 0213 8D000000 		.4byte	0x8d
- 521 0217 7E000000 		.4byte	.LLST4
- 522 021b 11       		.uleb128 0x11
- 523 021c 8F000000 		.4byte	.LASF28
- 524 0220 01       		.byte	0x1
- 525 0221 2B       		.byte	0x2b
- 526 0222 5B010000 		.4byte	0x15b
- 527 0226 01       		.uleb128 0x1
- 528 0227 50       		.byte	0x50
- 529 0228 12       		.uleb128 0x12
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 12
+ 440 0064 2F020000 		.4byte	.LASF7
+ 441 0068 04       		.uleb128 0x4
+ 442 0069 04       		.byte	0x4
+ 443 006a 05       		.byte	0x5
+ 444 006b 696E7400 		.ascii	"int\000"
+ 445 006f 02       		.uleb128 0x2
+ 446 0070 04       		.byte	0x4
+ 447 0071 07       		.byte	0x7
+ 448 0072 22020000 		.4byte	.LASF8
+ 449 0076 03       		.uleb128 0x3
+ 450 0077 6C020000 		.4byte	.LASF10
+ 451 007b 03       		.byte	0x3
+ 452 007c 2C       		.byte	0x2c
+ 453 007d 41000000 		.4byte	0x41
+ 454 0081 05       		.uleb128 0x5
+ 455 0082 AB020000 		.4byte	.LASF11
+ 456 0086 04       		.byte	0x4
+ 457 0087 E801     		.2byte	0x1e8
+ 458 0089 2C000000 		.4byte	0x2c
+ 459 008d 05       		.uleb128 0x5
+ 460 008e 0E020000 		.4byte	.LASF12
+ 461 0092 04       		.byte	0x4
+ 462 0093 E901     		.2byte	0x1e9
+ 463 0095 3A000000 		.4byte	0x3a
+ 464 0099 02       		.uleb128 0x2
+ 465 009a 04       		.byte	0x4
+ 466 009b 04       		.byte	0x4
+ 467 009c CD000000 		.4byte	.LASF13
+ 468 00a0 02       		.uleb128 0x2
+ 469 00a1 08       		.byte	0x8
+ 470 00a2 04       		.byte	0x4
+ 471 00a3 B8000000 		.4byte	.LASF14
+ 472 00a7 02       		.uleb128 0x2
+ 473 00a8 01       		.byte	0x1
+ 474 00a9 08       		.byte	0x8
+ 475 00aa 9C020000 		.4byte	.LASF15
+ 476 00ae 02       		.uleb128 0x2
+ 477 00af 08       		.byte	0x8
+ 478 00b0 04       		.byte	0x4
+ 479 00b1 BA020000 		.4byte	.LASF16
+ 480 00b5 02       		.uleb128 0x2
+ 481 00b6 04       		.byte	0x4
+ 482 00b7 07       		.byte	0x7
+ 483 00b8 74020000 		.4byte	.LASF17
+ 484 00bc 06       		.uleb128 0x6
+ 485 00bd 04       		.byte	0x4
+ 486 00be 07       		.uleb128 0x7
+ 487 00bf 88000000 		.4byte	.LASF23
+ 488 00c3 10       		.byte	0x10
+ 489 00c4 01       		.byte	0x1
+ 490 00c5 13       		.byte	0x13
+ 491 00c6 07010000 		.4byte	0x107
+ 492 00ca 08       		.uleb128 0x8
+ 493 00cb F9010000 		.4byte	.LASF18
+ 494 00cf 01       		.byte	0x1
+ 495 00d0 14       		.byte	0x14
+ 496 00d1 12010000 		.4byte	0x112
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 12
 
 
- 530 0229 9D020000 		.4byte	.LASF29
- 531 022d 05       		.byte	0x5
- 532 022e 00       		.byte	0
- 533 022f BC000000 		.4byte	0xbc
- 534 0233 3D020000 		.4byte	0x23d
- 535 0237 0A       		.uleb128 0xa
- 536 0238 6F000000 		.4byte	0x6f
- 537 023c 00       		.byte	0
- 538 023d 13       		.uleb128 0x13
- 539 023e 0C000000 		.4byte	.LVL5
- 540 0242 5A030000 		.4byte	0x35a
- 541 0246 14       		.uleb128 0x14
- 542 0247 01       		.uleb128 0x1
- 543 0248 50       		.byte	0x50
- 544 0249 01       		.uleb128 0x1
- 545 024a 40       		.byte	0x40
- 546 024b 00       		.byte	0
- 547 024c 00       		.byte	0
- 548 024d 15       		.uleb128 0x15
- 549 024e 52010000 		.4byte	.LASF34
- 550 0252 01       		.byte	0x1
- 551 0253 35       		.byte	0x35
- 552 0254 00000000 		.4byte	.LFB65
- 553 0258 10000000 		.4byte	.LFE65-.LFB65
- 554 025c 01       		.uleb128 0x1
- 555 025d 9C       		.byte	0x9c
- 556 025e 7D020000 		.4byte	0x27d
- 557 0262 16       		.uleb128 0x16
- 558 0263 8A000000 		.4byte	.LASF30
- 559 0267 01       		.byte	0x1
- 560 0268 35       		.byte	0x35
- 561 0269 7D020000 		.4byte	0x27d
- 562 026d 01       		.uleb128 0x1
- 563 026e 50       		.byte	0x50
- 564 026f 16       		.uleb128 0x16
- 565 0270 44000000 		.4byte	.LASF31
- 566 0274 01       		.byte	0x1
- 567 0275 35       		.byte	0x35
- 568 0276 5B010000 		.4byte	0x15b
- 569 027a 01       		.uleb128 0x1
- 570 027b 51       		.byte	0x51
- 571 027c 00       		.byte	0
- 572 027d 0B       		.uleb128 0xb
- 573 027e 04       		.byte	0x4
- 574 027f 61010000 		.4byte	0x161
- 575 0283 0F       		.uleb128 0xf
- 576 0284 90010000 		.4byte	.LASF32
- 577 0288 01       		.byte	0x1
- 578 0289 41       		.byte	0x41
- 579 028a 5B010000 		.4byte	0x15b
- 580 028e 00000000 		.4byte	.LFB66
- 581 0292 18000000 		.4byte	.LFE66-.LFB66
- 582 0296 01       		.uleb128 0x1
- 583 0297 9C       		.byte	0x9c
- 584 0298 B9020000 		.4byte	0x2b9
- 585 029c 10       		.uleb128 0x10
- 586 029d 8A000000 		.4byte	.LASF30
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 13
+ 497 00d5 00       		.byte	0
+ 498 00d6 08       		.uleb128 0x8
+ 499 00d7 90020000 		.4byte	.LASF19
+ 500 00db 01       		.byte	0x1
+ 501 00dc 15       		.byte	0x15
+ 502 00dd 1F010000 		.4byte	0x11f
+ 503 00e1 04       		.byte	0x4
+ 504 00e2 08       		.uleb128 0x8
+ 505 00e3 D8000000 		.4byte	.LASF20
+ 506 00e7 01       		.byte	0x1
+ 507 00e8 16       		.byte	0x16
+ 508 00e9 8D000000 		.4byte	0x8d
+ 509 00ed 08       		.byte	0x8
+ 510 00ee 08       		.uleb128 0x8
+ 511 00ef D3000000 		.4byte	.LASF21
+ 512 00f3 01       		.byte	0x1
+ 513 00f4 17       		.byte	0x17
+ 514 00f5 8D000000 		.4byte	0x8d
+ 515 00f9 0A       		.byte	0xa
+ 516 00fa 08       		.uleb128 0x8
+ 517 00fb 00000000 		.4byte	.LASF22
+ 518 00ff 01       		.byte	0x1
+ 519 0100 18       		.byte	0x18
+ 520 0101 25010000 		.4byte	0x125
+ 521 0105 0C       		.byte	0xc
+ 522 0106 00       		.byte	0
+ 523 0107 09       		.uleb128 0x9
+ 524 0108 12010000 		.4byte	0x112
+ 525 010c 0A       		.uleb128 0xa
+ 526 010d 8D000000 		.4byte	0x8d
+ 527 0111 00       		.byte	0
+ 528 0112 0B       		.uleb128 0xb
+ 529 0113 04       		.byte	0x4
+ 530 0114 07010000 		.4byte	0x107
+ 531 0118 0C       		.uleb128 0xc
+ 532 0119 1F010000 		.4byte	0x11f
+ 533 011d 0D       		.uleb128 0xd
+ 534 011e 00       		.byte	0
+ 535 011f 0B       		.uleb128 0xb
+ 536 0120 04       		.byte	0x4
+ 537 0121 18010000 		.4byte	0x118
+ 538 0125 0B       		.uleb128 0xb
+ 539 0126 04       		.byte	0x4
+ 540 0127 BE000000 		.4byte	0xbe
+ 541 012b 03       		.uleb128 0x3
+ 542 012c 88000000 		.4byte	.LASF23
+ 543 0130 01       		.byte	0x1
+ 544 0131 19       		.byte	0x19
+ 545 0132 BE000000 		.4byte	0xbe
+ 546 0136 07       		.uleb128 0x7
+ 547 0137 DE000000 		.4byte	.LASF24
+ 548 013b 08       		.byte	0x8
+ 549 013c 01       		.byte	0x1
+ 550 013d 1B       		.byte	0x1b
+ 551 013e 5B010000 		.4byte	0x15b
+ 552 0142 08       		.uleb128 0x8
+ 553 0143 6A000000 		.4byte	.LASF25
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 13
 
 
- 587 02a1 01       		.byte	0x1
- 588 02a2 41       		.byte	0x41
- 589 02a3 7D020000 		.4byte	0x27d
- 590 02a7 9F000000 		.4byte	.LLST5
- 591 02ab 11       		.uleb128 0x11
- 592 02ac 7D000000 		.4byte	.LASF33
- 593 02b0 01       		.byte	0x1
- 594 02b1 42       		.byte	0x42
- 595 02b2 5B010000 		.4byte	0x15b
- 596 02b6 01       		.uleb128 0x1
- 597 02b7 50       		.byte	0x50
- 598 02b8 00       		.byte	0
- 599 02b9 15       		.uleb128 0x15
- 600 02ba 01020000 		.4byte	.LASF35
- 601 02be 01       		.byte	0x1
- 602 02bf 4D       		.byte	0x4d
- 603 02c0 00000000 		.4byte	.LFB67
- 604 02c4 14000000 		.4byte	.LFE67-.LFB67
- 605 02c8 01       		.uleb128 0x1
- 606 02c9 9C       		.byte	0x9c
- 607 02ca 20030000 		.4byte	0x320
- 608 02ce 10       		.uleb128 0x10
- 609 02cf 5B010000 		.4byte	.LASF36
- 610 02d3 01       		.byte	0x1
- 611 02d4 4D       		.byte	0x4d
- 612 02d5 7D020000 		.4byte	0x27d
- 613 02d9 BD000000 		.4byte	.LLST6
- 614 02dd 17       		.uleb128 0x17
- 615 02de 59000000 		.4byte	.LASF37
- 616 02e2 01       		.byte	0x1
- 617 02e3 4E       		.byte	0x4e
- 618 02e4 5B010000 		.4byte	0x15b
- 619 02e8 DE000000 		.4byte	.LLST7
- 620 02ec 18       		.uleb128 0x18
- 621 02ed 06000000 		.4byte	.LBB2
- 622 02f1 08000000 		.4byte	.LBE2-.LBB2
- 623 02f5 19       		.uleb128 0x19
- 624 02f6 6E657800 		.ascii	"nex\000"
- 625 02fa 01       		.byte	0x1
- 626 02fb 50       		.byte	0x50
- 627 02fc 5B010000 		.4byte	0x15b
- 628 0300 07010000 		.4byte	.LLST8
- 629 0304 1A       		.uleb128 0x1a
- 630 0305 20020000 		.4byte	.LASF39
- 631 0309 05       		.byte	0x5
- 632 030a 00       		.byte	0
- 633 030b 15030000 		.4byte	0x315
- 634 030f 0A       		.uleb128 0xa
- 635 0310 BC000000 		.4byte	0xbc
- 636 0314 00       		.byte	0
- 637 0315 1B       		.uleb128 0x1b
- 638 0316 0C000000 		.4byte	.LVL12
- 639 031a 65030000 		.4byte	0x365
- 640 031e 00       		.byte	0
- 641 031f 00       		.byte	0
- 642 0320 0F       		.uleb128 0xf
- 643 0321 75020000 		.4byte	.LASF38
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 14
+ 554 0147 01       		.byte	0x1
+ 555 0148 1C       		.byte	0x1c
+ 556 0149 5B010000 		.4byte	0x15b
+ 557 014d 00       		.byte	0
+ 558 014e 0E       		.uleb128 0xe
+ 559 014f 656E6400 		.ascii	"end\000"
+ 560 0153 01       		.byte	0x1
+ 561 0154 1C       		.byte	0x1c
+ 562 0155 5B010000 		.4byte	0x15b
+ 563 0159 04       		.byte	0x4
+ 564 015a 00       		.byte	0
+ 565 015b 0B       		.uleb128 0xb
+ 566 015c 04       		.byte	0x4
+ 567 015d 2B010000 		.4byte	0x12b
+ 568 0161 03       		.uleb128 0x3
+ 569 0162 DE000000 		.4byte	.LASF24
+ 570 0166 01       		.byte	0x1
+ 571 0167 1D       		.byte	0x1d
+ 572 0168 36010000 		.4byte	0x136
+ 573 016c 0F       		.uleb128 0xf
+ 574 016d A0010000 		.4byte	.LASF26
+ 575 0171 01       		.byte	0x1
+ 576 0172 20       		.byte	0x20
+ 577 0173 5B010000 		.4byte	0x15b
+ 578 0177 00000000 		.4byte	.LFB63
+ 579 017b 38000000 		.4byte	.LFE63-.LFB63
+ 580 017f 01       		.uleb128 0x1
+ 581 0180 9C       		.byte	0x9c
+ 582 0181 28020000 		.4byte	0x228
+ 583 0185 10       		.uleb128 0x10
+ 584 0186 F9010000 		.4byte	.LASF18
+ 585 018a 01       		.byte	0x1
+ 586 018b 20       		.byte	0x20
+ 587 018c 12010000 		.4byte	0x112
+ 588 0190 00000000 		.4byte	.LLST0
+ 589 0194 10       		.uleb128 0x10
+ 590 0195 D8000000 		.4byte	.LASF20
+ 591 0199 01       		.byte	0x1
+ 592 019a 20       		.byte	0x20
+ 593 019b 8D000000 		.4byte	0x8d
+ 594 019f 2A000000 		.4byte	.LLST1
+ 595 01a3 10       		.uleb128 0x10
+ 596 01a4 D3000000 		.4byte	.LASF21
+ 597 01a8 01       		.byte	0x1
+ 598 01a9 20       		.byte	0x20
+ 599 01aa 8D000000 		.4byte	0x8d
+ 600 01ae 4B000000 		.4byte	.LLST2
+ 601 01b2 11       		.uleb128 0x11
+ 602 01b3 C4000000 		.4byte	.LASF28
+ 603 01b7 01       		.byte	0x1
+ 604 01b8 21       		.byte	0x21
+ 605 01b9 5B010000 		.4byte	0x15b
+ 606 01bd 6C000000 		.4byte	.LLST3
+ 607 01c1 12       		.uleb128 0x12
+ 608 01c2 FA020000 		.4byte	.LASF29
+ 609 01c6 05       		.byte	0x5
+ 610 01c7 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 14
 
 
- 644 0325 01       		.byte	0x1
- 645 0326 57       		.byte	0x57
- 646 0327 81000000 		.4byte	0x81
- 647 032b 00000000 		.4byte	.LFB68
- 648 032f 18000000 		.4byte	.LFE68-.LFB68
- 649 0333 01       		.uleb128 0x1
- 650 0334 9C       		.byte	0x9c
- 651 0335 49030000 		.4byte	0x349
- 652 0339 10       		.uleb128 0x10
- 653 033a 8A000000 		.4byte	.LASF30
- 654 033e 01       		.byte	0x1
- 655 033f 57       		.byte	0x57
- 656 0340 7D020000 		.4byte	0x27d
- 657 0344 1A010000 		.4byte	.LLST9
- 658 0348 00       		.byte	0
- 659 0349 1C       		.uleb128 0x1c
- 660 034a D0010000 		.4byte	.LASF43
- 661 034e 06       		.byte	0x6
- 662 034f 1207     		.2byte	0x712
- 663 0351 55030000 		.4byte	0x355
- 664 0355 1D       		.uleb128 0x1d
- 665 0356 76000000 		.4byte	0x76
- 666 035a 1E       		.uleb128 0x1e
- 667 035b 9D020000 		.4byte	.LASF29
- 668 035f 9D020000 		.4byte	.LASF29
- 669 0363 05       		.byte	0x5
- 670 0364 00       		.byte	0
- 671 0365 1E       		.uleb128 0x1e
- 672 0366 20020000 		.4byte	.LASF39
- 673 036a 20020000 		.4byte	.LASF39
- 674 036e 05       		.byte	0x5
- 675 036f 00       		.byte	0
- 676 0370 00       		.byte	0
- 677              		.section	.debug_abbrev,"",%progbits
- 678              	.Ldebug_abbrev0:
- 679 0000 01       		.uleb128 0x1
- 680 0001 11       		.uleb128 0x11
- 681 0002 01       		.byte	0x1
- 682 0003 25       		.uleb128 0x25
- 683 0004 0E       		.uleb128 0xe
- 684 0005 13       		.uleb128 0x13
- 685 0006 0B       		.uleb128 0xb
- 686 0007 03       		.uleb128 0x3
- 687 0008 0E       		.uleb128 0xe
- 688 0009 1B       		.uleb128 0x1b
- 689 000a 0E       		.uleb128 0xe
- 690 000b 55       		.uleb128 0x55
- 691 000c 17       		.uleb128 0x17
- 692 000d 11       		.uleb128 0x11
- 693 000e 01       		.uleb128 0x1
- 694 000f 10       		.uleb128 0x10
- 695 0010 17       		.uleb128 0x17
- 696 0011 00       		.byte	0
- 697 0012 00       		.byte	0
- 698 0013 02       		.uleb128 0x2
- 699 0014 24       		.uleb128 0x24
- 700 0015 00       		.byte	0
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 15
+ 611 01c8 BC000000 		.4byte	0xbc
+ 612 01cc D6010000 		.4byte	0x1d6
+ 613 01d0 0A       		.uleb128 0xa
+ 614 01d1 6F000000 		.4byte	0x6f
+ 615 01d5 00       		.byte	0
+ 616 01d6 13       		.uleb128 0x13
+ 617 01d7 0E000000 		.4byte	.LVL2
+ 618 01db A2040000 		.4byte	0x4a2
+ 619 01df E9010000 		.4byte	0x1e9
+ 620 01e3 14       		.uleb128 0x14
+ 621 01e4 01       		.uleb128 0x1
+ 622 01e5 50       		.byte	0x50
+ 623 01e6 01       		.uleb128 0x1
+ 624 01e7 40       		.byte	0x40
+ 625 01e8 00       		.byte	0
+ 626 01e9 13       		.uleb128 0x13
+ 627 01ea 16000000 		.4byte	.LVL4
+ 628 01ee AD040000 		.4byte	0x4ad
+ 629 01f2 FC010000 		.4byte	0x1fc
+ 630 01f6 14       		.uleb128 0x14
+ 631 01f7 01       		.uleb128 0x1
+ 632 01f8 50       		.byte	0x50
+ 633 01f9 01       		.uleb128 0x1
+ 634 01fa 31       		.byte	0x31
+ 635 01fb 00       		.byte	0
+ 636 01fc 13       		.uleb128 0x13
+ 637 01fd 1E000000 		.4byte	.LVL5
+ 638 0201 B8040000 		.4byte	0x4b8
+ 639 0205 14020000 		.4byte	0x214
+ 640 0209 14       		.uleb128 0x14
+ 641 020a 01       		.uleb128 0x1
+ 642 020b 50       		.byte	0x50
+ 643 020c 01       		.uleb128 0x1
+ 644 020d 30       		.byte	0x30
+ 645 020e 14       		.uleb128 0x14
+ 646 020f 01       		.uleb128 0x1
+ 647 0210 51       		.byte	0x51
+ 648 0211 01       		.uleb128 0x1
+ 649 0212 30       		.byte	0x30
+ 650 0213 00       		.byte	0
+ 651 0214 15       		.uleb128 0x15
+ 652 0215 24000000 		.4byte	.LVL6
+ 653 0219 C3040000 		.4byte	0x4c3
+ 654 021d 14       		.uleb128 0x14
+ 655 021e 01       		.uleb128 0x1
+ 656 021f 50       		.byte	0x50
+ 657 0220 05       		.uleb128 0x5
+ 658 0221 03       		.byte	0x3
+ 659 0222 00000000 		.4byte	.LC0
+ 660 0226 00       		.byte	0
+ 661 0227 00       		.byte	0
+ 662 0228 0F       		.uleb128 0xf
+ 663 0229 DA010000 		.4byte	.LASF27
+ 664 022d 01       		.byte	0x1
+ 665 022e 30       		.byte	0x30
+ 666 022f 5B010000 		.4byte	0x15b
+ 667 0233 00000000 		.4byte	.LFB64
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 15
 
 
- 701 0016 0B       		.uleb128 0xb
- 702 0017 0B       		.uleb128 0xb
- 703 0018 3E       		.uleb128 0x3e
- 704 0019 0B       		.uleb128 0xb
- 705 001a 03       		.uleb128 0x3
- 706 001b 0E       		.uleb128 0xe
- 707 001c 00       		.byte	0
- 708 001d 00       		.byte	0
- 709 001e 03       		.uleb128 0x3
- 710 001f 16       		.uleb128 0x16
- 711 0020 00       		.byte	0
- 712 0021 03       		.uleb128 0x3
- 713 0022 0E       		.uleb128 0xe
- 714 0023 3A       		.uleb128 0x3a
- 715 0024 0B       		.uleb128 0xb
- 716 0025 3B       		.uleb128 0x3b
- 717 0026 0B       		.uleb128 0xb
- 718 0027 49       		.uleb128 0x49
- 719 0028 13       		.uleb128 0x13
- 720 0029 00       		.byte	0
- 721 002a 00       		.byte	0
- 722 002b 04       		.uleb128 0x4
- 723 002c 24       		.uleb128 0x24
- 724 002d 00       		.byte	0
- 725 002e 0B       		.uleb128 0xb
- 726 002f 0B       		.uleb128 0xb
- 727 0030 3E       		.uleb128 0x3e
- 728 0031 0B       		.uleb128 0xb
- 729 0032 03       		.uleb128 0x3
- 730 0033 08       		.uleb128 0x8
- 731 0034 00       		.byte	0
- 732 0035 00       		.byte	0
- 733 0036 05       		.uleb128 0x5
- 734 0037 16       		.uleb128 0x16
- 735 0038 00       		.byte	0
- 736 0039 03       		.uleb128 0x3
- 737 003a 0E       		.uleb128 0xe
- 738 003b 3A       		.uleb128 0x3a
- 739 003c 0B       		.uleb128 0xb
- 740 003d 3B       		.uleb128 0x3b
- 741 003e 05       		.uleb128 0x5
- 742 003f 49       		.uleb128 0x49
- 743 0040 13       		.uleb128 0x13
- 744 0041 00       		.byte	0
- 745 0042 00       		.byte	0
- 746 0043 06       		.uleb128 0x6
- 747 0044 0F       		.uleb128 0xf
- 748 0045 00       		.byte	0
- 749 0046 0B       		.uleb128 0xb
- 750 0047 0B       		.uleb128 0xb
- 751 0048 00       		.byte	0
- 752 0049 00       		.byte	0
- 753 004a 07       		.uleb128 0x7
- 754 004b 13       		.uleb128 0x13
- 755 004c 01       		.byte	0x1
- 756 004d 03       		.uleb128 0x3
- 757 004e 0E       		.uleb128 0xe
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 16
+ 668 0237 38000000 		.4byte	.LFE64-.LFB64
+ 669 023b 01       		.uleb128 0x1
+ 670 023c 9C       		.byte	0x9c
+ 671 023d D5020000 		.4byte	0x2d5
+ 672 0241 10       		.uleb128 0x10
+ 673 0242 F9010000 		.4byte	.LASF18
+ 674 0246 01       		.byte	0x1
+ 675 0247 30       		.byte	0x30
+ 676 0248 1F010000 		.4byte	0x11f
+ 677 024c 8A000000 		.4byte	.LLST4
+ 678 0250 10       		.uleb128 0x10
+ 679 0251 D8000000 		.4byte	.LASF20
+ 680 0255 01       		.byte	0x1
+ 681 0256 30       		.byte	0x30
+ 682 0257 8D000000 		.4byte	0x8d
+ 683 025b B4000000 		.4byte	.LLST5
+ 684 025f 11       		.uleb128 0x11
+ 685 0260 C4000000 		.4byte	.LASF28
+ 686 0264 01       		.byte	0x1
+ 687 0265 31       		.byte	0x31
+ 688 0266 5B010000 		.4byte	0x15b
+ 689 026a D5000000 		.4byte	.LLST6
+ 690 026e 12       		.uleb128 0x12
+ 691 026f FA020000 		.4byte	.LASF29
+ 692 0273 05       		.byte	0x5
+ 693 0274 00       		.byte	0
+ 694 0275 BC000000 		.4byte	0xbc
+ 695 0279 83020000 		.4byte	0x283
+ 696 027d 0A       		.uleb128 0xa
+ 697 027e 6F000000 		.4byte	0x6f
+ 698 0282 00       		.byte	0
+ 699 0283 13       		.uleb128 0x13
+ 700 0284 0C000000 		.4byte	.LVL11
+ 701 0288 A2040000 		.4byte	0x4a2
+ 702 028c 96020000 		.4byte	0x296
+ 703 0290 14       		.uleb128 0x14
+ 704 0291 01       		.uleb128 0x1
+ 705 0292 50       		.byte	0x50
+ 706 0293 01       		.uleb128 0x1
+ 707 0294 40       		.byte	0x40
+ 708 0295 00       		.byte	0
+ 709 0296 13       		.uleb128 0x13
+ 710 0297 14000000 		.4byte	.LVL13
+ 711 029b AD040000 		.4byte	0x4ad
+ 712 029f A9020000 		.4byte	0x2a9
+ 713 02a3 14       		.uleb128 0x14
+ 714 02a4 01       		.uleb128 0x1
+ 715 02a5 50       		.byte	0x50
+ 716 02a6 01       		.uleb128 0x1
+ 717 02a7 31       		.byte	0x31
+ 718 02a8 00       		.byte	0
+ 719 02a9 13       		.uleb128 0x13
+ 720 02aa 1C000000 		.4byte	.LVL14
+ 721 02ae B8040000 		.4byte	0x4b8
+ 722 02b2 C1020000 		.4byte	0x2c1
+ 723 02b6 14       		.uleb128 0x14
+ 724 02b7 01       		.uleb128 0x1
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 16
 
 
- 758 004f 0B       		.uleb128 0xb
- 759 0050 0B       		.uleb128 0xb
- 760 0051 3A       		.uleb128 0x3a
- 761 0052 0B       		.uleb128 0xb
- 762 0053 3B       		.uleb128 0x3b
- 763 0054 0B       		.uleb128 0xb
- 764 0055 01       		.uleb128 0x1
- 765 0056 13       		.uleb128 0x13
- 766 0057 00       		.byte	0
- 767 0058 00       		.byte	0
- 768 0059 08       		.uleb128 0x8
- 769 005a 0D       		.uleb128 0xd
- 770 005b 00       		.byte	0
- 771 005c 03       		.uleb128 0x3
- 772 005d 0E       		.uleb128 0xe
- 773 005e 3A       		.uleb128 0x3a
- 774 005f 0B       		.uleb128 0xb
- 775 0060 3B       		.uleb128 0x3b
- 776 0061 0B       		.uleb128 0xb
- 777 0062 49       		.uleb128 0x49
- 778 0063 13       		.uleb128 0x13
- 779 0064 38       		.uleb128 0x38
- 780 0065 0B       		.uleb128 0xb
- 781 0066 00       		.byte	0
- 782 0067 00       		.byte	0
- 783 0068 09       		.uleb128 0x9
- 784 0069 15       		.uleb128 0x15
- 785 006a 01       		.byte	0x1
- 786 006b 27       		.uleb128 0x27
- 787 006c 19       		.uleb128 0x19
- 788 006d 01       		.uleb128 0x1
- 789 006e 13       		.uleb128 0x13
- 790 006f 00       		.byte	0
- 791 0070 00       		.byte	0
- 792 0071 0A       		.uleb128 0xa
- 793 0072 05       		.uleb128 0x5
- 794 0073 00       		.byte	0
- 795 0074 49       		.uleb128 0x49
- 796 0075 13       		.uleb128 0x13
- 797 0076 00       		.byte	0
- 798 0077 00       		.byte	0
- 799 0078 0B       		.uleb128 0xb
- 800 0079 0F       		.uleb128 0xf
- 801 007a 00       		.byte	0
- 802 007b 0B       		.uleb128 0xb
- 803 007c 0B       		.uleb128 0xb
- 804 007d 49       		.uleb128 0x49
- 805 007e 13       		.uleb128 0x13
- 806 007f 00       		.byte	0
- 807 0080 00       		.byte	0
- 808 0081 0C       		.uleb128 0xc
- 809 0082 15       		.uleb128 0x15
- 810 0083 01       		.byte	0x1
- 811 0084 01       		.uleb128 0x1
- 812 0085 13       		.uleb128 0x13
- 813 0086 00       		.byte	0
- 814 0087 00       		.byte	0
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 17
+ 725 02b8 50       		.byte	0x50
+ 726 02b9 01       		.uleb128 0x1
+ 727 02ba 30       		.byte	0x30
+ 728 02bb 14       		.uleb128 0x14
+ 729 02bc 01       		.uleb128 0x1
+ 730 02bd 51       		.byte	0x51
+ 731 02be 01       		.uleb128 0x1
+ 732 02bf 30       		.byte	0x30
+ 733 02c0 00       		.byte	0
+ 734 02c1 15       		.uleb128 0x15
+ 735 02c2 22000000 		.4byte	.LVL15
+ 736 02c6 C3040000 		.4byte	0x4c3
+ 737 02ca 14       		.uleb128 0x14
+ 738 02cb 01       		.uleb128 0x1
+ 739 02cc 50       		.byte	0x50
+ 740 02cd 05       		.uleb128 0x5
+ 741 02ce 03       		.byte	0x3
+ 742 02cf 08000000 		.4byte	.LC1
+ 743 02d3 00       		.byte	0
+ 744 02d4 00       		.byte	0
+ 745 02d5 16       		.uleb128 0x16
+ 746 02d6 87010000 		.4byte	.LASF34
+ 747 02da 01       		.byte	0x1
+ 748 02db 41       		.byte	0x41
+ 749 02dc 00000000 		.4byte	.LFB65
+ 750 02e0 12000000 		.4byte	.LFE65-.LFB65
+ 751 02e4 01       		.uleb128 0x1
+ 752 02e5 9C       		.byte	0x9c
+ 753 02e6 05030000 		.4byte	0x305
+ 754 02ea 17       		.uleb128 0x17
+ 755 02eb BF000000 		.4byte	.LASF30
+ 756 02ef 01       		.byte	0x1
+ 757 02f0 41       		.byte	0x41
+ 758 02f1 05030000 		.4byte	0x305
+ 759 02f5 01       		.uleb128 0x1
+ 760 02f6 50       		.byte	0x50
+ 761 02f7 17       		.uleb128 0x17
+ 762 02f8 5B000000 		.4byte	.LASF31
+ 763 02fc 01       		.byte	0x1
+ 764 02fd 41       		.byte	0x41
+ 765 02fe 5B010000 		.4byte	0x15b
+ 766 0302 01       		.uleb128 0x1
+ 767 0303 51       		.byte	0x51
+ 768 0304 00       		.byte	0
+ 769 0305 0B       		.uleb128 0xb
+ 770 0306 04       		.byte	0x4
+ 771 0307 61010000 		.4byte	0x161
+ 772 030b 0F       		.uleb128 0xf
+ 773 030c C5010000 		.4byte	.LASF32
+ 774 0310 01       		.byte	0x1
+ 775 0311 4F       		.byte	0x4f
+ 776 0312 5B010000 		.4byte	0x15b
+ 777 0316 00000000 		.4byte	.LFB66
+ 778 031a 18000000 		.4byte	.LFE66-.LFB66
+ 779 031e 01       		.uleb128 0x1
+ 780 031f 9C       		.byte	0x9c
+ 781 0320 41030000 		.4byte	0x341
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 17
 
 
- 815 0088 0D       		.uleb128 0xd
- 816 0089 18       		.uleb128 0x18
- 817 008a 00       		.byte	0
- 818 008b 00       		.byte	0
- 819 008c 00       		.byte	0
- 820 008d 0E       		.uleb128 0xe
- 821 008e 0D       		.uleb128 0xd
- 822 008f 00       		.byte	0
- 823 0090 03       		.uleb128 0x3
- 824 0091 08       		.uleb128 0x8
- 825 0092 3A       		.uleb128 0x3a
- 826 0093 0B       		.uleb128 0xb
- 827 0094 3B       		.uleb128 0x3b
- 828 0095 0B       		.uleb128 0xb
- 829 0096 49       		.uleb128 0x49
- 830 0097 13       		.uleb128 0x13
- 831 0098 38       		.uleb128 0x38
- 832 0099 0B       		.uleb128 0xb
- 833 009a 00       		.byte	0
- 834 009b 00       		.byte	0
- 835 009c 0F       		.uleb128 0xf
- 836 009d 2E       		.uleb128 0x2e
- 837 009e 01       		.byte	0x1
- 838 009f 3F       		.uleb128 0x3f
- 839 00a0 19       		.uleb128 0x19
- 840 00a1 03       		.uleb128 0x3
- 841 00a2 0E       		.uleb128 0xe
- 842 00a3 3A       		.uleb128 0x3a
- 843 00a4 0B       		.uleb128 0xb
- 844 00a5 3B       		.uleb128 0x3b
- 845 00a6 0B       		.uleb128 0xb
- 846 00a7 27       		.uleb128 0x27
- 847 00a8 19       		.uleb128 0x19
- 848 00a9 49       		.uleb128 0x49
- 849 00aa 13       		.uleb128 0x13
- 850 00ab 11       		.uleb128 0x11
- 851 00ac 01       		.uleb128 0x1
- 852 00ad 12       		.uleb128 0x12
- 853 00ae 06       		.uleb128 0x6
- 854 00af 40       		.uleb128 0x40
- 855 00b0 18       		.uleb128 0x18
- 856 00b1 9742     		.uleb128 0x2117
- 857 00b3 19       		.uleb128 0x19
- 858 00b4 01       		.uleb128 0x1
- 859 00b5 13       		.uleb128 0x13
- 860 00b6 00       		.byte	0
- 861 00b7 00       		.byte	0
- 862 00b8 10       		.uleb128 0x10
- 863 00b9 05       		.uleb128 0x5
- 864 00ba 00       		.byte	0
- 865 00bb 03       		.uleb128 0x3
- 866 00bc 0E       		.uleb128 0xe
- 867 00bd 3A       		.uleb128 0x3a
- 868 00be 0B       		.uleb128 0xb
- 869 00bf 3B       		.uleb128 0x3b
- 870 00c0 0B       		.uleb128 0xb
- 871 00c1 49       		.uleb128 0x49
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 18
+ 782 0324 10       		.uleb128 0x10
+ 783 0325 BF000000 		.4byte	.LASF30
+ 784 0329 01       		.byte	0x1
+ 785 032a 4F       		.byte	0x4f
+ 786 032b 05030000 		.4byte	0x305
+ 787 032f F3000000 		.4byte	.LLST7
+ 788 0333 18       		.uleb128 0x18
+ 789 0334 05000000 		.4byte	.LASF33
+ 790 0338 01       		.byte	0x1
+ 791 0339 50       		.byte	0x50
+ 792 033a 5B010000 		.4byte	0x15b
+ 793 033e 01       		.uleb128 0x1
+ 794 033f 50       		.byte	0x50
+ 795 0340 00       		.byte	0
+ 796 0341 16       		.uleb128 0x16
+ 797 0342 5E020000 		.4byte	.LASF35
+ 798 0346 01       		.byte	0x1
+ 799 0347 5B       		.byte	0x5b
+ 800 0348 00000000 		.4byte	.LFB67
+ 801 034c 14000000 		.4byte	.LFE67-.LFB67
+ 802 0350 01       		.uleb128 0x1
+ 803 0351 9C       		.byte	0x9c
+ 804 0352 A8030000 		.4byte	0x3a8
+ 805 0356 10       		.uleb128 0x10
+ 806 0357 90010000 		.4byte	.LASF36
+ 807 035b 01       		.byte	0x1
+ 808 035c 5B       		.byte	0x5b
+ 809 035d 05030000 		.4byte	0x305
+ 810 0361 11010000 		.4byte	.LLST8
+ 811 0365 11       		.uleb128 0x11
+ 812 0366 70000000 		.4byte	.LASF37
+ 813 036a 01       		.byte	0x1
+ 814 036b 5C       		.byte	0x5c
+ 815 036c 5B010000 		.4byte	0x15b
+ 816 0370 32010000 		.4byte	.LLST9
+ 817 0374 19       		.uleb128 0x19
+ 818 0375 06000000 		.4byte	.LBB2
+ 819 0379 08000000 		.4byte	.LBE2-.LBB2
+ 820 037d 1A       		.uleb128 0x1a
+ 821 037e 6E657800 		.ascii	"nex\000"
+ 822 0382 01       		.byte	0x1
+ 823 0383 5E       		.byte	0x5e
+ 824 0384 5B010000 		.4byte	0x15b
+ 825 0388 5B010000 		.4byte	.LLST10
+ 826 038c 1B       		.uleb128 0x1b
+ 827 038d 7D020000 		.4byte	.LASF42
+ 828 0391 05       		.byte	0x5
+ 829 0392 00       		.byte	0
+ 830 0393 9D030000 		.4byte	0x39d
+ 831 0397 0A       		.uleb128 0xa
+ 832 0398 BC000000 		.4byte	0xbc
+ 833 039c 00       		.byte	0
+ 834 039d 1C       		.uleb128 0x1c
+ 835 039e 0C000000 		.4byte	.LVL24
+ 836 03a2 CE040000 		.4byte	0x4ce
+ 837 03a6 00       		.byte	0
+ 838 03a7 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 18
 
 
- 872 00c2 13       		.uleb128 0x13
- 873 00c3 02       		.uleb128 0x2
- 874 00c4 17       		.uleb128 0x17
- 875 00c5 00       		.byte	0
- 876 00c6 00       		.byte	0
- 877 00c7 11       		.uleb128 0x11
- 878 00c8 34       		.uleb128 0x34
- 879 00c9 00       		.byte	0
- 880 00ca 03       		.uleb128 0x3
- 881 00cb 0E       		.uleb128 0xe
- 882 00cc 3A       		.uleb128 0x3a
- 883 00cd 0B       		.uleb128 0xb
- 884 00ce 3B       		.uleb128 0x3b
- 885 00cf 0B       		.uleb128 0xb
- 886 00d0 49       		.uleb128 0x49
- 887 00d1 13       		.uleb128 0x13
- 888 00d2 02       		.uleb128 0x2
- 889 00d3 18       		.uleb128 0x18
- 890 00d4 00       		.byte	0
- 891 00d5 00       		.byte	0
- 892 00d6 12       		.uleb128 0x12
- 893 00d7 2E       		.uleb128 0x2e
- 894 00d8 01       		.byte	0x1
- 895 00d9 3F       		.uleb128 0x3f
- 896 00da 19       		.uleb128 0x19
- 897 00db 03       		.uleb128 0x3
- 898 00dc 0E       		.uleb128 0xe
- 899 00dd 3A       		.uleb128 0x3a
- 900 00de 0B       		.uleb128 0xb
- 901 00df 3B       		.uleb128 0x3b
- 902 00e0 0B       		.uleb128 0xb
- 903 00e1 27       		.uleb128 0x27
- 904 00e2 19       		.uleb128 0x19
- 905 00e3 49       		.uleb128 0x49
- 906 00e4 13       		.uleb128 0x13
- 907 00e5 3C       		.uleb128 0x3c
- 908 00e6 19       		.uleb128 0x19
- 909 00e7 01       		.uleb128 0x1
- 910 00e8 13       		.uleb128 0x13
- 911 00e9 00       		.byte	0
- 912 00ea 00       		.byte	0
- 913 00eb 13       		.uleb128 0x13
- 914 00ec 898201   		.uleb128 0x4109
- 915 00ef 01       		.byte	0x1
- 916 00f0 11       		.uleb128 0x11
- 917 00f1 01       		.uleb128 0x1
- 918 00f2 31       		.uleb128 0x31
- 919 00f3 13       		.uleb128 0x13
- 920 00f4 00       		.byte	0
- 921 00f5 00       		.byte	0
- 922 00f6 14       		.uleb128 0x14
- 923 00f7 8A8201   		.uleb128 0x410a
- 924 00fa 00       		.byte	0
- 925 00fb 02       		.uleb128 0x2
- 926 00fc 18       		.uleb128 0x18
- 927 00fd 9142     		.uleb128 0x2111
- 928 00ff 18       		.uleb128 0x18
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 19
+ 839 03a8 0F       		.uleb128 0xf
+ 840 03a9 D2020000 		.4byte	.LASF38
+ 841 03ad 01       		.byte	0x1
+ 842 03ae 65       		.byte	0x65
+ 843 03af 81000000 		.4byte	0x81
+ 844 03b3 00000000 		.4byte	.LFB68
+ 845 03b7 18000000 		.4byte	.LFE68-.LFB68
+ 846 03bb 01       		.uleb128 0x1
+ 847 03bc 9C       		.byte	0x9c
+ 848 03bd D1030000 		.4byte	0x3d1
+ 849 03c1 10       		.uleb128 0x10
+ 850 03c2 BF000000 		.4byte	.LASF30
+ 851 03c6 01       		.byte	0x1
+ 852 03c7 65       		.byte	0x65
+ 853 03c8 05030000 		.4byte	0x305
+ 854 03cc 6E010000 		.4byte	.LLST11
+ 855 03d0 00       		.byte	0
+ 856 03d1 1D       		.uleb128 0x1d
+ 857 03d2 94000000 		.4byte	.LASF39
+ 858 03d6 01       		.byte	0x1
+ 859 03d7 72       		.byte	0x72
+ 860 03d8 00000000 		.4byte	.LFB69
+ 861 03dc 32000000 		.4byte	.LFE69-.LFB69
+ 862 03e0 01       		.uleb128 0x1
+ 863 03e1 9C       		.byte	0x9c
+ 864 03e2 91040000 		.4byte	0x491
+ 865 03e6 10       		.uleb128 0x10
+ 866 03e7 53020000 		.4byte	.LASF40
+ 867 03eb 01       		.byte	0x1
+ 868 03ec 72       		.byte	0x72
+ 869 03ed 05030000 		.4byte	0x305
+ 870 03f1 C1010000 		.4byte	.LLST12
+ 871 03f5 1E       		.uleb128 0x1e
+ 872 03f6 0C000000 		.4byte	.LBB3
+ 873 03fa 26000000 		.4byte	.LBE3-.LBB3
+ 874 03fe 80040000 		.4byte	0x480
+ 875 0402 11       		.uleb128 0x11
+ 876 0403 B1000000 		.4byte	.LASF41
+ 877 0407 01       		.byte	0x1
+ 878 0408 74       		.byte	0x74
+ 879 0409 5B010000 		.4byte	0x15b
+ 880 040d ED010000 		.4byte	.LLST13
+ 881 0411 1E       		.uleb128 0x1e
+ 882 0412 1A000000 		.4byte	.LBB4
+ 883 0416 0A000000 		.4byte	.LBE4-.LBB4
+ 884 041a 40040000 		.4byte	0x440
+ 885 041e 1B       		.uleb128 0x1b
+ 886 041f 7D020000 		.4byte	.LASF42
+ 887 0423 05       		.byte	0x5
+ 888 0424 00       		.byte	0
+ 889 0425 2F040000 		.4byte	0x42f
+ 890 0429 0A       		.uleb128 0xa
+ 891 042a BC000000 		.4byte	0xbc
+ 892 042e 00       		.byte	0
+ 893 042f 15       		.uleb128 0x15
+ 894 0430 24000000 		.4byte	.LVL38
+ 895 0434 CE040000 		.4byte	0x4ce
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 19
 
 
- 929 0100 00       		.byte	0
- 930 0101 00       		.byte	0
- 931 0102 15       		.uleb128 0x15
- 932 0103 2E       		.uleb128 0x2e
- 933 0104 01       		.byte	0x1
- 934 0105 3F       		.uleb128 0x3f
- 935 0106 19       		.uleb128 0x19
- 936 0107 03       		.uleb128 0x3
- 937 0108 0E       		.uleb128 0xe
- 938 0109 3A       		.uleb128 0x3a
- 939 010a 0B       		.uleb128 0xb
- 940 010b 3B       		.uleb128 0x3b
- 941 010c 0B       		.uleb128 0xb
- 942 010d 27       		.uleb128 0x27
- 943 010e 19       		.uleb128 0x19
- 944 010f 11       		.uleb128 0x11
- 945 0110 01       		.uleb128 0x1
- 946 0111 12       		.uleb128 0x12
- 947 0112 06       		.uleb128 0x6
- 948 0113 40       		.uleb128 0x40
- 949 0114 18       		.uleb128 0x18
- 950 0115 9742     		.uleb128 0x2117
- 951 0117 19       		.uleb128 0x19
- 952 0118 01       		.uleb128 0x1
- 953 0119 13       		.uleb128 0x13
- 954 011a 00       		.byte	0
- 955 011b 00       		.byte	0
- 956 011c 16       		.uleb128 0x16
- 957 011d 05       		.uleb128 0x5
- 958 011e 00       		.byte	0
- 959 011f 03       		.uleb128 0x3
- 960 0120 0E       		.uleb128 0xe
- 961 0121 3A       		.uleb128 0x3a
- 962 0122 0B       		.uleb128 0xb
- 963 0123 3B       		.uleb128 0x3b
- 964 0124 0B       		.uleb128 0xb
- 965 0125 49       		.uleb128 0x49
- 966 0126 13       		.uleb128 0x13
- 967 0127 02       		.uleb128 0x2
- 968 0128 18       		.uleb128 0x18
- 969 0129 00       		.byte	0
- 970 012a 00       		.byte	0
- 971 012b 17       		.uleb128 0x17
- 972 012c 34       		.uleb128 0x34
- 973 012d 00       		.byte	0
- 974 012e 03       		.uleb128 0x3
- 975 012f 0E       		.uleb128 0xe
- 976 0130 3A       		.uleb128 0x3a
- 977 0131 0B       		.uleb128 0xb
- 978 0132 3B       		.uleb128 0x3b
- 979 0133 0B       		.uleb128 0xb
- 980 0134 49       		.uleb128 0x49
- 981 0135 13       		.uleb128 0x13
- 982 0136 02       		.uleb128 0x2
- 983 0137 17       		.uleb128 0x17
- 984 0138 00       		.byte	0
- 985 0139 00       		.byte	0
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 20
+ 896 0438 14       		.uleb128 0x14
+ 897 0439 01       		.uleb128 0x1
+ 898 043a 50       		.byte	0x50
+ 899 043b 02       		.uleb128 0x2
+ 900 043c 74       		.byte	0x74
+ 901 043d 00       		.sleb128 0
+ 902 043e 00       		.byte	0
+ 903 043f 00       		.byte	0
+ 904 0440 1E       		.uleb128 0x1e
+ 905 0441 28000000 		.4byte	.LBB5
+ 906 0445 0A000000 		.4byte	.LBE5-.LBB5
+ 907 0449 6F040000 		.4byte	0x46f
+ 908 044d 1B       		.uleb128 0x1b
+ 909 044e 7D020000 		.4byte	.LASF42
+ 910 0452 05       		.byte	0x5
+ 911 0453 00       		.byte	0
+ 912 0454 5E040000 		.4byte	0x45e
+ 913 0458 0A       		.uleb128 0xa
+ 914 0459 BC000000 		.4byte	0xbc
+ 915 045d 00       		.byte	0
+ 916 045e 15       		.uleb128 0x15
+ 917 045f 30000000 		.4byte	.LVL40
+ 918 0463 CE040000 		.4byte	0x4ce
+ 919 0467 14       		.uleb128 0x14
+ 920 0468 01       		.uleb128 0x1
+ 921 0469 50       		.byte	0x50
+ 922 046a 02       		.uleb128 0x2
+ 923 046b 74       		.byte	0x74
+ 924 046c 00       		.sleb128 0
+ 925 046d 00       		.byte	0
+ 926 046e 00       		.byte	0
+ 927 046f 15       		.uleb128 0x15
+ 928 0470 12000000 		.4byte	.LVL34
+ 929 0474 0B030000 		.4byte	0x30b
+ 930 0478 14       		.uleb128 0x14
+ 931 0479 01       		.uleb128 0x1
+ 932 047a 50       		.byte	0x50
+ 933 047b 02       		.uleb128 0x2
+ 934 047c 74       		.byte	0x74
+ 935 047d 00       		.sleb128 0
+ 936 047e 00       		.byte	0
+ 937 047f 00       		.byte	0
+ 938 0480 15       		.uleb128 0x15
+ 939 0481 08000000 		.4byte	.LVL33
+ 940 0485 A8030000 		.4byte	0x3a8
+ 941 0489 14       		.uleb128 0x14
+ 942 048a 01       		.uleb128 0x1
+ 943 048b 50       		.byte	0x50
+ 944 048c 02       		.uleb128 0x2
+ 945 048d 74       		.byte	0x74
+ 946 048e 00       		.sleb128 0
+ 947 048f 00       		.byte	0
+ 948 0490 00       		.byte	0
+ 949 0491 1F       		.uleb128 0x1f
+ 950 0492 15020000 		.4byte	.LASF49
+ 951 0496 07       		.byte	0x7
+ 952 0497 1207     		.2byte	0x712
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 20
 
 
- 986 013a 18       		.uleb128 0x18
- 987 013b 0B       		.uleb128 0xb
- 988 013c 01       		.byte	0x1
- 989 013d 11       		.uleb128 0x11
- 990 013e 01       		.uleb128 0x1
- 991 013f 12       		.uleb128 0x12
- 992 0140 06       		.uleb128 0x6
- 993 0141 00       		.byte	0
- 994 0142 00       		.byte	0
- 995 0143 19       		.uleb128 0x19
- 996 0144 34       		.uleb128 0x34
- 997 0145 00       		.byte	0
- 998 0146 03       		.uleb128 0x3
- 999 0147 08       		.uleb128 0x8
- 1000 0148 3A       		.uleb128 0x3a
- 1001 0149 0B       		.uleb128 0xb
- 1002 014a 3B       		.uleb128 0x3b
- 1003 014b 0B       		.uleb128 0xb
- 1004 014c 49       		.uleb128 0x49
- 1005 014d 13       		.uleb128 0x13
- 1006 014e 02       		.uleb128 0x2
- 1007 014f 17       		.uleb128 0x17
- 1008 0150 00       		.byte	0
- 1009 0151 00       		.byte	0
- 1010 0152 1A       		.uleb128 0x1a
- 1011 0153 2E       		.uleb128 0x2e
- 1012 0154 01       		.byte	0x1
- 1013 0155 3F       		.uleb128 0x3f
- 1014 0156 19       		.uleb128 0x19
- 1015 0157 03       		.uleb128 0x3
- 1016 0158 0E       		.uleb128 0xe
- 1017 0159 3A       		.uleb128 0x3a
- 1018 015a 0B       		.uleb128 0xb
- 1019 015b 3B       		.uleb128 0x3b
- 1020 015c 0B       		.uleb128 0xb
- 1021 015d 27       		.uleb128 0x27
- 1022 015e 19       		.uleb128 0x19
- 1023 015f 3C       		.uleb128 0x3c
- 1024 0160 19       		.uleb128 0x19
- 1025 0161 01       		.uleb128 0x1
- 1026 0162 13       		.uleb128 0x13
- 1027 0163 00       		.byte	0
- 1028 0164 00       		.byte	0
- 1029 0165 1B       		.uleb128 0x1b
- 1030 0166 898201   		.uleb128 0x4109
- 1031 0169 00       		.byte	0
- 1032 016a 11       		.uleb128 0x11
- 1033 016b 01       		.uleb128 0x1
- 1034 016c 31       		.uleb128 0x31
- 1035 016d 13       		.uleb128 0x13
- 1036 016e 00       		.byte	0
- 1037 016f 00       		.byte	0
- 1038 0170 1C       		.uleb128 0x1c
- 1039 0171 34       		.uleb128 0x34
- 1040 0172 00       		.byte	0
- 1041 0173 03       		.uleb128 0x3
- 1042 0174 0E       		.uleb128 0xe
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 21
+ 953 0499 9D040000 		.4byte	0x49d
+ 954 049d 20       		.uleb128 0x20
+ 955 049e 76000000 		.4byte	0x76
+ 956 04a2 21       		.uleb128 0x21
+ 957 04a3 FA020000 		.4byte	.LASF29
+ 958 04a7 FA020000 		.4byte	.LASF29
+ 959 04ab 05       		.byte	0x5
+ 960 04ac 00       		.byte	0
+ 961 04ad 21       		.uleb128 0x21
+ 962 04ae 0B000000 		.4byte	.LASF43
+ 963 04b2 0B000000 		.4byte	.LASF43
+ 964 04b6 06       		.byte	0x6
+ 965 04b7 3A       		.byte	0x3a
+ 966 04b8 21       		.uleb128 0x21
+ 967 04b9 46020000 		.4byte	.LASF44
+ 968 04bd 46020000 		.4byte	.LASF44
+ 969 04c1 06       		.byte	0x6
+ 970 04c2 3D       		.byte	0x3d
+ 971 04c3 21       		.uleb128 0x21
+ 972 04c4 FE010000 		.4byte	.LASF45
+ 973 04c8 FE010000 		.4byte	.LASF45
+ 974 04cc 06       		.byte	0x6
+ 975 04cd 3C       		.byte	0x3c
+ 976 04ce 21       		.uleb128 0x21
+ 977 04cf 7D020000 		.4byte	.LASF42
+ 978 04d3 7D020000 		.4byte	.LASF42
+ 979 04d7 05       		.byte	0x5
+ 980 04d8 00       		.byte	0
+ 981 04d9 00       		.byte	0
+ 982              		.section	.debug_abbrev,"",%progbits
+ 983              	.Ldebug_abbrev0:
+ 984 0000 01       		.uleb128 0x1
+ 985 0001 11       		.uleb128 0x11
+ 986 0002 01       		.byte	0x1
+ 987 0003 25       		.uleb128 0x25
+ 988 0004 0E       		.uleb128 0xe
+ 989 0005 13       		.uleb128 0x13
+ 990 0006 0B       		.uleb128 0xb
+ 991 0007 03       		.uleb128 0x3
+ 992 0008 0E       		.uleb128 0xe
+ 993 0009 1B       		.uleb128 0x1b
+ 994 000a 0E       		.uleb128 0xe
+ 995 000b 55       		.uleb128 0x55
+ 996 000c 17       		.uleb128 0x17
+ 997 000d 11       		.uleb128 0x11
+ 998 000e 01       		.uleb128 0x1
+ 999 000f 10       		.uleb128 0x10
+ 1000 0010 17       		.uleb128 0x17
+ 1001 0011 00       		.byte	0
+ 1002 0012 00       		.byte	0
+ 1003 0013 02       		.uleb128 0x2
+ 1004 0014 24       		.uleb128 0x24
+ 1005 0015 00       		.byte	0
+ 1006 0016 0B       		.uleb128 0xb
+ 1007 0017 0B       		.uleb128 0xb
+ 1008 0018 3E       		.uleb128 0x3e
+ 1009 0019 0B       		.uleb128 0xb
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 21
 
 
- 1043 0175 3A       		.uleb128 0x3a
- 1044 0176 0B       		.uleb128 0xb
- 1045 0177 3B       		.uleb128 0x3b
- 1046 0178 05       		.uleb128 0x5
- 1047 0179 49       		.uleb128 0x49
- 1048 017a 13       		.uleb128 0x13
- 1049 017b 3F       		.uleb128 0x3f
- 1050 017c 19       		.uleb128 0x19
- 1051 017d 3C       		.uleb128 0x3c
- 1052 017e 19       		.uleb128 0x19
- 1053 017f 00       		.byte	0
- 1054 0180 00       		.byte	0
- 1055 0181 1D       		.uleb128 0x1d
- 1056 0182 35       		.uleb128 0x35
- 1057 0183 00       		.byte	0
- 1058 0184 49       		.uleb128 0x49
- 1059 0185 13       		.uleb128 0x13
- 1060 0186 00       		.byte	0
- 1061 0187 00       		.byte	0
- 1062 0188 1E       		.uleb128 0x1e
- 1063 0189 2E       		.uleb128 0x2e
- 1064 018a 00       		.byte	0
- 1065 018b 3F       		.uleb128 0x3f
- 1066 018c 19       		.uleb128 0x19
- 1067 018d 3C       		.uleb128 0x3c
- 1068 018e 19       		.uleb128 0x19
- 1069 018f 6E       		.uleb128 0x6e
- 1070 0190 0E       		.uleb128 0xe
- 1071 0191 03       		.uleb128 0x3
- 1072 0192 0E       		.uleb128 0xe
- 1073 0193 3A       		.uleb128 0x3a
- 1074 0194 0B       		.uleb128 0xb
- 1075 0195 3B       		.uleb128 0x3b
- 1076 0196 0B       		.uleb128 0xb
- 1077 0197 00       		.byte	0
- 1078 0198 00       		.byte	0
- 1079 0199 00       		.byte	0
- 1080              		.section	.debug_loc,"",%progbits
- 1081              	.Ldebug_loc0:
- 1082              	.LLST0:
- 1083 0000 00000000 		.4byte	.LVL0
- 1084 0004 0A000000 		.4byte	.LVL1
- 1085 0008 0100     		.2byte	0x1
- 1086 000a 50       		.byte	0x50
- 1087 000b 0A000000 		.4byte	.LVL1
- 1088 000f 1A000000 		.4byte	.LFE63
- 1089 0013 0100     		.2byte	0x1
- 1090 0015 55       		.byte	0x55
- 1091 0016 00000000 		.4byte	0
- 1092 001a 00000000 		.4byte	0
- 1093              	.LLST1:
- 1094 001e 00000000 		.4byte	.LVL0
- 1095 0022 0D000000 		.4byte	.LVL2-1
- 1096 0026 0100     		.2byte	0x1
- 1097 0028 51       		.byte	0x51
- 1098 0029 0D000000 		.4byte	.LVL2-1
- 1099 002d 1A000000 		.4byte	.LFE63
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 22
+ 1010 001a 03       		.uleb128 0x3
+ 1011 001b 0E       		.uleb128 0xe
+ 1012 001c 00       		.byte	0
+ 1013 001d 00       		.byte	0
+ 1014 001e 03       		.uleb128 0x3
+ 1015 001f 16       		.uleb128 0x16
+ 1016 0020 00       		.byte	0
+ 1017 0021 03       		.uleb128 0x3
+ 1018 0022 0E       		.uleb128 0xe
+ 1019 0023 3A       		.uleb128 0x3a
+ 1020 0024 0B       		.uleb128 0xb
+ 1021 0025 3B       		.uleb128 0x3b
+ 1022 0026 0B       		.uleb128 0xb
+ 1023 0027 49       		.uleb128 0x49
+ 1024 0028 13       		.uleb128 0x13
+ 1025 0029 00       		.byte	0
+ 1026 002a 00       		.byte	0
+ 1027 002b 04       		.uleb128 0x4
+ 1028 002c 24       		.uleb128 0x24
+ 1029 002d 00       		.byte	0
+ 1030 002e 0B       		.uleb128 0xb
+ 1031 002f 0B       		.uleb128 0xb
+ 1032 0030 3E       		.uleb128 0x3e
+ 1033 0031 0B       		.uleb128 0xb
+ 1034 0032 03       		.uleb128 0x3
+ 1035 0033 08       		.uleb128 0x8
+ 1036 0034 00       		.byte	0
+ 1037 0035 00       		.byte	0
+ 1038 0036 05       		.uleb128 0x5
+ 1039 0037 16       		.uleb128 0x16
+ 1040 0038 00       		.byte	0
+ 1041 0039 03       		.uleb128 0x3
+ 1042 003a 0E       		.uleb128 0xe
+ 1043 003b 3A       		.uleb128 0x3a
+ 1044 003c 0B       		.uleb128 0xb
+ 1045 003d 3B       		.uleb128 0x3b
+ 1046 003e 05       		.uleb128 0x5
+ 1047 003f 49       		.uleb128 0x49
+ 1048 0040 13       		.uleb128 0x13
+ 1049 0041 00       		.byte	0
+ 1050 0042 00       		.byte	0
+ 1051 0043 06       		.uleb128 0x6
+ 1052 0044 0F       		.uleb128 0xf
+ 1053 0045 00       		.byte	0
+ 1054 0046 0B       		.uleb128 0xb
+ 1055 0047 0B       		.uleb128 0xb
+ 1056 0048 00       		.byte	0
+ 1057 0049 00       		.byte	0
+ 1058 004a 07       		.uleb128 0x7
+ 1059 004b 13       		.uleb128 0x13
+ 1060 004c 01       		.byte	0x1
+ 1061 004d 03       		.uleb128 0x3
+ 1062 004e 0E       		.uleb128 0xe
+ 1063 004f 0B       		.uleb128 0xb
+ 1064 0050 0B       		.uleb128 0xb
+ 1065 0051 3A       		.uleb128 0x3a
+ 1066 0052 0B       		.uleb128 0xb
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 22
 
 
- 1100 0031 0400     		.2byte	0x4
- 1101 0033 F3       		.byte	0xf3
- 1102 0034 01       		.uleb128 0x1
- 1103 0035 51       		.byte	0x51
- 1104 0036 9F       		.byte	0x9f
- 1105 0037 00000000 		.4byte	0
- 1106 003b 00000000 		.4byte	0
- 1107              	.LLST2:
- 1108 003f 00000000 		.4byte	.LVL0
- 1109 0043 0D000000 		.4byte	.LVL2-1
- 1110 0047 0100     		.2byte	0x1
- 1111 0049 52       		.byte	0x52
- 1112 004a 0D000000 		.4byte	.LVL2-1
- 1113 004e 1A000000 		.4byte	.LFE63
- 1114 0052 0400     		.2byte	0x4
- 1115 0054 F3       		.byte	0xf3
- 1116 0055 01       		.uleb128 0x1
- 1117 0056 52       		.byte	0x52
- 1118 0057 9F       		.byte	0x9f
- 1119 0058 00000000 		.4byte	0
- 1120 005c 00000000 		.4byte	0
- 1121              	.LLST3:
- 1122 0060 00000000 		.4byte	.LVL3
- 1123 0064 08000000 		.4byte	.LVL4
- 1124 0068 0100     		.2byte	0x1
- 1125 006a 50       		.byte	0x50
- 1126 006b 08000000 		.4byte	.LVL4
- 1127 006f 1A000000 		.4byte	.LFE64
- 1128 0073 0100     		.2byte	0x1
- 1129 0075 54       		.byte	0x54
- 1130 0076 00000000 		.4byte	0
- 1131 007a 00000000 		.4byte	0
- 1132              	.LLST4:
- 1133 007e 00000000 		.4byte	.LVL3
- 1134 0082 0B000000 		.4byte	.LVL5-1
- 1135 0086 0100     		.2byte	0x1
- 1136 0088 51       		.byte	0x51
- 1137 0089 0B000000 		.4byte	.LVL5-1
- 1138 008d 1A000000 		.4byte	.LFE64
- 1139 0091 0400     		.2byte	0x4
- 1140 0093 F3       		.byte	0xf3
- 1141 0094 01       		.uleb128 0x1
- 1142 0095 51       		.byte	0x51
- 1143 0096 9F       		.byte	0x9f
- 1144 0097 00000000 		.4byte	0
- 1145 009b 00000000 		.4byte	0
- 1146              	.LLST5:
- 1147 009f 00000000 		.4byte	.LVL7
- 1148 00a3 04000000 		.4byte	.LVL8
- 1149 00a7 0100     		.2byte	0x1
- 1150 00a9 50       		.byte	0x50
- 1151 00aa 04000000 		.4byte	.LVL8
- 1152 00ae 18000000 		.4byte	.LFE66
- 1153 00b2 0100     		.2byte	0x1
- 1154 00b4 53       		.byte	0x53
- 1155 00b5 00000000 		.4byte	0
- 1156 00b9 00000000 		.4byte	0
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 23
+ 1067 0053 3B       		.uleb128 0x3b
+ 1068 0054 0B       		.uleb128 0xb
+ 1069 0055 01       		.uleb128 0x1
+ 1070 0056 13       		.uleb128 0x13
+ 1071 0057 00       		.byte	0
+ 1072 0058 00       		.byte	0
+ 1073 0059 08       		.uleb128 0x8
+ 1074 005a 0D       		.uleb128 0xd
+ 1075 005b 00       		.byte	0
+ 1076 005c 03       		.uleb128 0x3
+ 1077 005d 0E       		.uleb128 0xe
+ 1078 005e 3A       		.uleb128 0x3a
+ 1079 005f 0B       		.uleb128 0xb
+ 1080 0060 3B       		.uleb128 0x3b
+ 1081 0061 0B       		.uleb128 0xb
+ 1082 0062 49       		.uleb128 0x49
+ 1083 0063 13       		.uleb128 0x13
+ 1084 0064 38       		.uleb128 0x38
+ 1085 0065 0B       		.uleb128 0xb
+ 1086 0066 00       		.byte	0
+ 1087 0067 00       		.byte	0
+ 1088 0068 09       		.uleb128 0x9
+ 1089 0069 15       		.uleb128 0x15
+ 1090 006a 01       		.byte	0x1
+ 1091 006b 27       		.uleb128 0x27
+ 1092 006c 19       		.uleb128 0x19
+ 1093 006d 01       		.uleb128 0x1
+ 1094 006e 13       		.uleb128 0x13
+ 1095 006f 00       		.byte	0
+ 1096 0070 00       		.byte	0
+ 1097 0071 0A       		.uleb128 0xa
+ 1098 0072 05       		.uleb128 0x5
+ 1099 0073 00       		.byte	0
+ 1100 0074 49       		.uleb128 0x49
+ 1101 0075 13       		.uleb128 0x13
+ 1102 0076 00       		.byte	0
+ 1103 0077 00       		.byte	0
+ 1104 0078 0B       		.uleb128 0xb
+ 1105 0079 0F       		.uleb128 0xf
+ 1106 007a 00       		.byte	0
+ 1107 007b 0B       		.uleb128 0xb
+ 1108 007c 0B       		.uleb128 0xb
+ 1109 007d 49       		.uleb128 0x49
+ 1110 007e 13       		.uleb128 0x13
+ 1111 007f 00       		.byte	0
+ 1112 0080 00       		.byte	0
+ 1113 0081 0C       		.uleb128 0xc
+ 1114 0082 15       		.uleb128 0x15
+ 1115 0083 01       		.byte	0x1
+ 1116 0084 01       		.uleb128 0x1
+ 1117 0085 13       		.uleb128 0x13
+ 1118 0086 00       		.byte	0
+ 1119 0087 00       		.byte	0
+ 1120 0088 0D       		.uleb128 0xd
+ 1121 0089 18       		.uleb128 0x18
+ 1122 008a 00       		.byte	0
+ 1123 008b 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 23
 
 
- 1157              	.LLST6:
- 1158 00bd 00000000 		.4byte	.LVL9
- 1159 00c1 04000000 		.4byte	.LVL10
- 1160 00c5 0100     		.2byte	0x1
- 1161 00c7 50       		.byte	0x50
- 1162 00c8 04000000 		.4byte	.LVL10
- 1163 00cc 14000000 		.4byte	.LFE67
- 1164 00d0 0400     		.2byte	0x4
- 1165 00d2 F3       		.byte	0xf3
- 1166 00d3 01       		.uleb128 0x1
- 1167 00d4 50       		.byte	0x50
- 1168 00d5 9F       		.byte	0x9f
- 1169 00d6 00000000 		.4byte	0
- 1170 00da 00000000 		.4byte	0
- 1171              	.LLST7:
- 1172 00de 04000000 		.4byte	.LVL10
- 1173 00e2 0B000000 		.4byte	.LVL12-1
- 1174 00e6 0100     		.2byte	0x1
- 1175 00e8 50       		.byte	0x50
- 1176 00e9 0C000000 		.4byte	.LVL12
- 1177 00ed 0E000000 		.4byte	.LVL13
- 1178 00f1 0100     		.2byte	0x1
- 1179 00f3 54       		.byte	0x54
- 1180 00f4 0E000000 		.4byte	.LVL13
- 1181 00f8 14000000 		.4byte	.LFE67
- 1182 00fc 0100     		.2byte	0x1
- 1183 00fe 50       		.byte	0x50
- 1184 00ff 00000000 		.4byte	0
- 1185 0103 00000000 		.4byte	0
- 1186              	.LLST8:
- 1187 0107 08000000 		.4byte	.LVL11
- 1188 010b 0E000000 		.4byte	.LVL13
- 1189 010f 0100     		.2byte	0x1
- 1190 0111 54       		.byte	0x54
- 1191 0112 00000000 		.4byte	0
- 1192 0116 00000000 		.4byte	0
- 1193              	.LLST9:
- 1194 011a 00000000 		.4byte	.LVL14
- 1195 011e 0E000000 		.4byte	.LVL15
- 1196 0122 0100     		.2byte	0x1
- 1197 0124 50       		.byte	0x50
- 1198 0125 0E000000 		.4byte	.LVL15
- 1199 0129 10000000 		.4byte	.LVL16
- 1200 012d 0400     		.2byte	0x4
- 1201 012f F3       		.byte	0xf3
- 1202 0130 01       		.uleb128 0x1
- 1203 0131 50       		.byte	0x50
- 1204 0132 9F       		.byte	0x9f
- 1205 0133 10000000 		.4byte	.LVL16
- 1206 0137 12000000 		.4byte	.LVL17
- 1207 013b 0100     		.2byte	0x1
- 1208 013d 50       		.byte	0x50
- 1209 013e 12000000 		.4byte	.LVL17
- 1210 0142 14000000 		.4byte	.LVL18
- 1211 0146 0400     		.2byte	0x4
- 1212 0148 F3       		.byte	0xf3
- 1213 0149 01       		.uleb128 0x1
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 24
+ 1124 008c 00       		.byte	0
+ 1125 008d 0E       		.uleb128 0xe
+ 1126 008e 0D       		.uleb128 0xd
+ 1127 008f 00       		.byte	0
+ 1128 0090 03       		.uleb128 0x3
+ 1129 0091 08       		.uleb128 0x8
+ 1130 0092 3A       		.uleb128 0x3a
+ 1131 0093 0B       		.uleb128 0xb
+ 1132 0094 3B       		.uleb128 0x3b
+ 1133 0095 0B       		.uleb128 0xb
+ 1134 0096 49       		.uleb128 0x49
+ 1135 0097 13       		.uleb128 0x13
+ 1136 0098 38       		.uleb128 0x38
+ 1137 0099 0B       		.uleb128 0xb
+ 1138 009a 00       		.byte	0
+ 1139 009b 00       		.byte	0
+ 1140 009c 0F       		.uleb128 0xf
+ 1141 009d 2E       		.uleb128 0x2e
+ 1142 009e 01       		.byte	0x1
+ 1143 009f 3F       		.uleb128 0x3f
+ 1144 00a0 19       		.uleb128 0x19
+ 1145 00a1 03       		.uleb128 0x3
+ 1146 00a2 0E       		.uleb128 0xe
+ 1147 00a3 3A       		.uleb128 0x3a
+ 1148 00a4 0B       		.uleb128 0xb
+ 1149 00a5 3B       		.uleb128 0x3b
+ 1150 00a6 0B       		.uleb128 0xb
+ 1151 00a7 27       		.uleb128 0x27
+ 1152 00a8 19       		.uleb128 0x19
+ 1153 00a9 49       		.uleb128 0x49
+ 1154 00aa 13       		.uleb128 0x13
+ 1155 00ab 11       		.uleb128 0x11
+ 1156 00ac 01       		.uleb128 0x1
+ 1157 00ad 12       		.uleb128 0x12
+ 1158 00ae 06       		.uleb128 0x6
+ 1159 00af 40       		.uleb128 0x40
+ 1160 00b0 18       		.uleb128 0x18
+ 1161 00b1 9742     		.uleb128 0x2117
+ 1162 00b3 19       		.uleb128 0x19
+ 1163 00b4 01       		.uleb128 0x1
+ 1164 00b5 13       		.uleb128 0x13
+ 1165 00b6 00       		.byte	0
+ 1166 00b7 00       		.byte	0
+ 1167 00b8 10       		.uleb128 0x10
+ 1168 00b9 05       		.uleb128 0x5
+ 1169 00ba 00       		.byte	0
+ 1170 00bb 03       		.uleb128 0x3
+ 1171 00bc 0E       		.uleb128 0xe
+ 1172 00bd 3A       		.uleb128 0x3a
+ 1173 00be 0B       		.uleb128 0xb
+ 1174 00bf 3B       		.uleb128 0x3b
+ 1175 00c0 0B       		.uleb128 0xb
+ 1176 00c1 49       		.uleb128 0x49
+ 1177 00c2 13       		.uleb128 0x13
+ 1178 00c3 02       		.uleb128 0x2
+ 1179 00c4 17       		.uleb128 0x17
+ 1180 00c5 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 24
 
 
- 1214 014a 50       		.byte	0x50
- 1215 014b 9F       		.byte	0x9f
- 1216 014c 14000000 		.4byte	.LVL18
- 1217 0150 16000000 		.4byte	.LVL19
- 1218 0154 0100     		.2byte	0x1
- 1219 0156 50       		.byte	0x50
- 1220 0157 16000000 		.4byte	.LVL19
- 1221 015b 18000000 		.4byte	.LFE68
- 1222 015f 0400     		.2byte	0x4
- 1223 0161 F3       		.byte	0xf3
- 1224 0162 01       		.uleb128 0x1
- 1225 0163 50       		.byte	0x50
- 1226 0164 9F       		.byte	0x9f
- 1227 0165 00000000 		.4byte	0
- 1228 0169 00000000 		.4byte	0
- 1229              		.section	.debug_aranges,"",%progbits
- 1230 0000 44000000 		.4byte	0x44
- 1231 0004 0200     		.2byte	0x2
- 1232 0006 00000000 		.4byte	.Ldebug_info0
- 1233 000a 04       		.byte	0x4
- 1234 000b 00       		.byte	0
- 1235 000c 0000     		.2byte	0
- 1236 000e 0000     		.2byte	0
- 1237 0010 00000000 		.4byte	.LFB63
- 1238 0014 1A000000 		.4byte	.LFE63-.LFB63
- 1239 0018 00000000 		.4byte	.LFB64
- 1240 001c 1A000000 		.4byte	.LFE64-.LFB64
- 1241 0020 00000000 		.4byte	.LFB65
- 1242 0024 10000000 		.4byte	.LFE65-.LFB65
- 1243 0028 00000000 		.4byte	.LFB66
- 1244 002c 18000000 		.4byte	.LFE66-.LFB66
- 1245 0030 00000000 		.4byte	.LFB67
- 1246 0034 14000000 		.4byte	.LFE67-.LFB67
- 1247 0038 00000000 		.4byte	.LFB68
- 1248 003c 18000000 		.4byte	.LFE68-.LFB68
- 1249 0040 00000000 		.4byte	0
- 1250 0044 00000000 		.4byte	0
- 1251              		.section	.debug_ranges,"",%progbits
- 1252              	.Ldebug_ranges0:
- 1253 0000 00000000 		.4byte	.LFB63
- 1254 0004 1A000000 		.4byte	.LFE63
- 1255 0008 00000000 		.4byte	.LFB64
- 1256 000c 1A000000 		.4byte	.LFE64
- 1257 0010 00000000 		.4byte	.LFB65
- 1258 0014 10000000 		.4byte	.LFE65
- 1259 0018 00000000 		.4byte	.LFB66
- 1260 001c 18000000 		.4byte	.LFE66
- 1261 0020 00000000 		.4byte	.LFB67
- 1262 0024 14000000 		.4byte	.LFE67
- 1263 0028 00000000 		.4byte	.LFB68
- 1264 002c 18000000 		.4byte	.LFE68
- 1265 0030 00000000 		.4byte	0
- 1266 0034 00000000 		.4byte	0
- 1267              		.section	.debug_line,"",%progbits
- 1268              	.Ldebug_line0:
- 1269 0000 E6010000 		.section	.debug_str,"MS",%progbits,1
- 1269      02005E01 
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 25
+ 1181 00c6 00       		.byte	0
+ 1182 00c7 11       		.uleb128 0x11
+ 1183 00c8 34       		.uleb128 0x34
+ 1184 00c9 00       		.byte	0
+ 1185 00ca 03       		.uleb128 0x3
+ 1186 00cb 0E       		.uleb128 0xe
+ 1187 00cc 3A       		.uleb128 0x3a
+ 1188 00cd 0B       		.uleb128 0xb
+ 1189 00ce 3B       		.uleb128 0x3b
+ 1190 00cf 0B       		.uleb128 0xb
+ 1191 00d0 49       		.uleb128 0x49
+ 1192 00d1 13       		.uleb128 0x13
+ 1193 00d2 02       		.uleb128 0x2
+ 1194 00d3 17       		.uleb128 0x17
+ 1195 00d4 00       		.byte	0
+ 1196 00d5 00       		.byte	0
+ 1197 00d6 12       		.uleb128 0x12
+ 1198 00d7 2E       		.uleb128 0x2e
+ 1199 00d8 01       		.byte	0x1
+ 1200 00d9 3F       		.uleb128 0x3f
+ 1201 00da 19       		.uleb128 0x19
+ 1202 00db 03       		.uleb128 0x3
+ 1203 00dc 0E       		.uleb128 0xe
+ 1204 00dd 3A       		.uleb128 0x3a
+ 1205 00de 0B       		.uleb128 0xb
+ 1206 00df 3B       		.uleb128 0x3b
+ 1207 00e0 0B       		.uleb128 0xb
+ 1208 00e1 27       		.uleb128 0x27
+ 1209 00e2 19       		.uleb128 0x19
+ 1210 00e3 49       		.uleb128 0x49
+ 1211 00e4 13       		.uleb128 0x13
+ 1212 00e5 3C       		.uleb128 0x3c
+ 1213 00e6 19       		.uleb128 0x19
+ 1214 00e7 01       		.uleb128 0x1
+ 1215 00e8 13       		.uleb128 0x13
+ 1216 00e9 00       		.byte	0
+ 1217 00ea 00       		.byte	0
+ 1218 00eb 13       		.uleb128 0x13
+ 1219 00ec 898201   		.uleb128 0x4109
+ 1220 00ef 01       		.byte	0x1
+ 1221 00f0 11       		.uleb128 0x11
+ 1222 00f1 01       		.uleb128 0x1
+ 1223 00f2 31       		.uleb128 0x31
+ 1224 00f3 13       		.uleb128 0x13
+ 1225 00f4 01       		.uleb128 0x1
+ 1226 00f5 13       		.uleb128 0x13
+ 1227 00f6 00       		.byte	0
+ 1228 00f7 00       		.byte	0
+ 1229 00f8 14       		.uleb128 0x14
+ 1230 00f9 8A8201   		.uleb128 0x410a
+ 1231 00fc 00       		.byte	0
+ 1232 00fd 02       		.uleb128 0x2
+ 1233 00fe 18       		.uleb128 0x18
+ 1234 00ff 9142     		.uleb128 0x2111
+ 1235 0101 18       		.uleb128 0x18
+ 1236 0102 00       		.byte	0
+ 1237 0103 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 25
 
 
- 1269      00000201 
- 1269      FB0E0D00 
- 1269      01010101 
- 1270              	.LASF22:
- 1271 0000 6E657874 		.ascii	"next\000"
- 1271      00
- 1272              	.LASF42:
- 1273 0005 433A5C55 		.ascii	"C:\\Users\\David\\Documents\\PSoC Creator\\Keypadte"
- 1273      73657273 
- 1273      5C446176 
- 1273      69645C44 
- 1273      6F63756D 
- 1274 0033 73745C52 		.ascii	"st\\Riaszto.cydsn\000"
- 1274      6961737A 
- 1274      746F2E63 
- 1274      7964736E 
- 1274      00
- 1275              	.LASF31:
- 1276 0044 7461736B 		.ascii	"task\000"
- 1276      00
- 1277              	.LASF9:
- 1278 0049 5F5F696E 		.ascii	"__int32_t\000"
- 1278      7433325F 
- 1278      7400
- 1279              	.LASF25:
- 1280 0053 73746172 		.ascii	"start\000"
- 1280      7400
- 1281              	.LASF37:
- 1282 0059 69746572 		.ascii	"iter\000"
- 1282      00
- 1283              	.LASF3:
- 1284 005e 73686F72 		.ascii	"short unsigned int\000"
- 1284      7420756E 
- 1284      7369676E 
- 1284      65642069 
- 1284      6E7400
- 1285              	.LASF23:
- 1286 0071 4F6E6554 		.ascii	"OneTimeTask\000"
- 1286      696D6554 
- 1286      61736B00 
- 1287              	.LASF33:
- 1288 007d 66697273 		.ascii	"first\000"
- 1288      7400
- 1289              	.LASF14:
- 1290 0083 646F7562 		.ascii	"double\000"
- 1290      6C6500
- 1291              	.LASF30:
- 1292 008a 6669666F 		.ascii	"fifo\000"
- 1292      00
- 1293              	.LASF28:
- 1294 008f 6E65775F 		.ascii	"new_task\000"
- 1294      7461736B 
- 1294      00
- 1295              	.LASF13:
- 1296 0098 666C6F61 		.ascii	"float\000"
- 1296      7400
- 1297              	.LASF21:
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 26
+ 1238 0104 15       		.uleb128 0x15
+ 1239 0105 898201   		.uleb128 0x4109
+ 1240 0108 01       		.byte	0x1
+ 1241 0109 11       		.uleb128 0x11
+ 1242 010a 01       		.uleb128 0x1
+ 1243 010b 31       		.uleb128 0x31
+ 1244 010c 13       		.uleb128 0x13
+ 1245 010d 00       		.byte	0
+ 1246 010e 00       		.byte	0
+ 1247 010f 16       		.uleb128 0x16
+ 1248 0110 2E       		.uleb128 0x2e
+ 1249 0111 01       		.byte	0x1
+ 1250 0112 3F       		.uleb128 0x3f
+ 1251 0113 19       		.uleb128 0x19
+ 1252 0114 03       		.uleb128 0x3
+ 1253 0115 0E       		.uleb128 0xe
+ 1254 0116 3A       		.uleb128 0x3a
+ 1255 0117 0B       		.uleb128 0xb
+ 1256 0118 3B       		.uleb128 0x3b
+ 1257 0119 0B       		.uleb128 0xb
+ 1258 011a 27       		.uleb128 0x27
+ 1259 011b 19       		.uleb128 0x19
+ 1260 011c 11       		.uleb128 0x11
+ 1261 011d 01       		.uleb128 0x1
+ 1262 011e 12       		.uleb128 0x12
+ 1263 011f 06       		.uleb128 0x6
+ 1264 0120 40       		.uleb128 0x40
+ 1265 0121 18       		.uleb128 0x18
+ 1266 0122 9742     		.uleb128 0x2117
+ 1267 0124 19       		.uleb128 0x19
+ 1268 0125 01       		.uleb128 0x1
+ 1269 0126 13       		.uleb128 0x13
+ 1270 0127 00       		.byte	0
+ 1271 0128 00       		.byte	0
+ 1272 0129 17       		.uleb128 0x17
+ 1273 012a 05       		.uleb128 0x5
+ 1274 012b 00       		.byte	0
+ 1275 012c 03       		.uleb128 0x3
+ 1276 012d 0E       		.uleb128 0xe
+ 1277 012e 3A       		.uleb128 0x3a
+ 1278 012f 0B       		.uleb128 0xb
+ 1279 0130 3B       		.uleb128 0x3b
+ 1280 0131 0B       		.uleb128 0xb
+ 1281 0132 49       		.uleb128 0x49
+ 1282 0133 13       		.uleb128 0x13
+ 1283 0134 02       		.uleb128 0x2
+ 1284 0135 18       		.uleb128 0x18
+ 1285 0136 00       		.byte	0
+ 1286 0137 00       		.byte	0
+ 1287 0138 18       		.uleb128 0x18
+ 1288 0139 34       		.uleb128 0x34
+ 1289 013a 00       		.byte	0
+ 1290 013b 03       		.uleb128 0x3
+ 1291 013c 0E       		.uleb128 0xe
+ 1292 013d 3A       		.uleb128 0x3a
+ 1293 013e 0B       		.uleb128 0xb
+ 1294 013f 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 26
 
 
- 1298 009e 64617461 		.ascii	"data\000"
- 1298      00
- 1299              	.LASF20:
- 1300 00a3 64656C61 		.ascii	"delay\000"
- 1300      7900
- 1301              	.LASF24:
- 1302 00a9 5461736B 		.ascii	"TaskFIFO\000"
- 1302      4649464F 
- 1302      00
- 1303              	.LASF40:
- 1304 00b2 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1304      43313120 
- 1304      352E342E 
- 1304      31203230 
- 1304      31363036 
- 1305 00e5 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1305      20726576 
- 1305      6973696F 
- 1305      6E203233 
- 1305      37373135 
- 1306 0118 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1306      66756E63 
- 1306      74696F6E 
- 1306      2D736563 
- 1306      74696F6E 
- 1307              	.LASF5:
- 1308 0140 6C6F6E67 		.ascii	"long unsigned int\000"
- 1308      20756E73 
- 1308      69676E65 
- 1308      6420696E 
- 1308      7400
- 1309              	.LASF34:
- 1310 0152 70757368 		.ascii	"pushTask\000"
- 1310      5461736B 
- 1310      00
- 1311              	.LASF36:
- 1312 015b 6C697374 		.ascii	"list\000"
- 1312      00
- 1313              	.LASF41:
- 1314 0160 5461736B 		.ascii	"TaskFIFO.c\000"
- 1314      4649464F 
- 1314      2E6300
- 1315              	.LASF26:
- 1316 016b 63726561 		.ascii	"create_new_onetimetask\000"
- 1316      74655F6E 
- 1316      65775F6F 
- 1316      6E657469 
- 1316      6D657461 
- 1317              	.LASF1:
- 1318 0182 756E7369 		.ascii	"unsigned char\000"
- 1318      676E6564 
- 1318      20636861 
- 1318      7200
- 1319              	.LASF32:
- 1320 0190 6765745F 		.ascii	"get_and_remove_first\000"
- 1320      616E645F 
- 1320      72656D6F 
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 27
+ 1295 0140 0B       		.uleb128 0xb
+ 1296 0141 49       		.uleb128 0x49
+ 1297 0142 13       		.uleb128 0x13
+ 1298 0143 02       		.uleb128 0x2
+ 1299 0144 18       		.uleb128 0x18
+ 1300 0145 00       		.byte	0
+ 1301 0146 00       		.byte	0
+ 1302 0147 19       		.uleb128 0x19
+ 1303 0148 0B       		.uleb128 0xb
+ 1304 0149 01       		.byte	0x1
+ 1305 014a 11       		.uleb128 0x11
+ 1306 014b 01       		.uleb128 0x1
+ 1307 014c 12       		.uleb128 0x12
+ 1308 014d 06       		.uleb128 0x6
+ 1309 014e 00       		.byte	0
+ 1310 014f 00       		.byte	0
+ 1311 0150 1A       		.uleb128 0x1a
+ 1312 0151 34       		.uleb128 0x34
+ 1313 0152 00       		.byte	0
+ 1314 0153 03       		.uleb128 0x3
+ 1315 0154 08       		.uleb128 0x8
+ 1316 0155 3A       		.uleb128 0x3a
+ 1317 0156 0B       		.uleb128 0xb
+ 1318 0157 3B       		.uleb128 0x3b
+ 1319 0158 0B       		.uleb128 0xb
+ 1320 0159 49       		.uleb128 0x49
+ 1321 015a 13       		.uleb128 0x13
+ 1322 015b 02       		.uleb128 0x2
+ 1323 015c 17       		.uleb128 0x17
+ 1324 015d 00       		.byte	0
+ 1325 015e 00       		.byte	0
+ 1326 015f 1B       		.uleb128 0x1b
+ 1327 0160 2E       		.uleb128 0x2e
+ 1328 0161 01       		.byte	0x1
+ 1329 0162 3F       		.uleb128 0x3f
+ 1330 0163 19       		.uleb128 0x19
+ 1331 0164 03       		.uleb128 0x3
+ 1332 0165 0E       		.uleb128 0xe
+ 1333 0166 3A       		.uleb128 0x3a
+ 1334 0167 0B       		.uleb128 0xb
+ 1335 0168 3B       		.uleb128 0x3b
+ 1336 0169 0B       		.uleb128 0xb
+ 1337 016a 27       		.uleb128 0x27
+ 1338 016b 19       		.uleb128 0x19
+ 1339 016c 3C       		.uleb128 0x3c
+ 1340 016d 19       		.uleb128 0x19
+ 1341 016e 01       		.uleb128 0x1
+ 1342 016f 13       		.uleb128 0x13
+ 1343 0170 00       		.byte	0
+ 1344 0171 00       		.byte	0
+ 1345 0172 1C       		.uleb128 0x1c
+ 1346 0173 898201   		.uleb128 0x4109
+ 1347 0176 00       		.byte	0
+ 1348 0177 11       		.uleb128 0x11
+ 1349 0178 01       		.uleb128 0x1
+ 1350 0179 31       		.uleb128 0x31
+ 1351 017a 13       		.uleb128 0x13
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 27
 
 
- 1320      76655F66 
- 1320      69727374 
- 1321              	.LASF27:
- 1322 01a5 63726561 		.ascii	"create_new_noparam_onetimetask\000"
- 1322      74655F6E 
- 1322      65775F6E 
- 1322      6F706172 
- 1322      616D5F6F 
- 1323              	.LASF18:
- 1324 01c4 66756E63 		.ascii	"func\000"
- 1324      00
- 1325              	.LASF12:
- 1326 01c9 75696E74 		.ascii	"uint16\000"
- 1326      313600
- 1327              	.LASF43:
- 1328 01d0 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1328      52784275 
- 1328      66666572 
- 1328      00
- 1329              	.LASF8:
- 1330 01dd 756E7369 		.ascii	"unsigned int\000"
- 1330      676E6564 
- 1330      20696E74 
- 1330      00
- 1331              	.LASF7:
- 1332 01ea 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1332      206C6F6E 
- 1332      6720756E 
- 1332      7369676E 
- 1332      65642069 
- 1333              	.LASF35:
- 1334 0201 66726565 		.ascii	"free_taskfifo\000"
- 1334      5F746173 
- 1334      6B666966 
- 1334      6F00
- 1335              	.LASF10:
- 1336 020f 696E7433 		.ascii	"int32_t\000"
- 1336      325F7400 
- 1337              	.LASF17:
- 1338 0217 73697A65 		.ascii	"sizetype\000"
- 1338      74797065 
- 1338      00
- 1339              	.LASF39:
- 1340 0220 66726565 		.ascii	"free\000"
- 1340      00
- 1341              	.LASF6:
- 1342 0225 6C6F6E67 		.ascii	"long long int\000"
- 1342      206C6F6E 
- 1342      6720696E 
- 1342      7400
- 1343              	.LASF19:
- 1344 0233 66756E63 		.ascii	"funcnoparam\000"
- 1344      6E6F7061 
- 1344      72616D00 
- 1345              	.LASF15:
- 1346 023f 63686172 		.ascii	"char\000"
- 1346      00
-ARM GAS  C:\Users\David\AppData\Local\Temp\cctaktZv.s 			page 28
+ 1352 017b 00       		.byte	0
+ 1353 017c 00       		.byte	0
+ 1354 017d 1D       		.uleb128 0x1d
+ 1355 017e 2E       		.uleb128 0x2e
+ 1356 017f 01       		.byte	0x1
+ 1357 0180 3F       		.uleb128 0x3f
+ 1358 0181 19       		.uleb128 0x19
+ 1359 0182 03       		.uleb128 0x3
+ 1360 0183 0E       		.uleb128 0xe
+ 1361 0184 3A       		.uleb128 0x3a
+ 1362 0185 0B       		.uleb128 0xb
+ 1363 0186 3B       		.uleb128 0x3b
+ 1364 0187 0B       		.uleb128 0xb
+ 1365 0188 27       		.uleb128 0x27
+ 1366 0189 19       		.uleb128 0x19
+ 1367 018a 11       		.uleb128 0x11
+ 1368 018b 01       		.uleb128 0x1
+ 1369 018c 12       		.uleb128 0x12
+ 1370 018d 06       		.uleb128 0x6
+ 1371 018e 40       		.uleb128 0x40
+ 1372 018f 18       		.uleb128 0x18
+ 1373 0190 9642     		.uleb128 0x2116
+ 1374 0192 19       		.uleb128 0x19
+ 1375 0193 01       		.uleb128 0x1
+ 1376 0194 13       		.uleb128 0x13
+ 1377 0195 00       		.byte	0
+ 1378 0196 00       		.byte	0
+ 1379 0197 1E       		.uleb128 0x1e
+ 1380 0198 0B       		.uleb128 0xb
+ 1381 0199 01       		.byte	0x1
+ 1382 019a 11       		.uleb128 0x11
+ 1383 019b 01       		.uleb128 0x1
+ 1384 019c 12       		.uleb128 0x12
+ 1385 019d 06       		.uleb128 0x6
+ 1386 019e 01       		.uleb128 0x1
+ 1387 019f 13       		.uleb128 0x13
+ 1388 01a0 00       		.byte	0
+ 1389 01a1 00       		.byte	0
+ 1390 01a2 1F       		.uleb128 0x1f
+ 1391 01a3 34       		.uleb128 0x34
+ 1392 01a4 00       		.byte	0
+ 1393 01a5 03       		.uleb128 0x3
+ 1394 01a6 0E       		.uleb128 0xe
+ 1395 01a7 3A       		.uleb128 0x3a
+ 1396 01a8 0B       		.uleb128 0xb
+ 1397 01a9 3B       		.uleb128 0x3b
+ 1398 01aa 05       		.uleb128 0x5
+ 1399 01ab 49       		.uleb128 0x49
+ 1400 01ac 13       		.uleb128 0x13
+ 1401 01ad 3F       		.uleb128 0x3f
+ 1402 01ae 19       		.uleb128 0x19
+ 1403 01af 3C       		.uleb128 0x3c
+ 1404 01b0 19       		.uleb128 0x19
+ 1405 01b1 00       		.byte	0
+ 1406 01b2 00       		.byte	0
+ 1407 01b3 20       		.uleb128 0x20
+ 1408 01b4 35       		.uleb128 0x35
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 28
 
 
- 1347              	.LASF2:
- 1348 0244 73686F72 		.ascii	"short int\000"
- 1348      7420696E 
- 1348      7400
- 1349              	.LASF11:
- 1350 024e 75696E74 		.ascii	"uint8\000"
- 1350      3800
- 1351              	.LASF4:
- 1352 0254 6C6F6E67 		.ascii	"long int\000"
- 1352      20696E74 
- 1352      00
- 1353              	.LASF16:
- 1354 025d 6C6F6E67 		.ascii	"long double\000"
- 1354      20646F75 
- 1354      626C6500 
- 1355              	.LASF0:
- 1356 0269 7369676E 		.ascii	"signed char\000"
- 1356      65642063 
- 1356      68617200 
- 1357              	.LASF38:
- 1358 0275 63686563 		.ascii	"check_if_runnable_and_decrement_counter\000"
- 1358      6B5F6966 
- 1358      5F72756E 
- 1358      6E61626C 
- 1358      655F616E 
- 1359              	.LASF29:
- 1360 029d 6D616C6C 		.ascii	"malloc\000"
- 1360      6F6300
- 1361              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1409 01b5 00       		.byte	0
+ 1410 01b6 49       		.uleb128 0x49
+ 1411 01b7 13       		.uleb128 0x13
+ 1412 01b8 00       		.byte	0
+ 1413 01b9 00       		.byte	0
+ 1414 01ba 21       		.uleb128 0x21
+ 1415 01bb 2E       		.uleb128 0x2e
+ 1416 01bc 00       		.byte	0
+ 1417 01bd 3F       		.uleb128 0x3f
+ 1418 01be 19       		.uleb128 0x19
+ 1419 01bf 3C       		.uleb128 0x3c
+ 1420 01c0 19       		.uleb128 0x19
+ 1421 01c1 6E       		.uleb128 0x6e
+ 1422 01c2 0E       		.uleb128 0xe
+ 1423 01c3 03       		.uleb128 0x3
+ 1424 01c4 0E       		.uleb128 0xe
+ 1425 01c5 3A       		.uleb128 0x3a
+ 1426 01c6 0B       		.uleb128 0xb
+ 1427 01c7 3B       		.uleb128 0x3b
+ 1428 01c8 0B       		.uleb128 0xb
+ 1429 01c9 00       		.byte	0
+ 1430 01ca 00       		.byte	0
+ 1431 01cb 00       		.byte	0
+ 1432              		.section	.debug_loc,"",%progbits
+ 1433              	.Ldebug_loc0:
+ 1434              	.LLST0:
+ 1435 0000 00000000 		.4byte	.LVL0
+ 1436 0004 0A000000 		.4byte	.LVL1
+ 1437 0008 0100     		.2byte	0x1
+ 1438 000a 50       		.byte	0x50
+ 1439 000b 0A000000 		.4byte	.LVL1
+ 1440 000f 34000000 		.4byte	.LVL8
+ 1441 0013 0100     		.2byte	0x1
+ 1442 0015 55       		.byte	0x55
+ 1443 0016 34000000 		.4byte	.LVL8
+ 1444 001a 38000000 		.4byte	.LFE63
+ 1445 001e 0200     		.2byte	0x2
+ 1446 0020 70       		.byte	0x70
+ 1447 0021 00       		.sleb128 0
+ 1448 0022 00000000 		.4byte	0
+ 1449 0026 00000000 		.4byte	0
+ 1450              	.LLST1:
+ 1451 002a 00000000 		.4byte	.LVL0
+ 1452 002e 0D000000 		.4byte	.LVL2-1
+ 1453 0032 0100     		.2byte	0x1
+ 1454 0034 51       		.byte	0x51
+ 1455 0035 0D000000 		.4byte	.LVL2-1
+ 1456 0039 38000000 		.4byte	.LFE63
+ 1457 003d 0400     		.2byte	0x4
+ 1458 003f F3       		.byte	0xf3
+ 1459 0040 01       		.uleb128 0x1
+ 1460 0041 51       		.byte	0x51
+ 1461 0042 9F       		.byte	0x9f
+ 1462 0043 00000000 		.4byte	0
+ 1463 0047 00000000 		.4byte	0
+ 1464              	.LLST2:
+ 1465 004b 00000000 		.4byte	.LVL0
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 29
+
+
+ 1466 004f 0D000000 		.4byte	.LVL2-1
+ 1467 0053 0100     		.2byte	0x1
+ 1468 0055 52       		.byte	0x52
+ 1469 0056 0D000000 		.4byte	.LVL2-1
+ 1470 005a 38000000 		.4byte	.LFE63
+ 1471 005e 0400     		.2byte	0x4
+ 1472 0060 F3       		.byte	0xf3
+ 1473 0061 01       		.uleb128 0x1
+ 1474 0062 52       		.byte	0x52
+ 1475 0063 9F       		.byte	0x9f
+ 1476 0064 00000000 		.4byte	0
+ 1477 0068 00000000 		.4byte	0
+ 1478              	.LLST3:
+ 1479 006c 0E000000 		.4byte	.LVL2
+ 1480 0070 12000000 		.4byte	.LVL3
+ 1481 0074 0100     		.2byte	0x1
+ 1482 0076 50       		.byte	0x50
+ 1483 0077 28000000 		.4byte	.LVL7
+ 1484 007b 38000000 		.4byte	.LFE63
+ 1485 007f 0100     		.2byte	0x1
+ 1486 0081 50       		.byte	0x50
+ 1487 0082 00000000 		.4byte	0
+ 1488 0086 00000000 		.4byte	0
+ 1489              	.LLST4:
+ 1490 008a 00000000 		.4byte	.LVL9
+ 1491 008e 08000000 		.4byte	.LVL10
+ 1492 0092 0100     		.2byte	0x1
+ 1493 0094 50       		.byte	0x50
+ 1494 0095 08000000 		.4byte	.LVL10
+ 1495 0099 34000000 		.4byte	.LVL17
+ 1496 009d 0100     		.2byte	0x1
+ 1497 009f 54       		.byte	0x54
+ 1498 00a0 34000000 		.4byte	.LVL17
+ 1499 00a4 38000000 		.4byte	.LFE64
+ 1500 00a8 0200     		.2byte	0x2
+ 1501 00aa 70       		.byte	0x70
+ 1502 00ab 04       		.sleb128 4
+ 1503 00ac 00000000 		.4byte	0
+ 1504 00b0 00000000 		.4byte	0
+ 1505              	.LLST5:
+ 1506 00b4 00000000 		.4byte	.LVL9
+ 1507 00b8 0B000000 		.4byte	.LVL11-1
+ 1508 00bc 0100     		.2byte	0x1
+ 1509 00be 51       		.byte	0x51
+ 1510 00bf 0B000000 		.4byte	.LVL11-1
+ 1511 00c3 38000000 		.4byte	.LFE64
+ 1512 00c7 0400     		.2byte	0x4
+ 1513 00c9 F3       		.byte	0xf3
+ 1514 00ca 01       		.uleb128 0x1
+ 1515 00cb 51       		.byte	0x51
+ 1516 00cc 9F       		.byte	0x9f
+ 1517 00cd 00000000 		.4byte	0
+ 1518 00d1 00000000 		.4byte	0
+ 1519              	.LLST6:
+ 1520 00d5 0C000000 		.4byte	.LVL11
+ 1521 00d9 10000000 		.4byte	.LVL12
+ 1522 00dd 0100     		.2byte	0x1
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 30
+
+
+ 1523 00df 50       		.byte	0x50
+ 1524 00e0 26000000 		.4byte	.LVL16
+ 1525 00e4 38000000 		.4byte	.LFE64
+ 1526 00e8 0100     		.2byte	0x1
+ 1527 00ea 50       		.byte	0x50
+ 1528 00eb 00000000 		.4byte	0
+ 1529 00ef 00000000 		.4byte	0
+ 1530              	.LLST7:
+ 1531 00f3 00000000 		.4byte	.LVL19
+ 1532 00f7 04000000 		.4byte	.LVL20
+ 1533 00fb 0100     		.2byte	0x1
+ 1534 00fd 50       		.byte	0x50
+ 1535 00fe 04000000 		.4byte	.LVL20
+ 1536 0102 18000000 		.4byte	.LFE66
+ 1537 0106 0100     		.2byte	0x1
+ 1538 0108 53       		.byte	0x53
+ 1539 0109 00000000 		.4byte	0
+ 1540 010d 00000000 		.4byte	0
+ 1541              	.LLST8:
+ 1542 0111 00000000 		.4byte	.LVL21
+ 1543 0115 04000000 		.4byte	.LVL22
+ 1544 0119 0100     		.2byte	0x1
+ 1545 011b 50       		.byte	0x50
+ 1546 011c 04000000 		.4byte	.LVL22
+ 1547 0120 14000000 		.4byte	.LFE67
+ 1548 0124 0400     		.2byte	0x4
+ 1549 0126 F3       		.byte	0xf3
+ 1550 0127 01       		.uleb128 0x1
+ 1551 0128 50       		.byte	0x50
+ 1552 0129 9F       		.byte	0x9f
+ 1553 012a 00000000 		.4byte	0
+ 1554 012e 00000000 		.4byte	0
+ 1555              	.LLST9:
+ 1556 0132 04000000 		.4byte	.LVL22
+ 1557 0136 0B000000 		.4byte	.LVL24-1
+ 1558 013a 0100     		.2byte	0x1
+ 1559 013c 50       		.byte	0x50
+ 1560 013d 0C000000 		.4byte	.LVL24
+ 1561 0141 0E000000 		.4byte	.LVL25
+ 1562 0145 0100     		.2byte	0x1
+ 1563 0147 54       		.byte	0x54
+ 1564 0148 0E000000 		.4byte	.LVL25
+ 1565 014c 14000000 		.4byte	.LFE67
+ 1566 0150 0100     		.2byte	0x1
+ 1567 0152 50       		.byte	0x50
+ 1568 0153 00000000 		.4byte	0
+ 1569 0157 00000000 		.4byte	0
+ 1570              	.LLST10:
+ 1571 015b 08000000 		.4byte	.LVL23
+ 1572 015f 0E000000 		.4byte	.LVL25
+ 1573 0163 0100     		.2byte	0x1
+ 1574 0165 54       		.byte	0x54
+ 1575 0166 00000000 		.4byte	0
+ 1576 016a 00000000 		.4byte	0
+ 1577              	.LLST11:
+ 1578 016e 00000000 		.4byte	.LVL26
+ 1579 0172 0E000000 		.4byte	.LVL27
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 31
+
+
+ 1580 0176 0100     		.2byte	0x1
+ 1581 0178 50       		.byte	0x50
+ 1582 0179 0E000000 		.4byte	.LVL27
+ 1583 017d 10000000 		.4byte	.LVL28
+ 1584 0181 0400     		.2byte	0x4
+ 1585 0183 F3       		.byte	0xf3
+ 1586 0184 01       		.uleb128 0x1
+ 1587 0185 50       		.byte	0x50
+ 1588 0186 9F       		.byte	0x9f
+ 1589 0187 10000000 		.4byte	.LVL28
+ 1590 018b 12000000 		.4byte	.LVL29
+ 1591 018f 0100     		.2byte	0x1
+ 1592 0191 50       		.byte	0x50
+ 1593 0192 12000000 		.4byte	.LVL29
+ 1594 0196 14000000 		.4byte	.LVL30
+ 1595 019a 0400     		.2byte	0x4
+ 1596 019c F3       		.byte	0xf3
+ 1597 019d 01       		.uleb128 0x1
+ 1598 019e 50       		.byte	0x50
+ 1599 019f 9F       		.byte	0x9f
+ 1600 01a0 14000000 		.4byte	.LVL30
+ 1601 01a4 16000000 		.4byte	.LVL31
+ 1602 01a8 0100     		.2byte	0x1
+ 1603 01aa 50       		.byte	0x50
+ 1604 01ab 16000000 		.4byte	.LVL31
+ 1605 01af 18000000 		.4byte	.LFE68
+ 1606 01b3 0400     		.2byte	0x4
+ 1607 01b5 F3       		.byte	0xf3
+ 1608 01b6 01       		.uleb128 0x1
+ 1609 01b7 50       		.byte	0x50
+ 1610 01b8 9F       		.byte	0x9f
+ 1611 01b9 00000000 		.4byte	0
+ 1612 01bd 00000000 		.4byte	0
+ 1613              	.LLST12:
+ 1614 01c1 00000000 		.4byte	.LVL32
+ 1615 01c5 07000000 		.4byte	.LVL33-1
+ 1616 01c9 0100     		.2byte	0x1
+ 1617 01cb 50       		.byte	0x50
+ 1618 01cc 07000000 		.4byte	.LVL33-1
+ 1619 01d0 14000000 		.4byte	.LVL35
+ 1620 01d4 0100     		.2byte	0x1
+ 1621 01d6 54       		.byte	0x54
+ 1622 01d7 14000000 		.4byte	.LVL35
+ 1623 01db 32000000 		.4byte	.LFE69
+ 1624 01df 0400     		.2byte	0x4
+ 1625 01e1 F3       		.byte	0xf3
+ 1626 01e2 01       		.uleb128 0x1
+ 1627 01e3 50       		.byte	0x50
+ 1628 01e4 9F       		.byte	0x9f
+ 1629 01e5 00000000 		.4byte	0
+ 1630 01e9 00000000 		.4byte	0
+ 1631              	.LLST13:
+ 1632 01ed 12000000 		.4byte	.LVL34
+ 1633 01f1 1C000000 		.4byte	.LVL36
+ 1634 01f5 0100     		.2byte	0x1
+ 1635 01f7 50       		.byte	0x50
+ 1636 01f8 1C000000 		.4byte	.LVL36
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 32
+
+
+ 1637 01fc 30000000 		.4byte	.LVL40
+ 1638 0200 0100     		.2byte	0x1
+ 1639 0202 54       		.byte	0x54
+ 1640 0203 00000000 		.4byte	0
+ 1641 0207 00000000 		.4byte	0
+ 1642              		.section	.debug_aranges,"",%progbits
+ 1643 0000 4C000000 		.4byte	0x4c
+ 1644 0004 0200     		.2byte	0x2
+ 1645 0006 00000000 		.4byte	.Ldebug_info0
+ 1646 000a 04       		.byte	0x4
+ 1647 000b 00       		.byte	0
+ 1648 000c 0000     		.2byte	0
+ 1649 000e 0000     		.2byte	0
+ 1650 0010 00000000 		.4byte	.LFB63
+ 1651 0014 38000000 		.4byte	.LFE63-.LFB63
+ 1652 0018 00000000 		.4byte	.LFB64
+ 1653 001c 38000000 		.4byte	.LFE64-.LFB64
+ 1654 0020 00000000 		.4byte	.LFB65
+ 1655 0024 12000000 		.4byte	.LFE65-.LFB65
+ 1656 0028 00000000 		.4byte	.LFB66
+ 1657 002c 18000000 		.4byte	.LFE66-.LFB66
+ 1658 0030 00000000 		.4byte	.LFB67
+ 1659 0034 14000000 		.4byte	.LFE67-.LFB67
+ 1660 0038 00000000 		.4byte	.LFB68
+ 1661 003c 18000000 		.4byte	.LFE68-.LFB68
+ 1662 0040 00000000 		.4byte	.LFB69
+ 1663 0044 32000000 		.4byte	.LFE69-.LFB69
+ 1664 0048 00000000 		.4byte	0
+ 1665 004c 00000000 		.4byte	0
+ 1666              		.section	.debug_ranges,"",%progbits
+ 1667              	.Ldebug_ranges0:
+ 1668 0000 00000000 		.4byte	.LFB63
+ 1669 0004 38000000 		.4byte	.LFE63
+ 1670 0008 00000000 		.4byte	.LFB64
+ 1671 000c 38000000 		.4byte	.LFE64
+ 1672 0010 00000000 		.4byte	.LFB65
+ 1673 0014 12000000 		.4byte	.LFE65
+ 1674 0018 00000000 		.4byte	.LFB66
+ 1675 001c 18000000 		.4byte	.LFE66
+ 1676 0020 00000000 		.4byte	.LFB67
+ 1677 0024 14000000 		.4byte	.LFE67
+ 1678 0028 00000000 		.4byte	.LFB68
+ 1679 002c 18000000 		.4byte	.LFE68
+ 1680 0030 00000000 		.4byte	.LFB69
+ 1681 0034 32000000 		.4byte	.LFE69
+ 1682 0038 00000000 		.4byte	0
+ 1683 003c 00000000 		.4byte	0
+ 1684              		.section	.debug_line,"",%progbits
+ 1685              	.Ldebug_line0:
+ 1686 0000 14020000 		.section	.debug_str,"MS",%progbits,1
+ 1686      02006701 
+ 1686      00000201 
+ 1686      FB0E0D00 
+ 1686      01010101 
+ 1687              	.LASF22:
+ 1688 0000 6E657874 		.ascii	"next\000"
+ 1688      00
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 33
+
+
+ 1689              	.LASF33:
+ 1690 0005 66697273 		.ascii	"first\000"
+ 1690      7400
+ 1691              	.LASF43:
+ 1692 000b 4C43445F 		.ascii	"LCD_WriteControl\000"
+ 1692      57726974 
+ 1692      65436F6E 
+ 1692      74726F6C 
+ 1692      00
+ 1693              	.LASF48:
+ 1694 001c 433A5C55 		.ascii	"C:\\Users\\David\\Documents\\PSoC Creator\\Keypadte"
+ 1694      73657273 
+ 1694      5C446176 
+ 1694      69645C44 
+ 1694      6F63756D 
+ 1695 004a 73745C52 		.ascii	"st\\Riaszto.cydsn\000"
+ 1695      6961737A 
+ 1695      746F2E63 
+ 1695      7964736E 
+ 1695      00
+ 1696              	.LASF31:
+ 1697 005b 7461736B 		.ascii	"task\000"
+ 1697      00
+ 1698              	.LASF9:
+ 1699 0060 5F5F696E 		.ascii	"__int32_t\000"
+ 1699      7433325F 
+ 1699      7400
+ 1700              	.LASF25:
+ 1701 006a 73746172 		.ascii	"start\000"
+ 1701      7400
+ 1702              	.LASF37:
+ 1703 0070 69746572 		.ascii	"iter\000"
+ 1703      00
+ 1704              	.LASF3:
+ 1705 0075 73686F72 		.ascii	"short unsigned int\000"
+ 1705      7420756E 
+ 1705      7369676E 
+ 1705      65642069 
+ 1705      6E7400
+ 1706              	.LASF23:
+ 1707 0088 4F6E6554 		.ascii	"OneTimeTask\000"
+ 1707      696D6554 
+ 1707      61736B00 
+ 1708              	.LASF39:
+ 1709 0094 72756E5F 		.ascii	"run_next_task_when_available\000"
+ 1709      6E657874 
+ 1709      5F746173 
+ 1709      6B5F7768 
+ 1709      656E5F61 
+ 1710              	.LASF41:
+ 1711 00b1 746F5F72 		.ascii	"to_run\000"
+ 1711      756E00
+ 1712              	.LASF14:
+ 1713 00b8 646F7562 		.ascii	"double\000"
+ 1713      6C6500
+ 1714              	.LASF30:
+ 1715 00bf 6669666F 		.ascii	"fifo\000"
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 34
+
+
+ 1715      00
+ 1716              	.LASF28:
+ 1717 00c4 6E65775F 		.ascii	"new_task\000"
+ 1717      7461736B 
+ 1717      00
+ 1718              	.LASF13:
+ 1719 00cd 666C6F61 		.ascii	"float\000"
+ 1719      7400
+ 1720              	.LASF21:
+ 1721 00d3 64617461 		.ascii	"data\000"
+ 1721      00
+ 1722              	.LASF20:
+ 1723 00d8 64656C61 		.ascii	"delay\000"
+ 1723      7900
+ 1724              	.LASF24:
+ 1725 00de 5461736B 		.ascii	"TaskFIFO\000"
+ 1725      4649464F 
+ 1725      00
+ 1726              	.LASF46:
+ 1727 00e7 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1727      43313120 
+ 1727      352E342E 
+ 1727      31203230 
+ 1727      31363036 
+ 1728 011a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1728      20726576 
+ 1728      6973696F 
+ 1728      6E203233 
+ 1728      37373135 
+ 1729 014d 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1729      66756E63 
+ 1729      74696F6E 
+ 1729      2D736563 
+ 1729      74696F6E 
+ 1730              	.LASF5:
+ 1731 0175 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1731      20756E73 
+ 1731      69676E65 
+ 1731      6420696E 
+ 1731      7400
+ 1732              	.LASF34:
+ 1733 0187 70757368 		.ascii	"pushTask\000"
+ 1733      5461736B 
+ 1733      00
+ 1734              	.LASF36:
+ 1735 0190 6C697374 		.ascii	"list\000"
+ 1735      00
+ 1736              	.LASF47:
+ 1737 0195 5461736B 		.ascii	"TaskFIFO.c\000"
+ 1737      4649464F 
+ 1737      2E6300
+ 1738              	.LASF26:
+ 1739 01a0 63726561 		.ascii	"create_new_onetimetask\000"
+ 1739      74655F6E 
+ 1739      65775F6F 
+ 1739      6E657469 
+ 1739      6D657461 
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 35
+
+
+ 1740              	.LASF1:
+ 1741 01b7 756E7369 		.ascii	"unsigned char\000"
+ 1741      676E6564 
+ 1741      20636861 
+ 1741      7200
+ 1742              	.LASF32:
+ 1743 01c5 6765745F 		.ascii	"get_and_remove_first\000"
+ 1743      616E645F 
+ 1743      72656D6F 
+ 1743      76655F66 
+ 1743      69727374 
+ 1744              	.LASF27:
+ 1745 01da 63726561 		.ascii	"create_new_noparam_onetimetask\000"
+ 1745      74655F6E 
+ 1745      65775F6E 
+ 1745      6F706172 
+ 1745      616D5F6F 
+ 1746              	.LASF18:
+ 1747 01f9 66756E63 		.ascii	"func\000"
+ 1747      00
+ 1748              	.LASF45:
+ 1749 01fe 4C43445F 		.ascii	"LCD_PrintString\000"
+ 1749      5072696E 
+ 1749      74537472 
+ 1749      696E6700 
+ 1750              	.LASF12:
+ 1751 020e 75696E74 		.ascii	"uint16\000"
+ 1751      313600
+ 1752              	.LASF49:
+ 1753 0215 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1753      52784275 
+ 1753      66666572 
+ 1753      00
+ 1754              	.LASF8:
+ 1755 0222 756E7369 		.ascii	"unsigned int\000"
+ 1755      676E6564 
+ 1755      20696E74 
+ 1755      00
+ 1756              	.LASF7:
+ 1757 022f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1757      206C6F6E 
+ 1757      6720756E 
+ 1757      7369676E 
+ 1757      65642069 
+ 1758              	.LASF44:
+ 1759 0246 4C43445F 		.ascii	"LCD_Position\000"
+ 1759      506F7369 
+ 1759      74696F6E 
+ 1759      00
+ 1760              	.LASF40:
+ 1761 0253 6669666F 		.ascii	"fifo_tasks\000"
+ 1761      5F746173 
+ 1761      6B7300
+ 1762              	.LASF35:
+ 1763 025e 66726565 		.ascii	"free_taskfifo\000"
+ 1763      5F746173 
+ 1763      6B666966 
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc3cRxIO.s 			page 36
+
+
+ 1763      6F00
+ 1764              	.LASF10:
+ 1765 026c 696E7433 		.ascii	"int32_t\000"
+ 1765      325F7400 
+ 1766              	.LASF17:
+ 1767 0274 73697A65 		.ascii	"sizetype\000"
+ 1767      74797065 
+ 1767      00
+ 1768              	.LASF42:
+ 1769 027d 66726565 		.ascii	"free\000"
+ 1769      00
+ 1770              	.LASF6:
+ 1771 0282 6C6F6E67 		.ascii	"long long int\000"
+ 1771      206C6F6E 
+ 1771      6720696E 
+ 1771      7400
+ 1772              	.LASF19:
+ 1773 0290 66756E63 		.ascii	"funcnoparam\000"
+ 1773      6E6F7061 
+ 1773      72616D00 
+ 1774              	.LASF15:
+ 1775 029c 63686172 		.ascii	"char\000"
+ 1775      00
+ 1776              	.LASF2:
+ 1777 02a1 73686F72 		.ascii	"short int\000"
+ 1777      7420696E 
+ 1777      7400
+ 1778              	.LASF11:
+ 1779 02ab 75696E74 		.ascii	"uint8\000"
+ 1779      3800
+ 1780              	.LASF4:
+ 1781 02b1 6C6F6E67 		.ascii	"long int\000"
+ 1781      20696E74 
+ 1781      00
+ 1782              	.LASF16:
+ 1783 02ba 6C6F6E67 		.ascii	"long double\000"
+ 1783      20646F75 
+ 1783      626C6500 
+ 1784              	.LASF0:
+ 1785 02c6 7369676E 		.ascii	"signed char\000"
+ 1785      65642063 
+ 1785      68617200 
+ 1786              	.LASF38:
+ 1787 02d2 63686563 		.ascii	"check_if_runnable_and_decrement_counter\000"
+ 1787      6B5F6966 
+ 1787      5F72756E 
+ 1787      6E61626C 
+ 1787      655F616E 
+ 1788              	.LASF29:
+ 1789 02fa 6D616C6C 		.ascii	"malloc\000"
+ 1789      6F6300
+ 1790              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

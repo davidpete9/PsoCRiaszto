@@ -10,6 +10,7 @@ Riaszto kodja  - Felkesz / Vaz eddig
 #include "TaskFIFO.h"
 #include "Keypad.h"
 #include "hb100movement.h"
+#include "EEPROM_Helper.h"
 
 //KONTSTANSOK - Majd az EEPROM-ban tarolom, es lehet allitgatni
 char* CODE = "4321";
@@ -63,27 +64,14 @@ void noTone() {
 }
 
 periodic_task_list p_tasks;
-TaskFIFO fifo_tasks;
+TaskFIFO tone_fifo;
 
 //1 ms-onkent
 CY_ISR(TIMER_ISR)
 {
    run_permitted_tasks_and_decrement_counters(&p_tasks);
-    
-   if (check_if_runnable_and_decrement_counter(&fifo_tasks) == 1u) {
-        
-        OneTimeTask * to_run = get_and_remove_first(&fifo_tasks);
-        if (to_run !=  NULL) {
-            if (to_run->func != NULL) {
-                to_run->func(to_run->data);
-                free(to_run);
-            }
-            if (to_run->funcnoparam != NULL) {
-                to_run->funcnoparam();
-                free(to_run);
-            }
-        }
-    }
+   
+  run_next_task_when_available(&tone_fifo);
     
     Timer_ReadStatusRegister();
 }
@@ -100,8 +88,8 @@ void check_photoresistor(uint8 * need_alert){
    
      PWM_BACKLIGHT_STATUS; 
     //2 .kijelzo hattervilagitasanak allitasa
-    if (light > 1800) {
-        uint16 test = 1+((light-1800)/100);
+    if (light > 1500) {
+        uint16 test = 1+((light-1500)/100);
         uint16 dutycle = test*20 > 350 ? 350 : test*20;
         PWM_BACKLIGHT_WriteCompare(dutycle);
     } 
@@ -126,28 +114,26 @@ void init() {
     SPIM_TxDisable();
     PWM_BACKLIGHT_Start();
     UART_Start();
+    EEPROM_Start();
 }
 
 char code_buffer[4];
 uint8 code_buffer_ind = 0;
-
-
-uint8 currentlyPressedKey = 54;
 /*
 Megnezi, hogy nincs e eppen a helyes kod beirva.
 */
 uint8 try_to_read_code_from_keyboard() {
-    
-    if (currentlyPressedKey != 0) { //gombnyomas eseten -  ilyenkor feletelezem, hogy a kodot irom be
+    uint8 pressed_key = get_pressed_key();
+    if (pressed_key != 0) { //gombnyomas eseten -  ilyenkor feletelezem, hogy a kodot irom be
     
     if (!code_buffer_ind) {
-    LCD_ClearDisplay();
-    LCD_Position(1u, 0u);
+        LCD_ClearDisplay();
+        LCD_Position(1u, 0u);
     }    
         
     LCD_PutChar('*');
-    code_buffer[code_buffer_ind++] = currentlyPressedKey;
-    currentlyPressedKey = 0;                
+    code_buffer[code_buffer_ind++] = pressed_key;
+    pressed_key = 0;                
     if (code_buffer_ind == 4) {
         uint8 result = 1u;
         for (uint8 i = 0; i < 4; i++) {
@@ -179,8 +165,8 @@ void print_time_to_lcd() {
 }
 
 void tone(uint16 freq, uint16 duration) {
-      pushTask(&fifo_tasks, create_new_onetimetask(start_tone, 0, freq));
-      pushTask(&fifo_tasks, create_new_noparam_onetimetask(noTone, duration));
+      pushTask(&tone_fifo, create_new_onetimetask(start_tone, 0, freq));
+      pushTask(&tone_fifo, create_new_noparam_onetimetask(noTone, duration));
 }
 
 void play_alert() {
@@ -191,50 +177,36 @@ void play_alert() {
     tone(900, 600);
     tone(1400, 500);
     tone(2000, 400);
-    tone(2400, 300);
-   
+    tone(2400, 300);  
 }
 
 int main(void)
 {
     init();
+  
     
-    fifo_tasks.start = NULL;
-    fifo_tasks.end = NULL;
+    tone_fifo.start = NULL;
+    tone_fifo.end = NULL;
     p_tasks.start = NULL;
     p_tasks.end = NULL;
     
     CyGlobalIntEnable; /* Enable global interrupts. */
-     
-   // char str[10];
-   // sprintf(str, "%d", sizeof(int));
-   //  LCD_PrintString(str);
-    //OneTimeTask * test = (OneTimeTask*)malloc(10*sizeof(OneTimeTask));
-  
-
     
     uint8 is_light_alert = 0u;
     uint8 is_movement_alert = 0u;
-  
     
     add_to_ptask_list(&p_tasks, create_new_ptask_noparam(readKey, 30, 1));
     add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_photoresistor, &is_light_alert, 200, 2));
     add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_movement, &is_movement_alert, 100, 3));
- //   add_to_ptask_list(&p_tasks, create_new_ptask_noparam(print_time_to_lcd, 1000, 4));
+  //  add_to_ptask_list(&p_tasks, create_new_ptask_noparam(print_time_to_lcd, 1000, 4));
+
     
-   // LCD_ClearDisplay();
-    
+    volatile uint8 pressed = 0;
     for(;;)
     {   
-        
-        
-   
-      if (get_pressed_key() == '2') {
-        play_alert();
-      } 
-      
-        
-       CyDelay(1000);
+        UART_PutString("Remelem ez most jo\r\n");
+        CyDelay(1000);
+    
     }
 }
 

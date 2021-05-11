@@ -76,11 +76,11 @@ CY_ISR(TIMER_ISR)
         if (to_run !=  NULL) {
             if (to_run->func != NULL) {
                 to_run->func(to_run->data);
-                //free(to_run);
+                free(to_run);
             }
             if (to_run->funcnoparam != NULL) {
                 to_run->funcnoparam();
-               // free(to_run);
+                free(to_run);
             }
         }
     }
@@ -178,17 +178,20 @@ void print_time_to_lcd() {
     LCD_PrintString(str);
 }
 
-void almafa() {
-    
+void tone(uint16 freq, uint16 duration) {
+      pushTask(&fifo_tasks, create_new_onetimetask(start_tone, 0, freq));
+      pushTask(&fifo_tasks, create_new_noparam_onetimetask(noTone, duration));
 }
 
 void play_alert() {
-    pushTask(&fifo_tasks, create_new_onetimetask(start_tone, 300, 500));
-    pushTask(&fifo_tasks, create_new_onetimetask(start_tone, 400, 700));
-    pushTask(&fifo_tasks, create_new_noparam_onetimetask(noTone, 100));
-    pushTask(&fifo_tasks, create_new_onetimetask(start_tone, 500, 900));
-    pushTask(&fifo_tasks, create_new_noparam_onetimetask(noTone, 100));
-
+    tone(1000, 200);
+    tone(900, 300);
+    tone(800, 400);
+    tone(700, 500);
+    tone(900, 600);
+    tone(1400, 500);
+    tone(2000, 400);
+    tone(2400, 300);
    
 }
 
@@ -203,7 +206,11 @@ int main(void)
     
     CyGlobalIntEnable; /* Enable global interrupts. */
      
-    
+   // char str[10];
+   // sprintf(str, "%d", sizeof(int));
+   //  LCD_PrintString(str);
+    //OneTimeTask * test = (OneTimeTask*)malloc(10*sizeof(OneTimeTask));
+  
 
     
     uint8 is_light_alert = 0u;
@@ -213,9 +220,9 @@ int main(void)
     add_to_ptask_list(&p_tasks, create_new_ptask_noparam(readKey, 30, 1));
     add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_photoresistor, &is_light_alert, 200, 2));
     add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_movement, &is_movement_alert, 100, 3));
-    add_to_ptask_list(&p_tasks, create_new_ptask_noparam(print_time_to_lcd, 1000, 4));
+ //   add_to_ptask_list(&p_tasks, create_new_ptask_noparam(print_time_to_lcd, 1000, 4));
     
-    LCD_ClearDisplay();
+   // LCD_ClearDisplay();
     
     for(;;)
     {   

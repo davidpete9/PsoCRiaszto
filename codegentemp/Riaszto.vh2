@@ -2,7 +2,7 @@
 --	Conversion of Riaszto.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Tue May 11 18:58:50 2021
+--	Thu May 13 14:47:47 2021
 --
 
 USE cypress.cypress.all;
@@ -704,9 +704,11 @@ SIGNAL tmpOE__Tx_2_net_0 : bit;
 SIGNAL Net_637 : bit;
 SIGNAL tmpFB_0__Tx_2_net_0 : bit;
 SIGNAL tmpIO_0__Tx_2_net_0 : bit;
-TERMINAL tmpSIOVREF__Tx_2_net_0 : bit;
+TERMINAL Net_646 : bit;
 SIGNAL tmpINTERRUPT_0__Tx_2_net_0 : bit;
+SIGNAL Net_641 : bit;
 SIGNAL \UART_GSM:Net_9\ : bit;
+SIGNAL Net_636 : bit;
 SIGNAL \UART_GSM:Net_61\ : bit;
 SIGNAL \UART_GSM:BUART:clock_op\ : bit;
 SIGNAL \UART_GSM:BUART:reset_reg\ : bit;
@@ -721,9 +723,7 @@ SIGNAL \UART_GSM:BUART:tx_ctrl_mark\ : bit;
 SIGNAL \UART_GSM:BUART:reset_sr\ : bit;
 SIGNAL \UART_GSM:BUART:HalfDuplexSend_last\ : bit;
 SIGNAL \UART_GSM:BUART:txn\ : bit;
-SIGNAL Net_641 : bit;
 SIGNAL \UART_GSM:BUART:tx_interrupt_out\ : bit;
-SIGNAL Net_636 : bit;
 SIGNAL \UART_GSM:BUART:rx_interrupt_out\ : bit;
 SIGNAL \UART_GSM:BUART:tx_state_1\ : bit;
 SIGNAL \UART_GSM:BUART:tx_state_0\ : bit;
@@ -1047,6 +1047,10 @@ SIGNAL tmpOE__Rx_2_net_0 : bit;
 SIGNAL tmpIO_0__Rx_2_net_0 : bit;
 TERMINAL tmpSIOVREF__Rx_2_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__Rx_2_net_0 : bit;
+SIGNAL \VDAC8:Net_83\ : bit;
+SIGNAL \VDAC8:Net_81\ : bit;
+SIGNAL \VDAC8:Net_82\ : bit;
+TERMINAL \VDAC8:Net_77\ : bit;
 SIGNAL Net_25D : bit;
 SIGNAL \SPIM:BSPIM:so_send_reg\\D\ : bit;
 SIGNAL \SPIM:BSPIM:mosi_reg\\D\ : bit;
@@ -3422,15 +3426,15 @@ Tx_2:cy_psoc3_pins_v1_10
 		pin_aliases=>"",
 		pin_mode=>"O",
 		por_state=>4,
-		sio_group_cnt=>0,
-		sio_hifreq=>"00000000",
+		sio_group_cnt=>1,
+		sio_hifreq=>"1",
 		sio_hyst=>"1",
-		sio_ibuf=>"00000000",
-		sio_info=>"00",
-		sio_obuf=>"00000000",
-		sio_refsel=>"00000000",
-		sio_vtrip=>"00000000",
-		sio_vohsel=>"00000000",
+		sio_ibuf=>"0",
+		sio_info=>"01",
+		sio_obuf=>"1",
+		sio_refsel=>"1",
+		sio_vtrip=>"1",
+		sio_vohsel=>"000",
 		slew_rate=>"0",
 		spanning=>'0',
 		sw_only=>'0',
@@ -3454,7 +3458,7 @@ Tx_2:cy_psoc3_pins_v1_10
 		fb=>(tmpFB_0__Tx_2_net_0),
 		analog=>(open),
 		io=>(tmpIO_0__Tx_2_net_0),
-		siovref=>(tmpSIOVREF__Tx_2_net_0),
+		siovref=>Net_646,
 		annotation=>(open),
 		in_clock=>zero,
 		in_clock_en=>one,
@@ -3463,16 +3467,24 @@ Tx_2:cy_psoc3_pins_v1_10
 		out_clock_en=>one,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__Tx_2_net_0);
+\UART_GSM:TXInternalInterrupt\:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
+	PORT MAP(int_signal=>Net_641);
 \UART_GSM:IntClock\:cy_clock_v1_0
 	GENERIC MAP(cy_registers=>"",
 		id=>"4e435027-8136-4598-b827-9bc8b65a11a2/be0a0e37-ad17-42ca-b5a1-1a654d736358",
 		source_clock_id=>"",
 		divisor=>0,
-		period=>"2170138888.88889",
+		period=>"13020833333.3333",
 		is_direct=>'0',
 		is_digital=>'1')
 	PORT MAP(clock_out=>\UART_GSM:Net_9\,
 		dig_domain_out=>open);
+\UART_GSM:RXInternalInterrupt\:cy_isr_v1_0
+	GENERIC MAP(int_type=>"10",
+		is_nmi=>'0')
+	PORT MAP(int_signal=>Net_636);
 \UART_GSM:BUART:ClkSync\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
 	PORT MAP(clock_in=>\UART_GSM:Net_9\,
@@ -3659,7 +3671,7 @@ Tx_2:cy_psoc3_pins_v1_10
 		clock=>\UART_GSM:BUART:clock_op\,
 		status=>(zero, zero, zero, \UART_GSM:BUART:tx_fifo_notfull\,
 			\UART_GSM:BUART:tx_status_2\, \UART_GSM:BUART:tx_fifo_empty\, \UART_GSM:BUART:tx_status_0\),
-		interrupt=>\UART_GSM:BUART:tx_interrupt_out\);
+		interrupt=>Net_641);
 \UART_GSM:BUART:sRX:RxShifter:u0\:cy_psoc3_dp
 	GENERIC MAP(cy_dpconfig=>"0000000000000000000000000000000000000000000000000000001001000000000100000000000000010000001100000001000000000000000100100001000011111111000000001111111111111111101000000110001001000001111100000000000000001100",
 		d0_init=>"00000000",
@@ -3767,7 +3779,7 @@ Tx_2:cy_psoc3_pins_v1_10
 		clock=>\UART_GSM:BUART:clock_op\,
 		status=>(zero, \UART_GSM:BUART:rx_status_5\, \UART_GSM:BUART:rx_status_4\, \UART_GSM:BUART:rx_status_3\,
 			\UART_GSM:BUART:rx_status_2\, zero, zero),
-		interrupt=>\UART_GSM:BUART:rx_interrupt_out\);
+		interrupt=>Net_636);
 Rx_2:cy_psoc3_pins_v1_10
 	GENERIC MAP(id=>"b0974d86-0fbe-4de9-affb-e3a00b775bbe",
 		drive_mode=>"001",
@@ -3838,6 +3850,21 @@ Rx_2:cy_psoc3_pins_v1_10
 		out_clock_en=>one,
 		out_reset=>zero,
 		interrupt=>tmpINTERRUPT_0__Rx_2_net_0);
+\VDAC8:viDAC8\:cy_psoc3_vidac8_v1_0
+	GENERIC MAP(cy_registers=>"",
+		reg_data=>'0',
+		is_all_if_any=>'0')
+	PORT MAP(reset=>zero,
+		idir=>zero,
+		ioff=>zero,
+		data=>(zero, zero, zero, zero,
+			zero, zero, zero, zero),
+		strobe=>zero,
+		strobe_udb=>zero,
+		vout=>Net_646,
+		iout=>\VDAC8:Net_77\);
+\VDAC8:cy_analog_noconnect_1\:cy_analog_noconnect_v1_0
+	PORT MAP(noconnect=>\VDAC8:Net_77\);
 Net_25:cy_dff
 	PORT MAP(d=>Net_25D,
 		clk=>\SPIM:BSPIM:clk_fin\,

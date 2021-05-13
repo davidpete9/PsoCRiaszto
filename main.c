@@ -88,14 +88,15 @@ void check_photoresistor(uint8 * need_alert){
    
      PWM_BACKLIGHT_STATUS; 
     //2 .kijelzo hattervilagitasanak allitasa
-    if (light > 1500) {
+    /*if (light > 1500) {
         uint16 test = 1+((light-1500)/100);
         uint16 dutycle = test*20 > 350 ? 350 : test*20;
         PWM_BACKLIGHT_WriteCompare(dutycle);
     } 
     else {    
         PWM_BACKLIGHT_WriteCompare(0u);
-    }
+    }*/
+     PWM_BACKLIGHT_WriteCompare(200u);
 }
 
 
@@ -114,6 +115,8 @@ void init() {
     SPIM_TxDisable();
     PWM_BACKLIGHT_Start();
     UART_Start();
+    UART_GSM_Start();
+    VDAC8_Start();
     EEPROM_Start();
 }
 
@@ -170,14 +173,7 @@ void tone(uint16 freq, uint16 duration) {
 }
 
 void play_alert() {
-    tone(1000, 200);
-    tone(900, 300);
-    tone(800, 400);
-    tone(700, 500);
-    tone(900, 600);
-    tone(1400, 500);
-    tone(2000, 400);
-    tone(2400, 300);  
+    tone(400, 300);
 }
 
 int main(void)
@@ -196,17 +192,29 @@ int main(void)
     uint8 is_movement_alert = 0u;
     
     add_to_ptask_list(&p_tasks, create_new_ptask_noparam(readKey, 30, 1));
-    add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_photoresistor, &is_light_alert, 200, 2));
-    add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_movement, &is_movement_alert, 100, 3));
+   // add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_photoresistor, &is_light_alert, 200, 2));
+   // add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_movement, &is_movement_alert, 100, 3));
   //  add_to_ptask_list(&p_tasks, create_new_ptask_noparam(print_time_to_lcd, 1000, 4));
-
-    
     volatile uint8 pressed = 0;
     for(;;)
     {   
-        UART_PutString("Remelem ez most jo\r\n");
-        CyDelay(1000);
-    
+        
+        pressed = get_pressed_key();
+         if (UART_GetRxBufferSize()) {
+            UART_GSM_PutChar(UART_GetChar());
+            play_alert();
+        }
+       
+        if (UART_GSM_GetRxBufferSize()) {
+            UART_PutChar(UART_GSM_GetChar());
+        }
+       
+        
+     
+               
+       
+      
+       
     }
 }
 

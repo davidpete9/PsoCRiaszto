@@ -111,6 +111,9 @@
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\UART_GSM_PM.c" value="SOURCE_C;CortexM3;;;;UART_GSM" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\UART_GSM_INT.c" value="SOURCE_C;CortexM3;;;;UART_GSM" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\UART_GSM_BOOT.c" value="SOURCE_C;CortexM3;;;;UART_GSM" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\VDAC8.c" value="SOURCE_C;CortexM3;;;;VDAC8" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\VDAC8.h" value="HEADER;;;;;VDAC8" />
+  <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\VDAC8_PM.c" value="SOURCE_C;CortexM3;;;;VDAC8" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\LCD_LCDPort_aliases.h" value="HEADER;;;;;LCD_LCDPort" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\LCD_LCDPort.c" value="SOURCE_C;CortexM3;;;;LCD_LCDPort" />
   <file name="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\codegentemp\LCD_LCDPort.h" value="HEADER;;;;;LCD_LCDPort" />

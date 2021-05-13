@@ -47,7 +47,7 @@ void readKey() {
     char pressed = 0;
     
     ROW1_Write(1u);
-    pressed = COL1_Read() != 0 ? '1' : pressed;
+    pressed = COL1_Read() != 0 ? '1' : pressed;    
     pressed = COL2_Read() != 0 ? '2' : pressed;
     pressed = COL3_Read() != 0 ? '3' : pressed;
     pressed = COL4_Read() != 0 ? 'A' : pressed;

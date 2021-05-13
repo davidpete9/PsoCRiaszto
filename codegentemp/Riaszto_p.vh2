@@ -1,5 +1,5 @@
 -- Project:   Riaszto
--- Generated: 05/11/2021 18:58:51
+-- Generated: 05/13/2021 14:47:49
 -- PSoC Creator  4.4
 
 ENTITY Riaszto IS
@@ -79,7 +79,9 @@ ARCHITECTURE __DEFAULT__ OF Riaszto IS
     SIGNAL Net_596 : bit;
     SIGNAL Net_599 : bit;
     SIGNAL Net_633 : bit;
+    SIGNAL Net_636 : bit;
     SIGNAL Net_637 : bit;
+    SIGNAL Net_641 : bit;
     SIGNAL Net_73 : bit;
     SIGNAL Net_76 : bit;
     SIGNAL Net_78 : bit;
@@ -300,7 +302,7 @@ ARCHITECTURE __DEFAULT__ OF Riaszto IS
     ATTRIBUTE lib_model OF ROW4(0) : LABEL IS "iocell11";
     ATTRIBUTE Location OF ROW4(0) : LABEL IS "P1[7]";
     ATTRIBUTE lib_model OF COL1(0) : LABEL IS "iocell12";
-    ATTRIBUTE Location OF COL1(0) : LABEL IS "P12[2]";
+    ATTRIBUTE Location OF COL1(0) : LABEL IS "P3[0]";
     ATTRIBUTE lib_model OF COL2(0) : LABEL IS "iocell13";
     ATTRIBUTE Location OF COL2(0) : LABEL IS "P12[3]";
     ATTRIBUTE lib_model OF COL3(0) : LABEL IS "iocell14";
@@ -328,9 +330,9 @@ ARCHITECTURE __DEFAULT__ OF Riaszto IS
     ATTRIBUTE lib_model OF PHRES(0) : LABEL IS "iocell25";
     ATTRIBUTE Location OF PHRES(0) : LABEL IS "P3[1]";
     ATTRIBUTE lib_model OF Tx_2(0) : LABEL IS "iocell26";
-    ATTRIBUTE Location OF Tx_2(0) : LABEL IS "P0[2]";
+    ATTRIBUTE Location OF Tx_2(0) : LABEL IS "P12[2]";
     ATTRIBUTE lib_model OF Rx_2(0) : LABEL IS "iocell27";
-    ATTRIBUTE Location OF Rx_2(0) : LABEL IS "P0[3]";
+    ATTRIBUTE Location OF Rx_2(0) : LABEL IS "P3[7]";
     ATTRIBUTE lib_model OF \SPIM:BSPIM:load_rx_data\ : LABEL IS "macrocell1";
     ATTRIBUTE lib_model OF \SPIM:BSPIM:tx_status_0\ : LABEL IS "macrocell2";
     ATTRIBUTE lib_model OF \SPIM:BSPIM:tx_status_4\ : LABEL IS "macrocell3";
@@ -368,6 +370,7 @@ ARCHITECTURE __DEFAULT__ OF Riaszto IS
     ATTRIBUTE lib_model OF \UART_GSM:BUART:sTX:TxSts\ : LABEL IS "statusicell5";
     ATTRIBUTE lib_model OF \UART_GSM:BUART:sRX:RxShifter:u0\ : LABEL IS "datapathcell7";
     ATTRIBUTE lib_model OF \UART_GSM:BUART:sRX:RxSts\ : LABEL IS "statusicell6";
+    ATTRIBUTE Location OF \VDAC8:viDAC8\ : LABEL IS "F(VIDAC,2)";
     ATTRIBUTE lib_model OF Net_25 : LABEL IS "macrocell22";
     ATTRIBUTE lib_model OF Net_8 : LABEL IS "macrocell23";
     ATTRIBUTE lib_model OF \SPIM:BSPIM:state_2\ : LABEL IS "macrocell24";
@@ -773,6 +776,22 @@ ARCHITECTURE __DEFAULT__ OF Riaszto IS
             tc : OUT std_ulogic;
             cmp : OUT std_ulogic;
             irq : OUT std_ulogic);
+    END COMPONENT;
+    COMPONENT vidaccell
+        PORT (
+            data_0 : IN std_ulogic;
+            data_1 : IN std_ulogic;
+            data_2 : IN std_ulogic;
+            data_3 : IN std_ulogic;
+            data_4 : IN std_ulogic;
+            data_5 : IN std_ulogic;
+            data_6 : IN std_ulogic;
+            data_7 : IN std_ulogic;
+            strobe : IN std_ulogic;
+            strobe_udb : IN std_ulogic;
+            reset : IN std_ulogic;
+            idir : IN std_ulogic;
+            ioff : IN std_ulogic);
     END COMPONENT;
 BEGIN
 
@@ -2694,15 +2713,15 @@ BEGIN
             por_state => 4,
             port_alias_group => "",
             port_alias_required => 0,
-            sio_group_cnt => 0,
-            sio_hifreq => "00000000",
+            sio_group_cnt => 1,
+            sio_hifreq => "1",
             sio_hyst => "1",
-            sio_ibuf => "00000000",
-            sio_info => "00",
-            sio_obuf => "00000000",
-            sio_refsel => "00000000",
-            sio_vohsel => "00000000",
-            sio_vtrip => "00000000",
+            sio_ibuf => "0",
+            sio_info => "01",
+            sio_obuf => "1",
+            sio_refsel => "1",
+            sio_vohsel => "000",
+            sio_vtrip => "1",
             slew_rate => "0",
             spanning => 0,
             sw_only => 0,
@@ -2730,7 +2749,7 @@ BEGIN
             oe_sync_mode => 0,
             logicalport => "Tx_2",
             logicalport_pin_id => 0,
-            io_capabilities => "0000000000000000000000000000000000000000000000000000000000000101")
+            io_capabilities => "0000000000000000000000000000000000000000000000000000000000100101")
         PORT MAP(
             pa_out => Tx_2(0)__PA,
             oe => open,
@@ -3479,6 +3498,22 @@ BEGIN
             data_out_udb_0 => \ADC_SAR_PR:Net_207_0\,
             eof_udb => Net_596);
 
+    \UART_GSM:TXInternalInterrupt\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_641,
+            clock => ClockBlock_BUS_CLK);
+
+    \UART_GSM:RXInternalInterrupt\:interrupt
+        GENERIC MAP(
+            int_type => "10",
+            is_nmi => 0)
+        PORT MAP(
+            interrupt => Net_636,
+            clock => ClockBlock_BUS_CLK);
+
     \UART_GSM:BUART:sTX:TxShifter:u0\:datapathcell
         GENERIC MAP(
             a0_init => "00000000",
@@ -3568,7 +3603,8 @@ BEGIN
             status_3 => \UART_GSM:BUART:tx_fifo_notfull\,
             status_2 => \UART_GSM:BUART:tx_status_2\,
             status_1 => \UART_GSM:BUART:tx_fifo_empty\,
-            status_0 => \UART_GSM:BUART:tx_status_0\);
+            status_0 => \UART_GSM:BUART:tx_status_0\,
+            interrupt => Net_641);
 
     \UART_GSM:BUART:sRX:RxShifter:u0\:datapathcell
         GENERIC MAP(
@@ -3648,7 +3684,18 @@ BEGIN
             status_3 => \UART_GSM:BUART:rx_status_3\,
             status_2 => open,
             status_1 => open,
-            status_0 => open);
+            status_0 => open,
+            interrupt => Net_636);
+
+    \VDAC8:viDAC8\:vidaccell
+        GENERIC MAP(
+            cy_registers => "",
+            is_all_if_any => 0,
+            reg_data => 0)
+        PORT MAP(
+            reset => open,
+            idir => open,
+            ioff => open);
 
     Net_25:macrocell
         GENERIC MAP(

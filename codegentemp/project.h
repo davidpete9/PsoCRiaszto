@@ -66,6 +66,7 @@
 #include "PHRES.h"
 #include "EEPROM.h"
 #include "UART_GSM.h"
+#include "VDAC8.h"
 #include "LCD_LCDPort_aliases.h"
 #include "LCD_LCDPort.h"
 #include "SPIM_IntClock.h"

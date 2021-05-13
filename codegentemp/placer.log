@@ -6,7 +6,7 @@
 
 #Build Date:         Sep  9 2019 11:47:43
 
-#File Generated:     May 11 2021 18:58:51
+#File Generated:     May 13 2021 14:47:49
 
 #Purpose:            
 
@@ -54,7 +54,7 @@ Design Statistics after Packing
 
 Device Utilization Summary after Packing
     Macrocells                  :	62/192
-    UDBS                        :	11/24
+    UDBS                        :	10/24
     IOs                         :	27/72
 
 
@@ -84,14 +84,14 @@ Clock: ADC_SAR_PR_theACLK   | Frequency: N/A       | Target:   1.0 MHz
 Clock: ADC_SAR_PR_theACLK(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
 Clock: ADC_SAR_RADAR_theACLK | Frequency: N/A       | Target:   1.0 MHz
 Clock: ADC_SAR_RADAR_theACLK(fixed-function) | Frequency: N/A       | Target:   1.0 MHz
-Clock: CyBUS_CLK            | Frequency:  54.1 MHz | Target:  24.0 MHz
+Clock: CyBUS_CLK            | Frequency:  45.4 MHz | Target:  24.0 MHz
 Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
 Clock: SPIM_IntClock        | Frequency:  26.1 MHz | Target:   2.0 MHz
-Clock: UART_GSM_IntClock    | Frequency:  53.6 MHz | Target:   0.5 MHz
-Clock: UART_IntClock        | Frequency:  51.4 MHz | Target:   0.1 MHz
+Clock: UART_GSM_IntClock    | Frequency:  54.1 MHz | Target:   0.1 MHz
+Clock: UART_IntClock        | Frequency:  43.4 MHz | Target:   0.1 MHz
 Clock: beeper_clk           | Frequency: N/A       | Target:   0.0 MHz
 Clock: beeper_clk(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
 Clock: pwn1_clk             | Frequency: N/A       | Target:   0.1 MHz
@@ -119,8 +119,8 @@ Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
-Clock: SPIM_IntClock        | Frequency:  26.1 MHz | Target:   2.0 MHz
-Clock: UART_GSM_IntClock    | Frequency:   2.4 MHz | Target:   0.5 MHz
+Clock: SPIM_IntClock        | Frequency:  25.3 MHz | Target:   2.0 MHz
+Clock: UART_GSM_IntClock    | Frequency:   1.3 MHz | Target:   0.1 MHz
 Clock: UART_IntClock        | Frequency:   1.3 MHz | Target:   0.1 MHz
 Clock: beeper_clk           | Frequency: N/A       | Target:   0.0 MHz
 Clock: beeper_clk(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
@@ -132,7 +132,7 @@ Clock: timer_clock(fixed-function) | Frequency: N/A       | Target:   0.1 MHz
 ======================================================================
                      End of Clock Summary
 ######################################################################
-D2088: Phase 7, elapsed time : 0.7 (sec)
+D2088: Phase 7, elapsed time : 0.6 (sec)
 
 Final Design Statistics
     Number of Combinational MCs 	:	21
@@ -172,8 +172,8 @@ Clock: CyILO                | Frequency: N/A       | Target:   0.0 MHz
 Clock: CyIMO                | Frequency: N/A       | Target:   3.0 MHz
 Clock: CyMASTER_CLK         | Frequency: N/A       | Target:  24.0 MHz
 Clock: CyPLL_OUT            | Frequency: N/A       | Target:  24.0 MHz
-Clock: SPIM_IntClock        | Frequency:  25.2 MHz | Target:   2.0 MHz
-Clock: UART_GSM_IntClock    | Frequency:   3.0 MHz | Target:   0.5 MHz
+Clock: SPIM_IntClock        | Frequency:  25.3 MHz | Target:   2.0 MHz
+Clock: UART_GSM_IntClock    | Frequency:   1.4 MHz | Target:   0.1 MHz
 Clock: UART_IntClock        | Frequency:   1.4 MHz | Target:   0.1 MHz
 Clock: beeper_clk           | Frequency: N/A       | Target:   0.0 MHz
 Clock: beeper_clk(fixed-function) | Frequency: N/A       | Target:   0.0 MHz
@@ -191,5 +191,5 @@ D2088: Phase 8, elapsed time : 0.0 (sec)
 
 D2054: Placement of the design completed successfully
 
-I2076: Total run-time: 1.4 sec.
+I2076: Total run-time: 1.3 sec.
 

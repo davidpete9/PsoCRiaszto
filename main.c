@@ -196,13 +196,55 @@ int main(void)
    // add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_movement, &is_movement_alert, 100, 3));
   //  add_to_ptask_list(&p_tasks, create_new_ptask_noparam(print_time_to_lcd, 1000, 4));
     volatile uint8 pressed = 0;
+    
+    
+    
+    
     for(;;)
     {   
         
         pressed = get_pressed_key();
          if (UART_GetRxBufferSize()) {
             UART_GSM_PutChar(UART_GetChar());
-            play_alert();
+          
+        }
+        
+        if (pressed != 0) {
+           
+            if (pressed == '1') {
+             UART_GSM_PutString("AT"); 
+            UART_GSM_PutChar(0x0D);
+            }
+            else if (pressed == '2') {
+              UART_GSM_PutString("AT+CMGF=1");
+            UART_GSM_PutChar(0x0D);
+            }
+            else if (pressed == '3') {
+              UART_GSM_PutString("AT+CMGS=\"+36702668307\"");
+              UART_GSM_PutChar(0x0D);
+            }
+            else if (pressed == '4') {
+                UART_GSM_PutString("szia vercse");
+               
+             }
+            else if (pressed == '5') {
+                  UART_GSM_PutChar(0x1A);
+            }
+            
+           
+           
+            
+            
+           
+            
+          
+           
+          
+           
+            
+            
+            
+      
         }
        
         if (UART_GSM_GetRxBufferSize()) {

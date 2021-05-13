@@ -1,10 +1,7 @@
---------------- Build Started: 05/13/2021 14:54:18 Project: Riaszto, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Build Started: 05/13/2021 23:29:21 Project: Riaszto, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
 main.c: In function 'main':
-main.c:198:20: warning: variable 'pressed' set but not used [-Wunused-but-set-variable]
-     volatile uint8 pressed = 0;
-                    ^
 main.c:192:11: warning: unused variable 'is_movement_alert' [-Wunused-variable]
      uint8 is_movement_alert = 0u;
            ^
@@ -23,6 +20,6 @@ No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
 cyelftool.exe -S "C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\CortexM3\ARM_GCC_541\Debug\Riaszto.elf"
-Flash used: 8000 of 262144 bytes (3.1%).
+Flash used: 7712 of 262144 bytes (2.9%).
 SRAM used: 4577 of 65536 bytes (7.0%). Stack: 2048 bytes. Heap: 2048 bytes.
---------------- Build Succeeded: 05/13/2021 14:54:19 ---------------
+--------------- Build Succeeded: 05/13/2021 23:29:23 ---------------

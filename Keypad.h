@@ -6,6 +6,9 @@
  * ========================================
 */
 
+#ifndef KEYPAD_H
+#define KEYPAD_H
+
 #include "project.h"
 
 
@@ -18,5 +21,6 @@ ha van akkor a billenyu ASCII kodjaval.
 Gomb felengedesekor menek csak! .*/
 void readKey();
 
+#endif
 
 /* [] END OF FILE */

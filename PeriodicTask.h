@@ -6,6 +6,9 @@
  * ========================================
 */
 
+#ifndef PERIODICTASK_H
+#define PERIODICTASK_H
+
 #include "project.h"
 
 
@@ -45,7 +48,7 @@ void free_list(periodic_task_list * list);
 
 void run_permitted_tasks_and_decrement_counters(periodic_task_list *list);
 
-
+#endif
 
 
 /* [] END OF FILE */

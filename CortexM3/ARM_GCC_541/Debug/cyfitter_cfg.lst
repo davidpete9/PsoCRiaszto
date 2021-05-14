@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
   29:Generated_Source\PSoC5/cyfitter_cfg.c **** 
   30:Generated_Source\PSoC5/cyfitter_cfg.c **** #if defined(__GNUC__) || defined(__ARMCC_VERSION)
   31:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED 
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 2
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 2
 
 
   32:Generated_Source\PSoC5/cyfitter_cfg.c ****     #define CYPACKED_ATTR __attribute__ ((packed))
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
   86:Generated_Source\PSoC5/cyfitter_cfg.c **** 	(void)memcpy(dest, src, n);
   87:Generated_Source\PSoC5/cyfitter_cfg.c **** }
   88:Generated_Source\PSoC5/cyfitter_cfg.c **** CY_CFG_UNUSED
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 3
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 3
 
 
   89:Generated_Source\PSoC5/cyfitter_cfg.c **** static void CYCONFIGCPYCODE(void *dest, const void *src, size_t n);
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
   41              		.thumb
   42              		.thumb_func
   43              		.type	cfg_write_bytes32, %function
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 4
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 4
 
 
   44              	cfg_write_bytes32:
@@ -205,7 +205,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  148:Generated_Source\PSoC5/cyfitter_cfg.c **** }
  149:Generated_Source\PSoC5/cyfitter_cfg.c **** #endif
  150:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 151:Generated_Source\PSoC5/cyfitter_cfg.c **** #define CY_CFG_BASE_ADDR_COUNT 36u
+ 151:Generated_Source\PSoC5/cyfitter_cfg.c **** #define CY_CFG_BASE_ADDR_COUNT 37u
  152:Generated_Source\PSoC5/cyfitter_cfg.c **** CYPACKED typedef struct
  153:Generated_Source\PSoC5/cyfitter_cfg.c **** {
  154:Generated_Source\PSoC5/cyfitter_cfg.c **** 	uint8 offset;
@@ -213,37 +213,37 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  156:Generated_Source\PSoC5/cyfitter_cfg.c **** } CYPACKED_ATTR cy_cfg_addrvalue_t;
  157:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  158:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_addr_table ((const uint32 CYFAR *)0x48000000u)
- 159:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x48000090u)
+ 159:Generated_Source\PSoC5/cyfitter_cfg.c **** #define cy_cfg_data_table ((const cy_cfg_addrvalue_t CYFAR *)0x48000094u)
  160:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  161:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPORT_7 Address: CYDEV_PRTDSI_PRT12_BASE Size (bytes): 6 */
- 162:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPORT_7_VAL ((const uint8 CYFAR *)0x48000984u)
+ 162:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPORT_7_VAL ((const uint8 CYFAR *)0x4800096Cu)
  163:Generated_Source\PSoC5/cyfitter_cfg.c **** 
- 164:Generated_Source\PSoC5/cyfitter_cfg.c **** /* UDB_1_1_1_CONFIG Address: CYDEV_UCFG_B1_P3_U0_BASE Size (bytes): 128 */
- 165:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_UDB_1_1_1_CONFIG_VAL ((const uint8 CYFAR *)0x4800098Cu)
+ 164:Generated_Source\PSoC5/cyfitter_cfg.c **** /* UDB_0_2_1_CONFIG Address: CYDEV_UCFG_B0_P4_U0_BASE Size (bytes): 128 */
+ 165:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_UDB_0_2_1_CONFIG_VAL ((const uint8 CYFAR *)0x48000974u)
  166:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  167:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_7 Address: CYREG_PRT12_DR Size (bytes): 10 */
- 168:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x48000A0Cu)
+ 168:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_7_VAL ((const uint8 CYFAR *)0x480009F4u)
  169:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  170:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS1_7 Address: CYREG_PRT12_DR + 0x0000000Bu Size (bytes): 5 */
- 171:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS1_7_VAL ((const uint8 CYFAR *)0x48000A18u)
+ 171:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS1_7_VAL ((const uint8 CYFAR *)0x48000A00u)
  172:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  173:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_8 Address: CYREG_PRT15_DR Size (bytes): 10 */
- 174:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_8_VAL ((const uint8 CYFAR *)0x48000A20u)
+ 174:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_8_VAL ((const uint8 CYFAR *)0x48000A08u)
  175:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  176:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_1 Address: CYREG_PRT1_DM0 Size (bytes): 8 */
- 177:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x48000A2Cu)
+ 177:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_1_VAL ((const uint8 CYFAR *)0x48000A14u)
  178:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  179:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_2 Address: CYREG_PRT2_DM0 Size (bytes): 8 */
- 180:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x48000A34u)
+ 180:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_2_VAL ((const uint8 CYFAR *)0x48000A1Cu)
  181:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  182:Generated_Source\PSoC5/cyfitter_cfg.c **** /* IOPINS0_3 Address: CYREG_PRT3_DM0 Size (bytes): 8 */
- 183:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_3_VAL ((const uint8 CYFAR *)0x48000A3Cu)
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 5
+ 183:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_IOPINS0_3_VAL ((const uint8 CYFAR *)0x48000A24u)
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 5
 
 
  184:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  185:Generated_Source\PSoC5/cyfitter_cfg.c **** /* CYDEV_CLKDIST_ACFG0_CFG0 Address: CYREG_CLKDIST_ACFG0_CFG0 Size (bytes): 8 */
- 186:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_CYDEV_CLKDIST_ACFG0_CFG0_VAL ((const uint8 CYFAR *)0x48000A44u)
+ 186:Generated_Source\PSoC5/cyfitter_cfg.c **** #define BS_CYDEV_CLKDIST_ACFG0_CFG0_VAL ((const uint8 CYFAR *)0x48000A2Cu)
  187:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  188:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  189:Generated_Source\PSoC5/cyfitter_cfg.c **** /*******************************************************************************
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
   72 000c F3B2     		uxtb	r3, r6
   73              	.LVL5:
  212:Generated_Source\PSoC5/cyfitter_cfg.c **** 		baseAddr &= 0xFFFFFF00u;
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 6
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 6
 
 
   74              		.loc 1 212 0
@@ -338,7 +338,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  101              	.L4:
  208:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
  102              		.loc 1 208 0 is_stmt 0 discriminator 1
- 103 002c 232F     		cmp	r7, #35
+ 103 002c 242F     		cmp	r7, #36
  104 002e EBD9     		bls	.L7
  218:Generated_Source\PSoC5/cyfitter_cfg.c **** 		}
  219:Generated_Source\PSoC5/cyfitter_cfg.c **** 	}
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  117              		.section	.text.CYMEMZERO,"ax",%progbits
  118              		.align	2
  119              		.thumb
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 7
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 7
 
 
  120              		.thumb_func
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  243:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  244:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  245:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Configure Digital Clocks based on settings from Clock DWR */
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 8
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 8
 
 
  246:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG16((void CYFAR *)(CYREG_CLKDIST_DCFG0_CFG0), 0x000Bu);
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  300:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  301:Generated_Source\PSoC5/cyfitter_cfg.c **** /* Analog API Functions */
  302:Generated_Source\PSoC5/cyfitter_cfg.c **** 
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 9
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 9
 
 
  303:Generated_Source\PSoC5/cyfitter_cfg.c **** 
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  326:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_BG_DFT1), ((bg_xover_inl_trim >> 4) & 0x0Fu));
  181              		.loc 1 326 0
  182 001c 1B09     		lsrs	r3, r3, #4
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 10
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 10
 
 
  183              	.LVL18:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  224              		.loc 1 339 0
  225 005c 8021     		movs	r1, #128
  226 005e 0532     		adds	r2, r2, #5
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 11
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 11
 
 
  227 0060 1170     		strb	r1, [r2]
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  274 0000 08B5     		push	{r3, lr}
  275              		.cfi_def_cfa_offset 8
  276              		.cfi_offset 3, -8
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 12
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 12
 
 
  277              		.cfi_offset 14, -4
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  252:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_DCFG3_CFG0 + 0x2u), 0x18u);
  323              		.loc 1 252 0
  324 0022 40F28F12 		movw	r2, #399
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 13
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 13
 
 
  325 0026 0431     		adds	r1, r1, #4
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  368 006c 294B     		ldr	r3, .L23+40
  369 006e 1A80     		strh	r2, [r3]	@ movhi
  272:Generated_Source\PSoC5/cyfitter_cfg.c **** 	/* Wait up to 250us for the PLL to lock */
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 14
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 14
 
 
  370              		.loc 1 272 0
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  414 00ac 1A80     		strh	r2, [r3]	@ movhi
  288:Generated_Source\PSoC5/cyfitter_cfg.c **** 	CY_SET_XTND_REG8((void CYFAR *)(CYREG_CLKDIST_BCFG0), 0x00u);
  415              		.loc 1 288 0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 15
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 15
 
 
  416 00ae 0722     		movs	r2, #7
@@ -894,11 +894,11 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  458 00f4 84400040 		.word	1073758340
  459 00f8 8A400040 		.word	1073758346
  460 00fc 92400040 		.word	1073758354
- 461 0100 440A0048 		.word	1207962180
+ 461 0100 2C0A0048 		.word	1207962156
  462 0104 00410040 		.word	1073758464
  463 0108 00430040 		.word	1073758976
  464 010c 08010049 		.word	1224737032
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 16
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 16
 
 
  465 0110 A1460040 		.word	1073759905
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  370:Generated_Source\PSoC5/cyfitter_cfg.c **** 	{
  371:Generated_Source\PSoC5/cyfitter_cfg.c **** 		regValue |= 0x22u;
  495              		.loc 1 371 0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 17
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 17
 
 
  496 0008 43F02203 		orr	r3, r3, #34
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  399:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  400:Generated_Source\PSoC5/cyfitter_cfg.c **** void cyfitter_cfg(void)
  401:Generated_Source\PSoC5/cyfitter_cfg.c **** {
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 18
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 18
 
 
  523              		.loc 1 401 0
@@ -1072,13 +1072,13 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  426:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_TMR0_CFG0), 36u},
  427:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_PRT0_DR), 16u},
  428:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_PRT4_DR), 48u},
- 429:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B0_P0_U0_BASE), 4096u},
- 430:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B1_P2_U0_BASE), 512u},
- 431:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B1_P3_U1_BASE), 1408u},
+ 429:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B0_P0_U0_BASE), 2048u},
+ 430:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B0_P4_U1_BASE), 1920u},
+ 431:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B1_P2_U0_BASE), 2048u},
  432:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_DSI0_BASE), 2560u},
  433:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_DSI12_BASE), 512u},
  434:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYREG_BCTL0_MDCLK_EN), 32u},
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 19
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 19
 
 
  435:Generated_Source\PSoC5/cyfitter_cfg.c **** 		};
@@ -1086,7 +1086,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  437:Generated_Source\PSoC5/cyfitter_cfg.c **** 		static const cfg_memcpy_t CYCODE cfg_memcpy_list [] = {
  438:Generated_Source\PSoC5/cyfitter_cfg.c **** 			/* dest, src, size */
  439:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_PRTDSI_PRT12_BASE), BS_IOPORT_7_VAL, 6u},
- 440:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B1_P3_U0_BASE), BS_UDB_1_1_1_CONFIG_VAL, 128u},
+ 440:Generated_Source\PSoC5/cyfitter_cfg.c **** 			{(void CYFAR *)(CYDEV_UCFG_B0_P4_U0_BASE), BS_UDB_0_2_1_CONFIG_VAL, 128u},
  441:Generated_Source\PSoC5/cyfitter_cfg.c **** 		};
  442:Generated_Source\PSoC5/cyfitter_cfg.c **** 
  443:Generated_Source\PSoC5/cyfitter_cfg.c **** 		uint8 CYDATA i;
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  453:Generated_Source\PSoC5/cyfitter_cfg.c **** 		for (i = 0u; i < (sizeof(cfg_memcpy_list)/sizeof(cfg_memcpy_list[0])); i++)
  454:Generated_Source\PSoC5/cyfitter_cfg.c **** 		{
  455:Generated_Source\PSoC5/cyfitter_cfg.c **** 			const cfg_memcpy_t CYCODE * CYDATA mc = &cfg_memcpy_list[i];
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 20
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 20
 
 
  456:Generated_Source\PSoC5/cyfitter_cfg.c **** 			void * CYDATA destPtr = mc->dest;
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  468:Generated_Source\PSoC5/cyfitter_cfg.c **** 		/* Enable UDB array */
  469:Generated_Source\PSoC5/cyfitter_cfg.c **** 		CY_SET_XTND_REG8((void CYFAR *)CYREG_PM_ACT_CFG0, CY_GET_XTND_REG8((void CYFAR *)CYREG_PM_ACT_CFG
  621              		.loc 1 469 0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 21
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 21
 
 
  622 0070 244C     		ldr	r4, .L36+16
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  665 00ba 0822     		movs	r2, #8
  666 00bc 1C49     		ldr	r1, .L36+60
  667 00be 1D48     		ldr	r0, .L36+64
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 22
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 22
 
 
  668 00c0 FFF7FEFF 		bl	CYCONFIGCPY
@@ -1313,23 +1313,23 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  701              	.L36:
  702 00f4 E8460040 		.word	1073759976
  703 00f8 00000000 		.word	.LANCHOR0
- 704 00fc 90000048 		.word	1207959696
+ 704 00fc 94000048 		.word	1207959700
  705 0100 03500140 		.word	1073827843
  706 0104 A0430040 		.word	1073759136
- 707 0108 0C0A0048 		.word	1207962124
+ 707 0108 F4090048 		.word	1207962100
  708 010c C0510040 		.word	1073762752
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 23
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 23
 
 
- 709 0110 180A0048 		.word	1207962136
+ 709 0110 000A0048 		.word	1207962112
  710 0114 CB510040 		.word	1073762763
- 711 0118 200A0048 		.word	1207962144
+ 711 0118 080A0048 		.word	1207962120
  712 011c F0510040 		.word	1073762800
- 713 0120 2C0A0048 		.word	1207962156
+ 713 0120 140A0048 		.word	1207962132
  714 0124 12510040 		.word	1073762578
- 715 0128 340A0048 		.word	1207962164
+ 715 0128 1C0A0048 		.word	1207962140
  716 012c 22510040 		.word	1073762594
- 717 0130 3C0A0048 		.word	1207962172
+ 717 0130 240A0048 		.word	1207962148
  718 0134 32510040 		.word	1073762610
  719 0138 22430040 		.word	1073759010
  720 013c 00480040 		.word	1073760256
@@ -1351,11 +1351,11 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  736 000c 40510040 		.word	1073762624
  737 0010 3000     		.short	48
  738 0012 00000140 		.4byte	1073807360
- 739 0016 0010     		.short	4096
- 740 0018 00140140 		.word	1073812480
- 741 001c 0002     		.short	512
- 742 001e 80160140 		.4byte	1073813120
- 743 0022 8005     		.short	1408
+ 739 0016 0008     		.short	2048
+ 740 0018 80080140 		.word	1073809536
+ 741 001c 8007     		.short	1920
+ 742 001e 00140140 		.4byte	1073812480
+ 743 0022 0008     		.short	2048
  744 0024 00400140 		.word	1073823744
  745 0028 000A     		.short	2560
  746 002a 004C0140 		.4byte	1073826816
@@ -1367,10 +1367,10 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  752              		.size	cfg_memcpy_list.5021, 20
  753              	cfg_memcpy_list.5021:
  754 0038 60520040 		.word	1073762912
- 755 003c 84090048 		.word	1207961988
+ 755 003c 6C090048 		.word	1207961964
  756 0040 0600     		.short	6
- 757 0042 00160140 		.4byte	1073812992
- 758 0046 8C090048 		.4byte	1207961996
+ 757 0042 00080140 		.4byte	1073809408
+ 758 0046 74090048 		.4byte	1207961972
  759 004a 8000     		.short	128
  760              		.text
  761              	.Letext0:
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  763              		.file 3 "Generated_Source\\PSoC5\\cytypes.h"
  764              		.file 4 "Generated_Source\\PSoC5\\CyLib.h"
  765              		.section	.debug_info,"",%progbits
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 24
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 24
 
 
  766              	.Ldebug_info0:
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  820 006f 04       		.uleb128 0x4
  821 0070 04       		.byte	0x4
  822 0071 07       		.byte	0x7
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 25
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 25
 
 
  823 0072 13010000 		.4byte	.LASF8
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  877 00e3 01       		.byte	0x1
  878 00e4 98       		.byte	0x98
  879 00e5 02010000 		.4byte	0x102
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 26
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 26
 
 
  880 00e9 09       		.uleb128 0x9
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  934 0158 CC       		.byte	0xcc
  935 0159 AD010000 		.4byte	0x1ad
  936 015d 01       		.uleb128 0x1
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 27
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 27
 
 
  937 015e 51       		.byte	0x51
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  991 01d6 6F000000 		.4byte	.LLST4
  992 01da 12       		.uleb128 0x12
  993 01db 6E00     		.ascii	"n\000"
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 28
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 28
 
 
  994 01dd 01       		.byte	0x1
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1048 0247 E2000000 		.4byte	.LLST8
  1049 024b 13       		.uleb128 0x13
  1050 024c 6E000000 		.4byte	.LVL19
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 29
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 29
 
 
  1051 0250 56060000 		.4byte	0x656
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1105 02b4 52       		.byte	0x52
  1106 02b5 03       		.uleb128 0x3
  1107 02b6 F3       		.byte	0xf3
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 30
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 30
 
 
  1108 02b7 01       		.uleb128 0x1
@@ -1785,7 +1785,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1149 030d 51       		.byte	0x51
  1150 030e 05       		.uleb128 0x5
  1151 030f 0C       		.byte	0xc
- 1152 0310 440A0048 		.4byte	0x48000a44
+ 1152 0310 2C0A0048 		.4byte	0x48000a2c
  1153 0314 14       		.uleb128 0x14
  1154 0315 01       		.uleb128 0x1
  1155 0316 52       		.byte	0x52
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1162 0323 2F030000 		.4byte	0x32f
  1163 0327 14       		.uleb128 0x14
  1164 0328 01       		.uleb128 0x1
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 31
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 31
 
 
  1165 0329 50       		.byte	0x50
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1219 0397 01       		.byte	0x1
  1220 0398 9C01     		.2byte	0x19c
  1221 039a B9030000 		.4byte	0x3b9
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 32
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 32
 
 
  1222 039e 20       		.uleb128 0x20
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1276 0412 11       		.uleb128 0x11
  1277 0413 B9030000 		.4byte	0x3b9
  1278 0417 1D       		.uleb128 0x1d
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 33
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 33
 
 
  1279 0418 86010000 		.4byte	.LASF45
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1333 0497 74       		.byte	0x74
  1334 0498 00       		.sleb128 0
  1335 0499 31       		.byte	0x31
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 34
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 34
 
 
  1336 049a 24       		.byte	0x24
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1390 050a 52       		.byte	0x52
  1391 050b 15       		.uleb128 0x15
  1392 050c 74       		.byte	0x74
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 35
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 35
 
 
  1393 050d 00       		.sleb128 0
@@ -2074,7 +2074,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1423 0535 51       		.byte	0x51
  1424 0536 05       		.uleb128 0x5
  1425 0537 0C       		.byte	0xc
- 1426 0538 90000048 		.4byte	0x48000090
+ 1426 0538 94000048 		.4byte	0x48000094
  1427 053c 00       		.byte	0
  1428 053d 00       		.byte	0
  1429 053e 1A       		.uleb128 0x1a
@@ -2092,13 +2092,13 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1441 0556 51       		.byte	0x51
  1442 0557 05       		.uleb128 0x5
  1443 0558 0C       		.byte	0xc
- 1444 0559 0C0A0048 		.4byte	0x48000a0c
+ 1444 0559 F4090048 		.4byte	0x480009f4
  1445 055d 14       		.uleb128 0x14
  1446 055e 01       		.uleb128 0x1
  1447 055f 52       		.byte	0x52
  1448 0560 01       		.uleb128 0x1
  1449 0561 3A       		.byte	0x3a
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 36
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 36
 
 
  1450 0562 00       		.byte	0
@@ -2117,7 +2117,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1463 057b 51       		.byte	0x51
  1464 057c 05       		.uleb128 0x5
  1465 057d 0C       		.byte	0xc
- 1466 057e 180A0048 		.4byte	0x48000a18
+ 1466 057e 000A0048 		.4byte	0x48000a00
  1467 0582 14       		.uleb128 0x14
  1468 0583 01       		.uleb128 0x1
  1469 0584 52       		.byte	0x52
@@ -2139,7 +2139,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1485 05a0 51       		.byte	0x51
  1486 05a1 05       		.uleb128 0x5
  1487 05a2 0C       		.byte	0xc
- 1488 05a3 200A0048 		.4byte	0x48000a20
+ 1488 05a3 080A0048 		.4byte	0x48000a08
  1489 05a7 14       		.uleb128 0x14
  1490 05a8 01       		.uleb128 0x1
  1491 05a9 52       		.byte	0x52
@@ -2158,13 +2158,13 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1504 05bf 12510040 		.4byte	0x40005112
  1505 05c3 14       		.uleb128 0x14
  1506 05c4 01       		.uleb128 0x1
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 37
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 37
 
 
  1507 05c5 51       		.byte	0x51
  1508 05c6 05       		.uleb128 0x5
  1509 05c7 0C       		.byte	0xc
- 1510 05c8 2C0A0048 		.4byte	0x48000a2c
+ 1510 05c8 140A0048 		.4byte	0x48000a14
  1511 05cc 14       		.uleb128 0x14
  1512 05cd 01       		.uleb128 0x1
  1513 05ce 52       		.byte	0x52
@@ -2186,7 +2186,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1529 05ea 51       		.byte	0x51
  1530 05eb 05       		.uleb128 0x5
  1531 05ec 0C       		.byte	0xc
- 1532 05ed 340A0048 		.4byte	0x48000a34
+ 1532 05ed 1C0A0048 		.4byte	0x48000a1c
  1533 05f1 14       		.uleb128 0x14
  1534 05f2 01       		.uleb128 0x1
  1535 05f3 52       		.byte	0x52
@@ -2208,7 +2208,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1551 060f 51       		.byte	0x51
  1552 0610 05       		.uleb128 0x5
  1553 0611 0C       		.byte	0xc
- 1554 0612 3C0A0048 		.4byte	0x48000a3c
+ 1554 0612 240A0048 		.4byte	0x48000a24
  1555 0616 14       		.uleb128 0x14
  1556 0617 01       		.uleb128 0x1
  1557 0618 52       		.byte	0x52
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1561 061c 24       		.uleb128 0x24
  1562 061d D8000000 		.4byte	.LVL57
  1563 0621 C2020000 		.4byte	0x2c2
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 38
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 38
 
 
  1564 0625 24       		.uleb128 0x24
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1618 000a 0E       		.uleb128 0xe
  1619 000b 55       		.uleb128 0x55
  1620 000c 17       		.uleb128 0x17
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 39
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 39
 
 
  1621 000d 11       		.uleb128 0x11
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1675 0043 0B       		.uleb128 0xb
  1676 0044 3B       		.uleb128 0x3b
  1677 0045 05       		.uleb128 0x5
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 40
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 40
 
 
  1678 0046 49       		.uleb128 0x49
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1732 007d 12       		.uleb128 0x12
  1733 007e 06       		.uleb128 0x6
  1734 007f 40       		.uleb128 0x40
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 41
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 41
 
 
  1735 0080 18       		.uleb128 0x18
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1789 00b8 49       		.uleb128 0x49
  1790 00b9 13       		.uleb128 0x13
  1791 00ba 02       		.uleb128 0x2
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 42
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 42
 
 
  1792 00bb 17       		.uleb128 0x17
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1846 00f1 02       		.uleb128 0x2
  1847 00f2 17       		.uleb128 0x17
  1848 00f3 00       		.byte	0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 43
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 43
 
 
  1849 00f4 00       		.byte	0
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1903 0130 17       		.uleb128 0x17
  1904 0131 00       		.byte	0
  1905 0132 00       		.byte	0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 44
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 44
 
 
  1906 0133 17       		.uleb128 0x17
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  1960 016b 0B       		.uleb128 0xb
  1961 016c 3B       		.uleb128 0x3b
  1962 016d 05       		.uleb128 0x5
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 45
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 45
 
 
  1963 016e 27       		.uleb128 0x27
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2017 01a5 00       		.byte	0
  2018 01a6 1F       		.uleb128 0x1f
  2019 01a7 13       		.uleb128 0x13
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 46
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 46
 
 
  2020 01a8 01       		.byte	0x1
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2074 01de 13       		.uleb128 0x13
  2075 01df 2F       		.uleb128 0x2f
  2076 01e0 0B       		.uleb128 0xb
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 47
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 47
 
 
  2077 01e1 00       		.byte	0
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2131 0017 00000000 		.4byte	0
  2132 001b 00000000 		.4byte	0
  2133              	.LLST1:
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 48
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 48
 
 
  2134 001f 02000000 		.4byte	.LVL2
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2188 00ae 0400     		.2byte	0x4
  2189 00b0 F3       		.byte	0xf3
  2190 00b1 01       		.uleb128 0x1
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 49
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 49
 
 
  2191 00b2 51       		.byte	0x51
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2245 0137 00000000 		.4byte	.LVL21
  2246 013b 05000000 		.4byte	.LVL22-1
  2247 013f 0100     		.2byte	0x1
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 50
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 50
 
 
  2248 0141 52       		.byte	0x52
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2302 01cb 0100     		.2byte	0x1
  2303 01cd 54       		.byte	0x54
  2304 01ce 4E000000 		.4byte	.LVL48
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 51
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 51
 
 
  2305 01d2 72000000 		.4byte	.LVL50
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2359 0241 00000000 		.4byte	0
  2360              	.LLST17:
  2361 0245 46000000 		.4byte	.LVL45
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 52
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 52
 
 
  2362 0249 49000000 		.4byte	.LVL46-1
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2416 000e 0000     		.2byte	0
  2417 0010 00000000 		.4byte	.LFB3
  2418 0014 02000000 		.4byte	.LFE3-.LFB3
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 53
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 53
 
 
  2419 0018 00000000 		.4byte	.LFB4
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2465 0016 73697A65 		.ascii	"size_t\000"
  2465      5F7400
  2466              	.LASF57:
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 54
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 54
 
 
  2467 001d 4379436C 		.ascii	"CyClockStartupError\000"
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2489      3600
  2490              	.LASF51:
  2491 00bf 6D656D63 		.ascii	"memcpy\000"
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 55
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 55
 
 
  2491      707900
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2519      7369676E 
  2519      65642069 
  2519      6E7400
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 56
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 56
 
 
  2520              	.LASF10:
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2545      31203230 
  2545      31363036 
  2546 0207 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 57
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 57
 
 
  2546      20726576 
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 1
  2569              	.LASF55:
  2570 0300 47656E65 		.ascii	"Generated_Source\\PSoC5\\cyfitter_cfg.c\000"
  2570      72617465 
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccPKVP4B.s 			page 58
+ARM GAS  C:\Users\David\AppData\Local\Temp\cc1Znvt6.s 			page 58
 
 
  2570      645F536F 

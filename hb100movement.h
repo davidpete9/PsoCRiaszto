@@ -6,6 +6,9 @@
  * ========================================
 */
 
+#ifndef HB100MOVEMENT_H
+#define HB100MOVEMENT_H
+
 #include "project.h"
 
 /*
@@ -22,6 +25,6 @@ void check_movement(uint8 * is_movement_alert);
 
 void reset_radar_min_max_values();
 
-
+#endif
 
 /* [] END OF FILE */

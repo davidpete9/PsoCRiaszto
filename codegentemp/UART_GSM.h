@@ -31,8 +31,8 @@
 #define UART_GSM_RX_ENABLED                     (1u)
 #define UART_GSM_TX_ENABLED                     (1u)
 #define UART_GSM_HD_ENABLED                     (0u)
-#define UART_GSM_RX_INTERRUPT_ENABLED           (1u)
-#define UART_GSM_TX_INTERRUPT_ENABLED           (1u)
+#define UART_GSM_RX_INTERRUPT_ENABLED           (0u)
+#define UART_GSM_TX_INTERRUPT_ENABLED           (0u)
 #define UART_GSM_INTERNAL_CLOCK_USED            (1u)
 #define UART_GSM_RXHW_ADDRESS_ENABLED           (0u)
 #define UART_GSM_OVER_SAMPLE_COUNT              (8u)
@@ -45,8 +45,8 @@
 #define UART_GSM_USE23POLLING                   (1u)
 #define UART_GSM_FLOW_CONTROL                   (0u)
 #define UART_GSM_CLK_FREQ                       (0u)
-#define UART_GSM_TX_BUFFER_SIZE                 (8u)
-#define UART_GSM_RX_BUFFER_SIZE                 (8u)
+#define UART_GSM_TX_BUFFER_SIZE                 (4u)
+#define UART_GSM_RX_BUFFER_SIZE                 (4u)
 
 /* Check to see if required defines such as CY_PSOC5LP are available */
 /* They are defined starting with cy_boot v3.0 */

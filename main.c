@@ -10,6 +10,7 @@ Riaszto kodja  - Felkesz / Vaz eddig
 #include "TaskFIFO.h"
 #include "Keypad.h"
 #include "hb100movement.h"
+#include "GSMHandler.h"
 #include "EEPROM_Helper.h"
 
 //KONTSTANSOK - Majd az EEPROM-ban tarolom, es lehet allitgatni
@@ -22,25 +23,12 @@ uint8 NIGHT_TO = 24;
 typedef enum state {figyelo, passziv, riasztas} state;
 typedef enum substate {figyelo_varakozo,figylo_deaktivalo, passziv_felkeszules, passziv_varakozo, riasztas_idle, riasztas_init, passziv_felodott} substate;
 
-//ezzel szamolok timer interruptban.
-static uint32 counter = 0;
-
 
 //ALLAPOTOK
  state actual_state = passziv;
  substate actual_substate = passziv_varakozo;
 
 char alart_reason[16];
-
-
-uint16 tone_deadline = 0;
-uint8 beep_mode = 0u;
-
-uint8 alarm_beep_mode = 0u;
-uint32 alarm_until = 0;
-
-uint8 TIMER_IT_MS = 50;
-
 
 
 /*
@@ -65,14 +53,17 @@ void noTone() {
 
 periodic_task_list p_tasks;
 TaskFIFO tone_fifo;
+TaskFIFO gsm_fifo;
 
 //1 ms-onkent
 CY_ISR(TIMER_ISR)
 {
-   run_permitted_tasks_and_decrement_counters(&p_tasks);
-   
-  run_next_task_when_available(&tone_fifo);
     
+  run_permitted_tasks_and_decrement_counters(&p_tasks); 
+  run_next_task_when_available(&tone_fifo);
+  run_next_task_when_available(&gsm_fifo);
+
+
     Timer_ReadStatusRegister();
 }
 
@@ -87,16 +78,16 @@ void check_photoresistor(uint8 * need_alert){
     }
    
      PWM_BACKLIGHT_STATUS; 
-    //2 .kijelzo hattervilagitasanak allitasa
-    /*if (light > 1500) {
+   // 2 .kijelzo hattervilagitasanak allitasa
+    if (light > 1500) {
         uint16 test = 1+((light-1500)/100);
         uint16 dutycle = test*20 > 350 ? 350 : test*20;
         PWM_BACKLIGHT_WriteCompare(dutycle);
     } 
     else {    
         PWM_BACKLIGHT_WriteCompare(0u);
-    }*/
-     PWM_BACKLIGHT_WriteCompare(200u);
+    }
+   
 }
 
 
@@ -174,7 +165,11 @@ void tone(uint16 freq, uint16 duration) {
 
 void play_alert() {
     tone(400, 300);
+     tone(500, 300);
+     tone(600, 300);
+     tone(700, 300);
 }
+
 
 int main(void)
 {
@@ -183,6 +178,10 @@ int main(void)
     
     tone_fifo.start = NULL;
     tone_fifo.end = NULL;
+    
+    gsm_fifo.start = NULL;
+    gsm_fifo.end = NULL;
+    
     p_tasks.start = NULL;
     p_tasks.end = NULL;
     
@@ -192,8 +191,8 @@ int main(void)
     uint8 is_movement_alert = 0u;
     
     add_to_ptask_list(&p_tasks, create_new_ptask_noparam(readKey, 30, 1));
-   // add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_photoresistor, &is_light_alert, 200, 2));
-   // add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_movement, &is_movement_alert, 100, 3));
+    add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_photoresistor, &is_light_alert, 200, 2));
+    add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_movement, &is_movement_alert, 100, 3));
   //  add_to_ptask_list(&p_tasks, create_new_ptask_noparam(print_time_to_lcd, 1000, 4));
     volatile uint8 pressed = 0;
     
@@ -204,56 +203,19 @@ int main(void)
     {   
         
         pressed = get_pressed_key();
-         if (UART_GetRxBufferSize()) {
-            UART_GSM_PutChar(UART_GetChar());
-          
+    
+   
+        if (pressed != 0) {
+         
+            start_sms_sending_sequence(&gsm_fifo, "parameter", "+36702668307");
+            
+            play_alert();
         }
         
-        if (pressed != 0) {
-           
-            if (pressed == '1') {
-             UART_GSM_PutString("AT"); 
-            UART_GSM_PutChar(0x0D);
-            }
-            else if (pressed == '2') {
-              UART_GSM_PutString("AT+CMGF=1");
-            UART_GSM_PutChar(0x0D);
-            }
-            else if (pressed == '3') {
-              UART_GSM_PutString("AT+CMGS=\"+36702668307\"");
-              UART_GSM_PutChar(0x0D);
-            }
-            else if (pressed == '4') {
-                UART_GSM_PutString("szia vercse");
-               
-             }
-            else if (pressed == '5') {
-                  UART_GSM_PutChar(0x1A);
-            }
-            
-           
-           
-            
-            
-           
-            
-          
-           
-          
-           
-            
-            
-            
-      
-        }
-       
         if (UART_GSM_GetRxBufferSize()) {
             UART_PutChar(UART_GSM_GetChar());
         }
-       
-        
-     
-               
+                
        
       
        

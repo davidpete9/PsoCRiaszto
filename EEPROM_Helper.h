@@ -6,6 +6,9 @@
  * ========================================
 */
 
+#ifndef EEPROM_HELPER_H
+#define EEPROM_HELPER_H
+
 #include "project.h"
 
 //8 byton tarolhato adatok
@@ -44,5 +47,7 @@ void ReadInt8ArrayFromRow(uint8 * values, uint8 n, uint16 addr);
 Egy sorba ir, a sor addr/16
 */
 void StoreInt8ArrayToRow(uint8 * values, uint16 addr);
+
+#endif
 
 /* [] END OF FILE */

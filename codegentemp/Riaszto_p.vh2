@@ -1,5 +1,5 @@
 -- Project:   Riaszto
--- Generated: 05/13/2021 14:47:49
+-- Generated: 05/14/2021 20:15:39
 -- PSoC Creator  4.4
 
 ENTITY Riaszto IS
@@ -79,9 +79,7 @@ ARCHITECTURE __DEFAULT__ OF Riaszto IS
     SIGNAL Net_596 : bit;
     SIGNAL Net_599 : bit;
     SIGNAL Net_633 : bit;
-    SIGNAL Net_636 : bit;
     SIGNAL Net_637 : bit;
-    SIGNAL Net_641 : bit;
     SIGNAL Net_73 : bit;
     SIGNAL Net_76 : bit;
     SIGNAL Net_78 : bit;
@@ -3498,22 +3496,6 @@ BEGIN
             data_out_udb_0 => \ADC_SAR_PR:Net_207_0\,
             eof_udb => Net_596);
 
-    \UART_GSM:TXInternalInterrupt\:interrupt
-        GENERIC MAP(
-            int_type => "10",
-            is_nmi => 0)
-        PORT MAP(
-            interrupt => Net_641,
-            clock => ClockBlock_BUS_CLK);
-
-    \UART_GSM:RXInternalInterrupt\:interrupt
-        GENERIC MAP(
-            int_type => "10",
-            is_nmi => 0)
-        PORT MAP(
-            interrupt => Net_636,
-            clock => ClockBlock_BUS_CLK);
-
     \UART_GSM:BUART:sTX:TxShifter:u0\:datapathcell
         GENERIC MAP(
             a0_init => "00000000",
@@ -3603,8 +3585,7 @@ BEGIN
             status_3 => \UART_GSM:BUART:tx_fifo_notfull\,
             status_2 => \UART_GSM:BUART:tx_status_2\,
             status_1 => \UART_GSM:BUART:tx_fifo_empty\,
-            status_0 => \UART_GSM:BUART:tx_status_0\,
-            interrupt => Net_641);
+            status_0 => \UART_GSM:BUART:tx_status_0\);
 
     \UART_GSM:BUART:sRX:RxShifter:u0\:datapathcell
         GENERIC MAP(
@@ -3684,8 +3665,7 @@ BEGIN
             status_3 => \UART_GSM:BUART:rx_status_3\,
             status_2 => open,
             status_1 => open,
-            status_0 => open,
-            interrupt => Net_636);
+            status_0 => open);
 
     \VDAC8:viDAC8\:vidaccell
         GENERIC MAP(

@@ -14,6 +14,9 @@
  *
  * ========================================
 */
+#ifndef TASKFIFO_H
+#define TASKFIFO_H
+
 #include "project.h"
 
 typedef struct OneTimeTask {
@@ -48,5 +51,6 @@ uint8 check_if_runnable_and_decrement_counter(TaskFIFO * fifo);
 //akkor lefuttatom a fuggvenyt, es kiveszem a fifobol.
 void run_next_task_when_available(TaskFIFO * fifo_tasks);
 
+#endif
 
 /* [] END OF FILE */

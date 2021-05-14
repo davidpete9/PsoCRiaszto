@@ -42,6 +42,7 @@ OneTimeTask * create_new_onetimetask( void (*func)(uint16), uint16 delay, uint16
     new_task->func = func;
     new_task->funcnoparam = NULL;
     new_task->data = data;
+    new_task->next = NULL;
     return new_task;
 }
 
@@ -58,6 +59,7 @@ OneTimeTask * create_new_noparam_onetimetask( void (*func)(), uint16 delay) {
     new_task->funcnoparam = func;
     new_task->func = NULL;
     new_task->data = 100;
+    new_task->next = NULL;
     return new_task;
 }
 
@@ -119,7 +121,7 @@ void run_next_task_when_available(TaskFIFO * fifo_tasks) {
                 to_run->func(to_run->data);
                 free(to_run);
             }
-            if (to_run->funcnoparam != NULL) {
+            else if (to_run->funcnoparam != NULL) {
                 to_run->funcnoparam();
                 free(to_run);
             }

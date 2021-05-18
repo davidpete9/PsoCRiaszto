@@ -22,7 +22,7 @@
 typedef struct OneTimeTask {
     void (*func)(uint16);
     void (*funcnoparam)();
-    uint16 delay;
+    uint32 delay;
     uint16 data;  //A fuggveny parametere
     struct OneTimeTask *next;
 } OneTimeTask;
@@ -32,8 +32,8 @@ typedef struct TaskFIFO {
 } TaskFIFO;
 
 
-OneTimeTask * create_new_onetimetask( void (*func)(uint16), uint16 delay, uint16 data);
-OneTimeTask * create_new_noparam_onetimetask( void (*func)(), uint16 delay);
+OneTimeTask * create_new_onetimetask( void (*func)(uint16), uint32 delay, uint16 data);
+OneTimeTask * create_new_noparam_onetimetask( void (*func)(), uint32 delay);
 
 //A vegere beteszek egy taskot.
 void pushTask(TaskFIFO* fifo, OneTimeTask* task);

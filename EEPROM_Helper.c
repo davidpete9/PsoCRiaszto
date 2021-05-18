@@ -25,7 +25,7 @@ void StoreInt16(uint16 data, uint16 addr) {
 
 uint16 ReadInt16(uint16 addr) {
     uint8 first_byte = EEPROM_ReadByte(addr);
-    uint8 second_byte = EEPROM_ReadByte(addr);
+    uint8 second_byte = EEPROM_ReadByte(addr+1);
     uint16 result = (first_byte << 8)|second_byte;
     return result;
 }

@@ -261,6 +261,7 @@
       <Data key="822e4b6d-ec02-4e24-aff0-2695fd960c2f" value="REED_RELAY" />
       <Data key="3314fc94-9c13-4ea5-9957-cc33a48bb7cf/ed092b9b-d398-4703-be89-cebf998501f6" value="LCD_LCDPort" />
       <Data key="36400f2b-07d4-4edb-8efd-c12f63d147e3/16a808f6-2e13-45b9-bce0-b001c8655113" value="ADC_SAR_PR_Bypass" />
+      <Data key="90504a62-f131-4f9a-ab24-aa3ff6d36ad9" value="GSM_DTR" />
       <Data key="1425177d-0d0e-4468-8bcc-e638e5509a9b" value="SDAT_1" />
       <Data key="77715107-f8d5-47e5-a629-0fb83101ac6b" value="RADAR" />
       <Data key="89864601-f102-4a1d-acac-c654d567b08f/16a808f6-2e13-45b9-bce0-b001c8655113" value="ADC_RADAR_Bypass" />
@@ -3440,6 +3441,11 @@
       </Group>
       <Group key="6">
         <Data key="Port Format" value="2,6" />
+      </Group>
+    </Group>
+    <Group key="90504a62-f131-4f9a-ab24-aa3ff6d36ad9">
+      <Group key="0">
+        <Data key="Port Format" value="3,2" />
       </Group>
     </Group>
     <Group key="1425177d-0d0e-4468-8bcc-e638e5509a9b">

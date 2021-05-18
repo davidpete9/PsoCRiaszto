@@ -1,5 +1,5 @@
 # Riaszto
-# 2021-05-14 18:15:42Z
+# 2021-05-18 13:44:19Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -35,6 +35,7 @@ set_io "BEEPER(0)" iocell 3 6
 set_io "PHRES(0)" iocell 3 1
 set_io "Tx_2(0)" iocell 12 2
 set_io "Rx_2(0)" iocell 3 7
+set_io "GSM_DTR(0)" iocell 3 2
 set_location "\SPIM:BSPIM:load_rx_data\" 3 1 0 1
 set_location "\SPIM:BSPIM:tx_status_0\" 3 3 1 2
 set_location "\SPIM:BSPIM:tx_status_4\" 3 3 0 1

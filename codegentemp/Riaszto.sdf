@@ -1,6 +1,6 @@
 (DELAYFILE
  (SDFVERSION "IEEE 1497 4.0")
- (DATE "2021-05-14T18:15:46Z")
+ (DATE "2021-05-18T13:44:24Z")
  (DESIGN "Riaszto")
  (VENDOR "Cypress Semiconductor")
  (PROGRAM "PSoC Creator")
@@ -496,6 +496,7 @@
     (INTERCONNECT Tx_2\(0\).pad_out Tx_2\(0\)_PAD (0.000:0.000:0.000))
     (INTERCONNECT Tx_2\(0\)_PAD Tx_2\(0\).pad_in (0.000:0.000:0.000))
     (INTERCONNECT Rx_2\(0\)_PAD Rx_2\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT GSM_DTR\(0\)_PAD GSM_DTR\(0\).pad_in (0.000:0.000:0.000))
    )
   )
  )

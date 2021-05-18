@@ -67,6 +67,8 @@
 #include "EEPROM.h"
 #include "UART_GSM.h"
 #include "VDAC8.h"
+#include "GSM_DTR_aliases.h"
+#include "GSM_DTR.h"
 #include "LCD_LCDPort_aliases.h"
 #include "LCD_LCDPort.h"
 #include "SPIM_IntClock.h"

@@ -14,20 +14,21 @@
 //8 byton tarolhato adatok
 #define NIGHT_FROM_ADDR 0 
 #define NIGHT_UNITL_ADDR 1 
-#define WAIT_TIME_ADDR 2 //Ennyit varok riasztasi esemeny utan, vagy aktuvalas utan
-#define AUTO_WATCH_ACTIVATED_ADDR 3 //Automatikusan atvaltson figyelo modba az ejszaka folyaman?
-
+#define AUTO_WATCH_ACTIVATED_ADDR 2 //Automatikusan atvaltson figyelo modba az ejszaka folyaman?
+#define USE_PHOTO_RES_ADDR 3 //Figyeljem a fotorezisztor figyelo modban?
 
 
 //16 byton tarolhatok - 2 cimet foglal egy adat 
 #define BEEP_LENGTH_ADDR 6 //6-7 Hany masodpercig csipogjon?
+#define WATCH_DELAY_ADDR 8 //Ennyit varok az elesitesre. 
+#define DEACT_DELAY_ADDR 10 //Ennyi idot hagyok riasztas utan hogy a kodot beirjak
 
 //Telefonszamoknak, es a kodnak - mindegyik egy sor foglaljon el (1 sor 16*8 byte) 
 //Kezdodjon a 32-es cimtol, ami a 3. sor kezdete
 #define CODE_ADDR 32 //32-47
-#define PHONE_NUM_1_ADDR //48-63
-#define PHONE_NUM_2_ADDR //64-79
-#define PHONE_NUM_3_ADDR //80-95
+#define PHONE_NUM_1_ADDR 48 //48-63
+#define PHONE_NUM_2_ADDR 64//64-79
+#define PHONE_NUM_3_ADDR 80//80-95
 
 void StoreInt8(uint8 data, uint16 addr);
 

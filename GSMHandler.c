@@ -21,11 +21,17 @@ char * number;
 void send_AT_command() {
     UART_GSM_PutString("AT");
     UART_GSM_PutChar(0x0D);
+    LCD_ClearDisplay();
+    LCD_Position(0u, 0u);
+    LCD_PrintString("SMS sending 1/4..");
 }
 
 void send_ATCMGF_command() {
     UART_GSM_PutString("AT+CMGF=1");
     UART_GSM_PutChar(0x0D);
+    LCD_ClearDisplay();
+    LCD_Position(0u, 0u);
+    LCD_PrintString("SMS sending 2/4..");
 }
 
 void send_SMSStarter_command() {
@@ -33,11 +39,17 @@ void send_SMSStarter_command() {
     sprintf(str, "AT+CMGS=\"%s\"", number);
     UART_GSM_PutString(str);
     UART_GSM_PutChar(0x0D);
+    LCD_ClearDisplay();
+    LCD_Position(0u, 0u);
+    LCD_PrintString("SMS sending 3/4..");
 }
 
 void send_sms_command() {
  UART_GSM_PutString(message);
  UART_GSM_PutChar(0x1A);
+ LCD_ClearDisplay();
+ LCD_Position(0u, 0u);
+ LCD_PrintString("SMS sending 4/4..");
 }
 
 void start_sms_sending_sequence(TaskFIFO * gsm_fifo, char * m, char *n) {

@@ -44,6 +44,7 @@
           <File BuildType="BUILD" Toolchain="">hb100movement.c</File>
           <File BuildType="BUILD" Toolchain="">EEPROM_Helper.c</File>
           <File BuildType="BUILD" Toolchain="">GSMHandler.c</File>
+          <File BuildType="BUILD" Toolchain="">SettingsHelper.c</File>
           <File BuildType="BUILD" Toolchain="">cyapicallbacks.h</File>
           <File BuildType="BUILD" Toolchain="">ds1302.h</File>
           <File BuildType="BUILD" Toolchain="">TaskFIFO.h</File>
@@ -52,6 +53,7 @@
           <File BuildType="BUILD" Toolchain="">hb100movement.h</File>
           <File BuildType="BUILD" Toolchain="">EEPROM_Helper.h</File>
           <File BuildType="BUILD" Toolchain="">GSMHandler.h</File>
+          <File BuildType="BUILD" Toolchain="">SettingsHelper.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\Generated_Source\PSoC5">
@@ -218,6 +220,9 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareimport.ld</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareexport.ld</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\cycodeshareimport.scat</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\GSM_DTR_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\GSM_DTR.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC5\GSM_DTR.h</File>
         </Files>
       </Folder>
       <Folder BuildType="STRICT" Path="C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\Export\ARM_GCC_Generic">

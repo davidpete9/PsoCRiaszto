@@ -101,6 +101,11 @@ void init() {
     EEPROM_Start();
 }
 
+void tone(uint16 freq, uint16 duration) {
+      pushTask(&tone_fifo, create_new_onetimetask(start_tone, 0, freq));
+      pushTask(&tone_fifo, create_new_noparam_onetimetask(noTone, duration));
+}
+
 void print_time_to_lcd() {
     char str[16];
     print_time_string(str);
@@ -109,10 +114,6 @@ void print_time_to_lcd() {
     LCD_PrintString(str);
 }
 
-void tone(uint16 freq, uint16 duration) {
-      pushTask(&tone_fifo, create_new_onetimetask(start_tone, 0, freq));
-      pushTask(&tone_fifo, create_new_noparam_onetimetask(noTone, duration));
-}
 
 void play_alert() {
     tone(400, 300);
@@ -147,11 +148,14 @@ void switch_to_watching_mode() {
     current_state = figyelo;
     actual_substate = figyelo_varakozo;
     print_lines_to_lcd("figyelo","modban");
-   tone(400,400);
+    tone(400,400);
     tone(800,400);
     enable_task(&p_tasks,3); //mozgaserzekelesi riasztas figyelese
     enable_task(&p_tasks,6); //reed rele figyelese
-    enable_task(&p_tasks,2); //fotorez kell
+    
+    if (PH_RES_ON == 1u) {
+       enable_task(&p_tasks,2); //fotorez kell
+    }
     disable_task(&p_tasks, 7); //LCD hattervilagitas ilyenkor nem kell
     
     is_light_alert = 0u;
@@ -213,27 +217,26 @@ void create_alarm() {
     //2. Csipogas kezdese
     enable_task(&p_tasks, 100);
     
-    pushTask(&timing_fifo, create_new_noparam_onetimetask(go_to_alarm_idle, 20000));
+    pushTask(&timing_fifo, create_new_noparam_onetimetask(go_to_alarm_idle, BEEPING_DELAY*1000));
     
 }
 
 void to_passiv_move() {
-  disable_task(&p_tasks, 100); //Csipogas riasztashoz
+    disable_task(&p_tasks, 100); //Csipogas riasztashoz
     disable_task(&p_tasks,5);  //visszaszamolo
     disable_task(&p_tasks,6); //reed rele
-   // disable_task(&p_tasks,3); //mozgaserzekelo
+    disable_task(&p_tasks,3); //mozgaserzekelo
     disable_task(&p_tasks, 2); //fozorez.
     enable_task(&p_tasks, 7); //Hattervil.
     enable_task(&p_tasks, 4); //ora.
-    
      is_light_alert = 0u;
     is_movement_alert = 0u;
     is_reed_relay_alert = 0u;
     actual_substate = passziv_varakozo;
     current_state = passziv;
+    
 }
 
-uint8 def[] = {'4','3','2','1'};
 
 int main(void)
 {
@@ -258,9 +261,7 @@ int main(void)
     timing_fifo.end = NULL;
     
     CyGlobalIntEnable; /* Enable global interrupts. */
-    
-   
-    
+
     
     add_to_ptask_list(&p_tasks, create_new_ptask_noparam(readKey, 30, 1));
     add_to_ptask_list(&p_tasks, create_new_ptask_parametered(check_photoresistor, &is_light_alert, 200, 2));
@@ -279,7 +280,6 @@ int main(void)
     
     volatile uint8 pressed = 0;
    
-   
     char time_str[7];
     
     for(;;)
@@ -295,7 +295,7 @@ int main(void)
                             disable_task(&p_tasks, 4); // Az orat mar nem irom ki a kepernyore
                             print_lines_to_lcd("# - figyelo mod","* - beallitasok");
                             actual_substate = passziv_felodott;
-                            pushTask(&timing_fifo, create_new_noparam_onetimetask(to_passiv_move, 30000));         
+                            pushTask(&timing_fifo, create_new_noparam_onetimetask(to_passiv_move, 30000)); 
                         }
                         break;
                     case passziv_felodott:
@@ -303,9 +303,9 @@ int main(void)
                         if (pressed != 0) {
                         get_and_remove_first(&timing_fifo);
                         }
-                        if (pressed == '#') {
+                        if (pressed == '#' && COMPUTER_COMMUNICATION == 0) {
                             actual_substate = passziv_felkeszules;
-                            visual_counter_value = ReadInt16(WATCH_DELAY_ADDR);
+                            visual_counter_value = WATCH_DELAY;
                             print_lines_to_lcd("Elesites...","");
                             enable_task(&p_tasks, 5);
                             pushTask(&timing_fifo, create_new_noparam_onetimetask(finish_counting, visual_counter_value*1000));
@@ -348,8 +348,12 @@ int main(void)
                            print_lines_to_lcd(alert_message, "Irja be a kodot!"); 
                            
                            actual_substate = figylo_deaktivalo; 
-                           pushTask(&timing_fifo, create_new_noparam_onetimetask(create_alarm, 20000));
+                           pushTask(&timing_fifo, create_new_noparam_onetimetask(create_alarm, DEACT_DELAY*1000));
                             
+                        }
+                        if (try_to_read_code_from_keyboard() == 1u) {
+                            to_passiv_move();
+                            print_time_to_lcd();
                         }
                         break;
                     case figylo_deaktivalo:
@@ -387,15 +391,19 @@ int main(void)
                 break;
         }
         
-        if (UART_GSM_GetRxBufferSize()) {
-            UART_PutChar(UART_GSM_GetChar());
-        }
-        if (UART_GetRxBufferSize()) {
-            UART_GSM_PutChar(UART_GetChar());
-        }
-        
-    
-  
+       // if (UART_GSM_GetRxBufferSize()) {
+       //     UART_PutChar(UART_GSM_GetChar());
+        //}
+        if (UART_GetRxBufferSize() && COMPUTER_COMMUNICATION == 0) {
+            char arrived = UART_GetChar();
+            if (arrived == '@') {
+                COMPUTER_COMMUNICATION = 1;
+                printString("PC UART interface hasznalatban. Vissza $ beirasaval.\r\n");
+                printString("Ird be a kodot a folytatashoz.\r\nFigyelo modba nem lehet helyezni, csak a beallitasok erhetoek el.\n");
+                to_passiv_move();
+            }
+        }     
+   
     }
 }
 

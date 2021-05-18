@@ -34,9 +34,9 @@ Ha az amplitudo nagyobb egy  erteknel, akkor riasztas van.
 */
 void check_movement(uint8 * is_movement_alert) {
     volatile int16 amp = maxAmp-minAmp;
-    char str[10];
-    sprintf(str, "%d\r\n", amp);
-    UART_PutString(str);
+    //char str[10];
+    //sprintf(str, "%d\r\n", amp);
+    //UART_PutString(str);
     if (amp > 3000) {
         //Mozgas erzekelve.
         *is_movement_alert = 1u;

@@ -1,17 +1,17 @@
---------------- Build Started: 05/18/2021 18:49:59 Project: Riaszto, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+--------------- Build Started: 05/18/2021 22:09:03 Project: Riaszto, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m3 -mthumb -I. -IGenerated_Source\PSoC5 -Wa,-alh=.\CortexM3\ARM_GCC_541\Debug/main.lst -g -D DEBUG -D CY_CORE_ID=0 -Wall -ffunction-sections -ffat-lto-objects -Og -c main.c -o .\CortexM3\ARM_GCC_541\Debug\main.o
 main.c: In function 'visualized_counter':
-main.c:130:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
+main.c:131:5: warning: implicit declaration of function 'sprintf' [-Wimplicit-function-declaration]
      sprintf(str, "%d s", visual_counter_value);
      ^
-main.c:130:5: warning: incompatible implicit declaration of built-in function 'sprintf'
-main.c:130:5: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+main.c:131:5: warning: incompatible implicit declaration of built-in function 'sprintf'
+main.c:131:5: note: include '<stdio.h>' or provide a declaration of 'sprintf'
 main.c: In function 'create_alarm':
-main.c:198:5: warning: incompatible implicit declaration of built-in function 'sprintf'
+main.c:202:5: warning: incompatible implicit declaration of built-in function 'sprintf'
      sprintf(alert_sms, "%s - ekkor: %s", alert_message, time_str);
      ^
-main.c:198:5: note: include '<stdio.h>' or provide a declaration of 'sprintf'
+main.c:202:5: note: include '<stdio.h>' or provide a declaration of 'sprintf'
 main.c: In function 'main':
 main.c:339:33: warning: incompatible implicit declaration of built-in function 'sprintf'
                                  sprintf(alert_message, "R: Fenyerzekelo");
@@ -36,6 +36,6 @@ No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
 cyelftool.exe -S "C:\Users\David\Documents\PSoC Creator\Keypadtest\Riaszto.cydsn\CortexM3\ARM_GCC_541\Debug\Riaszto.elf"
-Flash used: 15270 of 262144 bytes (5.8%).
+Flash used: 15622 of 262144 bytes (6.0%).
 SRAM used: 7217 of 65536 bytes (11.0%). Stack: 4096 bytes. Heap: 2304 bytes.
---------------- Build Succeeded: 05/18/2021 18:50:00 ---------------
+--------------- Build Succeeded: 05/18/2021 22:09:05 ---------------

@@ -7,6 +7,7 @@
 */
 
 #include "project.h"
+#include "SettingsHelper.h"
 
 
 uint8 waiting_for_relese = 0u;
@@ -15,6 +16,17 @@ uint8 PRESSED_KEY = 0;
 
 //Visszaadja a legutobb lenyomott gomb erteket, es torli az erteket.
 uint8 get_pressed_key() {
+    
+    if (COMPUTER_COMMUNICATION == 1) {
+        char from_uart = UART_GetChar();
+        if (from_uart == '$') {
+            UART_PutString("Visszavaltas normal uzemmodba. \r\n");
+            COMPUTER_COMMUNICATION = 0;
+        }
+        if (from_uart == '\r' || from_uart == '\n')
+            return 0;
+        return from_uart;
+    }
     uint8 temp = PRESSED_KEY;
     PRESSED_KEY = 0;
     return temp;    

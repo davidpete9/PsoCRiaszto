@@ -65,8 +65,36 @@ uint8 CODE[] = {'4','3','2','1'}; //Default valami. ugyis felul lesz irva.
 
 char PHONE_NUM[] = "702668307";
 
+//Ezek csak default ertekek. Ugyis felulirja az, ami az EEPROMBOL jon, az init_constans fgv-ben.
 uint8 NIGHT_FROM = 0;
 uint8 NIGHT_TO = 24;
+uint8 PH_RES_ON = 1;
+uint8 AUTO_POWERON = 1;
+uint16 WATCH_DELAY = 20;
+uint16 DEACT_DELAY = 20;
+uint16 BEEPING_DELAY = 20;
+
+uint8 COMPUTER_COMMUNICATION = 0;
+
+
+void printChar(char8 c) {
+    if (COMPUTER_COMMUNICATION == 1) {
+        UART_PutChar(c);
+    }
+    else {
+        LCD_PutChar(c);
+    }
+}
+
+void printString(const char8* str) {
+    if (COMPUTER_COMMUNICATION == 1) {
+        UART_PutString("\r\n");
+        UART_PutString(str);
+    }
+    else {
+        LCD_PrintString(str);
+    }
+}
 
 /*
 Megnezi, hogy nincs e eppen a helyes kod beirva.
@@ -79,8 +107,10 @@ uint8 try_to_read_code_from_keyboard() {
         LCD_ClearDisplay();
         LCD_Position(1u, 0u);
     }    
-        
-    LCD_PutChar('*');
+    
+    
+    printChar('*');
+    
     code_buffer[code_buffer_ind++] = pressed_key;
     pressed_key = 0;                
     if (code_buffer_ind == 4) {
@@ -94,7 +124,7 @@ uint8 try_to_read_code_from_keyboard() {
         code_buffer_ind = 0;
         if (result == 0u) {
             LCD_Position(1u, 0u);
-            LCD_PrintString("Hibas kod!");
+            printString("Hibas kod!");
             LCD_Position(1u, 0u);
         }
         return  result;
@@ -105,7 +135,7 @@ uint8 try_to_read_code_from_keyboard() {
 
 int16 read_num_from_keypad(uint8 pressed) {
     
-    
+   
     if (pressed == '*')
         return -2;
     if (pressed == 0 || pressed == 'A' || pressed == 'B' || pressed == 'C' || pressed == 'D' || num_ind > 4) {
@@ -119,7 +149,7 @@ int16 read_num_from_keypad(uint8 pressed) {
         return result;
     }         
     num_buffer[num_ind++] = pressed;
-    LCD_PutChar(pressed);
+    printChar(pressed);
         
     return -1;      
 }
@@ -170,9 +200,9 @@ change_page(&menu_system[1]);
 void print_lines_to_lcd(const char * line1, const char * line2) {
     LCD_ClearDisplay();
     LCD_Position(0u, 0u);
-    LCD_PrintString(line1);
+    printString(line1);
     LCD_Position(1u,0u);
-    LCD_PrintString(line2);
+    printString(line2);
 }
 
 void print_page(page * p) {
@@ -200,7 +230,7 @@ uint8 read_new_code(uint8 pressed) {
             LCD_Position(1u, 0u);
         }
         new_code_buffer[new_code_buffer_ind++] = pressed;
-        LCD_PutChar('*');
+        printChar('*');
         if (new_code_buffer_ind == 4) {
             return 1u; 
         } 
@@ -245,6 +275,11 @@ void select_new_code() {
 void init_constants() {
 NIGHT_FROM = ReadInt8(NIGHT_FROM_ADDR);
 NIGHT_TO = ReadInt8(NIGHT_UNITL_ADDR);
+PH_RES_ON = ReadInt8(USE_PHOTO_RES_ADDR);
+AUTO_POWERON = ReadInt8(AUTO_WATCH_ACTIVATED_ADDR);
+WATCH_DELAY = ReadInt16(WATCH_DELAY_ADDR);
+DEACT_DELAY = ReadInt16(DEACT_DELAY_ADDR);
+BEEPING_DELAY = ReadInt16(BEEP_LENGTH_ADDR);
 }
 
 void init_code() {
@@ -291,7 +326,7 @@ int8 read_phone_num(uint8 pressed) {
         return -1;
     }         
     phone_num_buffer[phone_num_buffer_ind++] = pressed;
-    LCD_PutChar(pressed);
+    printChar(pressed);
         
     return -1;      
     

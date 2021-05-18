@@ -33,6 +33,17 @@ extern char PHONE_NUM[];
 
 extern uint8 NIGHT_FROM;
 extern uint8 NIGHT_TO;
+extern uint8 PH_RES_ON;
+extern uint8 AUTO_POWERON;
+extern uint16 WATCH_DELAY;
+extern uint16 DEACT_DELAY;
+extern uint16 BEEPING_DELAY;
+
+extern uint8 COMPUTER_COMMUNICATION;
+
+void printChar(char8 c);
+
+void printString(const char8* str);
 
 uint8 try_to_read_code_from_keyboard();
 
@@ -41,7 +52,6 @@ void change_16_num();
 void change_8_num();
 
 void ask_bool();
-
 
 void print_lines_to_lcd(const char * line1, const char * line2);
 
@@ -83,10 +93,9 @@ void choose_param_page5();
 void choose_param_page6();
 void choose_param_page7();
 
-
 void process_settings();
     
-    
+  
     
 #endif
 

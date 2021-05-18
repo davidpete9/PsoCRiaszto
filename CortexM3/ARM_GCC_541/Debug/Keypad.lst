@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 1
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 1
 
 
    1              		.syntax unified
@@ -37,1392 +37,1570 @@ ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 1
    7:Keypad.c      **** */
    8:Keypad.c      **** 
    9:Keypad.c      **** #include "project.h"
-  10:Keypad.c      **** 
+  10:Keypad.c      **** #include "SettingsHelper.h"
   11:Keypad.c      **** 
-  12:Keypad.c      **** uint8 waiting_for_relese = 0u;
-  13:Keypad.c      **** uint8 PRESSED_KEY = 0;
-  14:Keypad.c      **** 
+  12:Keypad.c      **** 
+  13:Keypad.c      **** uint8 waiting_for_relese = 0u;
+  14:Keypad.c      **** uint8 PRESSED_KEY = 0;
   15:Keypad.c      **** 
-  16:Keypad.c      **** //Visszaadja a legutobb lenyomott gomb erteket, es torli az erteket.
-  17:Keypad.c      **** uint8 get_pressed_key() {
-  28              		.loc 1 17 0
+  16:Keypad.c      **** 
+  17:Keypad.c      **** //Visszaadja a legutobb lenyomott gomb erteket, es torli az erteket.
+  18:Keypad.c      **** uint8 get_pressed_key() {
+  28              		.loc 1 18 0
   29              		.cfi_startproc
   30              		@ args = 0, pretend = 0, frame = 0
   31              		@ frame_needed = 0, uses_anonymous_args = 0
-  32              		@ link register save eliminated.
-  18:Keypad.c      ****     uint8 temp = PRESSED_KEY;
-  33              		.loc 1 18 0
-  34 0000 024B     		ldr	r3, .L2
-  35 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
-  36              	.LVL0:
-  19:Keypad.c      ****     PRESSED_KEY = 0;
-  37              		.loc 1 19 0
-  38 0004 0022     		movs	r2, #0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 2
+  19:Keypad.c      ****     
+  20:Keypad.c      ****     if (COMPUTER_COMMUNICATION == 1) {
+  32              		.loc 1 20 0
+  33 0000 0F4B     		ldr	r3, .L8
+  34 0002 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  35 0004 012B     		cmp	r3, #1
+  36 0006 11D1     		bne	.L2
+  18:Keypad.c      ****     
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 2
 
 
-  39 0006 1A70     		strb	r2, [r3]
-  20:Keypad.c      ****     return temp;    
-  21:Keypad.c      **** }
-  40              		.loc 1 21 0
-  41 0008 7047     		bx	lr
-  42              	.L3:
-  43 000a 00BF     		.align	2
-  44              	.L2:
-  45 000c 00000000 		.word	.LANCHOR0
-  46              		.cfi_endproc
-  47              	.LFE63:
-  48              		.size	get_pressed_key, .-get_pressed_key
-  49              		.section	.text.set_result_when_relesed,"ax",%progbits
-  50              		.align	2
-  51              		.global	set_result_when_relesed
-  52              		.thumb
-  53              		.thumb_func
-  54              		.type	set_result_when_relesed, %function
-  55              	set_result_when_relesed:
-  56              	.LFB64:
-  22:Keypad.c      **** 
-  23:Keypad.c      **** /*
-  24:Keypad.c      **** Csak akkor allitom be az erteket ujra, ha felengettem egy azota a billenyut.
-  25:Keypad.c      **** Igy ha folyamatosan nyomva tartok egy gombot, akkor csak egye lenyomast vesz figyelembe
-  26:Keypad.c      **** */
-  27:Keypad.c      **** void set_result_when_relesed(char pressed) {
-  57              		.loc 1 27 0
-  58              		.cfi_startproc
-  59              		@ args = 0, pretend = 0, frame = 0
-  60              		@ frame_needed = 0, uses_anonymous_args = 0
-  61              		@ link register save eliminated.
-  62              	.LVL1:
-  28:Keypad.c      ****     if (pressed != 0 && waiting_for_relese == 0u) {
-  63              		.loc 1 28 0
-  64 0000 0246     		mov	r2, r0
-  65 0002 30B1     		cbz	r0, .L5
-  66              		.loc 1 28 0 is_stmt 0 discriminator 1
-  67 0004 074B     		ldr	r3, .L7
-  68 0006 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
-  69 0008 1BB9     		cbnz	r3, .L5
-  29:Keypad.c      ****         PRESSED_KEY = pressed;
-  70              		.loc 1 29 0 is_stmt 1
-  71 000a 064B     		ldr	r3, .L7
-  72 000c 1870     		strb	r0, [r3]
-  30:Keypad.c      ****         waiting_for_relese = 1u;
-  73              		.loc 1 30 0
-  74 000e 0121     		movs	r1, #1
-  75 0010 5970     		strb	r1, [r3, #1]
-  76              	.L5:
-  31:Keypad.c      ****     }
-  32:Keypad.c      ****     if (waiting_for_relese == 1u && pressed == 0)
-  77              		.loc 1 32 0
-  78 0012 044B     		ldr	r3, .L7
-  79 0014 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
-  80 0016 012B     		cmp	r3, #1
-  81 0018 02D1     		bne	.L4
-  82              		.loc 1 32 0 is_stmt 0 discriminator 1
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 3
+  37              		.loc 1 18 0
+  38 0008 10B5     		push	{r4, lr}
+  39              		.cfi_def_cfa_offset 8
+  40              		.cfi_offset 4, -8
+  41              		.cfi_offset 14, -4
+  42              	.LBB2:
+  21:Keypad.c      ****         char from_uart = UART_GetChar();
+  43              		.loc 1 21 0
+  44 000a FFF7FEFF 		bl	UART_GetChar
+  45              	.LVL0:
+  46 000e 0446     		mov	r4, r0
+  47              	.LVL1:
+  22:Keypad.c      ****         if (from_uart == '$') {
+  48              		.loc 1 22 0
+  49 0010 2428     		cmp	r0, #36
+  50 0012 05D1     		bne	.L3
+  23:Keypad.c      ****             UART_PutString("Visszavaltas normal uzemmodba. \r\n");
+  51              		.loc 1 23 0
+  52 0014 0B48     		ldr	r0, .L8+4
+  53              	.LVL2:
+  54 0016 FFF7FEFF 		bl	UART_PutString
+  55              	.LVL3:
+  24:Keypad.c      ****             COMPUTER_COMMUNICATION = 0;
+  56              		.loc 1 24 0
+  57 001a 0022     		movs	r2, #0
+  58 001c 084B     		ldr	r3, .L8
+  59 001e 1A70     		strb	r2, [r3]
+  60              	.L3:
+  25:Keypad.c      ****         }
+  26:Keypad.c      ****         if (from_uart == '\r' || from_uart == '\n')
+  61              		.loc 1 26 0
+  62 0020 0D2C     		cmp	r4, #13
+  63 0022 08D0     		beq	.L5
+  64              		.loc 1 26 0 is_stmt 0 discriminator 1
+  65 0024 0A2C     		cmp	r4, #10
+  66 0026 08D1     		bne	.L6
+  27:Keypad.c      ****             return 0;
+  67              		.loc 1 27 0 is_stmt 1
+  68 0028 0020     		movs	r0, #0
+  69 002a 10BD     		pop	{r4, pc}
+  70              	.L2:
+  71              		.cfi_def_cfa_offset 0
+  72              		.cfi_restore 4
+  73              		.cfi_restore 14
+  74              	.LBE2:
+  28:Keypad.c      ****         return from_uart;
+  29:Keypad.c      ****     }
+  30:Keypad.c      ****     uint8 temp = PRESSED_KEY;
+  75              		.loc 1 30 0
+  76 002c 064B     		ldr	r3, .L8+8
+  77 002e 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+  78              	.LVL4:
+  31:Keypad.c      ****     PRESSED_KEY = 0;
+  79              		.loc 1 31 0
+  80 0030 0022     		movs	r2, #0
+  81 0032 1A70     		strb	r2, [r3]
+  32:Keypad.c      ****     return temp;    
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 3
 
 
-  83 001a 0AB9     		cbnz	r2, .L4
-  33:Keypad.c      ****         waiting_for_relese = 0u;
-  84              		.loc 1 33 0 is_stmt 1
-  85 001c 014B     		ldr	r3, .L7
-  86 001e 5A70     		strb	r2, [r3, #1]
-  87              	.L4:
-  88 0020 7047     		bx	lr
-  89              	.L8:
-  90 0022 00BF     		.align	2
-  91              	.L7:
-  92 0024 00000000 		.word	.LANCHOR0
-  93              		.cfi_endproc
-  94              	.LFE64:
-  95              		.size	set_result_when_relesed, .-set_result_when_relesed
-  96              		.section	.text.readKey,"ax",%progbits
-  97              		.align	2
-  98              		.global	readKey
-  99              		.thumb
- 100              		.thumb_func
- 101              		.type	readKey, %function
- 102              	readKey:
- 103              	.LFB65:
-  34:Keypad.c      **** }
-  35:Keypad.c      **** 
-  36:Keypad.c      **** 
-  37:Keypad.c      **** /* 
-  38:Keypad.c      **** Megnezem, hogy van e lenyomott billentyu, ha nincs 0-s erteket ad,
-  39:Keypad.c      **** ha van akkor a billenyu ASCII kodjaval. 
-  40:Keypad.c      **** Gomb felengedesekor menek csak! .*/
-  41:Keypad.c      **** void readKey() {
- 104              		.loc 1 41 0
- 105              		.cfi_startproc
- 106              		@ args = 0, pretend = 0, frame = 0
- 107              		@ frame_needed = 0, uses_anonymous_args = 0
- 108 0000 10B5     		push	{r4, lr}
- 109              		.cfi_def_cfa_offset 8
- 110              		.cfi_offset 4, -8
- 111              		.cfi_offset 14, -4
- 112              	.LVL2:
-  42:Keypad.c      ****     
-  43:Keypad.c      ****    
-  44:Keypad.c      ****     //Feszultseget adok egyes sorokra, megnezem az oszlopokat.
-  45:Keypad.c      ****     //Egyszerre csak egy gomb megnyomasat tamogatja a renszer.  (egyelore?) 
-  46:Keypad.c      ****     
-  47:Keypad.c      ****     char pressed = 0;
-  48:Keypad.c      ****     
-  49:Keypad.c      ****     ROW1_Write(1u);
- 113              		.loc 1 49 0
- 114 0002 0120     		movs	r0, #1
- 115 0004 FFF7FEFF 		bl	ROW1_Write
- 116              	.LVL3:
-  50:Keypad.c      ****     pressed = COL1_Read() != 0 ? '1' : pressed;    
- 117              		.loc 1 50 0
- 118 0008 FFF7FEFF 		bl	COL1_Read
- 119              	.LVL4:
- 120 000c 08B9     		cbnz	r0, .L30
- 121 000e 0024     		movs	r4, #0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 4
+  33:Keypad.c      **** }
+  82              		.loc 1 33 0
+  83 0034 7047     		bx	lr
+  84              	.LVL5:
+  85              	.L5:
+  86              		.cfi_def_cfa_offset 8
+  87              		.cfi_offset 4, -8
+  88              		.cfi_offset 14, -4
+  89              	.LBB3:
+  27:Keypad.c      ****         return from_uart;
+  90              		.loc 1 27 0
+  91 0036 0020     		movs	r0, #0
+  92 0038 10BD     		pop	{r4, pc}
+  93              	.L6:
+  28:Keypad.c      ****     }
+  94              		.loc 1 28 0
+  95 003a 2046     		mov	r0, r4
+  96              	.LBE3:
+  97              		.loc 1 33 0
+  98 003c 10BD     		pop	{r4, pc}
+  99              	.L9:
+ 100 003e 00BF     		.align	2
+ 101              	.L8:
+ 102 0040 00000000 		.word	COMPUTER_COMMUNICATION
+ 103 0044 00000000 		.word	.LC0
+ 104 0048 00000000 		.word	.LANCHOR0
+ 105              		.cfi_endproc
+ 106              	.LFE63:
+ 107              		.size	get_pressed_key, .-get_pressed_key
+ 108              		.section	.text.set_result_when_relesed,"ax",%progbits
+ 109              		.align	2
+ 110              		.global	set_result_when_relesed
+ 111              		.thumb
+ 112              		.thumb_func
+ 113              		.type	set_result_when_relesed, %function
+ 114              	set_result_when_relesed:
+ 115              	.LFB64:
+  34:Keypad.c      **** 
+  35:Keypad.c      **** /*
+  36:Keypad.c      **** Csak akkor allitom be az erteket ujra, ha felengettem egy azota a billenyut.
+  37:Keypad.c      **** Igy ha folyamatosan nyomva tartok egy gombot, akkor csak egye lenyomast vesz figyelembe
+  38:Keypad.c      **** */
+  39:Keypad.c      **** void set_result_when_relesed(char pressed) {
+ 116              		.loc 1 39 0
+ 117              		.cfi_startproc
+ 118              		@ args = 0, pretend = 0, frame = 0
+ 119              		@ frame_needed = 0, uses_anonymous_args = 0
+ 120              		@ link register save eliminated.
+ 121              	.LVL6:
+  40:Keypad.c      ****     if (pressed != 0 && waiting_for_relese == 0u) {
+ 122              		.loc 1 40 0
+ 123 0000 0246     		mov	r2, r0
+ 124 0002 30B1     		cbz	r0, .L11
+ 125              		.loc 1 40 0 is_stmt 0 discriminator 1
+ 126 0004 074B     		ldr	r3, .L13
+ 127 0006 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 128 0008 1BB9     		cbnz	r3, .L11
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 4
 
 
- 122 0010 00E0     		b	.L10
- 123              	.L30:
- 124 0012 3124     		movs	r4, #49
- 125              	.L10:
- 126              	.LVL5:
-  51:Keypad.c      ****     pressed = COL2_Read() != 0 ? '2' : pressed;
- 127              		.loc 1 51 0 discriminator 4
- 128 0014 FFF7FEFF 		bl	COL2_Read
- 129              	.LVL6:
- 130 0018 00B1     		cbz	r0, .L11
- 131              		.loc 1 51 0 is_stmt 0
- 132 001a 3224     		movs	r4, #50
- 133              	.LVL7:
- 134              	.L11:
-  52:Keypad.c      ****     pressed = COL3_Read() != 0 ? '3' : pressed;
- 135              		.loc 1 52 0 is_stmt 1 discriminator 4
- 136 001c FFF7FEFF 		bl	COL3_Read
- 137              	.LVL8:
- 138 0020 00B1     		cbz	r0, .L12
- 139              		.loc 1 52 0 is_stmt 0
- 140 0022 3324     		movs	r4, #51
- 141              	.LVL9:
- 142              	.L12:
-  53:Keypad.c      ****     pressed = COL4_Read() != 0 ? 'A' : pressed;
- 143              		.loc 1 53 0 is_stmt 1 discriminator 4
- 144 0024 FFF7FEFF 		bl	COL4_Read
- 145              	.LVL10:
- 146 0028 00B1     		cbz	r0, .L13
- 147              		.loc 1 53 0 is_stmt 0
- 148 002a 4124     		movs	r4, #65
- 149              	.LVL11:
+  41:Keypad.c      ****         PRESSED_KEY = pressed;
+ 129              		.loc 1 41 0 is_stmt 1
+ 130 000a 064B     		ldr	r3, .L13
+ 131 000c 1870     		strb	r0, [r3]
+  42:Keypad.c      ****         waiting_for_relese = 1u;
+ 132              		.loc 1 42 0
+ 133 000e 0121     		movs	r1, #1
+ 134 0010 5970     		strb	r1, [r3, #1]
+ 135              	.L11:
+  43:Keypad.c      ****     }
+  44:Keypad.c      ****     if (waiting_for_relese == 1u && pressed == 0)
+ 136              		.loc 1 44 0
+ 137 0012 044B     		ldr	r3, .L13
+ 138 0014 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 139 0016 012B     		cmp	r3, #1
+ 140 0018 02D1     		bne	.L10
+ 141              		.loc 1 44 0 is_stmt 0 discriminator 1
+ 142 001a 0AB9     		cbnz	r2, .L10
+  45:Keypad.c      ****         waiting_for_relese = 0u;
+ 143              		.loc 1 45 0 is_stmt 1
+ 144 001c 014B     		ldr	r3, .L13
+ 145 001e 5A70     		strb	r2, [r3, #1]
+ 146              	.L10:
+ 147 0020 7047     		bx	lr
+ 148              	.L14:
+ 149 0022 00BF     		.align	2
  150              	.L13:
+ 151 0024 00000000 		.word	.LANCHOR0
+ 152              		.cfi_endproc
+ 153              	.LFE64:
+ 154              		.size	set_result_when_relesed, .-set_result_when_relesed
+ 155              		.section	.text.readKey,"ax",%progbits
+ 156              		.align	2
+ 157              		.global	readKey
+ 158              		.thumb
+ 159              		.thumb_func
+ 160              		.type	readKey, %function
+ 161              	readKey:
+ 162              	.LFB65:
+  46:Keypad.c      **** }
+  47:Keypad.c      **** 
+  48:Keypad.c      **** 
+  49:Keypad.c      **** /* 
+  50:Keypad.c      **** Megnezem, hogy van e lenyomott billentyu, ha nincs 0-s erteket ad,
+  51:Keypad.c      **** ha van akkor a billenyu ASCII kodjaval. 
+  52:Keypad.c      **** Gomb felengedesekor menek csak! .*/
+  53:Keypad.c      **** void readKey() {
+ 163              		.loc 1 53 0
+ 164              		.cfi_startproc
+ 165              		@ args = 0, pretend = 0, frame = 0
+ 166              		@ frame_needed = 0, uses_anonymous_args = 0
+ 167 0000 10B5     		push	{r4, lr}
+ 168              		.cfi_def_cfa_offset 8
+ 169              		.cfi_offset 4, -8
+ 170              		.cfi_offset 14, -4
+ 171              	.LVL7:
   54:Keypad.c      ****     
-  55:Keypad.c      ****     //Egy valamit nyomva tartok
-  56:Keypad.c      ****     if (pressed != 0) {
- 151              		.loc 1 56 0 is_stmt 1 discriminator 4
- 152 002c 34B1     		cbz	r4, .L14
-  57:Keypad.c      ****          ROW1_Write(0u);
- 153              		.loc 1 57 0
- 154 002e 0020     		movs	r0, #0
- 155 0030 FFF7FEFF 		bl	ROW1_Write
- 156              	.LVL12:
-  58:Keypad.c      ****          set_result_when_relesed(pressed);
- 157              		.loc 1 58 0
- 158 0034 2046     		mov	r0, r4
- 159 0036 FFF7FEFF 		bl	set_result_when_relesed
- 160              	.LVL13:
-  59:Keypad.c      ****          return;
- 161              		.loc 1 59 0
- 162 003a 10BD     		pop	{r4, pc}
- 163              	.LVL14:
- 164              	.L14:
-  60:Keypad.c      ****     }
-  61:Keypad.c      ****     
-  62:Keypad.c      ****     ROW1_Write(0u);
- 165              		.loc 1 62 0
- 166 003c 0020     		movs	r0, #0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 5
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 5
 
 
- 167 003e FFF7FEFF 		bl	ROW1_Write
- 168              	.LVL15:
-  63:Keypad.c      ****     ROW2_Write(1u);
- 169              		.loc 1 63 0
- 170 0042 0120     		movs	r0, #1
- 171 0044 FFF7FEFF 		bl	ROW2_Write
- 172              	.LVL16:
-  64:Keypad.c      ****    
-  65:Keypad.c      ****     pressed = COL1_Read() != 0 ? '4' : pressed;
- 173              		.loc 1 65 0
- 174 0048 FFF7FEFF 		bl	COL1_Read
- 175              	.LVL17:
- 176 004c 00B1     		cbz	r0, .L16
- 177 004e 3424     		movs	r4, #52
- 178              	.LVL18:
- 179              	.L16:
-  66:Keypad.c      ****     pressed = COL2_Read() != 0 ? '5' : pressed;
- 180              		.loc 1 66 0 discriminator 4
- 181 0050 FFF7FEFF 		bl	COL2_Read
- 182              	.LVL19:
- 183 0054 00B1     		cbz	r0, .L17
- 184              		.loc 1 66 0 is_stmt 0
- 185 0056 3524     		movs	r4, #53
- 186              	.LVL20:
- 187              	.L17:
-  67:Keypad.c      ****     pressed = COL3_Read() != 0 ? '6' : pressed;
- 188              		.loc 1 67 0 is_stmt 1 discriminator 4
- 189 0058 FFF7FEFF 		bl	COL3_Read
- 190              	.LVL21:
- 191 005c 00B1     		cbz	r0, .L18
- 192              		.loc 1 67 0 is_stmt 0
- 193 005e 3624     		movs	r4, #54
- 194              	.LVL22:
- 195              	.L18:
-  68:Keypad.c      ****     pressed = COL4_Read() != 0 ? 'B' : pressed;
- 196              		.loc 1 68 0 is_stmt 1 discriminator 4
- 197 0060 FFF7FEFF 		bl	COL4_Read
- 198              	.LVL23:
- 199 0064 00B1     		cbz	r0, .L19
- 200              		.loc 1 68 0 is_stmt 0
- 201 0066 4224     		movs	r4, #66
- 202              	.LVL24:
- 203              	.L19:
-  69:Keypad.c      ****     
-  70:Keypad.c      ****     //Egy valamit nyomva tartok
-  71:Keypad.c      ****     if (pressed != 0) {
- 204              		.loc 1 71 0 is_stmt 1 discriminator 4
- 205 0068 34B1     		cbz	r4, .L20
-  72:Keypad.c      ****          ROW2_Write(0u);
- 206              		.loc 1 72 0
- 207 006a 0020     		movs	r0, #0
- 208 006c FFF7FEFF 		bl	ROW2_Write
- 209              	.LVL25:
-  73:Keypad.c      ****          set_result_when_relesed(pressed);
- 210              		.loc 1 73 0
- 211 0070 2046     		mov	r0, r4
- 212 0072 FFF7FEFF 		bl	set_result_when_relesed
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 6
+  55:Keypad.c      ****    
+  56:Keypad.c      ****     //Feszultseget adok egyes sorokra, megnezem az oszlopokat.
+  57:Keypad.c      ****     //Egyszerre csak egy gomb megnyomasat tamogatja a renszer.  (egyelore?) 
+  58:Keypad.c      ****     
+  59:Keypad.c      ****     char pressed = 0;
+  60:Keypad.c      ****     
+  61:Keypad.c      ****     ROW1_Write(1u);
+ 172              		.loc 1 61 0
+ 173 0002 0120     		movs	r0, #1
+ 174 0004 FFF7FEFF 		bl	ROW1_Write
+ 175              	.LVL8:
+  62:Keypad.c      ****     pressed = COL1_Read() != 0 ? '1' : pressed;    
+ 176              		.loc 1 62 0
+ 177 0008 FFF7FEFF 		bl	COL1_Read
+ 178              	.LVL9:
+ 179 000c 08B9     		cbnz	r0, .L36
+ 180 000e 0024     		movs	r4, #0
+ 181 0010 00E0     		b	.L16
+ 182              	.L36:
+ 183 0012 3124     		movs	r4, #49
+ 184              	.L16:
+ 185              	.LVL10:
+  63:Keypad.c      ****     pressed = COL2_Read() != 0 ? '2' : pressed;
+ 186              		.loc 1 63 0 discriminator 4
+ 187 0014 FFF7FEFF 		bl	COL2_Read
+ 188              	.LVL11:
+ 189 0018 00B1     		cbz	r0, .L17
+ 190              		.loc 1 63 0 is_stmt 0
+ 191 001a 3224     		movs	r4, #50
+ 192              	.LVL12:
+ 193              	.L17:
+  64:Keypad.c      ****     pressed = COL3_Read() != 0 ? '3' : pressed;
+ 194              		.loc 1 64 0 is_stmt 1 discriminator 4
+ 195 001c FFF7FEFF 		bl	COL3_Read
+ 196              	.LVL13:
+ 197 0020 00B1     		cbz	r0, .L18
+ 198              		.loc 1 64 0 is_stmt 0
+ 199 0022 3324     		movs	r4, #51
+ 200              	.LVL14:
+ 201              	.L18:
+  65:Keypad.c      ****     pressed = COL4_Read() != 0 ? 'A' : pressed;
+ 202              		.loc 1 65 0 is_stmt 1 discriminator 4
+ 203 0024 FFF7FEFF 		bl	COL4_Read
+ 204              	.LVL15:
+ 205 0028 00B1     		cbz	r0, .L19
+ 206              		.loc 1 65 0 is_stmt 0
+ 207 002a 4124     		movs	r4, #65
+ 208              	.LVL16:
+ 209              	.L19:
+  66:Keypad.c      ****     
+  67:Keypad.c      ****     //Egy valamit nyomva tartok
+  68:Keypad.c      ****     if (pressed != 0) {
+ 210              		.loc 1 68 0 is_stmt 1 discriminator 4
+ 211 002c 34B1     		cbz	r4, .L20
+  69:Keypad.c      ****          ROW1_Write(0u);
+ 212              		.loc 1 69 0
+ 213 002e 0020     		movs	r0, #0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 6
 
 
- 213              	.LVL26:
-  74:Keypad.c      ****          return;
- 214              		.loc 1 74 0
- 215 0076 10BD     		pop	{r4, pc}
- 216              	.LVL27:
- 217              	.L20:
-  75:Keypad.c      ****     }
-  76:Keypad.c      ****     
-  77:Keypad.c      ****     ROW2_Write(0u);
- 218              		.loc 1 77 0
- 219 0078 0020     		movs	r0, #0
- 220 007a FFF7FEFF 		bl	ROW2_Write
- 221              	.LVL28:
-  78:Keypad.c      ****     ROW3_Write(1u);
- 222              		.loc 1 78 0
- 223 007e 0120     		movs	r0, #1
- 224 0080 FFF7FEFF 		bl	ROW3_Write
- 225              	.LVL29:
-  79:Keypad.c      ****    
-  80:Keypad.c      ****     pressed = COL1_Read() != 0 ? '7' : pressed;
- 226              		.loc 1 80 0
- 227 0084 FFF7FEFF 		bl	COL1_Read
- 228              	.LVL30:
- 229 0088 00B1     		cbz	r0, .L21
- 230 008a 3724     		movs	r4, #55
- 231              	.LVL31:
- 232              	.L21:
-  81:Keypad.c      ****     pressed = COL2_Read() != 0 ? '8' : pressed;
- 233              		.loc 1 81 0 discriminator 4
- 234 008c FFF7FEFF 		bl	COL2_Read
- 235              	.LVL32:
- 236 0090 00B1     		cbz	r0, .L22
- 237              		.loc 1 81 0 is_stmt 0
- 238 0092 3824     		movs	r4, #56
- 239              	.LVL33:
- 240              	.L22:
-  82:Keypad.c      ****     pressed = COL3_Read() != 0 ? '9' : pressed;
- 241              		.loc 1 82 0 is_stmt 1 discriminator 4
- 242 0094 FFF7FEFF 		bl	COL3_Read
- 243              	.LVL34:
- 244 0098 00B1     		cbz	r0, .L23
- 245              		.loc 1 82 0 is_stmt 0
- 246 009a 3924     		movs	r4, #57
- 247              	.LVL35:
- 248              	.L23:
-  83:Keypad.c      ****     pressed = COL4_Read() != 0 ? 'C' : pressed;
- 249              		.loc 1 83 0 is_stmt 1 discriminator 4
- 250 009c FFF7FEFF 		bl	COL4_Read
- 251              	.LVL36:
- 252 00a0 00B1     		cbz	r0, .L24
- 253              		.loc 1 83 0 is_stmt 0
- 254 00a2 4324     		movs	r4, #67
- 255              	.LVL37:
- 256              	.L24:
-  84:Keypad.c      ****     
-  85:Keypad.c      ****     //Egy valamit nyomva tartok
-  86:Keypad.c      ****     if (pressed != 0) {
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 7
+ 214 0030 FFF7FEFF 		bl	ROW1_Write
+ 215              	.LVL17:
+  70:Keypad.c      ****          set_result_when_relesed(pressed);
+ 216              		.loc 1 70 0
+ 217 0034 2046     		mov	r0, r4
+ 218 0036 FFF7FEFF 		bl	set_result_when_relesed
+ 219              	.LVL18:
+  71:Keypad.c      ****          return;
+ 220              		.loc 1 71 0
+ 221 003a 10BD     		pop	{r4, pc}
+ 222              	.LVL19:
+ 223              	.L20:
+  72:Keypad.c      ****     }
+  73:Keypad.c      ****     
+  74:Keypad.c      ****     ROW1_Write(0u);
+ 224              		.loc 1 74 0
+ 225 003c 0020     		movs	r0, #0
+ 226 003e FFF7FEFF 		bl	ROW1_Write
+ 227              	.LVL20:
+  75:Keypad.c      ****     ROW2_Write(1u);
+ 228              		.loc 1 75 0
+ 229 0042 0120     		movs	r0, #1
+ 230 0044 FFF7FEFF 		bl	ROW2_Write
+ 231              	.LVL21:
+  76:Keypad.c      ****    
+  77:Keypad.c      ****     pressed = COL1_Read() != 0 ? '4' : pressed;
+ 232              		.loc 1 77 0
+ 233 0048 FFF7FEFF 		bl	COL1_Read
+ 234              	.LVL22:
+ 235 004c 00B1     		cbz	r0, .L22
+ 236 004e 3424     		movs	r4, #52
+ 237              	.LVL23:
+ 238              	.L22:
+  78:Keypad.c      ****     pressed = COL2_Read() != 0 ? '5' : pressed;
+ 239              		.loc 1 78 0 discriminator 4
+ 240 0050 FFF7FEFF 		bl	COL2_Read
+ 241              	.LVL24:
+ 242 0054 00B1     		cbz	r0, .L23
+ 243              		.loc 1 78 0 is_stmt 0
+ 244 0056 3524     		movs	r4, #53
+ 245              	.LVL25:
+ 246              	.L23:
+  79:Keypad.c      ****     pressed = COL3_Read() != 0 ? '6' : pressed;
+ 247              		.loc 1 79 0 is_stmt 1 discriminator 4
+ 248 0058 FFF7FEFF 		bl	COL3_Read
+ 249              	.LVL26:
+ 250 005c 00B1     		cbz	r0, .L24
+ 251              		.loc 1 79 0 is_stmt 0
+ 252 005e 3624     		movs	r4, #54
+ 253              	.LVL27:
+ 254              	.L24:
+  80:Keypad.c      ****     pressed = COL4_Read() != 0 ? 'B' : pressed;
+ 255              		.loc 1 80 0 is_stmt 1 discriminator 4
+ 256 0060 FFF7FEFF 		bl	COL4_Read
+ 257              	.LVL28:
+ 258 0064 00B1     		cbz	r0, .L25
+ 259              		.loc 1 80 0 is_stmt 0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 7
 
 
- 257              		.loc 1 86 0 is_stmt 1 discriminator 4
- 258 00a4 34B1     		cbz	r4, .L25
-  87:Keypad.c      ****          ROW3_Write(0u);
- 259              		.loc 1 87 0
- 260 00a6 0020     		movs	r0, #0
- 261 00a8 FFF7FEFF 		bl	ROW3_Write
- 262              	.LVL38:
-  88:Keypad.c      ****          set_result_when_relesed(pressed);
- 263              		.loc 1 88 0
- 264 00ac 2046     		mov	r0, r4
- 265 00ae FFF7FEFF 		bl	set_result_when_relesed
- 266              	.LVL39:
-  89:Keypad.c      ****          return;
- 267              		.loc 1 89 0
- 268 00b2 10BD     		pop	{r4, pc}
- 269              	.LVL40:
- 270              	.L25:
-  90:Keypad.c      ****     }
-  91:Keypad.c      ****     
-  92:Keypad.c      ****     ROW3_Write(0u);
- 271              		.loc 1 92 0
- 272 00b4 0020     		movs	r0, #0
- 273 00b6 FFF7FEFF 		bl	ROW3_Write
- 274              	.LVL41:
-  93:Keypad.c      ****     ROW4_Write(1u);
- 275              		.loc 1 93 0
- 276 00ba 0120     		movs	r0, #1
- 277 00bc FFF7FEFF 		bl	ROW4_Write
- 278              	.LVL42:
-  94:Keypad.c      ****    
-  95:Keypad.c      ****     pressed = COL1_Read() != 0 ? '*' : pressed;
- 279              		.loc 1 95 0
- 280 00c0 FFF7FEFF 		bl	COL1_Read
- 281              	.LVL43:
- 282 00c4 00B1     		cbz	r0, .L26
- 283 00c6 2A24     		movs	r4, #42
- 284              	.LVL44:
- 285              	.L26:
-  96:Keypad.c      ****     pressed = COL2_Read() != 0 ? '0' : pressed;
- 286              		.loc 1 96 0 discriminator 4
- 287 00c8 FFF7FEFF 		bl	COL2_Read
- 288              	.LVL45:
- 289 00cc 00B1     		cbz	r0, .L27
- 290              		.loc 1 96 0 is_stmt 0
- 291 00ce 3024     		movs	r4, #48
- 292              	.LVL46:
- 293              	.L27:
-  97:Keypad.c      ****     pressed = COL3_Read() != 0 ? '#' : pressed;
- 294              		.loc 1 97 0 is_stmt 1 discriminator 4
- 295 00d0 FFF7FEFF 		bl	COL3_Read
- 296              	.LVL47:
- 297 00d4 00B1     		cbz	r0, .L28
- 298              		.loc 1 97 0 is_stmt 0
- 299 00d6 2324     		movs	r4, #35
- 300              	.LVL48:
- 301              	.L28:
-  98:Keypad.c      ****     pressed = COL4_Read() != 0 ? 'D' : pressed;
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 8
+ 260 0066 4224     		movs	r4, #66
+ 261              	.LVL29:
+ 262              	.L25:
+  81:Keypad.c      ****     
+  82:Keypad.c      ****     //Egy valamit nyomva tartok
+  83:Keypad.c      ****     if (pressed != 0) {
+ 263              		.loc 1 83 0 is_stmt 1 discriminator 4
+ 264 0068 34B1     		cbz	r4, .L26
+  84:Keypad.c      ****          ROW2_Write(0u);
+ 265              		.loc 1 84 0
+ 266 006a 0020     		movs	r0, #0
+ 267 006c FFF7FEFF 		bl	ROW2_Write
+ 268              	.LVL30:
+  85:Keypad.c      ****          set_result_when_relesed(pressed);
+ 269              		.loc 1 85 0
+ 270 0070 2046     		mov	r0, r4
+ 271 0072 FFF7FEFF 		bl	set_result_when_relesed
+ 272              	.LVL31:
+  86:Keypad.c      ****          return;
+ 273              		.loc 1 86 0
+ 274 0076 10BD     		pop	{r4, pc}
+ 275              	.LVL32:
+ 276              	.L26:
+  87:Keypad.c      ****     }
+  88:Keypad.c      ****     
+  89:Keypad.c      ****     ROW2_Write(0u);
+ 277              		.loc 1 89 0
+ 278 0078 0020     		movs	r0, #0
+ 279 007a FFF7FEFF 		bl	ROW2_Write
+ 280              	.LVL33:
+  90:Keypad.c      ****     ROW3_Write(1u);
+ 281              		.loc 1 90 0
+ 282 007e 0120     		movs	r0, #1
+ 283 0080 FFF7FEFF 		bl	ROW3_Write
+ 284              	.LVL34:
+  91:Keypad.c      ****    
+  92:Keypad.c      ****     pressed = COL1_Read() != 0 ? '7' : pressed;
+ 285              		.loc 1 92 0
+ 286 0084 FFF7FEFF 		bl	COL1_Read
+ 287              	.LVL35:
+ 288 0088 00B1     		cbz	r0, .L27
+ 289 008a 3724     		movs	r4, #55
+ 290              	.LVL36:
+ 291              	.L27:
+  93:Keypad.c      ****     pressed = COL2_Read() != 0 ? '8' : pressed;
+ 292              		.loc 1 93 0 discriminator 4
+ 293 008c FFF7FEFF 		bl	COL2_Read
+ 294              	.LVL37:
+ 295 0090 00B1     		cbz	r0, .L28
+ 296              		.loc 1 93 0 is_stmt 0
+ 297 0092 3824     		movs	r4, #56
+ 298              	.LVL38:
+ 299              	.L28:
+  94:Keypad.c      ****     pressed = COL3_Read() != 0 ? '9' : pressed;
+ 300              		.loc 1 94 0 is_stmt 1 discriminator 4
+ 301 0094 FFF7FEFF 		bl	COL3_Read
+ 302              	.LVL39:
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 8
 
 
- 302              		.loc 1 98 0 is_stmt 1 discriminator 4
- 303 00d8 FFF7FEFF 		bl	COL4_Read
- 304              	.LVL49:
- 305 00dc 00B1     		cbz	r0, .L29
- 306              		.loc 1 98 0 is_stmt 0
- 307 00de 4424     		movs	r4, #68
- 308              	.LVL50:
- 309              	.L29:
-  99:Keypad.c      ****     ROW4_Write(0u);   
- 310              		.loc 1 99 0 is_stmt 1 discriminator 4
- 311 00e0 0020     		movs	r0, #0
- 312 00e2 FFF7FEFF 		bl	ROW4_Write
- 313              	.LVL51:
- 100:Keypad.c      ****     
- 101:Keypad.c      ****     
- 102:Keypad.c      ****     set_result_when_relesed(pressed);
- 314              		.loc 1 102 0 discriminator 4
- 315 00e6 2046     		mov	r0, r4
- 316 00e8 FFF7FEFF 		bl	set_result_when_relesed
- 317              	.LVL52:
- 318 00ec 10BD     		pop	{r4, pc}
- 319              		.cfi_endproc
- 320              	.LFE65:
- 321              		.size	readKey, .-readKey
- 322              		.global	PRESSED_KEY
- 323              		.global	waiting_for_relese
- 324 00ee 00BF     		.bss
- 325              		.set	.LANCHOR0,. + 0
- 326              		.type	PRESSED_KEY, %object
- 327              		.size	PRESSED_KEY, 1
- 328              	PRESSED_KEY:
- 329 0000 00       		.space	1
- 330              		.type	waiting_for_relese, %object
- 331              		.size	waiting_for_relese, 1
- 332              	waiting_for_relese:
- 333 0001 00       		.space	1
- 334              		.text
- 335              	.Letext0:
- 336              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 337              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
- 338              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
- 339              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
- 340              		.file 6 "Generated_Source\\PSoC5/ROW1.h"
- 341              		.file 7 "Generated_Source\\PSoC5/COL1.h"
- 342              		.file 8 "Generated_Source\\PSoC5/COL2.h"
- 343              		.file 9 "Generated_Source\\PSoC5/COL3.h"
- 344              		.file 10 "Generated_Source\\PSoC5/COL4.h"
- 345              		.file 11 "Generated_Source\\PSoC5/ROW2.h"
- 346              		.file 12 "Generated_Source\\PSoC5/ROW3.h"
- 347              		.file 13 "Generated_Source\\PSoC5/ROW4.h"
- 348              		.section	.debug_info,"",%progbits
- 349              	.Ldebug_info0:
- 350 0000 54030000 		.4byte	0x354
- 351 0004 0400     		.2byte	0x4
- 352 0006 00000000 		.4byte	.Ldebug_abbrev0
- 353 000a 04       		.byte	0x4
- 354 000b 01       		.uleb128 0x1
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 9
+ 303 0098 00B1     		cbz	r0, .L29
+ 304              		.loc 1 94 0 is_stmt 0
+ 305 009a 3924     		movs	r4, #57
+ 306              	.LVL40:
+ 307              	.L29:
+  95:Keypad.c      ****     pressed = COL4_Read() != 0 ? 'C' : pressed;
+ 308              		.loc 1 95 0 is_stmt 1 discriminator 4
+ 309 009c FFF7FEFF 		bl	COL4_Read
+ 310              	.LVL41:
+ 311 00a0 00B1     		cbz	r0, .L30
+ 312              		.loc 1 95 0 is_stmt 0
+ 313 00a2 4324     		movs	r4, #67
+ 314              	.LVL42:
+ 315              	.L30:
+  96:Keypad.c      ****     
+  97:Keypad.c      ****     //Egy valamit nyomva tartok
+  98:Keypad.c      ****     if (pressed != 0) {
+ 316              		.loc 1 98 0 is_stmt 1 discriminator 4
+ 317 00a4 34B1     		cbz	r4, .L31
+  99:Keypad.c      ****          ROW3_Write(0u);
+ 318              		.loc 1 99 0
+ 319 00a6 0020     		movs	r0, #0
+ 320 00a8 FFF7FEFF 		bl	ROW3_Write
+ 321              	.LVL43:
+ 100:Keypad.c      ****          set_result_when_relesed(pressed);
+ 322              		.loc 1 100 0
+ 323 00ac 2046     		mov	r0, r4
+ 324 00ae FFF7FEFF 		bl	set_result_when_relesed
+ 325              	.LVL44:
+ 101:Keypad.c      ****          return;
+ 326              		.loc 1 101 0
+ 327 00b2 10BD     		pop	{r4, pc}
+ 328              	.LVL45:
+ 329              	.L31:
+ 102:Keypad.c      ****     }
+ 103:Keypad.c      ****     
+ 104:Keypad.c      ****     ROW3_Write(0u);
+ 330              		.loc 1 104 0
+ 331 00b4 0020     		movs	r0, #0
+ 332 00b6 FFF7FEFF 		bl	ROW3_Write
+ 333              	.LVL46:
+ 105:Keypad.c      ****     ROW4_Write(1u);
+ 334              		.loc 1 105 0
+ 335 00ba 0120     		movs	r0, #1
+ 336 00bc FFF7FEFF 		bl	ROW4_Write
+ 337              	.LVL47:
+ 106:Keypad.c      ****    
+ 107:Keypad.c      ****     pressed = COL1_Read() != 0 ? '*' : pressed;
+ 338              		.loc 1 107 0
+ 339 00c0 FFF7FEFF 		bl	COL1_Read
+ 340              	.LVL48:
+ 341 00c4 00B1     		cbz	r0, .L32
+ 342 00c6 2A24     		movs	r4, #42
+ 343              	.LVL49:
+ 344              	.L32:
+ 108:Keypad.c      ****     pressed = COL2_Read() != 0 ? '0' : pressed;
+ 345              		.loc 1 108 0 discriminator 4
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 9
 
 
- 355 000c 47010000 		.4byte	.LASF32
- 356 0010 0C       		.byte	0xc
- 357 0011 12000000 		.4byte	.LASF33
- 358 0015 1B000000 		.4byte	.LASF34
- 359 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 360 001d 00000000 		.4byte	0
- 361 0021 00000000 		.4byte	.Ldebug_line0
- 362 0025 02       		.uleb128 0x2
- 363 0026 01       		.byte	0x1
- 364 0027 06       		.byte	0x6
- 365 0028 4A020000 		.4byte	.LASF0
- 366 002c 02       		.uleb128 0x2
- 367 002d 01       		.byte	0x1
- 368 002e 08       		.byte	0x8
- 369 002f 80000000 		.4byte	.LASF1
- 370 0033 02       		.uleb128 0x2
- 371 0034 02       		.byte	0x2
- 372 0035 05       		.byte	0x5
- 373 0036 11020000 		.4byte	.LASF2
- 374 003a 02       		.uleb128 0x2
- 375 003b 02       		.byte	0x2
- 376 003c 07       		.byte	0x7
- 377 003d BD000000 		.4byte	.LASF3
- 378 0041 03       		.uleb128 0x3
- 379 0042 5A000000 		.4byte	.LASF9
- 380 0046 02       		.byte	0x2
- 381 0047 3F       		.byte	0x3f
- 382 0048 4C000000 		.4byte	0x4c
- 383 004c 02       		.uleb128 0x2
- 384 004d 04       		.byte	0x4
- 385 004e 05       		.byte	0x5
- 386 004f 35020000 		.4byte	.LASF4
- 387 0053 02       		.uleb128 0x2
- 388 0054 04       		.byte	0x4
- 389 0055 07       		.byte	0x7
- 390 0056 A6000000 		.4byte	.LASF5
- 391 005a 02       		.uleb128 0x2
- 392 005b 08       		.byte	0x8
- 393 005c 05       		.byte	0x5
- 394 005d E8010000 		.4byte	.LASF6
- 395 0061 02       		.uleb128 0x2
- 396 0062 08       		.byte	0x8
- 397 0063 07       		.byte	0x7
- 398 0064 10010000 		.4byte	.LASF7
- 399 0068 04       		.uleb128 0x4
- 400 0069 04       		.byte	0x4
- 401 006a 05       		.byte	0x5
- 402 006b 696E7400 		.ascii	"int\000"
- 403 006f 02       		.uleb128 0x2
- 404 0070 04       		.byte	0x4
- 405 0071 07       		.byte	0x7
- 406 0072 03010000 		.4byte	.LASF8
- 407 0076 03       		.uleb128 0x3
- 408 0077 64000000 		.4byte	.LASF10
- 409 007b 03       		.byte	0x3
- 410 007c 2C       		.byte	0x2c
- 411 007d 41000000 		.4byte	0x41
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 10
+ 346 00c8 FFF7FEFF 		bl	COL2_Read
+ 347              	.LVL50:
+ 348 00cc 00B1     		cbz	r0, .L33
+ 349              		.loc 1 108 0 is_stmt 0
+ 350 00ce 3024     		movs	r4, #48
+ 351              	.LVL51:
+ 352              	.L33:
+ 109:Keypad.c      ****     pressed = COL3_Read() != 0 ? '#' : pressed;
+ 353              		.loc 1 109 0 is_stmt 1 discriminator 4
+ 354 00d0 FFF7FEFF 		bl	COL3_Read
+ 355              	.LVL52:
+ 356 00d4 00B1     		cbz	r0, .L34
+ 357              		.loc 1 109 0 is_stmt 0
+ 358 00d6 2324     		movs	r4, #35
+ 359              	.LVL53:
+ 360              	.L34:
+ 110:Keypad.c      ****     pressed = COL4_Read() != 0 ? 'D' : pressed;
+ 361              		.loc 1 110 0 is_stmt 1 discriminator 4
+ 362 00d8 FFF7FEFF 		bl	COL4_Read
+ 363              	.LVL54:
+ 364 00dc 00B1     		cbz	r0, .L35
+ 365              		.loc 1 110 0 is_stmt 0
+ 366 00de 4424     		movs	r4, #68
+ 367              	.LVL55:
+ 368              	.L35:
+ 111:Keypad.c      ****     ROW4_Write(0u);   
+ 369              		.loc 1 111 0 is_stmt 1 discriminator 4
+ 370 00e0 0020     		movs	r0, #0
+ 371 00e2 FFF7FEFF 		bl	ROW4_Write
+ 372              	.LVL56:
+ 112:Keypad.c      ****     
+ 113:Keypad.c      ****     
+ 114:Keypad.c      ****     set_result_when_relesed(pressed);
+ 373              		.loc 1 114 0 discriminator 4
+ 374 00e6 2046     		mov	r0, r4
+ 375 00e8 FFF7FEFF 		bl	set_result_when_relesed
+ 376              	.LVL57:
+ 377 00ec 10BD     		pop	{r4, pc}
+ 378              		.cfi_endproc
+ 379              	.LFE65:
+ 380              		.size	readKey, .-readKey
+ 381              		.global	PRESSED_KEY
+ 382              		.global	waiting_for_relese
+ 383 00ee 00BF     		.section	.rodata.str1.4,"aMS",%progbits,1
+ 384              		.align	2
+ 385              	.LC0:
+ 386 0000 56697373 		.ascii	"Visszavaltas normal uzemmodba. \015\012\000"
+ 386      7A617661 
+ 386      6C746173 
+ 386      206E6F72 
+ 386      6D616C20 
+ 387              		.bss
+ 388              		.set	.LANCHOR0,. + 0
+ 389              		.type	PRESSED_KEY, %object
+ 390              		.size	PRESSED_KEY, 1
+ 391              	PRESSED_KEY:
+ 392 0000 00       		.space	1
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 10
 
 
- 412 0081 05       		.uleb128 0x5
- 413 0082 7A000000 		.4byte	.LASF11
- 414 0086 04       		.byte	0x4
- 415 0087 E801     		.2byte	0x1e8
- 416 0089 2C000000 		.4byte	0x2c
- 417 008d 02       		.uleb128 0x2
- 418 008e 04       		.byte	0x4
- 419 008f 04       		.byte	0x4
- 420 0090 74000000 		.4byte	.LASF12
- 421 0094 02       		.uleb128 0x2
- 422 0095 08       		.byte	0x8
- 423 0096 04       		.byte	0x4
- 424 0097 FC000000 		.4byte	.LASF13
- 425 009b 02       		.uleb128 0x2
- 426 009c 01       		.byte	0x1
- 427 009d 08       		.byte	0x8
- 428 009e 01020000 		.4byte	.LASF14
- 429 00a2 02       		.uleb128 0x2
- 430 00a3 08       		.byte	0x8
- 431 00a4 04       		.byte	0x4
- 432 00a5 3E020000 		.4byte	.LASF15
- 433 00a9 02       		.uleb128 0x2
- 434 00aa 04       		.byte	0x4
- 435 00ab 07       		.byte	0x7
- 436 00ac DF010000 		.4byte	.LASF16
- 437 00b0 06       		.uleb128 0x6
- 438 00b1 1B020000 		.4byte	.LASF17
- 439 00b5 01       		.byte	0x1
- 440 00b6 11       		.byte	0x11
- 441 00b7 81000000 		.4byte	0x81
- 442 00bb 00000000 		.4byte	.LFB63
- 443 00bf 10000000 		.4byte	.LFE63-.LFB63
- 444 00c3 01       		.uleb128 0x1
- 445 00c4 9C       		.byte	0x9c
- 446 00c5 D7000000 		.4byte	0xd7
- 447 00c9 07       		.uleb128 0x7
- 448 00ca B8000000 		.4byte	.LASF19
- 449 00ce 01       		.byte	0x1
- 450 00cf 12       		.byte	0x12
- 451 00d0 81000000 		.4byte	0x81
- 452 00d4 01       		.uleb128 0x1
- 453 00d5 50       		.byte	0x50
- 454 00d6 00       		.byte	0
- 455 00d7 08       		.uleb128 0x8
- 456 00d8 8E000000 		.4byte	.LASF18
- 457 00dc 01       		.byte	0x1
- 458 00dd 1B       		.byte	0x1b
- 459 00de 00000000 		.4byte	.LFB64
- 460 00e2 28000000 		.4byte	.LFE64-.LFB64
- 461 00e6 01       		.uleb128 0x1
- 462 00e7 9C       		.byte	0x9c
- 463 00e8 FA000000 		.4byte	0xfa
- 464 00ec 09       		.uleb128 0x9
- 465 00ed 00000000 		.4byte	.LASF20
- 466 00f1 01       		.byte	0x1
- 467 00f2 1B       		.byte	0x1b
- 468 00f3 9B000000 		.4byte	0x9b
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 11
+ 393              		.type	waiting_for_relese, %object
+ 394              		.size	waiting_for_relese, 1
+ 395              	waiting_for_relese:
+ 396 0001 00       		.space	1
+ 397              		.text
+ 398              	.Letext0:
+ 399              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 400              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+ 401              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 402              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 403              		.file 6 "SettingsHelper.h"
+ 404              		.file 7 "Generated_Source\\PSoC5/UART.h"
+ 405              		.file 8 "Generated_Source\\PSoC5/ROW1.h"
+ 406              		.file 9 "Generated_Source\\PSoC5/COL1.h"
+ 407              		.file 10 "Generated_Source\\PSoC5/COL2.h"
+ 408              		.file 11 "Generated_Source\\PSoC5/COL3.h"
+ 409              		.file 12 "Generated_Source\\PSoC5/COL4.h"
+ 410              		.file 13 "Generated_Source\\PSoC5/ROW2.h"
+ 411              		.file 14 "Generated_Source\\PSoC5/ROW3.h"
+ 412              		.file 15 "Generated_Source\\PSoC5/ROW4.h"
+ 413              		.section	.debug_info,"",%progbits
+ 414              	.Ldebug_info0:
+ 415 0000 A8030000 		.4byte	0x3a8
+ 416 0004 0400     		.2byte	0x4
+ 417 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 418 000a 04       		.byte	0x4
+ 419 000b 01       		.uleb128 0x1
+ 420 000c 08000000 		.4byte	.LASF36
+ 421 0010 0C       		.byte	0xc
+ 422 0011 96000000 		.4byte	.LASF37
+ 423 0015 9F000000 		.4byte	.LASF38
+ 424 0019 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 425 001d 00000000 		.4byte	0
+ 426 0021 00000000 		.4byte	.Ldebug_line0
+ 427 0025 02       		.uleb128 0x2
+ 428 0026 01       		.byte	0x1
+ 429 0027 06       		.byte	0x6
+ 430 0028 78020000 		.4byte	.LASF0
+ 431 002c 02       		.uleb128 0x2
+ 432 002d 01       		.byte	0x1
+ 433 002e 08       		.byte	0x8
+ 434 002f 0E010000 		.4byte	.LASF1
+ 435 0033 02       		.uleb128 0x2
+ 436 0034 02       		.byte	0x2
+ 437 0035 05       		.byte	0x5
+ 438 0036 3F020000 		.4byte	.LASF2
+ 439 003a 02       		.uleb128 0x2
+ 440 003b 02       		.byte	0x2
+ 441 003c 07       		.byte	0x7
+ 442 003d 4B010000 		.4byte	.LASF3
+ 443 0041 03       		.uleb128 0x3
+ 444 0042 DE000000 		.4byte	.LASF9
+ 445 0046 02       		.byte	0x2
+ 446 0047 3F       		.byte	0x3f
+ 447 0048 4C000000 		.4byte	0x4c
+ 448 004c 02       		.uleb128 0x2
+ 449 004d 04       		.byte	0x4
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 11
 
 
- 469 00f7 01       		.uleb128 0x1
- 470 00f8 50       		.byte	0x50
- 471 00f9 00       		.byte	0
- 472 00fa 0A       		.uleb128 0xa
- 473 00fb 6C000000 		.4byte	.LASF35
- 474 00ff 01       		.byte	0x1
- 475 0100 29       		.byte	0x29
- 476 0101 00000000 		.4byte	.LFB65
- 477 0105 EE000000 		.4byte	.LFE65-.LFB65
- 478 0109 01       		.uleb128 0x1
- 479 010a 9C       		.byte	0x9c
- 480 010b CC020000 		.4byte	0x2cc
- 481 010f 0B       		.uleb128 0xb
- 482 0110 00000000 		.4byte	.LASF20
- 483 0114 01       		.byte	0x1
- 484 0115 2F       		.byte	0x2f
- 485 0116 9B000000 		.4byte	0x9b
- 486 011a 00000000 		.4byte	.LLST0
- 487 011e 0C       		.uleb128 0xc
- 488 011f 08000000 		.4byte	.LVL3
- 489 0123 FF020000 		.4byte	0x2ff
- 490 0127 31010000 		.4byte	0x131
- 491 012b 0D       		.uleb128 0xd
- 492 012c 01       		.uleb128 0x1
- 493 012d 50       		.byte	0x50
- 494 012e 01       		.uleb128 0x1
- 495 012f 31       		.byte	0x31
- 496 0130 00       		.byte	0
- 497 0131 0E       		.uleb128 0xe
- 498 0132 0C000000 		.4byte	.LVL4
- 499 0136 0A030000 		.4byte	0x30a
- 500 013a 0E       		.uleb128 0xe
- 501 013b 18000000 		.4byte	.LVL6
- 502 013f 15030000 		.4byte	0x315
- 503 0143 0E       		.uleb128 0xe
- 504 0144 20000000 		.4byte	.LVL8
- 505 0148 20030000 		.4byte	0x320
- 506 014c 0E       		.uleb128 0xe
- 507 014d 28000000 		.4byte	.LVL10
- 508 0151 2B030000 		.4byte	0x32b
- 509 0155 0C       		.uleb128 0xc
- 510 0156 34000000 		.4byte	.LVL12
- 511 015a FF020000 		.4byte	0x2ff
- 512 015e 68010000 		.4byte	0x168
- 513 0162 0D       		.uleb128 0xd
- 514 0163 01       		.uleb128 0x1
- 515 0164 50       		.byte	0x50
- 516 0165 01       		.uleb128 0x1
- 517 0166 30       		.byte	0x30
- 518 0167 00       		.byte	0
- 519 0168 0C       		.uleb128 0xc
- 520 0169 3A000000 		.4byte	.LVL13
- 521 016d D7000000 		.4byte	0xd7
- 522 0171 7C010000 		.4byte	0x17c
- 523 0175 0D       		.uleb128 0xd
- 524 0176 01       		.uleb128 0x1
- 525 0177 50       		.byte	0x50
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 12
+ 450 004e 05       		.byte	0x5
+ 451 004f 63020000 		.4byte	.LASF4
+ 452 0053 02       		.uleb128 0x2
+ 453 0054 04       		.byte	0x4
+ 454 0055 07       		.byte	0x7
+ 455 0056 34010000 		.4byte	.LASF5
+ 456 005a 02       		.uleb128 0x2
+ 457 005b 08       		.byte	0x8
+ 458 005c 05       		.byte	0x5
+ 459 005d 09020000 		.4byte	.LASF6
+ 460 0061 02       		.uleb128 0x2
+ 461 0062 08       		.byte	0x8
+ 462 0063 07       		.byte	0x7
+ 463 0064 9E010000 		.4byte	.LASF7
+ 464 0068 04       		.uleb128 0x4
+ 465 0069 04       		.byte	0x4
+ 466 006a 05       		.byte	0x5
+ 467 006b 696E7400 		.ascii	"int\000"
+ 468 006f 02       		.uleb128 0x2
+ 469 0070 04       		.byte	0x4
+ 470 0071 07       		.byte	0x7
+ 471 0072 91010000 		.4byte	.LASF8
+ 472 0076 03       		.uleb128 0x3
+ 473 0077 F2000000 		.4byte	.LASF10
+ 474 007b 03       		.byte	0x3
+ 475 007c 2C       		.byte	0x2c
+ 476 007d 41000000 		.4byte	0x41
+ 477 0081 05       		.uleb128 0x5
+ 478 0082 08010000 		.4byte	.LASF11
+ 479 0086 04       		.byte	0x4
+ 480 0087 E801     		.2byte	0x1e8
+ 481 0089 2C000000 		.4byte	0x2c
+ 482 008d 02       		.uleb128 0x2
+ 483 008e 04       		.byte	0x4
+ 484 008f 04       		.byte	0x4
+ 485 0090 02010000 		.4byte	.LASF12
+ 486 0094 02       		.uleb128 0x2
+ 487 0095 08       		.byte	0x8
+ 488 0096 04       		.byte	0x4
+ 489 0097 8A010000 		.4byte	.LASF13
+ 490 009b 02       		.uleb128 0x2
+ 491 009c 01       		.byte	0x1
+ 492 009d 08       		.byte	0x8
+ 493 009e 22020000 		.4byte	.LASF14
+ 494 00a2 02       		.uleb128 0x2
+ 495 00a3 08       		.byte	0x8
+ 496 00a4 04       		.byte	0x4
+ 497 00a5 6C020000 		.4byte	.LASF15
+ 498 00a9 02       		.uleb128 0x2
+ 499 00aa 04       		.byte	0x4
+ 500 00ab 07       		.byte	0x7
+ 501 00ac 00020000 		.4byte	.LASF16
+ 502 00b0 06       		.uleb128 0x6
+ 503 00b1 49020000 		.4byte	.LASF19
+ 504 00b5 01       		.byte	0x1
+ 505 00b6 12       		.byte	0x12
+ 506 00b7 81000000 		.4byte	0x81
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 12
 
 
- 526 0178 02       		.uleb128 0x2
- 527 0179 74       		.byte	0x74
- 528 017a 00       		.sleb128 0
- 529 017b 00       		.byte	0
- 530 017c 0C       		.uleb128 0xc
- 531 017d 42000000 		.4byte	.LVL15
- 532 0181 FF020000 		.4byte	0x2ff
- 533 0185 8F010000 		.4byte	0x18f
- 534 0189 0D       		.uleb128 0xd
- 535 018a 01       		.uleb128 0x1
- 536 018b 50       		.byte	0x50
- 537 018c 01       		.uleb128 0x1
- 538 018d 30       		.byte	0x30
- 539 018e 00       		.byte	0
- 540 018f 0C       		.uleb128 0xc
- 541 0190 48000000 		.4byte	.LVL16
- 542 0194 36030000 		.4byte	0x336
- 543 0198 A2010000 		.4byte	0x1a2
- 544 019c 0D       		.uleb128 0xd
- 545 019d 01       		.uleb128 0x1
- 546 019e 50       		.byte	0x50
- 547 019f 01       		.uleb128 0x1
- 548 01a0 31       		.byte	0x31
- 549 01a1 00       		.byte	0
- 550 01a2 0E       		.uleb128 0xe
- 551 01a3 4C000000 		.4byte	.LVL17
- 552 01a7 0A030000 		.4byte	0x30a
- 553 01ab 0E       		.uleb128 0xe
- 554 01ac 54000000 		.4byte	.LVL19
- 555 01b0 15030000 		.4byte	0x315
- 556 01b4 0E       		.uleb128 0xe
- 557 01b5 5C000000 		.4byte	.LVL21
- 558 01b9 20030000 		.4byte	0x320
- 559 01bd 0E       		.uleb128 0xe
- 560 01be 64000000 		.4byte	.LVL23
- 561 01c2 2B030000 		.4byte	0x32b
- 562 01c6 0C       		.uleb128 0xc
- 563 01c7 70000000 		.4byte	.LVL25
- 564 01cb 36030000 		.4byte	0x336
- 565 01cf D9010000 		.4byte	0x1d9
- 566 01d3 0D       		.uleb128 0xd
- 567 01d4 01       		.uleb128 0x1
- 568 01d5 50       		.byte	0x50
- 569 01d6 01       		.uleb128 0x1
- 570 01d7 30       		.byte	0x30
- 571 01d8 00       		.byte	0
- 572 01d9 0C       		.uleb128 0xc
- 573 01da 76000000 		.4byte	.LVL26
- 574 01de D7000000 		.4byte	0xd7
- 575 01e2 ED010000 		.4byte	0x1ed
- 576 01e6 0D       		.uleb128 0xd
- 577 01e7 01       		.uleb128 0x1
- 578 01e8 50       		.byte	0x50
- 579 01e9 02       		.uleb128 0x2
- 580 01ea 74       		.byte	0x74
- 581 01eb 00       		.sleb128 0
- 582 01ec 00       		.byte	0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 13
+ 507 00bb 00000000 		.4byte	.LFB63
+ 508 00bf 4C000000 		.4byte	.LFE63-.LFB63
+ 509 00c3 01       		.uleb128 0x1
+ 510 00c4 9C       		.byte	0x9c
+ 511 00c5 0A010000 		.4byte	0x10a
+ 512 00c9 07       		.uleb128 0x7
+ 513 00ca 46010000 		.4byte	.LASF17
+ 514 00ce 01       		.byte	0x1
+ 515 00cf 1E       		.byte	0x1e
+ 516 00d0 81000000 		.4byte	0x81
+ 517 00d4 00000000 		.4byte	.LLST0
+ 518 00d8 08       		.uleb128 0x8
+ 519 00d9 00000000 		.4byte	.Ldebug_ranges0+0
+ 520 00dd 07       		.uleb128 0x7
+ 521 00de F6010000 		.4byte	.LASF18
+ 522 00e2 01       		.byte	0x1
+ 523 00e3 15       		.byte	0x15
+ 524 00e4 9B000000 		.4byte	0x9b
+ 525 00e8 13000000 		.4byte	.LLST1
+ 526 00ec 09       		.uleb128 0x9
+ 527 00ed 0E000000 		.4byte	.LVL0
+ 528 00f1 3D030000 		.4byte	0x33d
+ 529 00f5 0A       		.uleb128 0xa
+ 530 00f6 1A000000 		.4byte	.LVL3
+ 531 00fa 48030000 		.4byte	0x348
+ 532 00fe 0B       		.uleb128 0xb
+ 533 00ff 01       		.uleb128 0x1
+ 534 0100 50       		.byte	0x50
+ 535 0101 05       		.uleb128 0x5
+ 536 0102 03       		.byte	0x3
+ 537 0103 00000000 		.4byte	.LC0
+ 538 0107 00       		.byte	0
+ 539 0108 00       		.byte	0
+ 540 0109 00       		.byte	0
+ 541 010a 0C       		.uleb128 0xc
+ 542 010b 1C010000 		.4byte	.LASF20
+ 543 010f 01       		.byte	0x1
+ 544 0110 27       		.byte	0x27
+ 545 0111 00000000 		.4byte	.LFB64
+ 546 0115 28000000 		.4byte	.LFE64-.LFB64
+ 547 0119 01       		.uleb128 0x1
+ 548 011a 9C       		.byte	0x9c
+ 549 011b 2D010000 		.4byte	0x12d
+ 550 011f 0D       		.uleb128 0xd
+ 551 0120 00000000 		.4byte	.LASF21
+ 552 0124 01       		.byte	0x1
+ 553 0125 27       		.byte	0x27
+ 554 0126 9B000000 		.4byte	0x9b
+ 555 012a 01       		.uleb128 0x1
+ 556 012b 50       		.byte	0x50
+ 557 012c 00       		.byte	0
+ 558 012d 0E       		.uleb128 0xe
+ 559 012e FA000000 		.4byte	.LASF39
+ 560 0132 01       		.byte	0x1
+ 561 0133 35       		.byte	0x35
+ 562 0134 00000000 		.4byte	.LFB65
+ 563 0138 EE000000 		.4byte	.LFE65-.LFB65
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 13
 
 
- 583 01ed 0C       		.uleb128 0xc
- 584 01ee 7E000000 		.4byte	.LVL28
- 585 01f2 36030000 		.4byte	0x336
- 586 01f6 00020000 		.4byte	0x200
- 587 01fa 0D       		.uleb128 0xd
- 588 01fb 01       		.uleb128 0x1
- 589 01fc 50       		.byte	0x50
- 590 01fd 01       		.uleb128 0x1
- 591 01fe 30       		.byte	0x30
- 592 01ff 00       		.byte	0
- 593 0200 0C       		.uleb128 0xc
- 594 0201 84000000 		.4byte	.LVL29
- 595 0205 41030000 		.4byte	0x341
- 596 0209 13020000 		.4byte	0x213
- 597 020d 0D       		.uleb128 0xd
- 598 020e 01       		.uleb128 0x1
- 599 020f 50       		.byte	0x50
- 600 0210 01       		.uleb128 0x1
- 601 0211 31       		.byte	0x31
- 602 0212 00       		.byte	0
- 603 0213 0E       		.uleb128 0xe
- 604 0214 88000000 		.4byte	.LVL30
- 605 0218 0A030000 		.4byte	0x30a
- 606 021c 0E       		.uleb128 0xe
- 607 021d 90000000 		.4byte	.LVL32
- 608 0221 15030000 		.4byte	0x315
- 609 0225 0E       		.uleb128 0xe
- 610 0226 98000000 		.4byte	.LVL34
- 611 022a 20030000 		.4byte	0x320
- 612 022e 0E       		.uleb128 0xe
- 613 022f A0000000 		.4byte	.LVL36
- 614 0233 2B030000 		.4byte	0x32b
- 615 0237 0C       		.uleb128 0xc
- 616 0238 AC000000 		.4byte	.LVL38
- 617 023c 41030000 		.4byte	0x341
- 618 0240 4A020000 		.4byte	0x24a
- 619 0244 0D       		.uleb128 0xd
- 620 0245 01       		.uleb128 0x1
- 621 0246 50       		.byte	0x50
- 622 0247 01       		.uleb128 0x1
- 623 0248 30       		.byte	0x30
- 624 0249 00       		.byte	0
- 625 024a 0C       		.uleb128 0xc
- 626 024b B2000000 		.4byte	.LVL39
- 627 024f D7000000 		.4byte	0xd7
- 628 0253 5E020000 		.4byte	0x25e
- 629 0257 0D       		.uleb128 0xd
- 630 0258 01       		.uleb128 0x1
- 631 0259 50       		.byte	0x50
- 632 025a 02       		.uleb128 0x2
- 633 025b 74       		.byte	0x74
- 634 025c 00       		.sleb128 0
- 635 025d 00       		.byte	0
- 636 025e 0C       		.uleb128 0xc
- 637 025f BA000000 		.4byte	.LVL41
- 638 0263 41030000 		.4byte	0x341
- 639 0267 71020000 		.4byte	0x271
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 14
+ 564 013c 01       		.uleb128 0x1
+ 565 013d 9C       		.byte	0x9c
+ 566 013e FF020000 		.4byte	0x2ff
+ 567 0142 07       		.uleb128 0x7
+ 568 0143 00000000 		.4byte	.LASF21
+ 569 0147 01       		.byte	0x1
+ 570 0148 3B       		.byte	0x3b
+ 571 0149 9B000000 		.4byte	0x9b
+ 572 014d 26000000 		.4byte	.LLST2
+ 573 0151 0F       		.uleb128 0xf
+ 574 0152 08000000 		.4byte	.LVL8
+ 575 0156 53030000 		.4byte	0x353
+ 576 015a 64010000 		.4byte	0x164
+ 577 015e 0B       		.uleb128 0xb
+ 578 015f 01       		.uleb128 0x1
+ 579 0160 50       		.byte	0x50
+ 580 0161 01       		.uleb128 0x1
+ 581 0162 31       		.byte	0x31
+ 582 0163 00       		.byte	0
+ 583 0164 09       		.uleb128 0x9
+ 584 0165 0C000000 		.4byte	.LVL9
+ 585 0169 5E030000 		.4byte	0x35e
+ 586 016d 09       		.uleb128 0x9
+ 587 016e 18000000 		.4byte	.LVL11
+ 588 0172 69030000 		.4byte	0x369
+ 589 0176 09       		.uleb128 0x9
+ 590 0177 20000000 		.4byte	.LVL13
+ 591 017b 74030000 		.4byte	0x374
+ 592 017f 09       		.uleb128 0x9
+ 593 0180 28000000 		.4byte	.LVL15
+ 594 0184 7F030000 		.4byte	0x37f
+ 595 0188 0F       		.uleb128 0xf
+ 596 0189 34000000 		.4byte	.LVL17
+ 597 018d 53030000 		.4byte	0x353
+ 598 0191 9B010000 		.4byte	0x19b
+ 599 0195 0B       		.uleb128 0xb
+ 600 0196 01       		.uleb128 0x1
+ 601 0197 50       		.byte	0x50
+ 602 0198 01       		.uleb128 0x1
+ 603 0199 30       		.byte	0x30
+ 604 019a 00       		.byte	0
+ 605 019b 0F       		.uleb128 0xf
+ 606 019c 3A000000 		.4byte	.LVL18
+ 607 01a0 0A010000 		.4byte	0x10a
+ 608 01a4 AF010000 		.4byte	0x1af
+ 609 01a8 0B       		.uleb128 0xb
+ 610 01a9 01       		.uleb128 0x1
+ 611 01aa 50       		.byte	0x50
+ 612 01ab 02       		.uleb128 0x2
+ 613 01ac 74       		.byte	0x74
+ 614 01ad 00       		.sleb128 0
+ 615 01ae 00       		.byte	0
+ 616 01af 0F       		.uleb128 0xf
+ 617 01b0 42000000 		.4byte	.LVL20
+ 618 01b4 53030000 		.4byte	0x353
+ 619 01b8 C2010000 		.4byte	0x1c2
+ 620 01bc 0B       		.uleb128 0xb
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 14
 
 
- 640 026b 0D       		.uleb128 0xd
- 641 026c 01       		.uleb128 0x1
- 642 026d 50       		.byte	0x50
- 643 026e 01       		.uleb128 0x1
- 644 026f 30       		.byte	0x30
- 645 0270 00       		.byte	0
- 646 0271 0C       		.uleb128 0xc
- 647 0272 C0000000 		.4byte	.LVL42
- 648 0276 4C030000 		.4byte	0x34c
- 649 027a 84020000 		.4byte	0x284
- 650 027e 0D       		.uleb128 0xd
- 651 027f 01       		.uleb128 0x1
- 652 0280 50       		.byte	0x50
- 653 0281 01       		.uleb128 0x1
- 654 0282 31       		.byte	0x31
- 655 0283 00       		.byte	0
- 656 0284 0E       		.uleb128 0xe
- 657 0285 C4000000 		.4byte	.LVL43
- 658 0289 0A030000 		.4byte	0x30a
- 659 028d 0E       		.uleb128 0xe
- 660 028e CC000000 		.4byte	.LVL45
- 661 0292 15030000 		.4byte	0x315
- 662 0296 0E       		.uleb128 0xe
- 663 0297 D4000000 		.4byte	.LVL47
- 664 029b 20030000 		.4byte	0x320
- 665 029f 0E       		.uleb128 0xe
- 666 02a0 DC000000 		.4byte	.LVL49
- 667 02a4 2B030000 		.4byte	0x32b
- 668 02a8 0C       		.uleb128 0xc
- 669 02a9 E6000000 		.4byte	.LVL51
- 670 02ad 4C030000 		.4byte	0x34c
- 671 02b1 BB020000 		.4byte	0x2bb
- 672 02b5 0D       		.uleb128 0xd
- 673 02b6 01       		.uleb128 0x1
- 674 02b7 50       		.byte	0x50
- 675 02b8 01       		.uleb128 0x1
- 676 02b9 30       		.byte	0x30
- 677 02ba 00       		.byte	0
- 678 02bb 0F       		.uleb128 0xf
- 679 02bc EC000000 		.4byte	.LVL52
- 680 02c0 D7000000 		.4byte	0xd7
- 681 02c4 0D       		.uleb128 0xd
- 682 02c5 01       		.uleb128 0x1
- 683 02c6 50       		.byte	0x50
- 684 02c7 02       		.uleb128 0x2
- 685 02c8 74       		.byte	0x74
- 686 02c9 00       		.sleb128 0
- 687 02ca 00       		.byte	0
- 688 02cb 00       		.byte	0
- 689 02cc 10       		.uleb128 0x10
- 690 02cd E3000000 		.4byte	.LASF21
- 691 02d1 05       		.byte	0x5
- 692 02d2 1207     		.2byte	0x712
- 693 02d4 D8020000 		.4byte	0x2d8
- 694 02d8 11       		.uleb128 0x11
- 695 02d9 76000000 		.4byte	0x76
- 696 02dd 12       		.uleb128 0x12
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 15
+ 621 01bd 01       		.uleb128 0x1
+ 622 01be 50       		.byte	0x50
+ 623 01bf 01       		.uleb128 0x1
+ 624 01c0 30       		.byte	0x30
+ 625 01c1 00       		.byte	0
+ 626 01c2 0F       		.uleb128 0xf
+ 627 01c3 48000000 		.4byte	.LVL21
+ 628 01c7 8A030000 		.4byte	0x38a
+ 629 01cb D5010000 		.4byte	0x1d5
+ 630 01cf 0B       		.uleb128 0xb
+ 631 01d0 01       		.uleb128 0x1
+ 632 01d1 50       		.byte	0x50
+ 633 01d2 01       		.uleb128 0x1
+ 634 01d3 31       		.byte	0x31
+ 635 01d4 00       		.byte	0
+ 636 01d5 09       		.uleb128 0x9
+ 637 01d6 4C000000 		.4byte	.LVL22
+ 638 01da 5E030000 		.4byte	0x35e
+ 639 01de 09       		.uleb128 0x9
+ 640 01df 54000000 		.4byte	.LVL24
+ 641 01e3 69030000 		.4byte	0x369
+ 642 01e7 09       		.uleb128 0x9
+ 643 01e8 5C000000 		.4byte	.LVL26
+ 644 01ec 74030000 		.4byte	0x374
+ 645 01f0 09       		.uleb128 0x9
+ 646 01f1 64000000 		.4byte	.LVL28
+ 647 01f5 7F030000 		.4byte	0x37f
+ 648 01f9 0F       		.uleb128 0xf
+ 649 01fa 70000000 		.4byte	.LVL30
+ 650 01fe 8A030000 		.4byte	0x38a
+ 651 0202 0C020000 		.4byte	0x20c
+ 652 0206 0B       		.uleb128 0xb
+ 653 0207 01       		.uleb128 0x1
+ 654 0208 50       		.byte	0x50
+ 655 0209 01       		.uleb128 0x1
+ 656 020a 30       		.byte	0x30
+ 657 020b 00       		.byte	0
+ 658 020c 0F       		.uleb128 0xf
+ 659 020d 76000000 		.4byte	.LVL31
+ 660 0211 0A010000 		.4byte	0x10a
+ 661 0215 20020000 		.4byte	0x220
+ 662 0219 0B       		.uleb128 0xb
+ 663 021a 01       		.uleb128 0x1
+ 664 021b 50       		.byte	0x50
+ 665 021c 02       		.uleb128 0x2
+ 666 021d 74       		.byte	0x74
+ 667 021e 00       		.sleb128 0
+ 668 021f 00       		.byte	0
+ 669 0220 0F       		.uleb128 0xf
+ 670 0221 7E000000 		.4byte	.LVL33
+ 671 0225 8A030000 		.4byte	0x38a
+ 672 0229 33020000 		.4byte	0x233
+ 673 022d 0B       		.uleb128 0xb
+ 674 022e 01       		.uleb128 0x1
+ 675 022f 50       		.byte	0x50
+ 676 0230 01       		.uleb128 0x1
+ 677 0231 30       		.byte	0x30
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 15
 
 
- 697 02de D0000000 		.4byte	.LASF22
- 698 02e2 01       		.byte	0x1
- 699 02e3 0C       		.byte	0xc
- 700 02e4 81000000 		.4byte	0x81
- 701 02e8 05       		.uleb128 0x5
- 702 02e9 03       		.byte	0x3
- 703 02ea 00000000 		.4byte	waiting_for_relese
- 704 02ee 12       		.uleb128 0x12
- 705 02ef F0000000 		.4byte	.LASF23
- 706 02f3 01       		.byte	0x1
- 707 02f4 0D       		.byte	0xd
- 708 02f5 81000000 		.4byte	0x81
- 709 02f9 05       		.uleb128 0x5
- 710 02fa 03       		.byte	0x3
- 711 02fb 00000000 		.4byte	PRESSED_KEY
- 712 02ff 13       		.uleb128 0x13
- 713 0300 31010000 		.4byte	.LASF24
- 714 0304 31010000 		.4byte	.LASF24
- 715 0308 06       		.byte	0x6
- 716 0309 26       		.byte	0x26
- 717 030a 13       		.uleb128 0x13
- 718 030b D5010000 		.4byte	.LASF25
- 719 030f D5010000 		.4byte	.LASF25
- 720 0313 07       		.byte	0x7
- 721 0314 29       		.byte	0x29
- 722 0315 13       		.uleb128 0x13
- 723 0316 08000000 		.4byte	.LASF26
- 724 031a 08000000 		.4byte	.LASF26
- 725 031e 08       		.byte	0x8
- 726 031f 29       		.byte	0x29
- 727 0320 13       		.uleb128 0x13
- 728 0321 2B020000 		.4byte	.LASF27
- 729 0325 2B020000 		.4byte	.LASF27
- 730 0329 09       		.byte	0x9
- 731 032a 29       		.byte	0x29
- 732 032b 13       		.uleb128 0x13
- 733 032c 27010000 		.4byte	.LASF28
- 734 0330 27010000 		.4byte	.LASF28
- 735 0334 0A       		.byte	0xa
- 736 0335 29       		.byte	0x29
- 737 0336 13       		.uleb128 0x13
- 738 0337 3C010000 		.4byte	.LASF29
- 739 033b 3C010000 		.4byte	.LASF29
- 740 033f 0B       		.byte	0xb
- 741 0340 26       		.byte	0x26
- 742 0341 13       		.uleb128 0x13
- 743 0342 06020000 		.4byte	.LASF30
- 744 0346 06020000 		.4byte	.LASF30
- 745 034a 0C       		.byte	0xc
- 746 034b 26       		.byte	0x26
- 747 034c 13       		.uleb128 0x13
- 748 034d F6010000 		.4byte	.LASF31
- 749 0351 F6010000 		.4byte	.LASF31
- 750 0355 0D       		.byte	0xd
- 751 0356 26       		.byte	0x26
- 752 0357 00       		.byte	0
- 753              		.section	.debug_abbrev,"",%progbits
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 16
+ 678 0232 00       		.byte	0
+ 679 0233 0F       		.uleb128 0xf
+ 680 0234 84000000 		.4byte	.LVL34
+ 681 0238 95030000 		.4byte	0x395
+ 682 023c 46020000 		.4byte	0x246
+ 683 0240 0B       		.uleb128 0xb
+ 684 0241 01       		.uleb128 0x1
+ 685 0242 50       		.byte	0x50
+ 686 0243 01       		.uleb128 0x1
+ 687 0244 31       		.byte	0x31
+ 688 0245 00       		.byte	0
+ 689 0246 09       		.uleb128 0x9
+ 690 0247 88000000 		.4byte	.LVL35
+ 691 024b 5E030000 		.4byte	0x35e
+ 692 024f 09       		.uleb128 0x9
+ 693 0250 90000000 		.4byte	.LVL37
+ 694 0254 69030000 		.4byte	0x369
+ 695 0258 09       		.uleb128 0x9
+ 696 0259 98000000 		.4byte	.LVL39
+ 697 025d 74030000 		.4byte	0x374
+ 698 0261 09       		.uleb128 0x9
+ 699 0262 A0000000 		.4byte	.LVL41
+ 700 0266 7F030000 		.4byte	0x37f
+ 701 026a 0F       		.uleb128 0xf
+ 702 026b AC000000 		.4byte	.LVL43
+ 703 026f 95030000 		.4byte	0x395
+ 704 0273 7D020000 		.4byte	0x27d
+ 705 0277 0B       		.uleb128 0xb
+ 706 0278 01       		.uleb128 0x1
+ 707 0279 50       		.byte	0x50
+ 708 027a 01       		.uleb128 0x1
+ 709 027b 30       		.byte	0x30
+ 710 027c 00       		.byte	0
+ 711 027d 0F       		.uleb128 0xf
+ 712 027e B2000000 		.4byte	.LVL44
+ 713 0282 0A010000 		.4byte	0x10a
+ 714 0286 91020000 		.4byte	0x291
+ 715 028a 0B       		.uleb128 0xb
+ 716 028b 01       		.uleb128 0x1
+ 717 028c 50       		.byte	0x50
+ 718 028d 02       		.uleb128 0x2
+ 719 028e 74       		.byte	0x74
+ 720 028f 00       		.sleb128 0
+ 721 0290 00       		.byte	0
+ 722 0291 0F       		.uleb128 0xf
+ 723 0292 BA000000 		.4byte	.LVL46
+ 724 0296 95030000 		.4byte	0x395
+ 725 029a A4020000 		.4byte	0x2a4
+ 726 029e 0B       		.uleb128 0xb
+ 727 029f 01       		.uleb128 0x1
+ 728 02a0 50       		.byte	0x50
+ 729 02a1 01       		.uleb128 0x1
+ 730 02a2 30       		.byte	0x30
+ 731 02a3 00       		.byte	0
+ 732 02a4 0F       		.uleb128 0xf
+ 733 02a5 C0000000 		.4byte	.LVL47
+ 734 02a9 A0030000 		.4byte	0x3a0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 16
 
 
- 754              	.Ldebug_abbrev0:
- 755 0000 01       		.uleb128 0x1
- 756 0001 11       		.uleb128 0x11
- 757 0002 01       		.byte	0x1
- 758 0003 25       		.uleb128 0x25
- 759 0004 0E       		.uleb128 0xe
- 760 0005 13       		.uleb128 0x13
- 761 0006 0B       		.uleb128 0xb
- 762 0007 03       		.uleb128 0x3
- 763 0008 0E       		.uleb128 0xe
- 764 0009 1B       		.uleb128 0x1b
- 765 000a 0E       		.uleb128 0xe
- 766 000b 55       		.uleb128 0x55
- 767 000c 17       		.uleb128 0x17
- 768 000d 11       		.uleb128 0x11
- 769 000e 01       		.uleb128 0x1
- 770 000f 10       		.uleb128 0x10
- 771 0010 17       		.uleb128 0x17
- 772 0011 00       		.byte	0
- 773 0012 00       		.byte	0
- 774 0013 02       		.uleb128 0x2
- 775 0014 24       		.uleb128 0x24
- 776 0015 00       		.byte	0
- 777 0016 0B       		.uleb128 0xb
- 778 0017 0B       		.uleb128 0xb
- 779 0018 3E       		.uleb128 0x3e
- 780 0019 0B       		.uleb128 0xb
- 781 001a 03       		.uleb128 0x3
- 782 001b 0E       		.uleb128 0xe
- 783 001c 00       		.byte	0
- 784 001d 00       		.byte	0
- 785 001e 03       		.uleb128 0x3
- 786 001f 16       		.uleb128 0x16
- 787 0020 00       		.byte	0
- 788 0021 03       		.uleb128 0x3
- 789 0022 0E       		.uleb128 0xe
- 790 0023 3A       		.uleb128 0x3a
- 791 0024 0B       		.uleb128 0xb
- 792 0025 3B       		.uleb128 0x3b
- 793 0026 0B       		.uleb128 0xb
- 794 0027 49       		.uleb128 0x49
- 795 0028 13       		.uleb128 0x13
- 796 0029 00       		.byte	0
- 797 002a 00       		.byte	0
- 798 002b 04       		.uleb128 0x4
- 799 002c 24       		.uleb128 0x24
- 800 002d 00       		.byte	0
- 801 002e 0B       		.uleb128 0xb
- 802 002f 0B       		.uleb128 0xb
- 803 0030 3E       		.uleb128 0x3e
- 804 0031 0B       		.uleb128 0xb
- 805 0032 03       		.uleb128 0x3
- 806 0033 08       		.uleb128 0x8
- 807 0034 00       		.byte	0
- 808 0035 00       		.byte	0
- 809 0036 05       		.uleb128 0x5
- 810 0037 16       		.uleb128 0x16
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 17
+ 735 02ad B7020000 		.4byte	0x2b7
+ 736 02b1 0B       		.uleb128 0xb
+ 737 02b2 01       		.uleb128 0x1
+ 738 02b3 50       		.byte	0x50
+ 739 02b4 01       		.uleb128 0x1
+ 740 02b5 31       		.byte	0x31
+ 741 02b6 00       		.byte	0
+ 742 02b7 09       		.uleb128 0x9
+ 743 02b8 C4000000 		.4byte	.LVL48
+ 744 02bc 5E030000 		.4byte	0x35e
+ 745 02c0 09       		.uleb128 0x9
+ 746 02c1 CC000000 		.4byte	.LVL50
+ 747 02c5 69030000 		.4byte	0x369
+ 748 02c9 09       		.uleb128 0x9
+ 749 02ca D4000000 		.4byte	.LVL52
+ 750 02ce 74030000 		.4byte	0x374
+ 751 02d2 09       		.uleb128 0x9
+ 752 02d3 DC000000 		.4byte	.LVL54
+ 753 02d7 7F030000 		.4byte	0x37f
+ 754 02db 0F       		.uleb128 0xf
+ 755 02dc E6000000 		.4byte	.LVL56
+ 756 02e0 A0030000 		.4byte	0x3a0
+ 757 02e4 EE020000 		.4byte	0x2ee
+ 758 02e8 0B       		.uleb128 0xb
+ 759 02e9 01       		.uleb128 0x1
+ 760 02ea 50       		.byte	0x50
+ 761 02eb 01       		.uleb128 0x1
+ 762 02ec 30       		.byte	0x30
+ 763 02ed 00       		.byte	0
+ 764 02ee 0A       		.uleb128 0xa
+ 765 02ef EC000000 		.4byte	.LVL57
+ 766 02f3 0A010000 		.4byte	0x10a
+ 767 02f7 0B       		.uleb128 0xb
+ 768 02f8 01       		.uleb128 0x1
+ 769 02f9 50       		.byte	0x50
+ 770 02fa 02       		.uleb128 0x2
+ 771 02fb 74       		.byte	0x74
+ 772 02fc 00       		.sleb128 0
+ 773 02fd 00       		.byte	0
+ 774 02fe 00       		.byte	0
+ 775 02ff 10       		.uleb128 0x10
+ 776 0300 71010000 		.4byte	.LASF22
+ 777 0304 05       		.byte	0x5
+ 778 0305 1207     		.2byte	0x712
+ 779 0307 0B030000 		.4byte	0x30b
+ 780 030b 11       		.uleb128 0x11
+ 781 030c 76000000 		.4byte	0x76
+ 782 0310 12       		.uleb128 0x12
+ 783 0311 D5010000 		.4byte	.LASF23
+ 784 0315 06       		.byte	0x6
+ 785 0316 2A       		.byte	0x2a
+ 786 0317 81000000 		.4byte	0x81
+ 787 031b 13       		.uleb128 0x13
+ 788 031c 5E010000 		.4byte	.LASF24
+ 789 0320 01       		.byte	0x1
+ 790 0321 0D       		.byte	0xd
+ 791 0322 81000000 		.4byte	0x81
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 17
 
 
- 811 0038 00       		.byte	0
- 812 0039 03       		.uleb128 0x3
- 813 003a 0E       		.uleb128 0xe
- 814 003b 3A       		.uleb128 0x3a
- 815 003c 0B       		.uleb128 0xb
- 816 003d 3B       		.uleb128 0x3b
- 817 003e 05       		.uleb128 0x5
- 818 003f 49       		.uleb128 0x49
- 819 0040 13       		.uleb128 0x13
- 820 0041 00       		.byte	0
- 821 0042 00       		.byte	0
- 822 0043 06       		.uleb128 0x6
- 823 0044 2E       		.uleb128 0x2e
- 824 0045 01       		.byte	0x1
- 825 0046 3F       		.uleb128 0x3f
- 826 0047 19       		.uleb128 0x19
- 827 0048 03       		.uleb128 0x3
- 828 0049 0E       		.uleb128 0xe
- 829 004a 3A       		.uleb128 0x3a
- 830 004b 0B       		.uleb128 0xb
- 831 004c 3B       		.uleb128 0x3b
- 832 004d 0B       		.uleb128 0xb
- 833 004e 49       		.uleb128 0x49
- 834 004f 13       		.uleb128 0x13
- 835 0050 11       		.uleb128 0x11
- 836 0051 01       		.uleb128 0x1
- 837 0052 12       		.uleb128 0x12
- 838 0053 06       		.uleb128 0x6
- 839 0054 40       		.uleb128 0x40
- 840 0055 18       		.uleb128 0x18
- 841 0056 9742     		.uleb128 0x2117
- 842 0058 19       		.uleb128 0x19
- 843 0059 01       		.uleb128 0x1
- 844 005a 13       		.uleb128 0x13
- 845 005b 00       		.byte	0
- 846 005c 00       		.byte	0
- 847 005d 07       		.uleb128 0x7
- 848 005e 34       		.uleb128 0x34
- 849 005f 00       		.byte	0
- 850 0060 03       		.uleb128 0x3
- 851 0061 0E       		.uleb128 0xe
- 852 0062 3A       		.uleb128 0x3a
- 853 0063 0B       		.uleb128 0xb
- 854 0064 3B       		.uleb128 0x3b
- 855 0065 0B       		.uleb128 0xb
- 856 0066 49       		.uleb128 0x49
- 857 0067 13       		.uleb128 0x13
- 858 0068 02       		.uleb128 0x2
- 859 0069 18       		.uleb128 0x18
- 860 006a 00       		.byte	0
- 861 006b 00       		.byte	0
- 862 006c 08       		.uleb128 0x8
- 863 006d 2E       		.uleb128 0x2e
- 864 006e 01       		.byte	0x1
- 865 006f 3F       		.uleb128 0x3f
- 866 0070 19       		.uleb128 0x19
- 867 0071 03       		.uleb128 0x3
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 18
+ 792 0326 05       		.uleb128 0x5
+ 793 0327 03       		.byte	0x3
+ 794 0328 00000000 		.4byte	waiting_for_relese
+ 795 032c 13       		.uleb128 0x13
+ 796 032d 7E010000 		.4byte	.LASF25
+ 797 0331 01       		.byte	0x1
+ 798 0332 0E       		.byte	0xe
+ 799 0333 81000000 		.4byte	0x81
+ 800 0337 05       		.uleb128 0x5
+ 801 0338 03       		.byte	0x3
+ 802 0339 00000000 		.4byte	PRESSED_KEY
+ 803 033d 14       		.uleb128 0x14
+ 804 033e 32020000 		.4byte	.LASF26
+ 805 0342 32020000 		.4byte	.LASF26
+ 806 0346 07       		.byte	0x7
+ 807 0347 71       		.byte	0x71
+ 808 0348 14       		.uleb128 0x14
+ 809 0349 84020000 		.4byte	.LASF27
+ 810 034d 84020000 		.4byte	.LASF27
+ 811 0351 07       		.byte	0x7
+ 812 0352 8B       		.byte	0x8b
+ 813 0353 14       		.uleb128 0x14
+ 814 0354 BF010000 		.4byte	.LASF28
+ 815 0358 BF010000 		.4byte	.LASF28
+ 816 035c 08       		.byte	0x8
+ 817 035d 26       		.byte	0x26
+ 818 035e 14       		.uleb128 0x14
+ 819 035f EC010000 		.4byte	.LASF29
+ 820 0363 EC010000 		.4byte	.LASF29
+ 821 0367 09       		.byte	0x9
+ 822 0368 29       		.byte	0x29
+ 823 0369 14       		.uleb128 0x14
+ 824 036a E8000000 		.4byte	.LASF30
+ 825 036e E8000000 		.4byte	.LASF30
+ 826 0372 0A       		.byte	0xa
+ 827 0373 29       		.byte	0x29
+ 828 0374 14       		.uleb128 0x14
+ 829 0375 59020000 		.4byte	.LASF31
+ 830 0379 59020000 		.4byte	.LASF31
+ 831 037d 0B       		.byte	0xb
+ 832 037e 29       		.byte	0x29
+ 833 037f 14       		.uleb128 0x14
+ 834 0380 B5010000 		.4byte	.LASF32
+ 835 0384 B5010000 		.4byte	.LASF32
+ 836 0388 0C       		.byte	0xc
+ 837 0389 29       		.byte	0x29
+ 838 038a 14       		.uleb128 0x14
+ 839 038b CA010000 		.4byte	.LASF33
+ 840 038f CA010000 		.4byte	.LASF33
+ 841 0393 0D       		.byte	0xd
+ 842 0394 26       		.byte	0x26
+ 843 0395 14       		.uleb128 0x14
+ 844 0396 27020000 		.4byte	.LASF34
+ 845 039a 27020000 		.4byte	.LASF34
+ 846 039e 0E       		.byte	0xe
+ 847 039f 26       		.byte	0x26
+ 848 03a0 14       		.uleb128 0x14
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 18
 
 
- 868 0072 0E       		.uleb128 0xe
- 869 0073 3A       		.uleb128 0x3a
- 870 0074 0B       		.uleb128 0xb
- 871 0075 3B       		.uleb128 0x3b
- 872 0076 0B       		.uleb128 0xb
- 873 0077 27       		.uleb128 0x27
- 874 0078 19       		.uleb128 0x19
- 875 0079 11       		.uleb128 0x11
- 876 007a 01       		.uleb128 0x1
- 877 007b 12       		.uleb128 0x12
- 878 007c 06       		.uleb128 0x6
- 879 007d 40       		.uleb128 0x40
- 880 007e 18       		.uleb128 0x18
- 881 007f 9742     		.uleb128 0x2117
- 882 0081 19       		.uleb128 0x19
- 883 0082 01       		.uleb128 0x1
- 884 0083 13       		.uleb128 0x13
- 885 0084 00       		.byte	0
- 886 0085 00       		.byte	0
- 887 0086 09       		.uleb128 0x9
- 888 0087 05       		.uleb128 0x5
- 889 0088 00       		.byte	0
- 890 0089 03       		.uleb128 0x3
- 891 008a 0E       		.uleb128 0xe
- 892 008b 3A       		.uleb128 0x3a
- 893 008c 0B       		.uleb128 0xb
- 894 008d 3B       		.uleb128 0x3b
- 895 008e 0B       		.uleb128 0xb
- 896 008f 49       		.uleb128 0x49
- 897 0090 13       		.uleb128 0x13
- 898 0091 02       		.uleb128 0x2
- 899 0092 18       		.uleb128 0x18
- 900 0093 00       		.byte	0
- 901 0094 00       		.byte	0
- 902 0095 0A       		.uleb128 0xa
- 903 0096 2E       		.uleb128 0x2e
- 904 0097 01       		.byte	0x1
- 905 0098 3F       		.uleb128 0x3f
- 906 0099 19       		.uleb128 0x19
- 907 009a 03       		.uleb128 0x3
- 908 009b 0E       		.uleb128 0xe
- 909 009c 3A       		.uleb128 0x3a
- 910 009d 0B       		.uleb128 0xb
- 911 009e 3B       		.uleb128 0x3b
- 912 009f 0B       		.uleb128 0xb
- 913 00a0 11       		.uleb128 0x11
- 914 00a1 01       		.uleb128 0x1
- 915 00a2 12       		.uleb128 0x12
- 916 00a3 06       		.uleb128 0x6
- 917 00a4 40       		.uleb128 0x40
- 918 00a5 18       		.uleb128 0x18
- 919 00a6 9742     		.uleb128 0x2117
- 920 00a8 19       		.uleb128 0x19
- 921 00a9 01       		.uleb128 0x1
- 922 00aa 13       		.uleb128 0x13
- 923 00ab 00       		.byte	0
- 924 00ac 00       		.byte	0
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 19
+ 849 03a1 17020000 		.4byte	.LASF35
+ 850 03a5 17020000 		.4byte	.LASF35
+ 851 03a9 0F       		.byte	0xf
+ 852 03aa 26       		.byte	0x26
+ 853 03ab 00       		.byte	0
+ 854              		.section	.debug_abbrev,"",%progbits
+ 855              	.Ldebug_abbrev0:
+ 856 0000 01       		.uleb128 0x1
+ 857 0001 11       		.uleb128 0x11
+ 858 0002 01       		.byte	0x1
+ 859 0003 25       		.uleb128 0x25
+ 860 0004 0E       		.uleb128 0xe
+ 861 0005 13       		.uleb128 0x13
+ 862 0006 0B       		.uleb128 0xb
+ 863 0007 03       		.uleb128 0x3
+ 864 0008 0E       		.uleb128 0xe
+ 865 0009 1B       		.uleb128 0x1b
+ 866 000a 0E       		.uleb128 0xe
+ 867 000b 55       		.uleb128 0x55
+ 868 000c 17       		.uleb128 0x17
+ 869 000d 11       		.uleb128 0x11
+ 870 000e 01       		.uleb128 0x1
+ 871 000f 10       		.uleb128 0x10
+ 872 0010 17       		.uleb128 0x17
+ 873 0011 00       		.byte	0
+ 874 0012 00       		.byte	0
+ 875 0013 02       		.uleb128 0x2
+ 876 0014 24       		.uleb128 0x24
+ 877 0015 00       		.byte	0
+ 878 0016 0B       		.uleb128 0xb
+ 879 0017 0B       		.uleb128 0xb
+ 880 0018 3E       		.uleb128 0x3e
+ 881 0019 0B       		.uleb128 0xb
+ 882 001a 03       		.uleb128 0x3
+ 883 001b 0E       		.uleb128 0xe
+ 884 001c 00       		.byte	0
+ 885 001d 00       		.byte	0
+ 886 001e 03       		.uleb128 0x3
+ 887 001f 16       		.uleb128 0x16
+ 888 0020 00       		.byte	0
+ 889 0021 03       		.uleb128 0x3
+ 890 0022 0E       		.uleb128 0xe
+ 891 0023 3A       		.uleb128 0x3a
+ 892 0024 0B       		.uleb128 0xb
+ 893 0025 3B       		.uleb128 0x3b
+ 894 0026 0B       		.uleb128 0xb
+ 895 0027 49       		.uleb128 0x49
+ 896 0028 13       		.uleb128 0x13
+ 897 0029 00       		.byte	0
+ 898 002a 00       		.byte	0
+ 899 002b 04       		.uleb128 0x4
+ 900 002c 24       		.uleb128 0x24
+ 901 002d 00       		.byte	0
+ 902 002e 0B       		.uleb128 0xb
+ 903 002f 0B       		.uleb128 0xb
+ 904 0030 3E       		.uleb128 0x3e
+ 905 0031 0B       		.uleb128 0xb
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 19
 
 
- 925 00ad 0B       		.uleb128 0xb
- 926 00ae 34       		.uleb128 0x34
- 927 00af 00       		.byte	0
- 928 00b0 03       		.uleb128 0x3
- 929 00b1 0E       		.uleb128 0xe
- 930 00b2 3A       		.uleb128 0x3a
- 931 00b3 0B       		.uleb128 0xb
- 932 00b4 3B       		.uleb128 0x3b
- 933 00b5 0B       		.uleb128 0xb
- 934 00b6 49       		.uleb128 0x49
- 935 00b7 13       		.uleb128 0x13
- 936 00b8 02       		.uleb128 0x2
- 937 00b9 17       		.uleb128 0x17
- 938 00ba 00       		.byte	0
- 939 00bb 00       		.byte	0
- 940 00bc 0C       		.uleb128 0xc
- 941 00bd 898201   		.uleb128 0x4109
- 942 00c0 01       		.byte	0x1
- 943 00c1 11       		.uleb128 0x11
- 944 00c2 01       		.uleb128 0x1
- 945 00c3 31       		.uleb128 0x31
- 946 00c4 13       		.uleb128 0x13
- 947 00c5 01       		.uleb128 0x1
- 948 00c6 13       		.uleb128 0x13
- 949 00c7 00       		.byte	0
- 950 00c8 00       		.byte	0
- 951 00c9 0D       		.uleb128 0xd
- 952 00ca 8A8201   		.uleb128 0x410a
- 953 00cd 00       		.byte	0
- 954 00ce 02       		.uleb128 0x2
- 955 00cf 18       		.uleb128 0x18
- 956 00d0 9142     		.uleb128 0x2111
- 957 00d2 18       		.uleb128 0x18
- 958 00d3 00       		.byte	0
- 959 00d4 00       		.byte	0
- 960 00d5 0E       		.uleb128 0xe
- 961 00d6 898201   		.uleb128 0x4109
- 962 00d9 00       		.byte	0
- 963 00da 11       		.uleb128 0x11
- 964 00db 01       		.uleb128 0x1
- 965 00dc 31       		.uleb128 0x31
- 966 00dd 13       		.uleb128 0x13
- 967 00de 00       		.byte	0
- 968 00df 00       		.byte	0
- 969 00e0 0F       		.uleb128 0xf
- 970 00e1 898201   		.uleb128 0x4109
- 971 00e4 01       		.byte	0x1
- 972 00e5 11       		.uleb128 0x11
- 973 00e6 01       		.uleb128 0x1
- 974 00e7 31       		.uleb128 0x31
- 975 00e8 13       		.uleb128 0x13
- 976 00e9 00       		.byte	0
- 977 00ea 00       		.byte	0
- 978 00eb 10       		.uleb128 0x10
- 979 00ec 34       		.uleb128 0x34
- 980 00ed 00       		.byte	0
- 981 00ee 03       		.uleb128 0x3
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 20
+ 906 0032 03       		.uleb128 0x3
+ 907 0033 08       		.uleb128 0x8
+ 908 0034 00       		.byte	0
+ 909 0035 00       		.byte	0
+ 910 0036 05       		.uleb128 0x5
+ 911 0037 16       		.uleb128 0x16
+ 912 0038 00       		.byte	0
+ 913 0039 03       		.uleb128 0x3
+ 914 003a 0E       		.uleb128 0xe
+ 915 003b 3A       		.uleb128 0x3a
+ 916 003c 0B       		.uleb128 0xb
+ 917 003d 3B       		.uleb128 0x3b
+ 918 003e 05       		.uleb128 0x5
+ 919 003f 49       		.uleb128 0x49
+ 920 0040 13       		.uleb128 0x13
+ 921 0041 00       		.byte	0
+ 922 0042 00       		.byte	0
+ 923 0043 06       		.uleb128 0x6
+ 924 0044 2E       		.uleb128 0x2e
+ 925 0045 01       		.byte	0x1
+ 926 0046 3F       		.uleb128 0x3f
+ 927 0047 19       		.uleb128 0x19
+ 928 0048 03       		.uleb128 0x3
+ 929 0049 0E       		.uleb128 0xe
+ 930 004a 3A       		.uleb128 0x3a
+ 931 004b 0B       		.uleb128 0xb
+ 932 004c 3B       		.uleb128 0x3b
+ 933 004d 0B       		.uleb128 0xb
+ 934 004e 49       		.uleb128 0x49
+ 935 004f 13       		.uleb128 0x13
+ 936 0050 11       		.uleb128 0x11
+ 937 0051 01       		.uleb128 0x1
+ 938 0052 12       		.uleb128 0x12
+ 939 0053 06       		.uleb128 0x6
+ 940 0054 40       		.uleb128 0x40
+ 941 0055 18       		.uleb128 0x18
+ 942 0056 9742     		.uleb128 0x2117
+ 943 0058 19       		.uleb128 0x19
+ 944 0059 01       		.uleb128 0x1
+ 945 005a 13       		.uleb128 0x13
+ 946 005b 00       		.byte	0
+ 947 005c 00       		.byte	0
+ 948 005d 07       		.uleb128 0x7
+ 949 005e 34       		.uleb128 0x34
+ 950 005f 00       		.byte	0
+ 951 0060 03       		.uleb128 0x3
+ 952 0061 0E       		.uleb128 0xe
+ 953 0062 3A       		.uleb128 0x3a
+ 954 0063 0B       		.uleb128 0xb
+ 955 0064 3B       		.uleb128 0x3b
+ 956 0065 0B       		.uleb128 0xb
+ 957 0066 49       		.uleb128 0x49
+ 958 0067 13       		.uleb128 0x13
+ 959 0068 02       		.uleb128 0x2
+ 960 0069 17       		.uleb128 0x17
+ 961 006a 00       		.byte	0
+ 962 006b 00       		.byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 20
 
 
- 982 00ef 0E       		.uleb128 0xe
- 983 00f0 3A       		.uleb128 0x3a
- 984 00f1 0B       		.uleb128 0xb
- 985 00f2 3B       		.uleb128 0x3b
- 986 00f3 05       		.uleb128 0x5
- 987 00f4 49       		.uleb128 0x49
- 988 00f5 13       		.uleb128 0x13
- 989 00f6 3F       		.uleb128 0x3f
- 990 00f7 19       		.uleb128 0x19
- 991 00f8 3C       		.uleb128 0x3c
- 992 00f9 19       		.uleb128 0x19
- 993 00fa 00       		.byte	0
- 994 00fb 00       		.byte	0
- 995 00fc 11       		.uleb128 0x11
- 996 00fd 35       		.uleb128 0x35
- 997 00fe 00       		.byte	0
- 998 00ff 49       		.uleb128 0x49
- 999 0100 13       		.uleb128 0x13
- 1000 0101 00       		.byte	0
- 1001 0102 00       		.byte	0
- 1002 0103 12       		.uleb128 0x12
- 1003 0104 34       		.uleb128 0x34
- 1004 0105 00       		.byte	0
- 1005 0106 03       		.uleb128 0x3
- 1006 0107 0E       		.uleb128 0xe
- 1007 0108 3A       		.uleb128 0x3a
- 1008 0109 0B       		.uleb128 0xb
- 1009 010a 3B       		.uleb128 0x3b
- 1010 010b 0B       		.uleb128 0xb
- 1011 010c 49       		.uleb128 0x49
- 1012 010d 13       		.uleb128 0x13
- 1013 010e 3F       		.uleb128 0x3f
- 1014 010f 19       		.uleb128 0x19
- 1015 0110 02       		.uleb128 0x2
- 1016 0111 18       		.uleb128 0x18
- 1017 0112 00       		.byte	0
- 1018 0113 00       		.byte	0
- 1019 0114 13       		.uleb128 0x13
- 1020 0115 2E       		.uleb128 0x2e
- 1021 0116 00       		.byte	0
- 1022 0117 3F       		.uleb128 0x3f
- 1023 0118 19       		.uleb128 0x19
- 1024 0119 3C       		.uleb128 0x3c
- 1025 011a 19       		.uleb128 0x19
- 1026 011b 6E       		.uleb128 0x6e
- 1027 011c 0E       		.uleb128 0xe
- 1028 011d 03       		.uleb128 0x3
- 1029 011e 0E       		.uleb128 0xe
- 1030 011f 3A       		.uleb128 0x3a
- 1031 0120 0B       		.uleb128 0xb
- 1032 0121 3B       		.uleb128 0x3b
- 1033 0122 0B       		.uleb128 0xb
- 1034 0123 00       		.byte	0
- 1035 0124 00       		.byte	0
- 1036 0125 00       		.byte	0
- 1037              		.section	.debug_loc,"",%progbits
- 1038              	.Ldebug_loc0:
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 21
+ 963 006c 08       		.uleb128 0x8
+ 964 006d 0B       		.uleb128 0xb
+ 965 006e 01       		.byte	0x1
+ 966 006f 55       		.uleb128 0x55
+ 967 0070 17       		.uleb128 0x17
+ 968 0071 00       		.byte	0
+ 969 0072 00       		.byte	0
+ 970 0073 09       		.uleb128 0x9
+ 971 0074 898201   		.uleb128 0x4109
+ 972 0077 00       		.byte	0
+ 973 0078 11       		.uleb128 0x11
+ 974 0079 01       		.uleb128 0x1
+ 975 007a 31       		.uleb128 0x31
+ 976 007b 13       		.uleb128 0x13
+ 977 007c 00       		.byte	0
+ 978 007d 00       		.byte	0
+ 979 007e 0A       		.uleb128 0xa
+ 980 007f 898201   		.uleb128 0x4109
+ 981 0082 01       		.byte	0x1
+ 982 0083 11       		.uleb128 0x11
+ 983 0084 01       		.uleb128 0x1
+ 984 0085 31       		.uleb128 0x31
+ 985 0086 13       		.uleb128 0x13
+ 986 0087 00       		.byte	0
+ 987 0088 00       		.byte	0
+ 988 0089 0B       		.uleb128 0xb
+ 989 008a 8A8201   		.uleb128 0x410a
+ 990 008d 00       		.byte	0
+ 991 008e 02       		.uleb128 0x2
+ 992 008f 18       		.uleb128 0x18
+ 993 0090 9142     		.uleb128 0x2111
+ 994 0092 18       		.uleb128 0x18
+ 995 0093 00       		.byte	0
+ 996 0094 00       		.byte	0
+ 997 0095 0C       		.uleb128 0xc
+ 998 0096 2E       		.uleb128 0x2e
+ 999 0097 01       		.byte	0x1
+ 1000 0098 3F       		.uleb128 0x3f
+ 1001 0099 19       		.uleb128 0x19
+ 1002 009a 03       		.uleb128 0x3
+ 1003 009b 0E       		.uleb128 0xe
+ 1004 009c 3A       		.uleb128 0x3a
+ 1005 009d 0B       		.uleb128 0xb
+ 1006 009e 3B       		.uleb128 0x3b
+ 1007 009f 0B       		.uleb128 0xb
+ 1008 00a0 27       		.uleb128 0x27
+ 1009 00a1 19       		.uleb128 0x19
+ 1010 00a2 11       		.uleb128 0x11
+ 1011 00a3 01       		.uleb128 0x1
+ 1012 00a4 12       		.uleb128 0x12
+ 1013 00a5 06       		.uleb128 0x6
+ 1014 00a6 40       		.uleb128 0x40
+ 1015 00a7 18       		.uleb128 0x18
+ 1016 00a8 9742     		.uleb128 0x2117
+ 1017 00aa 19       		.uleb128 0x19
+ 1018 00ab 01       		.uleb128 0x1
+ 1019 00ac 13       		.uleb128 0x13
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 21
 
 
- 1039              	.LLST0:
- 1040 0000 02000000 		.4byte	.LVL2
- 1041 0004 14000000 		.4byte	.LVL5
- 1042 0008 0200     		.2byte	0x2
- 1043 000a 30       		.byte	0x30
- 1044 000b 9F       		.byte	0x9f
- 1045 000c 14000000 		.4byte	.LVL5
- 1046 0010 EE000000 		.4byte	.LFE65
- 1047 0014 0100     		.2byte	0x1
- 1048 0016 54       		.byte	0x54
- 1049 0017 00000000 		.4byte	0
- 1050 001b 00000000 		.4byte	0
- 1051              		.section	.debug_aranges,"",%progbits
- 1052 0000 2C000000 		.4byte	0x2c
- 1053 0004 0200     		.2byte	0x2
- 1054 0006 00000000 		.4byte	.Ldebug_info0
- 1055 000a 04       		.byte	0x4
- 1056 000b 00       		.byte	0
- 1057 000c 0000     		.2byte	0
- 1058 000e 0000     		.2byte	0
- 1059 0010 00000000 		.4byte	.LFB63
- 1060 0014 10000000 		.4byte	.LFE63-.LFB63
- 1061 0018 00000000 		.4byte	.LFB64
- 1062 001c 28000000 		.4byte	.LFE64-.LFB64
- 1063 0020 00000000 		.4byte	.LFB65
- 1064 0024 EE000000 		.4byte	.LFE65-.LFB65
- 1065 0028 00000000 		.4byte	0
- 1066 002c 00000000 		.4byte	0
- 1067              		.section	.debug_ranges,"",%progbits
- 1068              	.Ldebug_ranges0:
- 1069 0000 00000000 		.4byte	.LFB63
- 1070 0004 10000000 		.4byte	.LFE63
- 1071 0008 00000000 		.4byte	.LFB64
- 1072 000c 28000000 		.4byte	.LFE64
- 1073 0010 00000000 		.4byte	.LFB65
- 1074 0014 EE000000 		.4byte	.LFE65
- 1075 0018 00000000 		.4byte	0
- 1076 001c 00000000 		.4byte	0
- 1077              		.section	.debug_line,"",%progbits
- 1078              	.Ldebug_line0:
- 1079 0000 74020000 		.section	.debug_str,"MS",%progbits,1
- 1079      02009E01 
- 1079      00000201 
- 1079      FB0E0D00 
- 1079      01010101 
- 1080              	.LASF20:
- 1081 0000 70726573 		.ascii	"pressed\000"
- 1081      73656400 
- 1082              	.LASF26:
- 1083 0008 434F4C32 		.ascii	"COL2_Read\000"
- 1083      5F526561 
- 1083      6400
- 1084              	.LASF33:
- 1085 0012 4B657970 		.ascii	"Keypad.c\000"
- 1085      61642E63 
- 1085      00
- 1086              	.LASF34:
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 22
+ 1020 00ad 00       		.byte	0
+ 1021 00ae 00       		.byte	0
+ 1022 00af 0D       		.uleb128 0xd
+ 1023 00b0 05       		.uleb128 0x5
+ 1024 00b1 00       		.byte	0
+ 1025 00b2 03       		.uleb128 0x3
+ 1026 00b3 0E       		.uleb128 0xe
+ 1027 00b4 3A       		.uleb128 0x3a
+ 1028 00b5 0B       		.uleb128 0xb
+ 1029 00b6 3B       		.uleb128 0x3b
+ 1030 00b7 0B       		.uleb128 0xb
+ 1031 00b8 49       		.uleb128 0x49
+ 1032 00b9 13       		.uleb128 0x13
+ 1033 00ba 02       		.uleb128 0x2
+ 1034 00bb 18       		.uleb128 0x18
+ 1035 00bc 00       		.byte	0
+ 1036 00bd 00       		.byte	0
+ 1037 00be 0E       		.uleb128 0xe
+ 1038 00bf 2E       		.uleb128 0x2e
+ 1039 00c0 01       		.byte	0x1
+ 1040 00c1 3F       		.uleb128 0x3f
+ 1041 00c2 19       		.uleb128 0x19
+ 1042 00c3 03       		.uleb128 0x3
+ 1043 00c4 0E       		.uleb128 0xe
+ 1044 00c5 3A       		.uleb128 0x3a
+ 1045 00c6 0B       		.uleb128 0xb
+ 1046 00c7 3B       		.uleb128 0x3b
+ 1047 00c8 0B       		.uleb128 0xb
+ 1048 00c9 11       		.uleb128 0x11
+ 1049 00ca 01       		.uleb128 0x1
+ 1050 00cb 12       		.uleb128 0x12
+ 1051 00cc 06       		.uleb128 0x6
+ 1052 00cd 40       		.uleb128 0x40
+ 1053 00ce 18       		.uleb128 0x18
+ 1054 00cf 9742     		.uleb128 0x2117
+ 1055 00d1 19       		.uleb128 0x19
+ 1056 00d2 01       		.uleb128 0x1
+ 1057 00d3 13       		.uleb128 0x13
+ 1058 00d4 00       		.byte	0
+ 1059 00d5 00       		.byte	0
+ 1060 00d6 0F       		.uleb128 0xf
+ 1061 00d7 898201   		.uleb128 0x4109
+ 1062 00da 01       		.byte	0x1
+ 1063 00db 11       		.uleb128 0x11
+ 1064 00dc 01       		.uleb128 0x1
+ 1065 00dd 31       		.uleb128 0x31
+ 1066 00de 13       		.uleb128 0x13
+ 1067 00df 01       		.uleb128 0x1
+ 1068 00e0 13       		.uleb128 0x13
+ 1069 00e1 00       		.byte	0
+ 1070 00e2 00       		.byte	0
+ 1071 00e3 10       		.uleb128 0x10
+ 1072 00e4 34       		.uleb128 0x34
+ 1073 00e5 00       		.byte	0
+ 1074 00e6 03       		.uleb128 0x3
+ 1075 00e7 0E       		.uleb128 0xe
+ 1076 00e8 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 22
 
 
- 1087 001b 433A5C55 		.ascii	"C:\\Users\\David\\Documents\\PSoC Creator\\Keypadte"
- 1087      73657273 
- 1087      5C446176 
- 1087      69645C44 
- 1087      6F63756D 
- 1088 0049 73745C52 		.ascii	"st\\Riaszto.cydsn\000"
- 1088      6961737A 
- 1088      746F2E63 
- 1088      7964736E 
- 1088      00
- 1089              	.LASF9:
- 1090 005a 5F5F696E 		.ascii	"__int32_t\000"
- 1090      7433325F 
- 1090      7400
- 1091              	.LASF10:
- 1092 0064 696E7433 		.ascii	"int32_t\000"
- 1092      325F7400 
- 1093              	.LASF35:
- 1094 006c 72656164 		.ascii	"readKey\000"
- 1094      4B657900 
- 1095              	.LASF12:
- 1096 0074 666C6F61 		.ascii	"float\000"
- 1096      7400
- 1097              	.LASF11:
- 1098 007a 75696E74 		.ascii	"uint8\000"
- 1098      3800
- 1099              	.LASF1:
- 1100 0080 756E7369 		.ascii	"unsigned char\000"
- 1100      676E6564 
- 1100      20636861 
- 1100      7200
- 1101              	.LASF18:
- 1102 008e 7365745F 		.ascii	"set_result_when_relesed\000"
- 1102      72657375 
- 1102      6C745F77 
- 1102      68656E5F 
- 1102      72656C65 
- 1103              	.LASF5:
- 1104 00a6 6C6F6E67 		.ascii	"long unsigned int\000"
- 1104      20756E73 
- 1104      69676E65 
- 1104      6420696E 
- 1104      7400
- 1105              	.LASF19:
- 1106 00b8 74656D70 		.ascii	"temp\000"
- 1106      00
- 1107              	.LASF3:
- 1108 00bd 73686F72 		.ascii	"short unsigned int\000"
- 1108      7420756E 
- 1108      7369676E 
- 1108      65642069 
- 1108      6E7400
- 1109              	.LASF22:
- 1110 00d0 77616974 		.ascii	"waiting_for_relese\000"
- 1110      696E675F 
- 1110      666F725F 
- 1110      72656C65 
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 23
+ 1077 00e9 0B       		.uleb128 0xb
+ 1078 00ea 3B       		.uleb128 0x3b
+ 1079 00eb 05       		.uleb128 0x5
+ 1080 00ec 49       		.uleb128 0x49
+ 1081 00ed 13       		.uleb128 0x13
+ 1082 00ee 3F       		.uleb128 0x3f
+ 1083 00ef 19       		.uleb128 0x19
+ 1084 00f0 3C       		.uleb128 0x3c
+ 1085 00f1 19       		.uleb128 0x19
+ 1086 00f2 00       		.byte	0
+ 1087 00f3 00       		.byte	0
+ 1088 00f4 11       		.uleb128 0x11
+ 1089 00f5 35       		.uleb128 0x35
+ 1090 00f6 00       		.byte	0
+ 1091 00f7 49       		.uleb128 0x49
+ 1092 00f8 13       		.uleb128 0x13
+ 1093 00f9 00       		.byte	0
+ 1094 00fa 00       		.byte	0
+ 1095 00fb 12       		.uleb128 0x12
+ 1096 00fc 34       		.uleb128 0x34
+ 1097 00fd 00       		.byte	0
+ 1098 00fe 03       		.uleb128 0x3
+ 1099 00ff 0E       		.uleb128 0xe
+ 1100 0100 3A       		.uleb128 0x3a
+ 1101 0101 0B       		.uleb128 0xb
+ 1102 0102 3B       		.uleb128 0x3b
+ 1103 0103 0B       		.uleb128 0xb
+ 1104 0104 49       		.uleb128 0x49
+ 1105 0105 13       		.uleb128 0x13
+ 1106 0106 3F       		.uleb128 0x3f
+ 1107 0107 19       		.uleb128 0x19
+ 1108 0108 3C       		.uleb128 0x3c
+ 1109 0109 19       		.uleb128 0x19
+ 1110 010a 00       		.byte	0
+ 1111 010b 00       		.byte	0
+ 1112 010c 13       		.uleb128 0x13
+ 1113 010d 34       		.uleb128 0x34
+ 1114 010e 00       		.byte	0
+ 1115 010f 03       		.uleb128 0x3
+ 1116 0110 0E       		.uleb128 0xe
+ 1117 0111 3A       		.uleb128 0x3a
+ 1118 0112 0B       		.uleb128 0xb
+ 1119 0113 3B       		.uleb128 0x3b
+ 1120 0114 0B       		.uleb128 0xb
+ 1121 0115 49       		.uleb128 0x49
+ 1122 0116 13       		.uleb128 0x13
+ 1123 0117 3F       		.uleb128 0x3f
+ 1124 0118 19       		.uleb128 0x19
+ 1125 0119 02       		.uleb128 0x2
+ 1126 011a 18       		.uleb128 0x18
+ 1127 011b 00       		.byte	0
+ 1128 011c 00       		.byte	0
+ 1129 011d 14       		.uleb128 0x14
+ 1130 011e 2E       		.uleb128 0x2e
+ 1131 011f 00       		.byte	0
+ 1132 0120 3F       		.uleb128 0x3f
+ 1133 0121 19       		.uleb128 0x19
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 23
 
 
- 1110      736500
- 1111              	.LASF21:
- 1112 00e3 49544D5F 		.ascii	"ITM_RxBuffer\000"
- 1112      52784275 
- 1112      66666572 
- 1112      00
- 1113              	.LASF23:
- 1114 00f0 50524553 		.ascii	"PRESSED_KEY\000"
- 1114      5345445F 
- 1114      4B455900 
- 1115              	.LASF13:
- 1116 00fc 646F7562 		.ascii	"double\000"
- 1116      6C6500
- 1117              	.LASF8:
- 1118 0103 756E7369 		.ascii	"unsigned int\000"
- 1118      676E6564 
- 1118      20696E74 
- 1118      00
- 1119              	.LASF7:
- 1120 0110 6C6F6E67 		.ascii	"long long unsigned int\000"
- 1120      206C6F6E 
- 1120      6720756E 
- 1120      7369676E 
- 1120      65642069 
- 1121              	.LASF28:
- 1122 0127 434F4C34 		.ascii	"COL4_Read\000"
- 1122      5F526561 
- 1122      6400
- 1123              	.LASF24:
- 1124 0131 524F5731 		.ascii	"ROW1_Write\000"
- 1124      5F577269 
- 1124      746500
- 1125              	.LASF29:
- 1126 013c 524F5732 		.ascii	"ROW2_Write\000"
- 1126      5F577269 
- 1126      746500
- 1127              	.LASF32:
- 1128 0147 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 1128      43313120 
- 1128      352E342E 
- 1128      31203230 
- 1128      31363036 
- 1129 017a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 1129      20726576 
- 1129      6973696F 
- 1129      6E203233 
- 1129      37373135 
- 1130 01ad 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
- 1130      66756E63 
- 1130      74696F6E 
- 1130      2D736563 
- 1130      74696F6E 
- 1131              	.LASF25:
- 1132 01d5 434F4C31 		.ascii	"COL1_Read\000"
- 1132      5F526561 
- 1132      6400
- 1133              	.LASF16:
-ARM GAS  C:\Users\David\AppData\Local\Temp\ccRuR4Wf.s 			page 24
+ 1134 0122 3C       		.uleb128 0x3c
+ 1135 0123 19       		.uleb128 0x19
+ 1136 0124 6E       		.uleb128 0x6e
+ 1137 0125 0E       		.uleb128 0xe
+ 1138 0126 03       		.uleb128 0x3
+ 1139 0127 0E       		.uleb128 0xe
+ 1140 0128 3A       		.uleb128 0x3a
+ 1141 0129 0B       		.uleb128 0xb
+ 1142 012a 3B       		.uleb128 0x3b
+ 1143 012b 0B       		.uleb128 0xb
+ 1144 012c 00       		.byte	0
+ 1145 012d 00       		.byte	0
+ 1146 012e 00       		.byte	0
+ 1147              		.section	.debug_loc,"",%progbits
+ 1148              	.Ldebug_loc0:
+ 1149              	.LLST0:
+ 1150 0000 30000000 		.4byte	.LVL4
+ 1151 0004 36000000 		.4byte	.LVL5
+ 1152 0008 0100     		.2byte	0x1
+ 1153 000a 50       		.byte	0x50
+ 1154 000b 00000000 		.4byte	0
+ 1155 000f 00000000 		.4byte	0
+ 1156              	.LLST1:
+ 1157 0013 10000000 		.4byte	.LVL1
+ 1158 0017 16000000 		.4byte	.LVL2
+ 1159 001b 0100     		.2byte	0x1
+ 1160 001d 50       		.byte	0x50
+ 1161 001e 00000000 		.4byte	0
+ 1162 0022 00000000 		.4byte	0
+ 1163              	.LLST2:
+ 1164 0026 02000000 		.4byte	.LVL7
+ 1165 002a 14000000 		.4byte	.LVL10
+ 1166 002e 0200     		.2byte	0x2
+ 1167 0030 30       		.byte	0x30
+ 1168 0031 9F       		.byte	0x9f
+ 1169 0032 14000000 		.4byte	.LVL10
+ 1170 0036 EE000000 		.4byte	.LFE65
+ 1171 003a 0100     		.2byte	0x1
+ 1172 003c 54       		.byte	0x54
+ 1173 003d 00000000 		.4byte	0
+ 1174 0041 00000000 		.4byte	0
+ 1175              		.section	.debug_aranges,"",%progbits
+ 1176 0000 2C000000 		.4byte	0x2c
+ 1177 0004 0200     		.2byte	0x2
+ 1178 0006 00000000 		.4byte	.Ldebug_info0
+ 1179 000a 04       		.byte	0x4
+ 1180 000b 00       		.byte	0
+ 1181 000c 0000     		.2byte	0
+ 1182 000e 0000     		.2byte	0
+ 1183 0010 00000000 		.4byte	.LFB63
+ 1184 0014 4C000000 		.4byte	.LFE63-.LFB63
+ 1185 0018 00000000 		.4byte	.LFB64
+ 1186 001c 28000000 		.4byte	.LFE64-.LFB64
+ 1187 0020 00000000 		.4byte	.LFB65
+ 1188 0024 EE000000 		.4byte	.LFE65-.LFB65
+ 1189 0028 00000000 		.4byte	0
+ 1190 002c 00000000 		.4byte	0
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 24
 
 
- 1134 01df 73697A65 		.ascii	"sizetype\000"
- 1134      74797065 
- 1134      00
- 1135              	.LASF6:
- 1136 01e8 6C6F6E67 		.ascii	"long long int\000"
- 1136      206C6F6E 
- 1136      6720696E 
- 1136      7400
- 1137              	.LASF31:
- 1138 01f6 524F5734 		.ascii	"ROW4_Write\000"
- 1138      5F577269 
- 1138      746500
- 1139              	.LASF14:
- 1140 0201 63686172 		.ascii	"char\000"
- 1140      00
- 1141              	.LASF30:
- 1142 0206 524F5733 		.ascii	"ROW3_Write\000"
- 1142      5F577269 
- 1142      746500
- 1143              	.LASF2:
- 1144 0211 73686F72 		.ascii	"short int\000"
- 1144      7420696E 
- 1144      7400
- 1145              	.LASF17:
- 1146 021b 6765745F 		.ascii	"get_pressed_key\000"
- 1146      70726573 
- 1146      7365645F 
- 1146      6B657900 
- 1147              	.LASF27:
- 1148 022b 434F4C33 		.ascii	"COL3_Read\000"
- 1148      5F526561 
- 1148      6400
- 1149              	.LASF4:
- 1150 0235 6C6F6E67 		.ascii	"long int\000"
- 1150      20696E74 
- 1150      00
- 1151              	.LASF15:
- 1152 023e 6C6F6E67 		.ascii	"long double\000"
- 1152      20646F75 
- 1152      626C6500 
- 1153              	.LASF0:
- 1154 024a 7369676E 		.ascii	"signed char\000"
- 1154      65642063 
- 1154      68617200 
- 1155              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 1191              		.section	.debug_ranges,"",%progbits
+ 1192              	.Ldebug_ranges0:
+ 1193 0000 0A000000 		.4byte	.LBB2
+ 1194 0004 2C000000 		.4byte	.LBE2
+ 1195 0008 36000000 		.4byte	.LBB3
+ 1196 000c 3C000000 		.4byte	.LBE3
+ 1197 0010 00000000 		.4byte	0
+ 1198 0014 00000000 		.4byte	0
+ 1199 0018 00000000 		.4byte	.LFB63
+ 1200 001c 4C000000 		.4byte	.LFE63
+ 1201 0020 00000000 		.4byte	.LFB64
+ 1202 0024 28000000 		.4byte	.LFE64
+ 1203 0028 00000000 		.4byte	.LFB65
+ 1204 002c EE000000 		.4byte	.LFE65
+ 1205 0030 00000000 		.4byte	0
+ 1206 0034 00000000 		.4byte	0
+ 1207              		.section	.debug_line,"",%progbits
+ 1208              	.Ldebug_line0:
+ 1209 0000 A6020000 		.section	.debug_str,"MS",%progbits,1
+ 1209      0200BC01 
+ 1209      00000201 
+ 1209      FB0E0D00 
+ 1209      01010101 
+ 1210              	.LASF21:
+ 1211 0000 70726573 		.ascii	"pressed\000"
+ 1211      73656400 
+ 1212              	.LASF36:
+ 1213 0008 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1213      43313120 
+ 1213      352E342E 
+ 1213      31203230 
+ 1213      31363036 
+ 1214 003b 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1214      20726576 
+ 1214      6973696F 
+ 1214      6E203233 
+ 1214      37373135 
+ 1215 006e 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1215      66756E63 
+ 1215      74696F6E 
+ 1215      2D736563 
+ 1215      74696F6E 
+ 1216              	.LASF37:
+ 1217 0096 4B657970 		.ascii	"Keypad.c\000"
+ 1217      61642E63 
+ 1217      00
+ 1218              	.LASF38:
+ 1219 009f 433A5C55 		.ascii	"C:\\Users\\David\\Documents\\PSoC Creator\\Keypadte"
+ 1219      73657273 
+ 1219      5C446176 
+ 1219      69645C44 
+ 1219      6F63756D 
+ 1220 00cd 73745C52 		.ascii	"st\\Riaszto.cydsn\000"
+ 1220      6961737A 
+ 1220      746F2E63 
+ 1220      7964736E 
+ 1220      00
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 25
+
+
+ 1221              	.LASF9:
+ 1222 00de 5F5F696E 		.ascii	"__int32_t\000"
+ 1222      7433325F 
+ 1222      7400
+ 1223              	.LASF30:
+ 1224 00e8 434F4C32 		.ascii	"COL2_Read\000"
+ 1224      5F526561 
+ 1224      6400
+ 1225              	.LASF10:
+ 1226 00f2 696E7433 		.ascii	"int32_t\000"
+ 1226      325F7400 
+ 1227              	.LASF39:
+ 1228 00fa 72656164 		.ascii	"readKey\000"
+ 1228      4B657900 
+ 1229              	.LASF12:
+ 1230 0102 666C6F61 		.ascii	"float\000"
+ 1230      7400
+ 1231              	.LASF11:
+ 1232 0108 75696E74 		.ascii	"uint8\000"
+ 1232      3800
+ 1233              	.LASF1:
+ 1234 010e 756E7369 		.ascii	"unsigned char\000"
+ 1234      676E6564 
+ 1234      20636861 
+ 1234      7200
+ 1235              	.LASF20:
+ 1236 011c 7365745F 		.ascii	"set_result_when_relesed\000"
+ 1236      72657375 
+ 1236      6C745F77 
+ 1236      68656E5F 
+ 1236      72656C65 
+ 1237              	.LASF5:
+ 1238 0134 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1238      20756E73 
+ 1238      69676E65 
+ 1238      6420696E 
+ 1238      7400
+ 1239              	.LASF17:
+ 1240 0146 74656D70 		.ascii	"temp\000"
+ 1240      00
+ 1241              	.LASF3:
+ 1242 014b 73686F72 		.ascii	"short unsigned int\000"
+ 1242      7420756E 
+ 1242      7369676E 
+ 1242      65642069 
+ 1242      6E7400
+ 1243              	.LASF24:
+ 1244 015e 77616974 		.ascii	"waiting_for_relese\000"
+ 1244      696E675F 
+ 1244      666F725F 
+ 1244      72656C65 
+ 1244      736500
+ 1245              	.LASF22:
+ 1246 0171 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 1246      52784275 
+ 1246      66666572 
+ 1246      00
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 26
+
+
+ 1247              	.LASF25:
+ 1248 017e 50524553 		.ascii	"PRESSED_KEY\000"
+ 1248      5345445F 
+ 1248      4B455900 
+ 1249              	.LASF13:
+ 1250 018a 646F7562 		.ascii	"double\000"
+ 1250      6C6500
+ 1251              	.LASF8:
+ 1252 0191 756E7369 		.ascii	"unsigned int\000"
+ 1252      676E6564 
+ 1252      20696E74 
+ 1252      00
+ 1253              	.LASF7:
+ 1254 019e 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1254      206C6F6E 
+ 1254      6720756E 
+ 1254      7369676E 
+ 1254      65642069 
+ 1255              	.LASF32:
+ 1256 01b5 434F4C34 		.ascii	"COL4_Read\000"
+ 1256      5F526561 
+ 1256      6400
+ 1257              	.LASF28:
+ 1258 01bf 524F5731 		.ascii	"ROW1_Write\000"
+ 1258      5F577269 
+ 1258      746500
+ 1259              	.LASF33:
+ 1260 01ca 524F5732 		.ascii	"ROW2_Write\000"
+ 1260      5F577269 
+ 1260      746500
+ 1261              	.LASF23:
+ 1262 01d5 434F4D50 		.ascii	"COMPUTER_COMMUNICATION\000"
+ 1262      55544552 
+ 1262      5F434F4D 
+ 1262      4D554E49 
+ 1262      43415449 
+ 1263              	.LASF29:
+ 1264 01ec 434F4C31 		.ascii	"COL1_Read\000"
+ 1264      5F526561 
+ 1264      6400
+ 1265              	.LASF18:
+ 1266 01f6 66726F6D 		.ascii	"from_uart\000"
+ 1266      5F756172 
+ 1266      7400
+ 1267              	.LASF16:
+ 1268 0200 73697A65 		.ascii	"sizetype\000"
+ 1268      74797065 
+ 1268      00
+ 1269              	.LASF6:
+ 1270 0209 6C6F6E67 		.ascii	"long long int\000"
+ 1270      206C6F6E 
+ 1270      6720696E 
+ 1270      7400
+ 1271              	.LASF35:
+ 1272 0217 524F5734 		.ascii	"ROW4_Write\000"
+ 1272      5F577269 
+ 1272      746500
+ARM GAS  C:\Users\David\AppData\Local\Temp\ccr545ji.s 			page 27
+
+
+ 1273              	.LASF14:
+ 1274 0222 63686172 		.ascii	"char\000"
+ 1274      00
+ 1275              	.LASF34:
+ 1276 0227 524F5733 		.ascii	"ROW3_Write\000"
+ 1276      5F577269 
+ 1276      746500
+ 1277              	.LASF26:
+ 1278 0232 55415254 		.ascii	"UART_GetChar\000"
+ 1278      5F476574 
+ 1278      43686172 
+ 1278      00
+ 1279              	.LASF2:
+ 1280 023f 73686F72 		.ascii	"short int\000"
+ 1280      7420696E 
+ 1280      7400
+ 1281              	.LASF19:
+ 1282 0249 6765745F 		.ascii	"get_pressed_key\000"
+ 1282      70726573 
+ 1282      7365645F 
+ 1282      6B657900 
+ 1283              	.LASF31:
+ 1284 0259 434F4C33 		.ascii	"COL3_Read\000"
+ 1284      5F526561 
+ 1284      6400
+ 1285              	.LASF4:
+ 1286 0263 6C6F6E67 		.ascii	"long int\000"
+ 1286      20696E74 
+ 1286      00
+ 1287              	.LASF15:
+ 1288 026c 6C6F6E67 		.ascii	"long double\000"
+ 1288      20646F75 
+ 1288      626C6500 
+ 1289              	.LASF0:
+ 1290 0278 7369676E 		.ascii	"signed char\000"
+ 1290      65642063 
+ 1290      68617200 
+ 1291              	.LASF27:
+ 1292 0284 55415254 		.ascii	"UART_PutString\000"
+ 1292      5F507574 
+ 1292      53747269 
+ 1292      6E6700
+ 1293              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

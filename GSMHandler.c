@@ -52,16 +52,42 @@ void send_sms_command() {
  LCD_PrintString("SMS sending 4/4..");
 }
 
+void power_on_modul() {
+    GSM_DTR_Write(1u);
+    LCD_ClearDisplay();
+    LCD_Position(0u, 0u);
+    LCD_PrintString("SMS sending 0/4");
+    LCD_Position(1u, 0u);
+    LCD_PrintString("Power on..");
+}
+
+void power_down_cmd() {
+    UART_GSM_PutString("AT+CPOWD=1");
+    UART_GSM_PutChar(0x0D);
+    LCD_ClearDisplay();
+    LCD_Position(0u, 0u);
+    LCD_PrintString("Powering down..");
+}
+
+void power_off() {
+    GSM_DTR_Write(0u);
+    LCD_ClearDisplay();
+    LCD_Position(0u, 0u);
+    LCD_PrintString("Powered off.");
+}
+
 void start_sms_sending_sequence(TaskFIFO * gsm_fifo, char * m, char *n) {
     
     message = m;
     number = n;
     
-    
-    pushTask(gsm_fifo,create_new_noparam_onetimetask(send_AT_command, 500));
+    pushTask(gsm_fifo,create_new_noparam_onetimetask(power_on_modul, 100));
+    pushTask(gsm_fifo,create_new_noparam_onetimetask(send_AT_command, 6000));
     pushTask(gsm_fifo,create_new_noparam_onetimetask(send_ATCMGF_command, 2000));
     pushTask(gsm_fifo,create_new_noparam_onetimetask(send_SMSStarter_command, 4000));
     pushTask(gsm_fifo,create_new_noparam_onetimetask(send_sms_command, 4000));
+    pushTask(gsm_fifo,create_new_noparam_onetimetask(power_down_cmd, 10000));
+    pushTask(gsm_fifo,create_new_noparam_onetimetask(power_off, 5000));
   
 }
 

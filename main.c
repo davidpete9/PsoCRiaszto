@@ -1,6 +1,6 @@
 /* ========================================
  *
-Riaszto kodja  - Felkesz / Vaz eddig
+Riaszto kodja  - KESZ valtozat.
  *
  * ========================================
 */
@@ -70,10 +70,25 @@ void check_photoresistor(uint8 * need_alert){
 void change_backlight_with_light() {
   volatile uint16 light = ADC_SAR_PR_GetResult16();
   PWM_BACKLIGHT_STATUS; 
-  if (light > 1200) {
-        uint16 test = 1+((light-1200)/70);
-        uint16 dutycle = test*20 > 350 ? 350 : test*20;
-        PWM_BACKLIGHT_WriteCompare(dutycle);
+  
+  if (light >= 500) {
+         //350 a max
+         uint16 dutycycle = 0;
+        if (light < 1000) {
+            dutycycle = 0.25*350;
+        }
+        else if (light < 1500) {
+           dutycycle = 0.5*350;
+        }
+        else if (light < 2000) {
+           dutycycle = 0.75*350;
+        }
+        else {
+            dutycycle = 350;
+        }
+        
+       
+        PWM_BACKLIGHT_WriteCompare(dutycycle);
     } 
     else {    
         PWM_BACKLIGHT_WriteCompare(0u);
@@ -212,7 +227,7 @@ void create_alarm() {
     
     
     //1. SMS-ek kuldese
-    //start_sms_sending_sequence(&gsm_fifo, alert_sms, full_phone_num);
+    start_sms_sending_sequence(&gsm_fifo, alert_sms, full_phone_num);
     
     //2. Csipogas kezdese
     enable_task(&p_tasks, 100);
@@ -284,6 +299,7 @@ int main(void)
     
     for(;;)
     {   
+        
          switch (current_state) {
             case passziv:
                 switch (actual_substate) {
@@ -389,21 +405,21 @@ int main(void)
                         break;
                 }
                 break;
+        } 
+        
+        if (UART_GSM_GetRxBufferSize()) {
+            UART_PutChar(UART_GSM_GetChar());
         }
         
-       // if (UART_GSM_GetRxBufferSize()) {
-       //     UART_PutChar(UART_GSM_GetChar());
-        //}
         if (UART_GetRxBufferSize() && COMPUTER_COMMUNICATION == 0) {
             char arrived = UART_GetChar();
             if (arrived == '@') {
-                COMPUTER_COMMUNICATION = 1;
-                printString("PC UART interface hasznalatban. Vissza $ beirasaval.\r\n");
-                printString("Ird be a kodot a folytatashoz.\r\nFigyelo modba nem lehet helyezni, csak a beallitasok erhetoek el.\n");
-                to_passiv_move();
-            }
-        }     
-   
+               COMPUTER_COMMUNICATION = 1;
+               printString("PC UART interface hasznalatban. Vissza $ beirasaval.\r\n");
+               printString("Ird be a kodot a folytatashoz.\r\nFigyelo modba nem lehet helyezni, csak a beallitasok erhetoek el.\n");
+               to_passiv_move();
+           }
+        }      
     }
 }
 

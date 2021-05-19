@@ -1,6 +1,6 @@
 /* ========================================
  *
-Riaszto kodja  - KESZ valtozat.
+Riaszto kodja  - Felkesz / Vaz eddig
  *
  * ========================================
 */
@@ -62,7 +62,7 @@ void check_photoresistor(uint8 * need_alert){
     volatile uint16 light = ADC_SAR_PR_GetResult16();
     //ha ejszaka van, viszont vilagos, akkor riasztok
     volatile uint8 h = get_hour();
-    if (light < 1000 && h > NIGHT_FROM && h < NIGHT_TO) {
+    if (light < 300 && h > NIGHT_FROM && h < NIGHT_TO) {
        *need_alert = 1u;         
     }
 }
@@ -91,7 +91,7 @@ void change_backlight_with_light() {
         PWM_BACKLIGHT_WriteCompare(dutycycle);
     } 
     else {    
-        PWM_BACKLIGHT_WriteCompare(0u);
+        PWM_BACKLIGHT_WriteCompare(0.1*350u);
     }
 }
 
@@ -240,7 +240,7 @@ void to_passiv_move() {
     disable_task(&p_tasks, 100); //Csipogas riasztashoz
     disable_task(&p_tasks,5);  //visszaszamolo
     disable_task(&p_tasks,6); //reed rele
-    disable_task(&p_tasks,3); //mozgaserzekelo
+    enable_task(&p_tasks,3); //mozgaserzekelo
     disable_task(&p_tasks, 2); //fozorez.
     enable_task(&p_tasks, 7); //Hattervil.
     enable_task(&p_tasks, 4); //ora.
@@ -296,10 +296,10 @@ int main(void)
     volatile uint8 pressed = 0;
    
     char time_str[7];
+    //GSM_DTR_Write(1u);
     
     for(;;)
     {   
-        
          switch (current_state) {
             case passziv:
                 switch (actual_substate) {
@@ -367,10 +367,6 @@ int main(void)
                            pushTask(&timing_fifo, create_new_noparam_onetimetask(create_alarm, DEACT_DELAY*1000));
                             
                         }
-                        if (try_to_read_code_from_keyboard() == 1u) {
-                            to_passiv_move();
-                            print_time_to_lcd();
-                        }
                         break;
                     case figylo_deaktivalo:
                         if (try_to_read_code_from_keyboard() == 1u) {
@@ -390,6 +386,9 @@ int main(void)
                      if (try_to_read_code_from_keyboard() == 1u) {
                             to_passiv_move();   
                             print_time_to_lcd();
+                            free_taskfifo(&gsm_fifo);
+                            free_taskfifo(&timing_fifo);
+                            GSM_DTR_Write(0u);
                       
                         }
                         break;
@@ -398,28 +397,34 @@ int main(void)
                             get_and_remove_first(&timing_fifo);
                             to_passiv_move();  
                             print_time_to_lcd();
-                          
+                            free_taskfifo(&gsm_fifo);
+                            free_taskfifo(&timing_fifo);
+                            GSM_DTR_Write(0u);
                         }
                         break;
                     default:
                         break;
                 }
                 break;
-        } 
+        }
         
         if (UART_GSM_GetRxBufferSize()) {
             UART_PutChar(UART_GSM_GetChar());
         }
+     /*   if (UART_GetRxBufferSize()) {
+             UART_GSM_PutChar(UART_GetChar());
+        }*/
         
         if (UART_GetRxBufferSize() && COMPUTER_COMMUNICATION == 0) {
             char arrived = UART_GetChar();
             if (arrived == '@') {
-               COMPUTER_COMMUNICATION = 1;
-               printString("PC UART interface hasznalatban. Vissza $ beirasaval.\r\n");
-               printString("Ird be a kodot a folytatashoz.\r\nFigyelo modba nem lehet helyezni, csak a beallitasok erhetoek el.\n");
-               to_passiv_move();
-           }
-        }      
+                COMPUTER_COMMUNICATION = 1;
+                printString("PC UART interface hasznalatban. Vissza $ beirasaval.\r\n");
+                printString("Ird be a kodot a folytatashoz.\r\nFigyelo modba nem lehet helyezni, csak a beallitasok erhetoek el.\n");
+                to_passiv_move();
+            }
+        }     
+   
     }
 }
 

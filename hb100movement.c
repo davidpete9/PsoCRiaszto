@@ -12,6 +12,8 @@ uint16 minAmp = 30000;
 uint16 maxAmp = 0;
 uint32 lastCountRadar = 0;
 
+uint8 n_th_big_amplitude = 1;
+
 /*
 A radar AD konverterenek az interruptja.
 Folyamatos min-max kereses ahhoz, hogy metudjuk az amplitudot.
@@ -34,17 +36,23 @@ Ha az amplitudo nagyobb egy  erteknel, akkor riasztas van.
 */
 void check_movement(uint8 * is_movement_alert) {
     volatile int16 amp = maxAmp-minAmp;
-     char str[10];
-    sprintf(str, "%d\r\n", amp);
+   //  char str[10];
+  //  sprintf(str, "%d\r\n", amp);
    
-    UART_PutString(str);
+  //  UART_PutString(str);
     
-    if (amp > 3000) {
-        //Mozgas erzekelve.
-        *is_movement_alert = 1u;
-        //TODO: csak akkor riasszon be, ha nem csak pl. egyetlen ilyen eszleles volt, hanem tobb is
-        //mivel van esely ra, hogy az csak egy valahonnan egy felszedett zavar.
+    if (amp > 3000 && amp < 4000) {
+        
+        n_th_big_amplitude += 1;
+        
+        if (n_th_big_amplitude >= 4) {
+             //Mozgas erzekelve.
+             *is_movement_alert = 1u;        
         }
+     }
+    else {
+        n_th_big_amplitude = 0;
+    }
         maxAmp = 0;
         minAmp = 30000;
 }

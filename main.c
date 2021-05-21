@@ -1,6 +1,6 @@
 /* ========================================
  *
-Riaszto kodja  - Felkesz / Vaz eddig
+Riaszto kodja  - kesz verzio
  *
  * ========================================
 */
@@ -62,7 +62,7 @@ void check_photoresistor(uint8 * need_alert){
     volatile uint16 light = ADC_SAR_PR_GetResult16();
     //ha ejszaka van, viszont vilagos, akkor riasztok
     volatile uint8 h = get_hour();
-    if (light < 300 && h > NIGHT_FROM && h < NIGHT_TO) {
+    if (light < 300 && h > NIGHT_FROM && h < NIGHT_TO && PH_RES_ON == 1u) {
        *need_alert = 1u;         
     }
 }
@@ -240,7 +240,7 @@ void to_passiv_move() {
     disable_task(&p_tasks, 100); //Csipogas riasztashoz
     disable_task(&p_tasks,5);  //visszaszamolo
     disable_task(&p_tasks,6); //reed rele
-    enable_task(&p_tasks,3); //mozgaserzekelo
+    disable_task(&p_tasks,3); //mozgaserzekelo
     disable_task(&p_tasks, 2); //fozorez.
     enable_task(&p_tasks, 7); //Hattervil.
     enable_task(&p_tasks, 4); //ora.

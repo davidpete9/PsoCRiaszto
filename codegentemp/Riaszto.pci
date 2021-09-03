@@ -1,5 +1,5 @@
 # Riaszto
-# 2021-05-18 13:44:15Z
+# 2021-09-03 11:06:39Z
 
 # IO_0@[IOP=(1)][IoId=(0)] is reserved: SWDDebugEnabled
 dont_use_io iocell 1 0
@@ -20,7 +20,7 @@ set_io "ROW3(0)" iocell 1 6
 set_io "ROW4(0)" iocell 1 7
 set_io "COL1(0)" iocell 3 0
 set_io "COL2(0)" iocell 12 3
-set_io "COL3(0)" iocell 12 4
+set_io "COL3(0)" iocell 0 1
 set_io "COL4(0)" iocell 12 5
 set_io "SDAT_1(0)" iocell 12 1
 set_io "SCLK_1(0)" iocell 12 0
@@ -35,6 +35,8 @@ set_io "PHRES(0)" iocell 3 1
 set_io "Tx_2(0)" iocell 12 2
 set_io "Rx_2(0)" iocell 3 7
 set_io "GSM_DTR(0)" iocell 3 2
-set_location "\ADC_SAR_RADAR:ADC_SAR\" sarcell -1 -1 1
-set_location "\ADC_SAR_PR:ADC_SAR\" sarcell -1 -1 0
+set_io "Rx_3(0)" iocell 0 2
+set_io "Tx_3(0)" iocell 12 4
+set_location "\ADC_SAR_PR:ADC_SAR\" sarcell -1 -1 1
 set_location "\VDAC8:viDAC8\" vidaccell -1 -1 2
+set_location "\VDAC8_ESP:viDAC8\" vidaccell -1 -1 0

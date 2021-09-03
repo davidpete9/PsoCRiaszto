@@ -17,11 +17,11 @@ uint8 PRESSED_KEY = 0;
 //Visszaadja a legutobb lenyomott gomb erteket, es torli az erteket.
 uint8 get_pressed_key() {
     
-    if (COMPUTER_COMMUNICATION == 1) {
-        char from_uart = UART_GetChar();
+    if (COMMUNICATION_MODE != LCD_COMMUNICATION) {
+        char from_uart = COMMUNICATION_MODE == COMPUTER_COMMUNICATION ? UART_GetChar() : UART_ESP_GetChar();
         if (from_uart == '$') {
             UART_PutString("Visszavaltas normal uzemmodba. \r\n");
-            COMPUTER_COMMUNICATION = 0;
+            COMMUNICATION_MODE = LCD_COMMUNICATION;
         }
         if (from_uart == '\r' || from_uart == '\n')
             return 0;

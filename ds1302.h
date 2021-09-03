@@ -30,4 +30,6 @@ void print_time_string(char* str);
 
 void print_date(char* str);
 
+void print_datetime(char* str);
+
 #endif

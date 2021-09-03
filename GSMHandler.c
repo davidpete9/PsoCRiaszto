@@ -13,25 +13,34 @@
 
 #include "project.h"
 #include "TaskFIFO.h"
+#include "SettingsHelper.h"
 
 
 char * message;
 char * number;
 
+void print_status(char * state) {
+    if (COMMUNICATION_MODE != LCD_COMMUNICATION) { //Akkor is kiirja az LCD-re ha nem lcd kommunikacio van.
+            LCD_ClearDisplay();
+            LCD_Position(0u, 0u);
+            LCD_PrintString(state);
+    }
+    UART_ESP_PutString(state);
+    LCD_ClearDisplay();
+    LCD_Position(0u, 0u);
+    printString(state); 
+}
+
 void send_AT_command() {
     UART_GSM_PutString("AT");
     UART_GSM_PutChar(0x0D);
-    LCD_ClearDisplay();
-    LCD_Position(0u, 0u);
-    LCD_PrintString("SMS sending 1/4..");
+    print_status("SMS sending 1/4..");
 }
 
 void send_ATCMGF_command() {
     UART_GSM_PutString("AT+CMGF=1");
     UART_GSM_PutChar(0x0D);
-    LCD_ClearDisplay();
-    LCD_Position(0u, 0u);
-    LCD_PrintString("SMS sending 2/4..");
+    print_status("SMS sending 2/4..");
 }
 
 void send_SMSStarter_command() {
@@ -39,41 +48,29 @@ void send_SMSStarter_command() {
     sprintf(str, "AT+CMGS=\"%s\"", number);
     UART_GSM_PutString(str);
     UART_GSM_PutChar(0x0D);
-    LCD_ClearDisplay();
-    LCD_Position(0u, 0u);
-    LCD_PrintString("SMS sending 3/4..");
+    print_status("SMS sending 3/4..");
 }
 
 void send_sms_command() {
  UART_GSM_PutString(message);
  UART_GSM_PutChar(0x1A);
- LCD_ClearDisplay();
- LCD_Position(0u, 0u);
- LCD_PrintString("SMS sending 4/4..");
+ print_status("SMS sending 4/4..");
 }
 
 void power_on_modul() {
     GSM_DTR_Write(1u);
-    LCD_ClearDisplay();
-    LCD_Position(0u, 0u);
-    LCD_PrintString("SMS sending 0/4");
-    LCD_Position(1u, 0u);
-    LCD_PrintString("Power on..");
+    print_status("Powering on 0/4");
 }
 
 void power_down_cmd() {
     UART_GSM_PutString("AT+CPOWD=1");
     UART_GSM_PutChar(0x0D);
-    LCD_ClearDisplay();
-    LCD_Position(0u, 0u);
-    LCD_PrintString("Powering down..");
+    print_status("Powering down");
 }
 
 void power_off() {
     GSM_DTR_Write(0u);
-    LCD_ClearDisplay();
-    LCD_Position(0u, 0u);
-    LCD_PrintString("Powered off.");
+    print_status("Powered off.");
 }
 
 void start_sms_sending_sequence(TaskFIFO * gsm_fifo, char * m, char *n) {

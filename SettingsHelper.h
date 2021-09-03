@@ -12,7 +12,10 @@
 #ifndef SETTINGSHELPER_H
 #define SETTINGSHELPER_H
     
-
+#define LCD_COMMUNICATION 0
+#define COMPUTER_COMMUNICATION 1  
+#define ESP_COMMUNICATION 2  
+    
 #include "project.h"
 
 typedef struct page {
@@ -39,7 +42,7 @@ extern uint16 WATCH_DELAY;
 extern uint16 DEACT_DELAY;
 extern uint16 BEEPING_DELAY;
 
-extern uint8 COMPUTER_COMMUNICATION;
+extern uint8 COMMUNICATION_MODE;
 
 void printChar(char8 c);
 
@@ -94,6 +97,8 @@ void choose_param_page6();
 void choose_param_page7();
 
 void process_settings();
+
+uint16 toInt(char* str);
     
   
     

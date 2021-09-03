@@ -99,5 +99,9 @@ void print_time_string(char* str) {
 }
 
 void print_date(char* str) {
-    sprintf(str, "20%02d-%02d-%02d",get_year(), get_month(), get_day());
+    sprintf(str, "%02d-%02d-%02d",get_year(), get_month(), get_day());
+}
+
+void print_datetime(char* str) {
+     sprintf(str, "%02d-%02d-%02d %02d:%02d:%02d",get_year(), get_month(), get_day(), get_hour(), get_minute(), get_seconds());
 }

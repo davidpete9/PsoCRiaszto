@@ -73,26 +73,32 @@ uint8 AUTO_POWERON = 1;
 uint16 WATCH_DELAY = 20;
 uint16 DEACT_DELAY = 20;
 uint16 BEEPING_DELAY = 20;
-
-uint8 COMPUTER_COMMUNICATION = 0;
+uint8 COMMUNICATION_MODE = LCD_COMMUNICATION;
 
 
 void printChar(char8 c) {
-    if (COMPUTER_COMMUNICATION == 1) {
+    if (COMMUNICATION_MODE == COMPUTER_COMMUNICATION) {
         UART_PutChar(c);
     }
-    else {
+    else if (COMMUNICATION_MODE == LCD_COMMUNICATION){
         LCD_PutChar(c);
+    }
+    else if (COMMUNICATION_MODE == ESP_COMMUNICATION){
+        UART_ESP_PutChar(c);
     }
 }
 
 void printString(const char8* str) {
-    if (COMPUTER_COMMUNICATION == 1) {
+    if (COMMUNICATION_MODE == COMPUTER_COMMUNICATION) {
         UART_PutString("\r\n");
         UART_PutString(str);
     }
-    else {
+    else if (COMMUNICATION_MODE == LCD_COMMUNICATION) {
         LCD_PrintString(str);
+    }
+    else if (COMMUNICATION_MODE == ESP_COMMUNICATION) {
+        UART_ESP_PutString("\r\n");
+        UART_ESP_PutString(str);
     }
 }
 
@@ -184,12 +190,13 @@ void ask_bool() {
 uint8 pressed = get_pressed_key();
 if (pressed == '1') {
  StoreInt8(1, actual_eeprom_addr);
-init_constants();
  change_page(&menu_system[0]);
+init_constants();
 }
 else if (pressed == '0') {
  StoreInt8(0, actual_eeprom_addr);
  change_page(&menu_system[0]);
+init_constants();
 }
 else if (pressed == '*') {
 change_page(&menu_system[1]);

@@ -13,6 +13,7 @@ Riaszto kodja  - kesz verzio
 #include "GSMHandler.h"
 #include "EEPROM_Helper.h"
 #include "SettingsHelper.h"
+#include "ESP_API.h"
 
 //allapotok
 typedef enum state {figyelo, passziv, riasztas} state;
@@ -95,13 +96,17 @@ void change_backlight_with_light() {
     }
 }
 
+void phres_command() {
+    volatile uint16 ll = ADC_SAR_PR_GetResult16();
+    char str[30];
+    sprintf(str, "Phres value: %d", ll);
+    UART_ESP_PutString(str); 
+}
+
 
 void init() {
     //Periferiak.
     isr_Timer_StartEx(TIMER_ISR);
-    ADC_SAR_RADAR_IRQ_StartEx(ADC_SAR_RADAR_ISR);
-    ADC_SAR_RADAR_Start();
-    ADC_SAR_RADAR_StartConvert();
     ADC_SAR_PR_Start();
     ADC_SAR_PR_StartConvert();
     Timer_Start();
@@ -112,7 +117,9 @@ void init() {
     PWM_BACKLIGHT_Start();
     UART_Start();
     UART_GSM_Start();
+    UART_ESP_Start();
     VDAC8_Start();
+    VDAC8_ESP_Start();
     EEPROM_Start();
 }
 
@@ -131,7 +138,7 @@ void print_time_to_lcd() {
 
 
 void play_alert() {
-    tone(400, 300);
+     tone(400, 300);
      tone(500, 300);
      tone(600, 300);
      tone(700, 300);
@@ -147,6 +154,10 @@ void visualized_counter() {
     LCD_Position(1u, 0u);
     LCD_PrintString(str);
     visual_counter_value -= 1;
+    
+    if (COMMUNICATION_MODE == ESP_COMMUNICATION) {
+        UART_ESP_PutString(str);
+    }
 }
 
 void finish_counting() {
@@ -226,8 +237,10 @@ void create_alarm() {
     full_phone_num[12] = '\0';
     
     
+    if (AUTO_POWERON == 1u) {
     //1. SMS-ek kuldese
     start_sms_sending_sequence(&gsm_fifo, alert_sms, full_phone_num);
+    }
     
     //2. Csipogas kezdese
     enable_task(&p_tasks, 100);
@@ -244,7 +257,7 @@ void to_passiv_move() {
     disable_task(&p_tasks, 2); //fozorez.
     enable_task(&p_tasks, 7); //Hattervil.
     enable_task(&p_tasks, 4); //ora.
-     is_light_alert = 0u;
+    is_light_alert = 0u;
     is_movement_alert = 0u;
     is_reed_relay_alert = 0u;
     actual_substate = passziv_varakozo;
@@ -252,6 +265,10 @@ void to_passiv_move() {
     
 }
 
+char command_buffer[255];
+uint8 command_buffer_ind = 0;
+uint8 COMMAND_READING = 0;
+void (*command_processor)();
 
 int main(void)
 {
@@ -265,6 +282,7 @@ int main(void)
     
     tone_fifo.start = NULL;
     tone_fifo.end = NULL;
+    
     
     gsm_fifo.start = NULL;
     gsm_fifo.end = NULL;
@@ -290,9 +308,9 @@ int main(void)
     add_to_ptask_list(&p_tasks, create_new_ptask_noparam(visualized_counter, 1000, 5));
     
     //Akapbol passziv mod, sokminden nem kell
-   
+
     to_passiv_move();
-    
+
     volatile uint8 pressed = 0;
    
     char time_str[7];
@@ -319,7 +337,7 @@ int main(void)
                         if (pressed != 0) {
                         get_and_remove_first(&timing_fifo);
                         }
-                        if (pressed == '#' && COMPUTER_COMMUNICATION == 0) {
+                        if (pressed == '#') {
                             actual_substate = passziv_felkeszules;
                             visual_counter_value = WATCH_DELAY;
                             print_lines_to_lcd("Elesites...","");
@@ -367,6 +385,10 @@ int main(void)
                            pushTask(&timing_fifo, create_new_noparam_onetimetask(create_alarm, DEACT_DELAY*1000));
                             
                         }
+                        if (try_to_read_code_from_keyboard() == 1u) {
+                            to_passiv_move();
+        
+                        }
                         break;
                     case figylo_deaktivalo:
                         if (try_to_read_code_from_keyboard() == 1u) {
@@ -409,21 +431,108 @@ int main(void)
         }
         
         if (UART_GSM_GetRxBufferSize()) {
-            UART_PutChar(UART_GSM_GetChar());
+            
+            if (COMMUNICATION_MODE == COMPUTER_COMMUNICATION) {
+                UART_PutChar(UART_GSM_GetChar());
+            }
+            else {
+            UART_ESP_PutChar(UART_GSM_GetChar());
+            }
         }
-     /*   if (UART_GetRxBufferSize()) {
-             UART_GSM_PutChar(UART_GetChar());
-        }*/
         
-        if (UART_GetRxBufferSize() && COMPUTER_COMMUNICATION == 0) {
+         //Kulonallo interface, az ESP-nek API-t biztositok, hogy ki tudja hasznalni a riaszto lehetosegeit
+         if (UART_ESP_GetRxBufferSize() && COMMUNICATION_MODE != ESP_COMMUNICATION && COMMAND_READING == 0) {
+            char arrived = UART_ESP_GetChar();
+            if (arrived == '@') {
+                COMMUNICATION_MODE = ESP_COMMUNICATION;
+                printString("ESP UART interface hasznalatban. Vissza $ beirasaval.\r\n");
+                printString("Ird be a kodot a folytatashoz.\r\n");
+                to_passiv_move();
+            }
+            else {
+                switch (arrived) {      
+                        /* GET */
+                       case 'T': //Rendszerido lekerdezese
+                        getSysTime();
+                        break;
+                       case 'A': // Visszater azzal,hogy most epp a mozgase
+                        if (current_state == riasztas) {
+                           UART_ESP_PutString("Riasztasi modban van.");
+                           UART_ESP_PutString(alert_message);   
+                        }
+                        else if (current_state == figyelo){
+                            UART_ESP_PutString("Figyelo modban van.");
+                        }
+                        else {
+                            UART_ESP_PutString("Passziv modban van.");
+                        }
+                        break;
+                       case 'F': //Fenyerzekelo ertekenek a lekerdezes
+                        phres_command();
+                        break;
+                       case 'R': //Mozgasrzekelo statusa
+                            UART_ESP_PutString(RADAR_Read() == 1u ? "Mozgas van most" : "Nincs mozgas.");
+                        break;
+                       case 'J':
+                            UART_ESP_PutString(REED_RELAY_Read() == 0u ? "Reed rele ossze van erve" : "Nincs osszerve");
+                        break;
+                       case 'O':
+                            disable_task(&p_tasks, 7);
+                            PWM_BACKLIGHT_STATUS;
+                            PWM_BACKLIGHT_WriteCompare(0u);
+                            break;
+                       case 'P':
+                            enable_task(&p_tasks, 7);
+                            break;
+                            
+                        /* ACTIONS */
+                        /* Belefer-e blokkolas ha egy uzenet tovabbi reszeire varunk? */
+                        
+                        case 'K': //SMS kuldes - K702668307 16 Szep napunk van. / szam 9 jegy + uzenet hossza + uzenet
+                        COMMAND_READING = 1;
+                        command_processor = smsCommand;
+                        break;
+                        case 'C': //Csipogas - C400 1000 / frekvencia hossz
+                        COMMAND_READING = 1;
+                        command_processor = beepCommand;
+                        break;
+                        case 'L': //LCD-re iras - L16 Szep napunk van ma / hossz + uzenet tordel, ha nem eleg
+                        COMMAND_READING = 1;
+                        command_processor = lcdCommand;
+                        break;
+                        case 'I': //Ora beallitas - I2021 08 28 22 56 12
+                        break;
+                        case 'G': //GSM modul teszteles - G2 AT / kuldendo parancs hossza + parancs
+                        break;
+                        default:
+                        break;
+                    }
+            }
+        } else if (COMMAND_READING == 1 && UART_ESP_GetRxBufferSize()) {
+            uint8 arrived = UART_ESP_GetByte();
+            //dec. 212 Veget a parancsnak ezzel a koddal jelzem. Vagy kufutnank a tombbol.
+            if (arrived == 0xD4 || command_buffer_ind >= 254) { 
+                command_buffer[command_buffer_ind] = '\0';
+                command_buffer_ind = 0;
+                COMMAND_READING = 0;
+                command_processor();
+            }
+            else {
+                command_buffer[command_buffer_ind++] = arrived;
+            }
+        }
+        
+         if (UART_GetRxBufferSize() && COMMUNICATION_MODE != COMPUTER_COMMUNICATION) {
             char arrived = UART_GetChar();
             if (arrived == '@') {
-                COMPUTER_COMMUNICATION = 1;
+                COMMUNICATION_MODE = COMPUTER_COMMUNICATION;
                 printString("PC UART interface hasznalatban. Vissza $ beirasaval.\r\n");
-                printString("Ird be a kodot a folytatashoz.\r\nFigyelo modba nem lehet helyezni, csak a beallitasok erhetoek el.\n");
+                printString("Ird be a kodot a folytatashoz.\r\n");
                 to_passiv_move();
             }
         }     
+        
+        
    
     }
 }
